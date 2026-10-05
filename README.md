@@ -37,7 +37,8 @@ Esta etapa contempla somente a documentação inicial de governança do reposit�
 ## Referências operacionais
 
 - **Repositório oficial:** [atlashub-digital/espelhomeu](https://github.com/atlashub-digital/espelhomeu).
-- **Página oficial do EspelhoMeu no Notion AtlasHub:** link a registrar após confirmação.
+- **Página oficial do EspelhoMeu no Notion AtlasHub:** [AVS-002 — EspelhoMeu | Venture Hub](https://app.notion.com/p/3f0652fc5b9d81968763e9eddb2cef2e).
+- **Governança do studio no Notion:** [AVS — Atlas Venture Studio | Control Center](https://app.notion.com/p/3f0652fc5b9d81db9c5ec53e36f009bb).
 - **Projeto correspondente no PaperClip:** link a registrar após confirmação.
 
-Os links pendentes não pressupõem que as páginas ou o projeto já tenham sido criados.
+O link pendente do PaperClip não pressupõe que o projeto já tenha sido criado.
