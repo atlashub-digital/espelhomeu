@@ -2,7 +2,7 @@
 
 Repositório do **EspelhoMeu**, iniciativa da **AVS — Atlas Venture Studio**, no ecossistema AtlasHub.
 
-**Estado: preparação de governança. O desenvolvimento do produto não está iniciado nem autorizado por este README.**
+**Estado: governança + base técnica (scaffold). O desenvolvimento de funcionalidades do produto não está iniciado nem autorizado por este README.**
 
 ## Governança e fontes oficiais
 
@@ -27,12 +27,24 @@ Em caso de divergência sobre estratégia, requisitos ou escopo, consultar a dec
 
 ## Limites desta etapa
 
-Esta etapa contempla somente a documentação inicial de governança do repositório.
+Esta etapa contempla a documentação de governança e uma base técnica mínima pedida por Atlas em 2026-10-06:
+monorepo Next.js (Vercel) + API Fastify (VPS) + Postgres, CI e pipeline de deploy. A proposta de stack está em
+[docs/ARQUITETURA.md](docs/ARQUITETURA.md) e só passa a decisão aprovada quando registada no Notion.
 
-- Não iniciar implementação, protótipos ou scaffolding da aplicação.
-- Não definir stack, arquitetura técnica ou funcionalidades como decisões aprovadas.
-- Não configurar infraestrutura, integrações, pipelines, deploys ou releases do produto.
+- Não implementar funcionalidades do produto (agente, simulações, pagamentos) antes do E02 PASS e do escopo aprovado no Notion.
+- Não ligar a infraestrutura real (Vercel, VPS, secrets) sem aprovação da equipa.
 - Iniciar desenvolvimento somente após escopo e critérios de aceitação aprovados no Notion, autorização explícita de início e tarefas correspondentes no PaperClip.
+
+## Estrutura técnica
+
+| Pasta | Conteúdo | Deploy |
+| --- | --- | --- |
+| `apps/web` | Next.js 16 (App Router, Tailwind 4) | Vercel, Root Directory `apps/web` |
+| `apps/api` | Fastify 5 + Drizzle ORM | Docker na VPS (imagem no GHCR) |
+| `packages/shared` | Esquemas zod partilhados | — |
+| `infra/vps` | docker-compose (Caddy, API, Postgres) e guia | VPS |
+
+Comandos: `pnpm install`, `pnpm dev`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`. Detalhes em [docs/ARQUITETURA.md](docs/ARQUITETURA.md).
 
 ## Referências operacionais
 
