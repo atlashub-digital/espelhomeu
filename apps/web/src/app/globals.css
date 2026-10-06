@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/* Paleta v2 (protótipo Concept 02): creme alperce, cacau, coral brasa, toque teal. */
+:root {
+  --cream: #fce8d8;
+  --cream-deep: #f7cfb3;
+  --pearl: #fff7f0;
+  --ink: #3a1e17;
+  --ink-soft: #80503f;
+  --ember: #d9512c;
+  --amber: #efa03c;
+  --blush: #f0a493;
+  --plum: #6b2737;
+  --teal: #2e7a74;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-pearl: var(--pearl);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ember: var(--ember);
+  --color-amber: var(--amber);
+  --color-blush: var(--blush);
+  --color-plum: var(--plum);
+  --color-teal: var(--teal);
+  --font-display: var(--font-bodoni);
+  --font-sans: var(--font-jost);
+}
+
+body {
+  background: var(--pearl);
+  color: var(--ink);
+}
