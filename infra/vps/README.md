@@ -3,6 +3,17 @@
 Pré-requisitos na VPS (Ubuntu 24.04 ou semelhante): Docker + plugin compose, firewall só com 22/80/443 abertos,
 e um registo DNS `A` de `api.<domínio>` a apontar para o IP da VPS.
 
+## DNS (Cloudflare)
+
+| Nome | Tipo | Valor | Proxy |
+| --- | --- | --- | --- |
+| `api.espelho.lia.doctor` | A | IP da VPS | DNS only (nuvem cinzenta) |
+| `espelho.lia.doctor` | CNAME | valor indicado pela Vercel em Domains | DNS only |
+| `espelhomeu.lia.doctor` | CNAME | o mesmo valor da Vercel | DNS only; na Vercel, redirecionar (308) para `espelho.lia.doctor` |
+
+Com nuvem cinzenta, o Caddy emite o certificado da API sozinho. O certificado gratuito do Cloudflare não cobre
+subdomínios de segundo nível (`api.espelho.…`), por isso não ativar o proxy laranja sem um certificado avançado.
+
 ## Primeira instalação
 
 ```bash
