@@ -10,9 +10,9 @@ export default async function Status() {
       <h1 className="font-display text-3xl">Estado</h1>
       <dl className="mt-6 grid grid-cols-2 gap-2 text-sm">
         <dt>Frontend</dt>
-        <dd className="text-teal">ok</dd>
+        <dd className="text-ok">ok</dd>
         <dt>API</dt>
-        <dd className={health ? "text-teal" : "text-ember"}>{health ? health.status : "sem resposta"}</dd>
+        <dd className={health ? "text-ok" : "text-copper-deep"}>{health ? health.status : "sem resposta"}</dd>
         <dt>Base de dados</dt>
         <dd>{health?.db ?? "—"}</dd>
         <dt>Versão da API</dt>

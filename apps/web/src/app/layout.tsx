@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bodoni_Moda, Jost } from "next/font/google";
 import "./globals.css";
 
@@ -15,8 +15,12 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "EspelhoMeu",
+  title: "EspelhoMeu — O espelho que me conhece",
   description: "Espelho meu, espelho meu. Hoje, eu me escolho.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f8f1e9",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
