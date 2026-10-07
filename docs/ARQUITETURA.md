@@ -43,7 +43,7 @@ Utilizadora ──HTTPS──> Vercel (Next.js, apps/web)
    de pagamento. Na fase concierge, links de pagamento manuais chegam e não exigem código.
 6. **Email transacional** (Resend ou Postmark, região UE quando disponível).
 7. **Observabilidade** (logs JSON do Fastify + Sentry no web e na API; uptime check em `/health`).
-8. **Domínios** (`espelhomeu.<tld>` na Vercel, `api.espelhomeu.<tld>` na VPS).
+8. ~~Domínios~~ decidido: site em `espelho.lia.doctor` (e `espelhomeu.lia.doctor`) na Vercel, API em `api.espelhomeu.lia.doctor` na VPS, DNS na Cloudflare em modo DNS only.
 
 ## Privacidade e regras do projeto no código
 
@@ -66,8 +66,10 @@ infra/vps         docker-compose, Caddyfile, guia da VPS
 
 ## Configuração que só a equipa pode fazer
 
+Feito em 07/10/2026 (produção ligada e deploy automático da API a funcionar); fica como referência para refazer o ambiente.
+
 - **Vercel**: importar o repositório, Root Directory `apps/web`, variável `NEXT_PUBLIC_API_URL`.
-- **VPS**: Docker, firewall (22/80/443), DNS de `api.<domínio>`, `/opt/espelhomeu/.env` (ver `infra/vps`).
+- **VPS**: Docker, firewall (SSH na porta 22022, 80/443), DNS de `api.<domínio>`, `/opt/espelhomeu/.env` (ver `infra/vps`).
 - **GitHub**: environment `production` com secrets `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY`; proteção do branch `main`.
 
 ## Desenvolvimento local
