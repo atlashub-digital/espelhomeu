@@ -22,3 +22,27 @@ describe("GET /health", () => {
     await app.close();
   });
 });
+
+describe("POST /waitlist", () => {
+  const body = {
+    email: "ana@exemplo.pt",
+    market: "PT",
+    adult: true,
+    consent: true,
+    consentVersion: "lista-espera-2026-10-08",
+  };
+
+  it("rejeita inscrições sem consentimento", async () => {
+    const app = await buildApp(loadEnv({ NODE_ENV: "test" }));
+    const res = await app.inject({ method: "POST", url: "/waitlist", payload: { ...body, consent: false } });
+    expect(res.statusCode).toBe(400);
+    await app.close();
+  });
+
+  it("responde 503 sem base de dados", async () => {
+    const app = await buildApp(loadEnv({ NODE_ENV: "test" }));
+    const res = await app.inject({ method: "POST", url: "/waitlist", payload: body });
+    expect(res.statusCode).toBe(503);
+    await app.close();
+  });
+});

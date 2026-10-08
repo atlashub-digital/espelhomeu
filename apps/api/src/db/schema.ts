@@ -30,3 +30,12 @@ export const consents = pgTable("consents", {
   textVersion: text("text_version").notNull(),
   recordedAt: timestamp("recorded_at", { withTimezone: true }).notNull().defaultNow(),
 });
+
+/** Lista de espera da primeira turma (E01). Dados mínimos; apagar a pedido. */
+export const waitlist = pgTable("waitlist", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  email: text("email").notNull().unique(),
+  market: market("market").notNull(),
+  consentVersion: text("consent_version").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});

@@ -26,8 +26,11 @@ será o **Meu Espelho**, um agente pessoal que se lembra das escolhas da cliente
 
 - Fase de **validação**. Não construir funcionalidades de produto (agente, simulação de cabelo, pagamentos, contas)
   antes de a experiência de oferta paga (E02) passar e de o escopo estar aprovado no Notion.
-- Em produção: página de espera em https://espelho.lia.doctor (também espelhomeu.lia.doctor) e API em
+- Em produção: página inicial com lista de espera em https://espelho.lia.doctor (também espelhomeu.lia.doctor),
+  política em `/privacidade`, protótipo de 10 ecrãs em `/prototipo` (só para entrevistas, `noindex`) e API em
   https://api.espelhomeu.lia.doctor/health. A página `/status` do site confirma a ligação web → API → base de dados.
+- A lista de espera grava na tabela `waitlist` (email, país, versão do consentimento). A API aplica as migrações de
+  `apps/api/drizzle/` ao arrancar.
 
 ## Regras que valem para código, textos e prompts
 
