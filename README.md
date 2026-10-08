@@ -1,5 +1,7 @@
 # EspelhoMeu
 
+> Agentes e novos membros: começar por [AGENTS.md](AGENTS.md).
+
 Repositório do **EspelhoMeu**, iniciativa da **AVS — Atlas Venture Studio**, no ecossistema AtlasHub.
 
 **Estado: governança + base técnica (scaffold). O desenvolvimento de funcionalidades do produto não está iniciado nem autorizado por este README.**
@@ -32,7 +34,7 @@ monorepo Next.js (Vercel) + API Fastify (VPS) + Postgres, CI e pipeline de deplo
 [docs/ARQUITETURA.md](docs/ARQUITETURA.md) e só passa a decisão aprovada quando registada no Notion.
 
 - Não implementar funcionalidades do produto (agente, simulações, pagamentos) antes do E02 PASS e do escopo aprovado no Notion.
-- Não ligar a infraestrutura real (Vercel, VPS, secrets) sem aprovação da equipa.
+- Não alterar a infraestrutura real (Vercel, VPS, secrets) sem aprovação da equipa. Já está ligada desde 07/10/2026.
 - Iniciar desenvolvimento somente após escopo e critérios de aceitação aprovados no Notion, autorização explícita de início e tarefas correspondentes no PaperClip.
 
 ## Estrutura técnica
