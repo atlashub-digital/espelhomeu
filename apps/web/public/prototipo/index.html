@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<base href="/prototipo/">
+<title>EspelhoMeu · Protótipo (demonstração)</title>
+<link rel="icon" type="image/png" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500&display=swap">
+<style>
+/* Layout: a single phone canvas (the app) beside a quiet index of the 10 screens; on phones the app fills the width. Single warm light world by choice. */
+:root{
+  color-scheme: light;
+  /* Official identity: ivory/champagne ground, deep brown ink, rose-gold copper metal */
+  --champagne:#F8F1E9;
+  --champagne-deep:#EDE0D1;
+  --pearl:#FFFBF6;
+  --ink:#3B1F12;
+  --ink-soft:#7A5A48;
+  --gold:#A5562A;           /* copper, from the wordmark */
+  --amber:#D9925E;
+  --blush:#E8C9B3;
+  --taupe:#A08A7C;
+  --chocolate:#5A2E18;
+  --glass:rgba(255,251,246,.66);
+  --line:rgba(110,60,30,.16);
+  --metal:linear-gradient(150deg,#F3C49A,#B8693A 38%,#F6D3B1 58%,#8E4420 82%,#C77B4B);
+  --f-display:"Playfair Display","Didot",Georgia,serif;
+  --f-body:"Montserrat","Avenir Next",system-ui,sans-serif;
+  --slow:700ms cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--champagne-deep);color:var(--ink);font-family:var(--f-body);font-weight:300;font-size:15px;line-height:1.5;
+  background-image:radial-gradient(120% 80% at 15% 0%,#FFF8F0 0%,transparent 60%),radial-gradient(90% 70% at 100% 100%,#E3CBB4 0%,transparent 65%)}
+.stage{min-height:100%;display:flex;gap:56px;align-items:center;justify-content:center;padding-block:32px;padding-inline:24px}
+/* ---------- index panel ---------- */
+.index{width:280px;flex:none;align-self:center}
+.index .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.index h1{font-family:var(--f-display);font-weight:400;font-size:34px;line-height:1.05;margin:.35em 0 .5em;text-wrap:balance}
+.index h1 em{font-style:italic}
+.index p{color:var(--ink-soft);font-size:13.5px;margin:0 0 20px}
+.index ol{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:2px;counter-reset:s}
+.index li button{all:unset;cursor:pointer;display:flex;gap:12px;align-items:baseline;width:100%;padding:7px 10px;border-radius:10px;font-size:14px;color:var(--ink-soft);transition:background .3s,color .3s}
+.index li button::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--f-display);font-style:italic;font-size:13px;color:var(--gold);width:20px}
+.index li button:hover{background:var(--glass)}
+.index li button[aria-current="true"]{background:var(--pearl);color:var(--ink)}
+.index li button:focus-visible{outline:1.5px solid var(--gold)}
+.market{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--ink-soft)}
+.seg{display:inline-flex;background:var(--glass);border:1px solid var(--line);border-radius:99px;padding:3px}
+.seg button{all:unset;cursor:pointer;padding:5px 14px;border-radius:99px;font-size:12px;letter-spacing:.06em}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--pearl)}
+.seg button:focus-visible{outline:1.5px solid var(--gold)}
+.note{margin-top:18px;font-size:11.5px;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:12px}
+/* ---------- phone ---------- */
+.phone{position:relative;width:390px;height:812px;max-height:calc(100vh - 64px);min-height:640px;flex:none;border-radius:46px;background:var(--champagne);overflow:hidden;
+  box-shadow:0 0 0 10px #1f1915,0 0 0 11px #4b3d33,0 40px 80px -20px rgba(60,40,25,.45)}
+.phone::before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:110px;height:30px;border-radius:20px;background:#1f1915;z-index:20}
+.statusbar{position:absolute;top:0;left:0;right:0;height:50px;display:flex;justify-content:space-between;align-items:center;padding:4px 30px 0;font-size:13px;font-weight:500;z-index:15;pointer-events:none}
+.screen{position:absolute;inset:0;padding:64px 26px 28px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(14px) scale(.995);
+  transition:opacity var(--slow),transform var(--slow),visibility 0s linear 700ms;overflow-y:auto;scrollbar-width:none}
+.screen::-webkit-scrollbar{display:none}
+.screen.on{opacity:1;visibility:visible;transform:none;transition:opacity var(--slow),transform var(--slow),visibility 0s}
+.screen.has-tabs{padding-bottom:96px}
+/* ambient glass blobs */
+.aura{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.aura i{position:absolute;border-radius:50%;filter:blur(40px);opacity:.55}
+.aura i:nth-child(1){width:260px;height:260px;background:#F1D9C6;top:-60px;right:-80px;animation:drift 18s ease-in-out infinite alternate}
+.aura i:nth-child(2){width:220px;height:220px;background:#EFE3D3;bottom:40px;left:-90px;animation:drift 22s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(30px,40px) scale(1.1)}}
+.screen>*{position:relative;z-index:1}
+/* type */
+.kicker{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:400}
+.display{font-family:var(--f-display);font-weight:400;font-size:34px;line-height:1.08;margin:10px 0 0;text-wrap:balance;letter-spacing:-.01em}
+.display em{font-style:italic}
+.lede{color:var(--ink-soft);font-size:15px;margin:12px 0 0;text-wrap:pretty}
+.spacer{flex:1 1 auto;min-height:16px}
+/* buttons */
+.cta{all:unset;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 12px 12px 24px;border-radius:99px;background:linear-gradient(180deg,#6A3920,#3B1F12);color:#FFF4EA;font-family:var(--f-display);font-size:16px;letter-spacing:.01em;box-shadow:0 10px 24px -12px rgba(59,31,18,.6),inset 0 1px 0 rgba(255,220,190,.25);transition:transform .5s,filter .5s}
+.cta:hover{filter:brightness(1.12)}
+.cta>span{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,220,190,.55);display:grid;place-items:center;font-family:var(--f-body);font-size:14px;flex:none}
+.cta:active{transform:scale(.985)}
+.cta[disabled]{opacity:.35;pointer-events:none}
+.ghost{all:unset;cursor:pointer;text-align:center;padding:12px;font-size:14px;color:var(--ink-soft);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line)}
+.cta:focus-visible,.ghost:focus-visible,.opt:focus-visible,.chip:focus-visible,.card:focus-visible,.fb:focus-visible,.tab:focus-visible,.back:focus-visible{outline:1.5px solid var(--gold);outline-offset:3px}
+.back{all:unset;cursor:pointer;font-size:13px;color:var(--ink-soft);margin-bottom:18px;display:inline-flex;gap:6px}
+/* hero mirror */
+.mirror{position:relative;margin:6px auto 0;width:230px;height:300px;border-radius:50% 50% 46% 46% / 42% 42% 58% 58%;padding:9px;
+  background:var(--metal);box-shadow:0 30px 60px -25px rgba(90,60,30,.55)}
+.mirror .glass{position:relative;width:100%;height:100%;border-radius:inherit;overflow:hidden;background:#EBD9C6}
+.mirror .glass svg{width:100%;height:100%;display:block}
+.mirror .glass::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.55) 45%,transparent 58%);transform:translateX(-120%);animation:glint 7s ease-in-out 1.2s infinite}
+@keyframes glint{0%,60%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
+.hero .rhyme{font-family:var(--f-display);font-style:italic;font-size:19px;color:var(--ink-soft);text-align:center;margin:26px 0 0}
+.hero .word{font-family:var(--f-display);font-size:44px;text-align:center;margin:4px 0 0;letter-spacing:-.015em;line-height:1}
+.hero .word span{font-style:italic;color:var(--gold)}
+.hero .tag{text-align:center;color:var(--ink-soft);margin:12px auto 0;max-width:270px;font-size:14.5px}
+.hero .answer{text-align:center;font-family:var(--f-display);font-size:16px;margin:16px 0 0}
+/* options */
+.opts{display:grid;gap:10px;margin-top:26px}
+.opt{all:unset;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:17px 20px;border-radius:20px;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.7);font-size:15.5px;transition:background .5s,border-color .5s}
+.opt::after{content:"";width:18px;height:18px;border-radius:50%;border:1px solid var(--line);flex:none;transition:all .5s}
+.opt[aria-pressed="true"]{background:var(--pearl);border-color:var(--gold)}
+.opt[aria-pressed="true"]::after{background:var(--gold);border-color:var(--gold);box-shadow:inset 0 0 0 4px var(--pearl)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{all:unset;cursor:pointer;padding:12px 18px;border-radius:99px;border:1px solid var(--line);background:var(--glass);font-size:14.5px;transition:all .5s}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--pearl);border-color:var(--ink)}
+.agecheck{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--ink-soft);margin-top:22px;padding:14px 16px;border-radius:16px;border:1px dashed var(--line)}
+.agecheck input{accent-color:var(--gold);width:18px;height:18px;margin:1px 0 0;flex:none}
+.progress{display:flex;gap:6px;margin-bottom:22px}
+.progress i{height:2px;flex:1;background:var(--line);border-radius:2px}
+.progress i.f{background:var(--gold)}
+/* upload */
+.drop{margin-top:24px;border-radius:28px;aspect-ratio:4/4.3;max-width:100%;display:grid;place-items:center;text-align:center;background:var(--glass);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(10px);overflow:hidden;position:relative}
+.drop .ring{width:74px;height:74px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;margin:0 auto 12px;font-family:var(--f-display);font-size:30px;color:var(--gold)}
+.drop svg.photo{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s}
+.drop.filled svg.photo{opacity:1}
+.drop.filled .empty{opacity:0}
+.consent{display:grid;gap:10px;margin-top:16px}
+.toggle{display:flex;gap:14px;align-items:center;justify-content:space-between;font-size:13.5px;padding:12px 4px;border-bottom:1px solid var(--line)}
+.toggle small{display:block;color:var(--ink-soft);font-size:12px}
+.sw{position:relative;width:44px;height:26px;flex:none}
+.sw input{opacity:0;position:absolute;inset:0;margin:0;cursor:pointer;z-index:1}
+.sw span{position:absolute;inset:0;border-radius:99px;background:var(--champagne-deep);transition:background .4s}
+.sw span::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--pearl);box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .4s}
+.sw input:checked+span{background:var(--gold)}
+.sw input:checked+span::after{transform:translateX(18px)}
+.sw input:focus-visible+span{outline:1.5px solid var(--gold);outline-offset:2px}
+/* chat */
+.chathead{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.avatar{width:46px;height:50px;flex:none}
+.avatar img{width:100%;height:100%;display:block;object-fit:contain}
+.chathead b{font-family:var(--f-display);font-weight:400;font-size:19px;display:block;line-height:1.1}
+.chathead small{color:var(--ink-soft);font-size:12px}
+.thread{display:flex;flex-direction:column;gap:10px;padding-top:16px}
+.bub{max-width:84%;padding:13px 16px;border-radius:20px;font-size:14.5px;opacity:0;transform:translateY(8px);animation:rise .8s var(--d,0s) forwards}
+.bub.me{align-self:flex-end;background:var(--ink);color:var(--pearl);border-bottom-right-radius:6px}
+.bub.ai{background:var(--glass);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(10px);border-bottom-left-radius:6px}
+.bub.memo{font-size:12px;color:var(--gold);background:none;border:none;padding:2px 4px;letter-spacing:.04em;max-width:100%}
+.bub.memo::before{content:"◌ ";}
+@keyframes rise{to{opacity:1;transform:none}}
+.replies{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.replies .chip{font-size:13.5px;padding:10px 15px}
+/* simulation */
+.cards{display:grid;gap:10px;margin-top:20px}
+.card{all:unset;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:15px 18px;border-radius:20px;background:var(--glass);border:1px solid rgba(255,255,255,.75);transition:all .6s}
+.card b{font-family:var(--f-display);font-weight:400;font-size:19px}
+.card small{grid-column:1;color:var(--ink-soft);font-size:13px}
+.card::after{content:"→";grid-row:1/3;grid-column:2;align-self:center;color:var(--gold);transition:transform .5s}
+.card[aria-pressed="true"]{background:var(--pearl);border-color:var(--gold)}
+.card[aria-pressed="true"]::after{transform:translateX(4px)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.compare figure{margin:0}
+.compare .frame{border-radius:120px 120px 22px 22px;overflow:hidden;aspect-ratio:3/4;background:#EBD9C6;position:relative}
+.compare svg{width:100%;height:100%;display:block}
+.compare figcaption{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-top:8px;text-align:center}
+.generating{position:absolute;inset:0;display:grid;place-items:center;background:rgba(251,246,239,.6);backdrop-filter:blur(8px);font-family:var(--f-display);font-style:italic;font-size:15px;opacity:0;transition:opacity .6s;pointer-events:none}
+.generating.show{opacity:1}
+.fbrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.fb{all:unset;cursor:pointer;text-align:center;padding:12px 6px;border-radius:14px;border:1px solid var(--line);font-size:13px;transition:all .5s}
+.fb[aria-pressed="true"]{background:var(--ink);color:var(--pearl);border-color:var(--ink)}
+.toast{margin-top:12px;font-size:12.5px;color:var(--gold);text-align:center;min-height:20px;transition:opacity .6s}
+/* offer */
+.offer .badge{display:inline-block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:6px 12px;border-radius:99px;border:1px solid var(--gold);color:var(--gold)}
+.offer .title{font-family:var(--f-display);font-size:42px;line-height:.98;margin:16px 0 0;letter-spacing:-.02em}
+.offer .title em{display:block;font-size:28px;color:var(--ink-soft)}
+.incl{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:0}
+.incl li{display:grid;grid-template-columns:28px 1fr;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.incl li span{font-family:var(--f-display);font-style:italic;color:var(--gold)}
+.price{display:flex;align-items:baseline;gap:10px;margin:22px 0 4px}
+.price b{font-family:var(--f-display);font-weight:400;font-size:44px;line-height:1}
+.price small{color:var(--ink-soft);font-size:13px}
+.fine{font-size:12px;color:var(--ink-soft);margin:6px 0 16px}
+/* journey / dashboard */
+.daytop{display:flex;justify-content:space-between;align-items:flex-end}
+.daynum{font-family:var(--f-display);font-size:58px;line-height:.9;letter-spacing:-.03em}
+.daynum small{font-size:20px;color:var(--ink-soft);font-style:italic}
+.bar21{display:grid;grid-template-columns:repeat(21,1fr);gap:3px;margin-top:16px}
+.bar21 i{height:5px;border-radius:3px;background:var(--line)}
+.bar21 i.f{background:var(--gold)}
+.bar21 i.t{background:var(--ink)}
+.quote{font-family:var(--f-display);font-style:italic;font-size:21px;line-height:1.3;margin:22px 0 0;text-wrap:balance}
+.today{margin-top:22px;padding:20px;border-radius:24px;background:var(--glass);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(12px)}
+.today h3{font-family:var(--f-display);font-weight:400;font-size:24px;margin:6px 0 6px}
+.today p{margin:0;color:var(--ink-soft);font-size:14px}
+.steps{list-style:none;padding:0;margin:14px 0 16px;display:grid;gap:8px;font-size:13.5px}
+.steps li{display:flex;gap:10px;align-items:center}
+.steps li::before{content:"";width:14px;height:14px;border-radius:50%;border:1px solid var(--gold);flex:none}
+.steps li.d::before{background:var(--gold)}
+.mood{margin-top:22px}
+.mood p{font-family:var(--f-display);font-size:19px;margin:0 0 10px}
+.moods{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.moods .fb{display:grid;gap:4px;font-size:12px;padding:12px 4px}
+.moods .fb span{font-size:20px}
+/* timeline */
+.timeline{list-style:none;margin:26px 0 0;padding:0 0 0 22px;border-left:1px solid var(--gold);display:grid;gap:22px}
+.timeline li{position:relative}
+.timeline li::before{content:"";position:absolute;left:-28px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--champagne);border:1px solid var(--gold)}
+.timeline li.now::before{background:var(--gold)}
+.timeline b{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:400}
+.timeline p{font-family:var(--f-display);font-size:18px;margin:2px 0 0;line-height:1.3}
+.timeline .mini{display:flex;gap:6px;margin-top:8px}
+.timeline .mini i{width:34px;height:44px;border-radius:17px 17px 8px 8px;overflow:hidden;background:#EBD9C6}
+.timeline .mini svg{width:100%;height:100%;display:block}
+.timeline .mini i.x{opacity:.35}
+/* report */
+.report .cover{border-radius:28px;padding:22px;background:linear-gradient(160deg,var(--pearl),#EFDFCB);border:1px solid rgba(255,255,255,.8);margin-top:16px}
+.report .cover .display{font-size:30px}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.rcell{padding:14px;border-radius:18px;background:var(--glass);border:1px solid rgba(255,255,255,.75);min-width:0}
+.rcell.wide{grid-column:1/-1}
+.rcell h4{margin:0 0 8px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:400}
+.rcell p{margin:0;font-size:13.5px}
+.sw3{display:flex;gap:6px}
+.sw3 i{width:28px;height:28px;border-radius:50%;border:2px solid var(--pearl);box-shadow:0 0 0 1px var(--line)}
+.choices{list-style:none;padding:0;margin:0;display:grid;gap:8px;counter-reset:c}
+.choices li{display:flex;gap:10px;font-family:var(--f-display);font-size:17px}
+.choices li::before{counter-increment:c;content:counter(c);font-style:italic;color:var(--gold)}
+.strike{text-decoration:line-through;text-decoration-color:var(--blush);color:var(--ink-soft)}
+/* tabbar */
+.tabs{position:absolute;left:14px;right:14px;bottom:16px;z-index:12;display:none;justify-content:space-around;padding:10px 6px;border-radius:26px;background:rgba(251,246,239,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.85);box-shadow:0 10px 30px -12px rgba(90,60,30,.35)}
+.tabs.show{display:flex}
+.tab{all:unset;cursor:pointer;display:grid;justify-items:center;gap:3px;font-size:10.5px;letter-spacing:.06em;color:var(--ink-soft);padding:4px 8px}
+.tab i{width:20px;height:20px;border:1.3px solid currentColor;border-radius:50% 50% 46% 46%/42% 42% 58% 58%}
+.tab.alt i{border-radius:4px;transform:rotate(45deg) scale(.8)}
+.tab.line i{border-radius:0;border-width:0 0 0 1.3px;width:2px;height:18px}
+.tab[aria-current="true"]{color:var(--ink)}
+.tab[aria-current="true"] i{background:var(--gold);border-color:var(--gold)}
+/* ---------- hero v2: mosaic of possibilities ---------- */
+.screen.hero2{padding:0;overflow:hidden;background:var(--champagne)}
+.mosaic{position:absolute;inset:-20px -10px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;z-index:0;opacity:.9}
+.mcol{display:flex;flex-direction:column;gap:6px;animation:mscroll var(--dur,48s) linear infinite}
+.mcol.rev{animation-direction:reverse}
+.mcol .tile{border-radius:14px;overflow:hidden;flex:none;aspect-ratio:3/4}
+.mcol .tile.tall{aspect-ratio:3/5}
+.mcol .tile svg{width:100%;height:100%;display:block}
+.mcol .tile.photo{background:#EFE3D6}.mcol .tile img{width:100%;height:100%;object-fit:cover;display:block}
+@keyframes mscroll{from{transform:translateY(0)}to{transform:translateY(calc(-50% - 3px))}}
+.hero2 .veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(70% 38% at 50% 34%,rgba(248,241,233,.96) 0%,rgba(248,241,233,.82) 55%,rgba(248,241,233,.25) 100%),linear-gradient(180deg,rgba(248,241,233,.5) 0%,rgba(248,241,233,0) 16%,rgba(248,241,233,0) 50%,rgba(248,241,233,.94) 68%,var(--champagne) 100%)}
+.hero2 .logo{position:absolute;z-index:2;left:50%;top:58px;transform:translateX(-50%);width:288px;max-width:84%;filter:drop-shadow(0 18px 30px rgba(90,46,24,.18))}
+.hero2 .logo img{width:100%;display:block}
+.hero2 .logo::after{content:"";position:absolute;inset:0 18% 30% 18%;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.5) 47%,transparent 58%);transform:translateX(-120%);animation:glint 7s ease-in-out 1.4s infinite;mix-blend-mode:soft-light;pointer-events:none}
+.hero2 .bottom{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 24px 26px;text-align:center}
+.hero2 .rhyme{font-family:var(--f-display);font-style:italic;font-size:17px;color:var(--ink-soft);margin:0}
+.hero2 .answer{font-family:var(--f-display);font-size:25px;line-height:1.15;margin:2px 0 6px;color:var(--ink)}
+.hero2 .rotor{font-family:var(--f-body);font-size:13.5px;letter-spacing:.02em;color:var(--ink-soft);margin:0 0 18px;min-height:20px}
+.hero2 .rotor span{display:inline-block;font-family:var(--f-display);font-style:italic;font-size:16px;color:var(--gold);animation:pop .6s cubic-bezier(.22,.61,.36,1)}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero2 .credit{font-size:10px;letter-spacing:.06em;color:var(--taupe);margin:12px 0 0}
+.index .wm{width:240px;max-width:100%;display:block;margin:12px 0 14px}
+.brandrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.brandrow img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;display:block;border:1px solid var(--line)}
+.brandrow img.wide{grid-column:1/-1;aspect-ratio:16/9}
+.brandrow figcaption{grid-column:1/-1;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.offer .cover{margin:-64px -26px 0;height:300px;position:relative;overflow:hidden;border-radius:0 0 40px 40px}
+.offer .cover img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
+.offer .cover::after{content:"";position:absolute;inset:auto 0 0 0;height:50%;background:linear-gradient(0deg,var(--champagne),transparent)}
+.offer .badge{position:relative;margin-top:-34px;z-index:2;background:var(--pearl)}
+@media (max-width:860px){
+  .stage{flex-direction:column;gap:20px;padding-inline:16px;padding-block:16px}
+  .index{width:100%;max-width:420px}
+  .index ol{grid-template-columns:1fr 1fr}
+  .index h1{font-size:28px}
+}
+@media (max-width:440px){
+  .phone{width:100%;height:780px;max-height:none;border-radius:32px;box-shadow:0 0 0 6px #1f1915,0 30px 60px -20px rgba(60,40,25,.45)}
+  .screen{padding-inline:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .bub{opacity:1;transform:none}
+}
+</style>
+
+<div class="stage">
+  <aside class="index" aria-label="Telas do protótipo">
+    <div class="eyebrow">AVS-002 · Protótipo visual · identidade oficial</div>
+    <img class="wm" src="assets/wordmark.webp" alt="EspelhoMeu, o espelho que me conhece">
+    <p>Dez telas clicáveis da experiência, do primeiro reflexo ao relatório do Dia 21. Toque nos botões dentro do telefone ou salte para uma tela.</p>
+    <ol id="nav"></ol>
+    <div class="market">Mercado
+      <div class="seg" role="group" aria-label="Mercado">
+        <button type="button" data-m="br" aria-pressed="true">Brasil</button>
+        <button type="button" data-m="pt" aria-pressed="false">Portugal</button>
+      </div>
+    </div>
+    <div class="note">Protótipo estático para validação (E03). Sem IA real, sem backend. Os rostos do mosaico são imagens geradas e ilustrativas, não clientes reais.</div>
+    <figure class="brandrow" style="margin:16px 0 0"><figcaption>Peças oficiais</figcaption><img class="wide" src="assets/b1.webp" alt="Banner: uma nova forma de se ver"><img src="assets/b2.webp" alt="Banner: o espelho que me conhece"><img src="assets/b3.webp" alt="Banner: observe, experimente, escolha"><img src="assets/b4.webp" alt="Banner: 21 Dias"></figure>
+  </aside>
+
+  <div class="phone" id="phone">
+    <div class="statusbar"><span>9:41</span><span>●●● ◔</span></div>
+
+    <!-- 1 HERO (identidade oficial + mosaico de possibilidades) -->
+    <section class="screen hero2 on" data-name="Espelho meu">
+      <div class="mosaic" id="mosaic" aria-hidden="true"></div>
+      <div class="veil"></div>
+      <div class="logo"><img src="assets/logo-560.webp" alt="EspelhoMeu, o espelho que me conhece"></div>
+      <div class="bottom">
+        <p class="rhyme">Espelho meu, espelho meu.</p>
+        <p class="answer" data-copy="heroAnswer">Hoje, eu me escolho.</p>
+        <p class="rotor" aria-live="polite">Hoje eu quero <span id="rotor">um cabelo novo.</span></p>
+        <button class="cta" data-go="2">Começar pelo meu reflexo <span>→</span></button>
+        <p class="credit">Uma nova forma de se ver, experimentar e escolher.<br><span style="opacity:.75">Imagens ilustrativas</span></p>
+      </div>
+    </section>
+
+    <!-- 2 COMO SE VE -->
+    <section class="screen" data-name="Como você está se vendo hoje?">
+      <div class="aura"><i></i><i></i></div>
+      <div class="progress"><i class="f"></i><i></i><i></i></div>
+      <span class="kicker">Meu Espelho</span>
+      <h2 class="display">Olá. <em>Como você está se vendo hoje?</em></h2>
+      <div class="opts" data-single>
+        <button class="opt" aria-pressed="false">Quero mudar alguma coisa</button>
+        <button class="opt" aria-pressed="true">Quero voltar a cuidar de mim</button>
+        <button class="opt" aria-pressed="false">Quero experimentar um novo visual</button>
+        <button class="opt" aria-pressed="false">Não sei exatamente. Quero descobrir</button>
+      </div>
+      <div class="spacer"></div>
+      <button class="cta" data-go="3">Continuar <span>→</span></button>
+    </section>
+
+    <!-- 3 ONBOARDING -->
+    <section class="screen" data-name="Onboarding">
+      <div class="aura"><i></i><i></i></div>
+      <div class="progress"><i class="f"></i><i class="f"></i><i></i></div>
+      <span class="kicker">Para começar</span>
+      <h2 class="display">O que você gostaria de <em>explorar primeiro?</em></h2>
+      <p class="lede">Pode escolher mais de um. Você muda isto quando quiser.</p>
+      <div class="chips">
+        <button class="chip" aria-pressed="true">Cabelo</button>
+        <button class="chip" aria-pressed="false">Estilo</button>
+        <button class="chip" aria-pressed="false">Pele &amp; autocuidado</button>
+        <button class="chip" aria-pressed="false">Minha rotina</button>
+        <button class="chip" aria-pressed="false">Um pouco de tudo</button>
+      </div>
+      <label class="agecheck"><input type="checkbox" id="age" checked> <span>Confirmo que tenho 18 anos ou mais. O EspelhoMeu é uma experiência para mulheres adultas.</span></label>
+      <div class="spacer"></div>
+      <button class="cta" data-go="4" id="ageGo">Continuar <span>→</span></button>
+    </section>
+
+    <!-- 4 UPLOAD -->
+    <section class="screen" data-name="Upload da fotografia">
+      <div class="aura"><i></i><i></i></div>
+      <div class="progress"><i class="f"></i><i class="f"></i><i class="f"></i></div>
+      <span class="kicker">Opcional</span>
+      <h2 class="display">Quer me <em>mostrar você?</em></h2>
+      <div class="drop" id="drop">
+        <svg class="photo" data-portrait="long" data-tone="#7A5440" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice"></svg>
+        <div class="empty"><div class="ring">+</div>Uma foto de frente, com luz natural.<br><small style="color:var(--ink-soft)">Sem filtros, sem maquiagem obrigatória.</small></div>
+      </div>
+      <div class="consent">
+        <label class="toggle"><span>Usar a foto só nas experiências de hoje<small>Ela não é usada para avaliar você.</small></span><span class="sw"><input type="checkbox" id="c1" checked><span></span></span></label>
+        <label class="toggle"><span>Guardar no meu Espelho para comparar depois<small>Você apaga a qualquer momento.</small></span><span class="sw"><input type="checkbox" id="c2"><span></span></span></label>
+      </div>
+      <p class="lede" style="font-size:13px">Opcional. Você controla o que é guardado. Nunca partilhamos a sua imagem.</p>
+      <div class="spacer"></div>
+      <button class="cta" id="addPhoto">Adicionar fotografia <span>↑</span></button>
+      <button class="ghost" data-go="5">Continuar sem foto</button>
+    </section>
+
+    <!-- 5 CHAT -->
+    <section class="screen" data-name="Meu Espelho · conversa">
+      <div class="chathead"><div class="avatar"><img src="assets/emblema-256.webp" alt=""></div><div><b>Meu Espelho</b><small>Lembra das suas escolhas, só para você</small></div></div>
+      <div class="thread">
+        <div class="bub ai" style="--d:.2s">Que bom ter você aqui. Antes de qualquer imagem, me conta: quando você pensa no seu cabelo hoje, o que mais pesa?</div>
+        <div class="bub me" style="--d:1.1s">Acho que quero algo que me dê menos trabalho de manhã.</div>
+        <div class="bub memo" style="--d:1.8s">Guardado: prefere menos manutenção</div>
+        <div class="bub ai" style="--d:2.4s">Entendi. Vou guardar isso. E da última vez que você se sentiu mesmo bem com o cabelo, como ele estava?</div>
+        <div class="bub me" style="--d:3.3s">Mais ou menos na altura dos ombros.</div>
+        <div class="bub ai" style="--d:4s">Então começamos daí. Posso preparar três possibilidades, da mais próxima de você hoje à mais diferente. Você decide o que fica.</div>
+      </div>
+      <div class="replies">
+        <button class="chip" data-go="6">Vamos experimentar</button>
+        <button class="chip">Prefiro só conversar hoje</button>
+      </div>
+      <div class="spacer"></div>
+      <p class="lede" style="font-size:12px;text-align:center">Exemplo de memória: “Na semana passada você comentou que queria um corte com menos manutenção.”</p>
+    </section>
+
+    <!-- 6 SIMULACAO -->
+    <section class="screen" data-name="Simulação de cabelo">
+      <div class="aura"><i></i><i></i></div>
+      <span class="kicker">Dia 7 · E se eu experimentasse?</span>
+      <h2 class="display" style="font-size:28px">Em qual delas <em>eu me reconheço?</em></h2>
+      <div class="cards" id="simCards">
+        <button class="card" aria-pressed="true" data-hair="shoulder" data-tone="#7A5440"><b>Mudança suave</b><small>Algo reconhecível, de baixa ruptura.</small></button>
+        <button class="card" aria-pressed="false" data-hair="bob" data-tone="#5A3A2B"><b>Renovação</b><small>Perceptível, mas perto das suas referências.</small></button>
+        <button class="card" aria-pressed="false" data-hair="pixie" data-tone="#3E2A22"><b>Curiosidade</b><small>Algo que você normalmente não escolheria.</small></button>
+      </div>
+      <div class="compare">
+        <figure><div class="frame"><svg data-portrait="long" data-tone="#7A5440" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice"></svg></div><figcaption>Antes</figcaption></figure>
+        <figure><div class="frame"><svg id="simOut" data-portrait="shoulder" data-tone="#7A5440" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice"></svg><div class="generating" id="gen">a preparar…</div></div><figcaption>Experimentação</figcaption></figure>
+      </div>
+      <div class="fbrow" id="fbRow">
+        <button class="fb" aria-pressed="false">Muito eu</button>
+        <button class="fb" aria-pressed="false">Talvez</button>
+        <button class="fb" aria-pressed="false">Não sou eu</button>
+      </div>
+      <div class="toast" id="toast"></div>
+      <button class="cta" data-go="7" style="margin-top:6px">Quero continuar <span>→</span></button>
+    </section>
+
+    <!-- 7 OFERTA -->
+    <section class="screen offer" data-name="Oferta 21 Dias">
+      <div class="aura"><i></i><i></i></div>
+      <div class="cover"><img src="assets/espelho-21dias.webp" alt=""></div>
+      <span class="badge">Sua pequena descoberta foi guardada</span>
+      <h2 class="title">21 Dias<em>Meu Melhor Reflexo</em></h2>
+      <p class="lede">Uma jornada para se reconhecer, experimentar e escolher o que faz sentido para você agora.</p>
+      <ul class="incl">
+        <li><span>i</span>21 experiências de 5 a 15 minutos: ver, experimentar, cuidar, escolher</li>
+        <li><span>ii</span>O agente Meu Espelho, com memória que você autoriza, corrige e apaga</li>
+        <li><span>iii</span>Experiências de cabelo e o seu diário interativo</li>
+        <li><span>iv</span>No Dia 21, o seu resumo pessoal “Meu Melhor Reflexo”</li>
+      </ul>
+      <div class="price"><b data-copy="price">R$79</b><small data-copy="priceNote">pagamento único · PIX ou cartão</small></div>
+      <p class="fine" data-copy="fine">Sem renovação automática. Começa quando você quiser.</p>
+      <button class="cta" data-go="8">Quero começar os 21 dias <span>→</span></button>
+      <button class="ghost" data-go="1">Agora não, obrigada</button>
+    </section>
+
+    <!-- 8 JORNADA -->
+    <section class="screen has-tabs" data-name="Jornada · dia do programa" data-tab="8">
+      <div class="aura"><i></i><i></i></div>
+      <span class="kicker">Movimento II · Experimentar</span>
+      <div class="daytop"><div class="daynum">Dia 09 <small>de 21</small></div></div>
+      <div class="bar21" id="bar21"></div>
+      <p class="quote">“Experimentar também é uma maneira de se conhecer.”</p>
+      <div class="today">
+        <span class="kicker">Experiência de hoje · 10 min</span>
+        <h3>O meu armário já conta uma história</h3>
+        <p>Hoje não vamos comprar roupa. Escolha cinco peças que você usa sem pensar.</p>
+        <ul class="steps">
+          <li class="d">Escolher as cinco peças</li>
+          <li>Perguntar: por que uso isto?</li>
+          <li>Encontrar o que têm em comum</li>
+        </ul>
+        <button class="cta">Continuar minha jornada <span>→</span></button>
+      </div>
+      <div class="mood">
+        <p>Check-in de ontem: hoje me senti…</p>
+        <div class="moods" id="moods">
+          <button class="fb" aria-pressed="true"><span>😌</span>Muito bem</button>
+          <button class="fb" aria-pressed="false"><span>🙂</span>Bem</button>
+          <button class="fb" aria-pressed="false"><span>😐</span>Neutra</button>
+          <button class="fb" aria-pressed="false"><span>😕</span>Desconfortável</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 EVOLUCAO -->
+    <section class="screen has-tabs" data-name="Minha Evolução" data-tab="9">
+      <div class="aura"><i></i><i></i></div>
+      <span class="kicker">Minha Evolução</span>
+      <h2 class="display">O que você <em>foi descobrindo</em></h2>
+      <ol class="timeline">
+        <li><b>Dia 1</b><p>Comecei querendo mudar meu cabelo.</p></li>
+        <li><b>Dia 5</b><p>Gostei do corte médio.</p>
+          <div class="mini"><i><svg data-portrait="shoulder" data-tone="#7A5440" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice"></svg></i><i class="x"><svg data-portrait="pixie" data-tone="#3E2A22" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice"></svg></i></div></li>
+        <li><b>Dia 7</b><p>Descobri que quero menos manutenção.</p></li>
+        <li class="now"><b>Dia 9 · hoje</b><p>Experimentei uma nova combinação.</p></li>
+      </ol>
+      <p class="lede" style="font-size:13px;margin-top:24px">Só você vê esta linha do tempo.</p>
+    </section>
+
+    <!-- 10 MEU REFLEXO -->
+    <section class="screen has-tabs report" data-name="Meu Reflexo · resumo" data-tab="10">
+      <div class="aura"><i></i><i></i></div>
+      <span class="kicker">Dia 21 · Relatório pessoal</span>
+      <div class="cover">
+        <h2 class="display">Meu <em>Reflexo</em></h2>
+        <p class="lede" style="font-size:13.5px">O que você escolheu, guardou e deixou para trás nestes 21 dias.</p>
+      </div>
+      <div class="rgrid">
+        <div class="rcell"><h4>Estilos de que gostei</h4><p>Linhas simples, tecidos naturais</p></div>
+        <div class="rcell"><h4>Cores favoritas</h4><div class="sw3"><i style="background:#5A3A2B"></i><i style="background:#C9A07A"></i><i style="background:#8E9A86"></i><i style="background:#EDE3D3"></i></div></div>
+        <div class="rcell"><h4>Ideias de cabelo</h4><p>Médio, na altura dos ombros. Castanho chocolate.</p></div>
+        <div class="rcell"><h4>Rotinas que quero manter</h4><p>Cinco minutos para mim, à noite</p></div>
+        <div class="rcell"><h4>Deixei para trás</h4><p class="strike">Tons muito claros</p><p class="strike">Franja</p></div>
+        <div class="rcell"><h4>Referências guardadas</h4><p>12 imagens</p></div>
+        <div class="rcell wide"><h4>Minhas três escolhas para continuar</h4>
+          <ol class="choices"><li>Testar o corte médio com um profissional</li><li>Usar as três peças esquecidas esta semana</li><li>Manter os cinco minutos da noite</li></ol></div>
+      </div>
+    </section>
+
+    <nav class="tabs" id="tabs" aria-label="Navegação da app">
+      <button class="tab" data-go="8"><i></i>Hoje</button>
+      <button class="tab line" data-go="9"><i></i>Evolução</button>
+      <button class="tab alt" data-go="10"><i></i>Meu Reflexo</button>
+      <button class="tab" data-go="5"><i></i>Espelho</button>
+    </nav>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Abstract, faceless figures. Hair and clothes are illustrations of shape and colour only.
+  const HAIR={
+    long:{back:"M92 172 C86 92 214 92 208 172 L222 330 C195 350 105 350 78 330 Z",front:"M96 170 C96 104 204 104 204 170 C190 132 160 120 150 122 C128 124 106 140 96 170 Z"},
+    shoulder:{back:"M92 172 C86 92 214 92 208 172 L214 272 C188 288 112 288 86 272 Z",front:"M96 168 C96 104 204 104 204 168 C188 128 120 118 96 168 Z"},
+    bob:{back:"M90 170 C86 90 214 90 210 170 L210 226 C186 240 114 240 90 226 Z",front:"M94 172 C92 102 208 102 206 172 C204 150 196 138 180 136 L120 136 C104 138 96 150 94 172 Z"},
+    pixie:{back:"M102 160 C98 96 202 96 198 160 Z",front:"M100 168 C94 100 206 100 200 168 C192 134 170 118 140 124 C120 128 106 144 100 168 Z"},
+    afro:{back:'<circle cx="150" cy="158" r="98"/>',front:"M98 150 C100 104 200 104 202 150 C184 128 116 128 98 150 Z",raw:true},
+    curly:{back:'<circle cx="96" cy="150" r="30"/><circle cx="108" cy="110" r="32"/><circle cx="145" cy="92" r="34"/><circle cx="186" cy="100" r="32"/><circle cx="206" cy="138" r="30"/><circle cx="210" cy="180" r="28"/><circle cx="92" cy="192" r="28"/><circle cx="206" cy="222" r="26"/><circle cx="96" cy="232" r="26"/>',front:"M98 158 C98 108 202 108 202 158 C186 132 114 132 98 158 Z",raw:true},
+    bun:{back:'<circle cx="150" cy="92" r="32"/><path d="M98 172 C94 104 206 104 202 172 Z"/>',front:"M98 160 C98 106 202 106 202 160 C182 132 118 132 98 160 Z",raw:true},
+    scarf:{back:"M84 176 C78 78 222 78 216 176 C218 236 204 282 150 292 C96 282 82 236 84 176 Z",front:"M96 154 C98 100 202 100 204 154 C186 130 114 130 96 154 Z"},
+    braids:{back:"M92 172 C86 92 214 92 208 172 L226 340 C200 356 100 356 74 340 Z",front:"M96 166 C96 104 204 104 204 166 C186 128 114 128 96 166 Z",lines:true}
+  };
+  let uid=0;
+  function headSVG(o,id){
+    const h=HAIR[o.hair]||HAIR.long, hc=`url(#${id}hr)`;
+    const back=h.raw?`<g fill="${hc}">${h.back}</g>`:`<path d="${h.back}" fill="${hc}"/>`;
+    const lines=h.lines?`<g stroke="rgba(0,0,0,.18)" stroke-width="3" fill="none"><path d="M100 220 L94 330"/><path d="M118 240 L114 340"/><path d="M182 240 L186 340"/><path d="M200 220 L206 330"/></g>`:"";
+    const front=o.hair==="scarf"?`<path d="${h.front}" fill="${hc}"/>`:`<path d="${h.front}" fill="${hc}"/>`;
+    return `${back}${lines}<path d="M128 222 L172 222 L176 268 L124 268 Z" fill="${o.skin}" opacity=".92"/>
+      <path d="M40 400 C44 310 100 276 150 276 C200 276 256 310 260 400 Z" fill="${o.top}"/>
+      <ellipse cx="150" cy="172" rx="${o.hair==="scarf"?46:52}" ry="${o.hair==="scarf"?58:64}" fill="url(#${id}sk)"/>${front}`;
+  }
+  function figure(o){
+    const id="p"+(uid++);
+    const defs=`<defs>
+      <linearGradient id="${id}bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${o.bg[0]}"/><stop offset="1" stop-color="${o.bg[1]}"/></linearGradient>
+      <radialGradient id="${id}sk" cx=".42" cy=".38" r=".7"><stop offset="0" stop-color="${o.skinHi}"/><stop offset="1" stop-color="${o.skin}"/></radialGradient>
+      <linearGradient id="${id}hr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${o.hairColor}"/><stop offset="1" stop-color="${o.hairColor}" stop-opacity=".85"/></linearGradient>
+      <filter id="${id}bl"><feGaussianBlur stdDeviation="${o.full?0.6:1.1}"/></filter></defs>
+      <rect width="300" height="400" fill="url(#${id}bg)"/><ellipse cx="232" cy="66" rx="92" ry="58" fill="#fff" opacity=".22"/>`;
+    if(!o.full) return defs+`<g filter="url(#${id}bl)">${headSVG(o,id)}</g>`;
+    const legs=o.outfit==="dress"
+      ? `<path d="M134 270 L130 360 M166 270 L170 360" stroke="${o.skin}" stroke-width="13" stroke-linecap="round"/><path d="M116 120 L184 120 L210 280 L90 280 Z" fill="${o.top}"/>`
+      : `<path d="M112 210 L188 210 L182 368 L158 368 L150 250 L142 368 L118 368 Z" fill="${o.bottom}"/><path d="M114 118 L186 118 L192 216 L108 216 Z" fill="${o.top}"/>`;
+    return defs+`<g filter="url(#${id}bl)">
+      <path d="M112 128 C96 170 92 210 96 236 M188 128 C204 170 208 210 204 236" stroke="${o.armTop?o.top:o.skin}" stroke-width="15" stroke-linecap="round" fill="none"/>
+      ${legs}<ellipse cx="128" cy="370" rx="16" ry="7" fill="${o.shoe}"/><ellipse cx="172" cy="370" rx="16" ry="7" fill="${o.shoe}"/>
+      <g transform="translate(150 78) scale(.36) translate(-150 -172)">${headSVG({...o,top:"none"},id)}</g></g>`;
+  }
+  const SKINS=[["#F4DCCB","#E9C2A6"],["#F0CDB2","#DDA985"],["#E2B08C","#C98E6A"],["#C99273","#A86B4A"],["#A87556","#7D4A30"],["#8A5A40","#5E3624"],["#6E4430","#43261A"]];
+  function portrait(el){
+    const tone=el.dataset.tone||"#7A5440";
+    const svg=figure({hair:el.dataset.portrait,hairColor:tone,skin:"#D6A889",skinHi:"#F1D2BC",top:"#FFF8F0",bg:["#F5E9DD","#E4CFBC"]});
+    if(el.tagName.toLowerCase()==="svg"){el.innerHTML=svg}
+    else{el.innerHTML=`<svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">${svg}</svg>`}
+  }
+  // mosaic: many ways of being, none ranked
+  (function(){
+    const m=document.getElementById("mosaic"); if(!m) return;
+    let seed=7; const r=()=>(seed=(seed*16807)%2147483647)/2147483647, pick=a=>a[Math.floor(r()*a.length)];
+    const hairs=["long","shoulder","bob","pixie","afro","curly","bun","scarf","braids","long","curly","afro"];
+    const hairCols=["#1E1410","#2B1A12","#3B2418","#6B3E26","#A4652F","#D8A35A","#C9C2BA","#9A3A2A","#1E1410"];
+    const tops=["#A5562A","#D9925E","#E8C9B3","#5A2E18","#2F3E55","#FFF8F0","#C9A27C","#7E8C74","#B9786A","#3B1F12","#EADBC8"];
+    const bottoms=["#3A1E17","#2E3A5C","#F3D8B6","#6B2737","#D9A066","#1F1A18"];
+    const bgs=[["#F7EEE4","#E7D4C2"],["#F3E4D4","#DCC0A6"],["#F6E8E0","#E5C7B8"],["#FBF5EE","#EADBCB"],["#EFE0D0","#D2B497"],["#F2E9E1","#D9C8BA"],["#F4ECE2","#E2D2BF"]];
+    const cols=5;
+    // illustrative generated portraits (not real clients); falls back to the drawn figures if empty
+    const PHOTOS=Array.from({length:26},(_,k)=>"R"+String(k+1).padStart(2,"0"));
+    for(let c=0;c<cols;c++){
+      const col=document.createElement("div"); col.className="mcol"+(c%2?" rev":""); col.style.setProperty("--dur",(30+c*5)+"s");
+      let html="";
+      for(let i=0;i<9;i++){
+        if(PHOTOS.length){const n=PHOTOS[(c*7+i*5+c*i)%PHOTOS.length];html+=`<div class="tile photo"><img src="assets/mosaico/${n}.webp" alt="" loading="eager" decoding="async"></div>`;continue;}
+        const sk=pick(SKINS), full=r()<.34, o={hair:pick(hairs),hairColor:pick(hairCols),skin:sk[1],skinHi:sk[0],top:pick(tops),bottom:pick(bottoms),bg:pick(bgs),full,outfit:r()<.45?"dress":"pants",shoe:pick(["#3A1E17","#FFF0E3","#D9512C"]),armTop:r()<.5};
+        html+=`<div class="tile${full?" tall":""}"><svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">${figure(o)}</svg></div>`;
+      }
+      col.innerHTML=html+html; m.appendChild(col);
+    }
+  })();
+  // rotating intent line on the hero
+  (function(){
+    const el=document.getElementById("rotor"); if(!el) return;
+    const words=["um cabelo novo.","voltar a cuidar de mim.","mudar o meu estilo.","me reconhecer de novo.","experimentar sem medo."];
+    let i=0; if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    setInterval(()=>{i=(i+1)%words.length; const s=document.createElement("span"); s.id="rotor"; s.textContent=words[i]; const cur=document.getElementById("rotor"); cur.replaceWith(s)},1900);
+  })();
+  document.querySelectorAll("[data-portrait]").forEach(portrait);
+
+  const screens=[...document.querySelectorAll(".screen")], nav=document.getElementById("nav"), tabs=document.getElementById("tabs");
+  screens.forEach((s,i)=>{const li=document.createElement("li");li.innerHTML=`<button type="button" data-go="${i+1}">${s.dataset.name}</button>`;nav.appendChild(li)});
+  function go(n){
+    n=Math.max(1,Math.min(screens.length,n));
+    screens.forEach((s,i)=>{s.classList.toggle("on",i===n-1);if(i===n-1){s.scrollTop=0;s.querySelectorAll(".bub").forEach(b=>{b.style.animation="none";b.offsetHeight;b.style.animation=""})}});
+    nav.querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-current",i===n-1));
+    tabs.classList.toggle("show",n>=8);
+    tabs.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current",+t.dataset.go===n));
+    try{localStorage.setItem("em-screen",n)}catch(e){}
+  }
+  document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g){go(+g.dataset.go)}});
+
+  // single-select groups
+  function single(container,cb){container.addEventListener("click",e=>{const b=e.target.closest("button");if(!b||b.dataset.go)return;container.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));cb&&cb(b)})}
+  single(document.querySelector("[data-single]"));
+  single(document.getElementById("moods"));
+  document.querySelectorAll(".chips .chip").forEach(c=>c.addEventListener("click",()=>c.setAttribute("aria-pressed",c.getAttribute("aria-pressed")!=="true")));
+
+  // age gate
+  const age=document.getElementById("age"),ageGo=document.getElementById("ageGo");
+  age.addEventListener("change",()=>{ageGo.disabled=!age.checked});
+
+  // upload simulation
+  const drop=document.getElementById("drop"),add=document.getElementById("addPhoto");
+  add.addEventListener("click",()=>{if(drop.classList.contains("filled")){go(5);return}drop.classList.add("filled");add.innerHTML="Esta sou eu. Continuar <span>→</span>"});
+
+  // hair simulation
+  const out=document.getElementById("simOut"),gen=document.getElementById("gen"),toast=document.getElementById("toast");
+  single(document.getElementById("simCards"),b=>{
+    gen.classList.add("show");
+    setTimeout(()=>{out.dataset.portrait=b.dataset.hair;out.dataset.tone=b.dataset.tone;portrait(out);gen.classList.remove("show")},900);
+    document.querySelectorAll("#fbRow .fb").forEach(x=>x.setAttribute("aria-pressed",false));toast.textContent="";
+  });
+  const notes={"Muito eu":"Guardado no seu Espelho: você se reconheceu nesta versão.","Talvez":"Guardado como talvez. Podemos voltar a ela.","Não sou eu":"Anotado. Não vou sugerir algo assim de novo."};
+  single(document.getElementById("fbRow"),b=>{toast.textContent=notes[b.textContent.trim()]});
+
+  // 21-day bar
+  const bar=document.getElementById("bar21");for(let i=1;i<=21;i++){const s=document.createElement("i");if(i<9)s.className="f";if(i===9)s.className="t";bar.appendChild(s)}
+
+  // market copy
+  const COPY={
+    br:{heroAnswer:"Hoje, eu me escolho.",price:"R$79",priceNote:"pagamento único · PIX ou cartão",fine:"Sem renovação automática. Começa quando você quiser."},
+    pt:{heroAnswer:"Hoje, escolho-me a mim.",price:"19 €",priceNote:"pagamento único · cartão",fine:"Sem renovação automática. Começa quando quiser."}
+  };
+  document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    const c=COPY[b.dataset.m];document.querySelectorAll("[data-copy]").forEach(el=>el.textContent=c[el.dataset.copy]);
+  }));
+
+  let start=1;try{start=+localStorage.getItem("em-screen")||1}catch(e){}
+  if(location.hash&&/^#\d+$/.test(location.hash))start=+location.hash.slice(1);
+  go(start);
+})();
+</script>

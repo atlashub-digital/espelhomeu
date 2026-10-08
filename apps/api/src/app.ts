@@ -5,6 +5,7 @@ import Fastify from "fastify";
 import { createDb, type Db } from "./db/client";
 import type { Env } from "./env";
 import { healthRoutes } from "./routes/health";
+import { waitlistRoutes } from "./routes/waitlist";
 
 export async function buildApp(env: Env) {
   const app = Fastify({
@@ -23,6 +24,7 @@ export async function buildApp(env: Env) {
   if (db) app.addHook("onClose", async () => db.sql.end());
 
   healthRoutes(app, { db, version: env.APP_VERSION });
+  waitlistRoutes(app, { db });
 
   return app;
 }
