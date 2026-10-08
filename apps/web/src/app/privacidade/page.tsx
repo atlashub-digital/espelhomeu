@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = { title: "Privacidade · EspelhoMeu" };
 
-const contact = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+const contact = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@lia.doctor";
 
 export default function Privacidade() {
   return (
