@@ -4,6 +4,8 @@ packages:
 
 onlyBuiltDependencies:
   - esbuild
+  - "@atlashub/amf-content-schema"
+  - "@atlashub/amf-experience-core"
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver

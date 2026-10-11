@@ -20,7 +20,16 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm validate:content
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm verify:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: track-a-visual-evidence
+          path: docs/evidence/track-a/
+          if-no-files-found: ignore

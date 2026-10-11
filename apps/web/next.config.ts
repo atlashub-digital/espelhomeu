@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@espelhomeu/shared"],
+  transpilePackages: ["@espelhomeu/shared", "@espelhomeu/project-config", "@espelhomeu/project-content"],
   poweredByHeader: false,
   // Protótipo estático de 10 ecrãs (public/prototipo) para entrevistas do E03: fora dos motores de busca.
   async rewrites() {

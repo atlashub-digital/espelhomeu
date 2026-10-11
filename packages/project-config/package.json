@@ -1,0 +1,21 @@
+{
+  "name": "@espelhomeu/project-config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@atlashub/amf-content-schema": "github:atlashub-digital/amf-content-schema#d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b",
+    "@atlashub/amf-experience-core": "github:atlashub-digital/amf-experience-core#b4190cdbb67f7676fce0328c31ac6da44974427f"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "vitest": "^4.0.0"
+  }
+}

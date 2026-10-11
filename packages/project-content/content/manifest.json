@@ -1,0 +1,207 @@
+{
+  "schemaVersion": "0.1",
+  "project": "espelhomeu",
+  "publications": [
+    {
+      "schemaVersion": "0.1",
+      "id": "um-momento-para-mim",
+      "slug": "um-momento-para-mim",
+      "type": "essay",
+      "status": "preview",
+      "locale": "pt-BR",
+      "title": "Um momento para mim",
+      "subtitle": "Pequenas pausas. Novas possibilidades.",
+      "description": "Conteúdo demonstrativo para validar a experiência. A edição final será preparada pela AMF Content Ops.",
+      "authors": [
+        "EspelhoMeu"
+      ],
+      "edition": "Fixture de engenharia · v1",
+      "tags": [
+        "Autoconhecimento",
+        "Pausas"
+      ],
+      "readingMinutes": 4,
+      "cover": "/marca/logo-principal-800.webp",
+      "access": {
+        "mode": "public"
+      },
+      "chapters": [
+        {
+          "id": "observar",
+          "slug": "observar",
+          "title": "Começar pelo que sinto",
+          "order": 0,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Hoje, reserve um momento sem comparações. Observe o que faz sentido para você agora. Não existe uma resposta certa: existe a sua experiência."
+              },
+              {
+                "type": "callout",
+                "title": "Ao meu ritmo",
+                "text": "Não precisa decidir tudo hoje. Esta leitura não substitui orientação profissional."
+              }
+            ]
+          }
+        },
+        {
+          "id": "escolher",
+          "slug": "escolher",
+          "title": "Uma escolha possível",
+          "order": 1,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Escolha uma pausa simples para esta semana. Pode ser uma leitura, um passeio ou alguns minutos de silêncio. O ritmo é seu."
+              },
+              {
+                "type": "callout",
+                "title": "Ao meu ritmo",
+                "text": "Não precisa decidir tudo hoje. Esta leitura não substitui orientação profissional."
+              }
+            ]
+          }
+        }
+      ],
+      "media": [
+        {
+          "id": "marca",
+          "kind": "image",
+          "assetPath": "/marca/logo-principal-800.webp",
+          "alt": "EspelhoMeu — O espelho que me conhece",
+          "license": "Marca oficial do projeto",
+          "attribution": "EspelhoMeu / AVS",
+          "attributionRequired": false
+        }
+      ],
+      "source": {
+        "repository": "atlashub-digital/espelhomeu",
+        "path": "packages/project-content/content/manifest.json"
+      },
+      "extensions": {
+        "fixture": true
+      }
+    },
+    {
+      "schemaVersion": "0.1",
+      "id": "um-reflexo-mais-gentil",
+      "slug": "um-reflexo-mais-gentil",
+      "type": "guide",
+      "status": "preview",
+      "locale": "pt-BR",
+      "title": "Um reflexo mais gentil",
+      "subtitle": "Observe. Experimente. Escolha.",
+      "description": "Conteúdo demonstrativo para validar a experiência. A edição final será preparada pela AMF Content Ops.",
+      "authors": [
+        "EspelhoMeu"
+      ],
+      "edition": "Fixture de engenharia · v1",
+      "tags": [
+        "Autoconhecimento",
+        "Pausas"
+      ],
+      "readingMinutes": 12,
+      "cover": "/marca/logo-principal-800.webp",
+      "access": {
+        "mode": "public"
+      },
+      "chapters": [
+        {
+          "id": "observar",
+          "slug": "observar",
+          "title": "Observar sem julgar",
+          "order": 0,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Encontre um lugar tranquilo e faça uma pausa. Perceba as palavras que costuma usar consigo. Você pode experimentar uma linguagem mais gentil, sem transformar isso numa obrigação."
+              },
+              {
+                "type": "callout",
+                "title": "Ao meu ritmo",
+                "text": "Não precisa decidir tudo hoje. Esta leitura não substitui orientação profissional."
+              }
+            ]
+          },
+          "mediaPlacements": [
+            {
+              "id": "marca-abertura",
+              "mediaId": "marca",
+              "anchor": "observar",
+              "position": "before"
+            }
+          ]
+        },
+        {
+          "id": "experimentar",
+          "slug": "experimentar",
+          "title": "Experimentar com liberdade",
+          "order": 1,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Uma mudança pode começar pequena: uma cor, uma rotina ou um momento de descanso. Escolha algo que desperte curiosidade, sem promessas de transformação e sem precisar agradar a outra pessoa."
+              },
+              {
+                "type": "callout",
+                "title": "Ao meu ritmo",
+                "text": "Não precisa decidir tudo hoje. Esta leitura não substitui orientação profissional."
+              }
+            ]
+          }
+        },
+        {
+          "id": "escolher",
+          "slug": "escolher",
+          "title": "Escolher o que é meu",
+          "order": 2,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Pergunte a si mesma: o que quero manter? O que quero deixar para depois? As suas escolhas podem mudar. Este espaço acompanha essa liberdade."
+              },
+              {
+                "type": "callout",
+                "title": "Ao meu ritmo",
+                "text": "Não precisa decidir tudo hoje. Esta leitura não substitui orientação profissional."
+              }
+            ]
+          }
+        }
+      ],
+      "media": [
+        {
+          "id": "marca",
+          "kind": "image",
+          "assetPath": "/marca/logo-principal-800.webp",
+          "alt": "EspelhoMeu — O espelho que me conhece",
+          "license": "Marca oficial do projeto",
+          "attribution": "EspelhoMeu / AVS",
+          "attributionRequired": false
+        }
+      ],
+      "source": {
+        "repository": "atlashub-digital/espelhomeu",
+        "path": "packages/project-content/content/manifest.json"
+      },
+      "extensions": {
+        "fixture": true
+      }
+    }
+  ],
+  "collections": [],
+  "metadata": {
+    "fixture": true,
+    "provenance": "Original engineering fixtures; no private/commercial material imported."
+  }
+}
