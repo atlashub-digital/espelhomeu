@@ -24,13 +24,18 @@ será o **Meu Espelho**, um agente pessoal que se lembra das escolhas da cliente
 
 ## Estado atual
 
-- Fase de **validação**. Não construir funcionalidades de produto (agente, simulação de cabelo, pagamentos, contas)
-  antes de a experiência de oferta paga (E02) passar e de o escopo estar aprovado no Notion.
+- **Golden Pilot AMF autorizado em 2026-10-11.** O EspelhoMeu passa de scaffold de validação para primeira implementação
+  real de referência da AMF. A autorização e os guardrails estão registados no Venture Hub do Notion e em
+  [docs/AMF_GOLDEN_PILOT_V1.md](docs/AMF_GOLDEN_PILOT_V1.md).
+- Desenvolvimento significativo de produto está autorizado para o Golden Pilot. Tráfego pago e cobrança real continuam
+  sujeitos aos respetivos gates comerciais; o lançamento técnico pode começar com ofertas gratuitas.
 - Em produção: página inicial com lista de espera em https://espelho.lia.doctor (também espelhomeu.lia.doctor),
   política em `/privacidade`, protótipo de 10 ecrãs em `/prototipo` (só para entrevistas, `noindex`) e API em
   https://api.espelhomeu.lia.doctor/health. A página `/status` do site confirma a ligação web → API → base de dados.
 - A lista de espera grava na tabela `waitlist` (email, país, versão do consentimento). A API aplica as migrações de
   `apps/api/drizzle/` ao arrancar.
+- **Prioridade imediata:** atingir o gate **Content Ready** rapidamente para a AMF começar ingestão, produção, preview e
+  publicação de conteúdo antes de Companion, comunidade e commerce estarem completos.
 
 ## Regras que valem para código, textos e prompts
 
