@@ -36,9 +36,7 @@
   "gate": {
     "contentReady": false,
     "blockers": [
-      "CI e browser smoke do Produto 01",
-      "Preview Vercel READY no mesmo commit",
-      "Revisão humana do Preview sem bloqueadores"
+      "Revisão humana do Preview do Produto 01 sem bloqueadores; confirmar CI e deployment do mesmo head"
     ]
   }
 }

@@ -31,6 +31,9 @@ pnpm verify:browser
 `verify:browser` inicia web/API locais sem DB, executa route smoke, Library, Article,
 dez capítulos do Guide, sete encontros e navegação anterior/próximo, e produz screenshots
 desktop/mobile em `docs/evidence/track-a`. O CI publica esses ficheiros como artifact.
+O CI também executa verify-preview.mjs: obtém o Ready associado ao head no GitHub,
+abre o Preview com Playwright e guarda dez screenshots online em track-a/online.
+Esse smoke online apenas navega: não submete formulários nem escreve dados.
 A verificação da waitlist usa só a API local sem DB; não envia inscrições a produção.
 
 ## Fonte e transformação
