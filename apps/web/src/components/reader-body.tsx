@@ -33,7 +33,7 @@ export function ReaderBody({ body }: { body?: BodySource }) {
 }
 // Safe project-owned rendering. Never evaluate HTML or arbitrary iframe content.
 export function ReaderMedia({ media }: { media: MediaAsset }) {
-  const local = media.assetPath && /^\/(?:marca|conteudo\/produto-01)\/[a-zA-Z0-9/_.-]+$/.test(media.assetPath) && !media.assetPath.includes("..") ? media.assetPath : null;
+  const local = media.assetPath && /^\/(?:marca|conteudo\/[a-z0-9-]+)\/[a-zA-Z0-9/_.-]+$/.test(media.assetPath) && !media.assetPath.includes("..") ? media.assetPath : null;
   if (media.kind === "image" && local)
     return (
       <figure className="reader-media">

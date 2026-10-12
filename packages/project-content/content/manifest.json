@@ -1975,6 +1975,969 @@
           ]
         }
       ]
+    },
+    {
+      "schemaVersion": "0.2",
+      "id": "eu-sou-bela-do-meu-jeito",
+      "slug": "eu-sou-bela-do-meu-jeito",
+      "type": "guide",
+      "status": "preview",
+      "locale": "pt-BR",
+      "title": "Eu Sou Bela — Do Meu Jeito",
+      "subtitle": "Um guia para reconhecer e expressar a minha beleza real",
+      "description": "Uma publicação para explorar expressão pessoal, estilo, presença e o direito de escolher — sem notas de beleza, receitas universais ou obrigação de mudar.",
+      "authors": [
+        "EspelhoMeu"
+      ],
+      "edition": "Homologação · Preview editorial v1.0",
+      "tags": [
+        "Expressão pessoal",
+        "Caderno da Minha Assinatura"
+      ],
+      "access": {
+        "mode": "public"
+      },
+      "cover": "/conteudo/produto-02/capa.png",
+      "media": [
+        {
+          "id": "p02-capa",
+          "kind": "image",
+          "title": "Eu Sou Bela — Do Meu Jeito",
+          "alt": "Mulher com os olhos fechados segurando xícara, diante de flores, com título Eu Sou Bela — Do Meu Jeito.",
+          "assetPath": "/conteudo/produto-02/capa.png",
+          "publisher": "EspelhoMeu",
+          "sourcePage": "https://drive.google.com/file/d/1opwjLZZxiwiCZHiD1r8myaU9Uk4GdZMN/view",
+          "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+          "metadata": {
+            "width": 1024,
+            "height": 1536,
+            "sourceFile": "CAPA_OFICIAL_P02_v1.0.png",
+            "editorialStatus": "READY FOR AMF INGESTION"
+          }
+        },
+        {
+          "id": "p02-media-c01",
+          "kind": "image",
+          "title": "A beleza também pode ser uma assinatura",
+          "alt": "Composição editorial de mulher em luz suave.",
+          "assetPath": "/conteudo/produto-02/capitulo-01.jpg",
+          "publisher": "EspelhoMeu",
+          "sourcePage": "https://drive.google.com/file/d/1C77-R492N_Hs8B8cBvrwrtMMf9v4gfwI/view",
+          "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+          "metadata": {
+            "width": 1420,
+            "height": 800,
+            "sourceFile": "FOTO_EDITORIAL_C01.jpg",
+            "editorialStatus": "READY FOR AMF INGESTION"
+          }
+        },
+        {
+          "id": "p02-media-c02",
+          "kind": "image",
+          "title": "O que me chama a atenção",
+          "alt": "Composição editorial de mulher em luz suave.",
+          "assetPath": "/conteudo/produto-02/capitulo-02.jpg",
+          "publisher": "EspelhoMeu",
+          "sourcePage": "https://drive.google.com/file/d/1TYAILAgaAMIdMcCPIOvQWqWDxytR8ita/view",
+          "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+          "metadata": {
+            "width": 1420,
+            "height": 800,
+            "sourceFile": "FOTO_EDITORIAL_C02.jpg",
+            "editorialStatus": "READY FOR AMF INGESTION"
+          }
+        },
+        {
+          "id": "p02-media-c03",
+          "kind": "image",
+          "title": "Meu estilo tem história",
+          "alt": "Composição editorial com mulher, flores e mockups do livro Eu Sou Bela — Do Meu Jeito.",
+          "assetPath": "/conteudo/produto-02/capitulo-03.jpg",
+          "publisher": "EspelhoMeu",
+          "sourcePage": "https://drive.google.com/file/d/1MxYUWvNIeJNuSfiIvhFWqI9sQyhP7aYU/view",
+          "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+          "metadata": {
+            "width": 1420,
+            "height": 800,
+            "sourceFile": "FOTO_EDITORIAL_C03.jpg",
+            "editorialStatus": "READY FOR AMF INGESTION"
+          }
+        },
+        {
+          "id": "p02-media-c04",
+          "kind": "image",
+          "title": "Espelho: ferramenta, não tribunal",
+          "alt": "Composição editorial com mulher, flores e mockups do livro Eu Sou Bela — Do Meu Jeito.",
+          "assetPath": "/conteudo/produto-02/capitulo-04.jpg",
+          "publisher": "EspelhoMeu",
+          "sourcePage": "https://drive.google.com/file/d/19RCzpFQon2VFt44twSnA0P-FWWqI9wFX/view",
+          "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+          "metadata": {
+            "width": 1420,
+            "height": 800,
+            "sourceFile": "FOTO_EDITORIAL_C04.jpg",
+            "editorialStatus": "READY FOR AMF INGESTION"
+          }
+        },
+        {
+          "id": "p02-media-c05",
+          "kind": "image",
+          "title": "Experimentar é permitido",
+          "alt": "Composição editorial de mulher em luz suave.",
+          "assetPath": "/conteudo/produto-02/capitulo-05.jpg",
+          "publisher": "EspelhoMeu",
+          "sourcePage": "https://drive.google.com/file/d/1zUxVGmnNFxHVDhn-xhaZlH9ExHfyujEH/view",
+          "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+          "metadata": {
+            "width": 1420,
+            "height": 800,
+            "sourceFile": "FOTO_EDITORIAL_C05.jpg",
+            "editorialStatus": "READY FOR AMF INGESTION"
+          }
+        },
+        {
+          "id": "p02-media-c06",
+          "kind": "image",
+          "title": "Presença também é expressão",
+          "alt": "Composição editorial de mulher em luz suave.",
+          "assetPath": "/conteudo/produto-02/capitulo-06.jpg",
+          "publisher": "EspelhoMeu",
+          "sourcePage": "https://drive.google.com/file/d/1hjvFE0djBxq6sivd9VFP5NXjYMFpYXds/view",
+          "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+          "metadata": {
+            "width": 1420,
+            "height": 800,
+            "sourceFile": "FOTO_EDITORIAL_C06.jpg",
+            "editorialStatus": "READY FOR AMF INGESTION"
+          }
+        },
+        {
+          "id": "p02-media-c07",
+          "kind": "image",
+          "title": "A minha assinatura",
+          "alt": "Composição editorial de mulher em luz suave.",
+          "assetPath": "/conteudo/produto-02/capitulo-07.jpg",
+          "publisher": "EspelhoMeu",
+          "sourcePage": "https://drive.google.com/file/d/1jKXxSYOLutTZmLyc1i0R3UCMZZiMezqB/view",
+          "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+          "metadata": {
+            "width": 1420,
+            "height": 800,
+            "sourceFile": "FOTO_EDITORIAL_C07.jpg",
+            "editorialStatus": "READY FOR AMF INGESTION"
+          }
+        },
+        {
+          "id": "p02-caderno",
+          "kind": "document",
+          "title": "Caderno da Minha Assinatura (PDF, 17 páginas)",
+          "assetPath": "/conteudo/produto-02/caderno.pdf",
+          "publisher": "EspelhoMeu",
+          "license": "Uso autorizado para Preview; aprovação comercial pendente."
+        },
+        {
+          "id": "p02-cartoes",
+          "kind": "document",
+          "title": "14 cartões de reflexão (ZIP de imagens PNG)",
+          "assetPath": "/conteudo/produto-02/cartoes.zip",
+          "publisher": "EspelhoMeu",
+          "license": "Uso autorizado para Preview; aprovação comercial pendente."
+        }
+      ],
+      "chapters": [
+        {
+          "id": "p02-capitulo-1",
+          "slug": "capitulo-1",
+          "title": "A beleza também pode ser uma assinatura",
+          "order": 0,
+          "mediaPlacements": [
+            {
+              "id": "p02-capitulo-1-imagem",
+              "mediaId": "p02-media-c01",
+              "anchor": "p02-capitulo-1",
+              "position": "before"
+            }
+          ],
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "CARTA DE ABERTURA — Uma beleza que não precisa de permissão"
+              },
+              {
+                "type": "paragraph",
+                "text": "Há um tipo de manhã em que escolher o que vestir parece uma tarefa pequena, até alguém — um comentário, uma memória, uma fotografia, uma tendência — entrar no quarto junto com você. De repente, uma blusa vira uma pergunta. Aquela cor fica bem em mim? Isso combina com a minha idade? Vão achar exagerado? Eu deveria esconder isto?"
+              },
+              {
+                "type": "paragraph",
+                "text": "É curioso como tantas vozes conseguem ocupar um espaço tão íntimo: o instante entre abrir o armário e sair para viver o dia. Algumas vêm de pessoas queridas, que opinam sem perceber o peso da opinião. Outras vêm de vitrines, redes sociais ou de regras repetidas durante anos. E algumas nem parecem mais vozes externas: já soam como nossos próprios pensamentos."
+              },
+              {
+                "type": "paragraph",
+                "text": "Este livro não vai pedir que você ame cada fotografia, goste de toda roupa ou se sinta confiante todos os dias. Isso seria apenas mais uma obrigação disfarçada de incentivo. Aqui, o convite é outro: recuperar a curiosidade por aquilo que faz sentido para você. Uma maneira de prender o cabelo. Uma peça antiga que ainda conta uma história. O modo como gosta de aparecer em uma reunião, estar com amigas ou passar uma tarde sem compromisso."
+              },
+              {
+                "type": "paragraph",
+                "text": "A beleza de que falamos não cabe numa lista de traços físicos. Ela pode estar na autoria de uma escolha: usar ou não usar maquiagem, repetir a roupa preferida, mudar de ideia sobre uma cor, celebrar um detalhe sem ter de justificar. É possível gostar de um visual sem torná-lo regra; admirar outra pessoa sem se diminuir; experimentar sem transformar a experiência em cobrança."
+              },
+              {
+                "type": "paragraph",
+                "text": "O percurso tem sete capítulos, mas não tem cronômetro. Se um exercício não servir, ignore. Se algum tema for desconfortável, feche a página e volte quando quiser. O Caderno da Minha Assinatura acompanha a leitura para guardar pequenas descobertas — não para fiscalizar progresso. Suas respostas podem permanecer totalmente privadas."
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez você termine estas páginas com uma paleta, três palavras e uma combinação de que gosta. Talvez termine com a certeza de que precisa de menos opiniões ao redor das suas escolhas. As duas coisas são importantes. O que você vai criar não é uma versão corrigida de si mesma. É um pouco mais de espaço para ser você."
+              },
+              {
+                "type": "callout",
+                "tone": "note",
+                "text": "Sua imagem pode ser uma forma de expressão. Não precisa ser um exame que você faz todos os dias."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "CAPÍTULO 1 — A beleza também pode ser uma assinatura"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "A pequena autoria dos dias"
+              },
+              {
+                "type": "paragraph",
+                "text": "Imagine duas mulheres diante da mesma vitrine. Uma escolhe um lenço vibrante porque lhe lembra as férias na infância; a outra passa por ele sem vontade, mas se encanta com a textura de uma camisa simples. A vitrine não decidiu quem tem bom gosto. Cada uma reconheceu algo diferente. O detalhe que nos atrai costuma falar mais de nosso repertório e do momento que vivemos do que de alguma regra imutável."
+              },
+              {
+                "type": "paragraph",
+                "text": "Durante muito tempo, a conversa sobre imagem pessoal se apoiou em perguntas sobre adequação: qual corte favorece, qual roupa disfarça, qual cor corrige? Existe lugar para orientação técnica quando ela é desejada. Mas, se toda decisão começa pela lista do que esconder, sobra pouco espaço para perguntar o mais interessante: o que quero comunicar, sentir ou experimentar hoje?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Uma assinatura visual não é um uniforme, uma etiqueta fixa ou um conjunto obrigatório de compras. É a repetição de escolhas que têm significado para você. Às vezes, um acessório sempre aparece. Às vezes, há uma preferência por roupas com movimento, tecidos macios ou cores próximas à natureza. Outras vezes, a assinatura é a liberdade de não ter um estilo único. Ela pode mudar com o tempo sem deixar de ser sua."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "A diferença entre gostar e precisar provar"
+              },
+              {
+                "type": "paragraph",
+                "text": "Há escolhas feitas por prazer e escolhas feitas para passar num teste imaginário. Nenhuma pessoa vive completamente imune ao olhar alheio; convivência envolve contexto. Uma roupa pode servir a um código profissional, ao clima ou à ocasião. Mas considerar o contexto é diferente de entregar toda decisão a ele. Uma pergunta útil é: se ninguém fizesse comentários, eu ainda teria vontade de usar isto?"
+              },
+              {
+                "type": "paragraph",
+                "text": "A resposta não precisa ser um sim absoluto. Talvez você esteja descobrindo seu gosto depois de muitos anos escolhendo com base na praticidade. Talvez uma preferência ainda seja tímida. O exercício é escutar a primeira resposta, não julgá-la."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O detalhe que ficou comigo"
+              },
+              {
+                "type": "paragraph",
+                "text": "Pense numa peça, objeto, penteado ou escolha visual que tenha trazido uma sensação boa, mesmo que discreta. Pode ser uma sandália confortável, um batom guardado, uma estampa, uma camiseta velha ou uma maneira de dobrar a manga. O que havia ali? A cor? A história? A liberdade de se mover? O fato de não precisar pensar o tempo todo na aparência?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Escreva três palavras sobre esse detalhe. Não escreva como descreveria a peça a uma loja: escreva o que ela significa para você. Por exemplo, \"solta, leve, familiar\" conta uma história distinta de \"elegante, firme, presente\". Nenhuma está acima da outra."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "EXERCÍCIO — 01 | MEU PRIMEIRO SINAL"
+              },
+              {
+                "type": "paragraph",
+                "text": "Objetivo: reconhecer uma preferência sem recorrer a avaliação externa.\nInstruções: escolha um detalhe do seu repertório. Registre no caderno seu nome, uma lembrança associada e três sensações. Se não lembrar de nenhuma peça, comece por um lugar ou objeto.\nResultado esperado: uma pista pessoal, não uma definição permanente de estilo."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "REFLEXÃO"
+              },
+              {
+                "type": "paragraph",
+                "text": "Quando foi a última vez que escolhi alguma coisa apenas porque gostei — e não porque parecia apropriada para alguém?"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Guardar uma pista, não uma regra"
+              },
+              {
+                "type": "paragraph",
+                "text": "No próximo capítulo, vamos ampliar o olhar. A ideia não é transformar essas três palavras num teste de personalidade. É colocá-las ao lado de outras referências, até que comecem a formar um vocabulário próprio. A sua assinatura não precisa aparecer inteira hoje. Reconhecer uma pista já é um começo."
+              }
+            ]
+          }
+        },
+        {
+          "id": "p02-capitulo-2",
+          "slug": "capitulo-2",
+          "title": "O que me chama a atenção",
+          "order": 1,
+          "mediaPlacements": [
+            {
+              "id": "p02-capitulo-2-imagem",
+              "mediaId": "p02-media-c02",
+              "anchor": "p02-capitulo-2",
+              "position": "before"
+            }
+          ],
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "CAPÍTULO 2 — O que me chama a atenção"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O gosto mora também fora do armário"
+              },
+              {
+                "type": "paragraph",
+                "text": "Em uma cafeteria, você pode reparar primeiro no verde de uma planta. Em uma casa antiga, talvez seja a luz sobre a madeira. Num filme, um casaco quase passa despercebido, mas a combinação de cores fica na memória. O nosso repertório visual é construído nesses encontros cotidianos e nem sempre se apresenta como uma tendência de moda."
+              },
+              {
+                "type": "paragraph",
+                "text": "Por isso, antes de perguntar \"qual é meu estilo?\", experimente perguntar \"o que captura minha atenção quando não estou tentando descobrir meu estilo?\". Essa mudança devolve a observação ao terreno do prazer. Não precisamos transformar cada referência em produto, nem justificar que seja atual, caro ou adequado."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Cinco referências, cinco razões"
+              },
+              {
+                "type": "paragraph",
+                "text": "Abra uma página em branco ou escolha cinco pequenas imagens de que realmente gosta. Podem vir de uma fotografia sua, de um museu, de uma embalagem, de uma rua, de uma flor ou de um recorte de revista. Vale também descrevê-las por escrito; não é necessário imprimir nada. Para cada referência, complete a frase: gosto disto porque..."
+              },
+              {
+                "type": "paragraph",
+                "text": "Evite parar em palavras como \"bonito\" ou \"chique\". Tente encontrar a razão: \"porque essa combinação me lembra dias calmos\"; \"porque gosto de contrastes\"; \"porque parece um espaço onde posso respirar\"; \"porque a textura me dá vontade de tocar\". Com esse pequeno esforço, uma coleção de imagens vira um mapa de preferências."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Cores que contam, cores que descansam"
+              },
+              {
+                "type": "paragraph",
+                "text": "Não existe obrigação de escolher uma paleta definitiva. Você pode gostar de um vermelho intenso nas flores e preferir tons suaves perto do rosto. Pode amar o preto em uma fotografia e raramente usá-lo. O importante é não converter inspiração em ordem. Cor também tem contexto: luz, material e companhia alteram nossa percepção. Trate as amostras como uma experiência pessoal, não como um diagnóstico de coloração."
+              },
+              {
+                "type": "paragraph",
+                "text": "Uma forma simples de começar é separar três grupos: cores que me energizam, cores que me acalmam e cores sobre as quais tenho curiosidade. Uma cor pode aparecer em mais de um grupo. Se a experiência virar confusão, fique com duas cores hoje; não há necessidade de completar o quadro."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Quando a referência vira comparação"
+              },
+              {
+                "type": "paragraph",
+                "text": "É possível se inspirar numa fotografia sem usar a pessoa retratada como medida para o próprio corpo. Às vezes, o que admiramos é a luz, a postura, o cenário, o tecido ou a sensação que a imagem transmite. Tente recortar mentalmente a ideia, não o corpo. Se determinadas imagens provocarem desconforto, elas não precisam integrar seu painel. Um repertório deve oferecer possibilidades, não aumentar cobranças."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "EXERCÍCIO — 02 | O PAINEL DOS CINCO"
+              },
+              {
+                "type": "paragraph",
+                "text": "Objetivo: nomear referências e motivos de preferência.\nInstruções: cole ou descreva cinco referências. Escreva uma frase começada por \"Gosto porque...\" em cada uma. Escolha uma única ideia para testar sem comprar nada.\nResultado esperado: painel pessoal de referências e uma pista concreta de experimentação."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "REFLEXÃO"
+              },
+              {
+                "type": "paragraph",
+                "text": "Quais coisas gosto de olhar mesmo quando ninguém espera que eu as use?"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Repertório é liberdade"
+              },
+              {
+                "type": "paragraph",
+                "text": "Um painel não precisa ser coerente como catálogo. Talvez misture flores delicadas e arquitetura industrial, bordados antigos e linhas simples. Há espaço para contradições: somos mais amplas do que uma estética organizada. No próximo capítulo, voltaremos no tempo para descobrir o que permaneceu conosco — e o que pode ficar somente na lembrança."
+              }
+            ]
+          }
+        },
+        {
+          "id": "p02-capitulo-3",
+          "slug": "capitulo-3",
+          "title": "Meu estilo tem história",
+          "order": 2,
+          "mediaPlacements": [
+            {
+              "id": "p02-capitulo-3-imagem",
+              "mediaId": "p02-media-c03",
+              "anchor": "p02-capitulo-3",
+              "position": "before"
+            }
+          ],
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "CAPÍTULO 3 — Meu estilo tem história"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Uma peça pode guardar uma época"
+              },
+              {
+                "type": "paragraph",
+                "text": "Existe um tipo de roupa que, mesmo esquecida numa gaveta, parece trazer uma pessoa inteira quando a tocamos. Um vestido usado num dia importante. Uma camisa emprestada. Um casaco comprado no primeiro salário. Às vezes, gostamos da peça; às vezes, gostamos da vida que ela representa. As duas formas de afeto merecem respeito, mas não são a mesma coisa."
+              },
+              {
+                "type": "paragraph",
+                "text": "Nossa imagem muda porque a vida muda. Mudam a rotina, os corpos, o trabalho, a disposição para determinadas experiências e as maneiras de estar no mundo. Algumas fases pedem praticidade; outras trazem vontade de colorir. O fato de uma escolha antiga ter sido boa não significa que ainda precise ser repetida. E deixar de usar algo não apaga a história."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O que herdei, o que inventei"
+              },
+              {
+                "type": "paragraph",
+                "text": "Repare nas frases que aparecem quando pensa na própria apresentação: \"isso não é para mim\"; \"mulher séria não usa\"; \"com essa idade, não fica bem\"; \"eu sempre fui discreta\". Pode haver preferências verdadeiras escondidas nessas frases. Pode haver também regras que nunca foram colocadas em dúvida. Nosso trabalho não é rejeitar tudo o que recebemos, e sim distinguir herança de escolha."
+              },
+              {
+                "type": "paragraph",
+                "text": "Faça duas colunas: o que me ensinaram e o que escolho hoje. Na primeira, registre frases que ouviu sobre cabelo, roupas, idade, corpo, visibilidade ou apresentação. Na segunda, escreva sua resposta atual, mesmo que seja \"ainda não sei\". O que me ensinaram: \"você precisa usar salto para parecer elegante\". O que escolho hoje: \"prefiro conseguir caminhar com conforto; elegância, para mim, não depende disso\"."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não transforme o exercício num julgamento da família ou de outras mulheres. Muitas regras foram transmitidas como forma de proteção ou pertencimento. Você pode compreender sua origem e ainda decidir que não precisa carregá-las."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O armário como arquivo, não prisão"
+              },
+              {
+                "type": "paragraph",
+                "text": "Em vez de organizar roupas por culpa — comprei e não usei, engordei, devia voltar a caber — organize mentalmente a história em três grupos. Permanece comigo: escolhas que fazem sentido agora. Guardo como lembrança: itens que importam por sua história, sem obrigação de uso. Posso deixar ir: peças ou ideias que já cumpriram seu papel. Fazer isso com uma lista é suficiente; não é preciso separar objetos nem descartar nada hoje."
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez você descubra que sempre gostou de tecidos confortáveis, mas passou alguns anos achando que precisava parecer rígida. Talvez perceba o oposto: gosta de estrutura, de cortes definidos, e quer reivindicar isso sem pedir desculpas. A assinatura não está em acertar a categoria; está em reconhecer sua própria narrativa."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "EXERCÍCIO — 03 | LINHA DO TEMPO GENTIL"
+              },
+              {
+                "type": "paragraph",
+                "text": "Objetivo: reconhecer continuidades e mudanças sem culpa.\nInstruções: anote três fases da sua vida e uma escolha visual ligada a cada uma. Escreva o que aquela escolha oferecia — proteção, alegria, pertencimento, praticidade — e o que deseja manter agora.\nResultado esperado: uma linha do tempo de significados, não de avaliações físicas."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "REFLEXÃO"
+              },
+              {
+                "type": "paragraph",
+                "text": "Qual regra antiga eu ainda obedeço sem ter decidido se concordo com ela?"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "A história continua aberta"
+              },
+              {
+                "type": "paragraph",
+                "text": "Sua imagem não precisa permanecer fiel a uma versão antiga de você para provar autenticidade. Ser autêntica também pode significar mudar. O próximo capítulo trata de um lugar onde essa liberdade costuma ficar especialmente difícil: o espelho. Vamos convidá-lo a trabalhar a nosso favor, sem torná-lo juiz."
+              }
+            ]
+          }
+        },
+        {
+          "id": "p02-capitulo-4",
+          "slug": "capitulo-4",
+          "title": "Espelho: ferramenta, não tribunal",
+          "order": 3,
+          "mediaPlacements": [
+            {
+              "id": "p02-capitulo-4-imagem",
+              "mediaId": "p02-media-c04",
+              "anchor": "p02-capitulo-4",
+              "position": "before"
+            }
+          ],
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "CAPÍTULO 4 — Espelho: ferramenta, não tribunal"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O segundo antes da crítica"
+              },
+              {
+                "type": "paragraph",
+                "text": "Você passa por um espelho e, antes de perceber a cor da roupa ou verificar se o cabelo está como gostaria, um comentário surge quase pronto. Às vezes é antigo, repetido tantas vezes que parece fato. Às vezes vem de um dia cansativo. Não precisamos fingir que esses pensamentos nunca aparecem. Mas podemos aprender a não entregar a eles a palavra final sobre o nosso valor."
+              },
+              {
+                "type": "paragraph",
+                "text": "Um espelho mostra uma combinação de luz, ângulo, movimento e aparência naquele instante. Ele não sabe o que você fez por alguém, o que superou, de que precisou abrir mão ou o que espera construir. Também não pode decidir se você merece respeito. Quando o usamos para tarefas práticas — arrumar um detalhe, conferir se estamos confortáveis — ele é útil. Quando o transformamos em instrumento para medir a pessoa inteira, pedimos a uma superfície uma resposta que ela não tem."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Observar sem atribuir nota"
+              },
+              {
+                "type": "paragraph",
+                "text": "Se olhar para o próprio reflexo for confortável para você, experimente uma observação curta e neutra. Em vez de \"está bonito\" ou \"está horrível\", descreva algo verificável e sem avaliação: \"estou usando uma camisa azul\"; \"meu cabelo está preso\"; \"a luz vem do lado esquerdo\". Depois faça uma pergunta que devolva escolha: o que me faria sentir mais à vontade agora? Pode ser ajustar uma peça, beber água, sair do espelho ou não fazer nada."
+              },
+              {
+                "type": "paragraph",
+                "text": "Se esse exercício aumentar desconforto, pule-o. Use um objeto ou o ambiente no lugar do espelho. A proposta não exige selfies, fotografias de corpo nem compartilhamento de imagem; você controla inteiramente sua participação."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "A diferença entre percepção e sentença"
+              },
+              {
+                "type": "paragraph",
+                "text": "\"Hoje não gostei da roupa\" é uma impressão sobre um momento. \"Sou incapaz de me apresentar bem\" é uma sentença sobre a pessoa. Há uma grande diferença entre elas. A primeira permite mudança; a segunda tenta fechar a história. Quando reconhecer uma sentença desse tipo, tente reescrevê-la como uma observação situada: \"hoje estou desconfortável com esta combinação; posso experimentar outra quando quiser\"."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não se trata de forçar frases positivas que você não acredita. Às vezes, uma frase honesta e moderada oferece mais espaço do que uma afirmação grandiosa. \"Posso escolher outra coisa\" pode ser um começo suficiente."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Quando o olhar pesa demais"
+              },
+              {
+                "type": "paragraph",
+                "text": "Se preocupações com a aparência estiverem consumindo muito tempo, causando sofrimento intenso ou afastando você de atividades e relações, exercícios de estilo não substituem uma conversa com profissional de saúde mental. O propósito deste guia é expressão pessoal, não tratamento. Você merece apoio adequado, sem precisar justificar o desconforto."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "EXERCÍCIO — 04 | OLHAR FUNCIONAL"
+              },
+              {
+                "type": "paragraph",
+                "text": "Objetivo: transformar um julgamento automático em escolha prática.\nInstruções: descreva uma situação de imagem sem adjetivos de valor. Pergunte qual necessidade está presente (conforto, praticidade, contexto ou descanso). Registre uma ação opcional. Se preferir, faça o exercício com um objeto da casa.\nResultado esperado: uma frase neutra e uma escolha possível."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "REFLEXÃO"
+              },
+              {
+                "type": "paragraph",
+                "text": "O que muda quando o espelho deixa de avaliar quem sou e apenas me ajuda a me preparar para o dia?"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Outra função possível"
+              },
+              {
+                "type": "paragraph",
+                "text": "O espelho pode voltar a ser instrumento, cenário ou até parte de uma brincadeira de estilo. Você não precisa olhar mais tempo para se sentir melhor; pode usar menos. O próximo capítulo começa justamente por essa liberdade: experimentar sem transformar cada tentativa num projeto de reforma pessoal."
+              }
+            ]
+          }
+        },
+        {
+          "id": "p02-capitulo-5",
+          "slug": "capitulo-5",
+          "title": "Experimentar é permitido",
+          "order": 4,
+          "mediaPlacements": [
+            {
+              "id": "p02-capitulo-5-imagem",
+              "mediaId": "p02-media-c05",
+              "anchor": "p02-capitulo-5",
+              "position": "before"
+            }
+          ],
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "CAPÍTULO 5 — Experimentar é permitido"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Uma mudança que pode durar cinco minutos"
+              },
+              {
+                "type": "paragraph",
+                "text": "Experimente imaginar uma tarde em que ninguém precise ver o resultado. Você dobra a manga da camisa de outro jeito. Prende um lenço na bolsa. Troca a posição de um acessório. Experimenta a cor de uma peça que já tem e depois volta ao habitual. A experiência termina aí, sem fotografia, sem comentário, sem compra. Talvez goste. Talvez ache engraçado. Talvez descubra que prefere a versão de antes. Em todos os casos, ganhou informação sobre sua preferência."
+              },
+              {
+                "type": "paragraph",
+                "text": "O consumo costuma aparecer cedo nas conversas sobre estilo, como se se conhecer melhor dependesse de adquirir uma versão atualizada do guarda-roupa. Mas explorar expressão pode custar zero: reorganizar, combinar, emprestar com consentimento, observar, reparar, registrar. Compra é uma possibilidade futura, nunca requisito do exercício."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Um teste, três perguntas"
+              },
+              {
+                "type": "paragraph",
+                "text": "Escolha uma experiência pequena e reversível. Pode estar ligada à cor, à textura, à disposição de objetos, ao cabelo, ao modo de carregar uma peça ou a um detalhe de apresentação. Antes, pergunte: tenho vontade? Durante: estou confortável? Depois: quero repetir, adaptar ou deixar para lá?. Não há nota final e você não deve explicações."
+              },
+              {
+                "type": "paragraph",
+                "text": "Atenção ao contexto: conforto físico, orçamento, clima, acessibilidade, trabalho e segurança são necessidades reais. Preferir sapatos que permitam caminhar ou roupas que acomodem o corpo não diminui sua criatividade; pode ser exatamente a condição para que ela apareça."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O direito de parar"
+              },
+              {
+                "type": "paragraph",
+                "text": "Há diferença entre curiosidade e obrigação. Se uma experiência passou a parecer uma prova, ela deixou de cumprir sua função. Pare. Volte para algo familiar. Ou escolha outro terreno: uma playlist, uma flor na mesa, um caderno, uma cor numa parede. Expressão não precisa estar sempre visível no corpo."
+              },
+              {
+                "type": "paragraph",
+                "text": "Também vale proteger sua imagem em ambientes digitais. Não publique fotos íntimas ou identificáveis por impulso, sobretudo quando envolvem outras pessoas. Se utilizar ferramentas de simulação de visual com IA, leia a política de privacidade antes de enviar imagens e procure opções que permitam apagar os ficheiros. Testar virtualmente um penteado não precisa significar ceder dados de imagem sem entender o destino deles."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Três versões da mesma ideia"
+              },
+              {
+                "type": "paragraph",
+                "text": "Pegue um elemento de que gosta e teste mentalmente três maneiras de usá-lo: discreta, curiosa e ousada para o seu próprio padrão. Exemplo: uma cor forte pode aparecer como um detalhe de unha, uma echarpe ou uma combinação inteira. Você pode descobrir que gosta do detalhe e não da versão total. Isso não é falta de coragem. É conhecimento pessoal."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "EXERCÍCIO — 05 | LABORATÓRIO REVERSÍVEL"
+              },
+              {
+                "type": "paragraph",
+                "text": "Objetivo: testar uma ideia visual sem compra nem julgamento.\nInstruções: escolha algo que já esteja ao seu alcance. Registre a ideia, as três variações possíveis e como se sentiu depois de experimentar uma delas. Não fotografe se não quiser.\nResultado esperado: um experimento reversível e a decisão livre de repetir ou não."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "REFLEXÃO"
+              },
+              {
+                "type": "paragraph",
+                "text": "Que pequena mudança me desperta curiosidade, mesmo que eu jamais a publique?"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O prazer de não concluir"
+              },
+              {
+                "type": "paragraph",
+                "text": "Algumas experiências servem apenas para abrir possibilidades. Você não precisa declarar \"este é meu novo estilo\" a cada tentativa. Continue, repita ou esqueça. No próximo capítulo vamos observar algo que roupas e cores não explicam sozinhas: a presença que você deseja ter em diferentes ambientes."
+              }
+            ]
+          }
+        },
+        {
+          "id": "p02-capitulo-6",
+          "slug": "capitulo-6",
+          "title": "Presença também é expressão",
+          "order": 5,
+          "mediaPlacements": [
+            {
+              "id": "p02-capitulo-6-imagem",
+              "mediaId": "p02-media-c06",
+              "anchor": "p02-capitulo-6",
+              "position": "before"
+            }
+          ],
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "CAPÍTULO 6 — Presença também é expressão"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O jeito como ocupo um lugar"
+              },
+              {
+                "type": "paragraph",
+                "text": "Pense em três situações: uma reunião de trabalho, uma conversa com uma amiga e uma manhã sozinha. Talvez você queira transmitir clareza na primeira, acolhimento na segunda e descanso na terceira. Esses desejos podem influenciar sua apresentação, mas também seu ritmo, o que diz, aquilo que decide não contar e a maneira como estabelece limites. Presença não é uma performance única. Ela muda conforme o contexto, e essa mudança não faz de você uma pessoa menos verdadeira."
+              },
+              {
+                "type": "paragraph",
+                "text": "Algumas pessoas gostam de chamar atenção e outras preferem passar discretamente. Nenhuma opção revela automaticamente autoestima alta ou baixa. O importante é a possibilidade de escolher, sempre que o ambiente permitir. Você pode gostar de um acessório vistoso e preferir falar pouco; pode vestir algo básico e defender suas ideias com firmeza. As combinações são muitas."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "A voz que acompanha o visual"
+              },
+              {
+                "type": "paragraph",
+                "text": "Às vezes, preparamos a aparência com cuidado e ignoramos como desejamos estar naquela situação. Antes de um compromisso, tente completar: \"Hoje quero me sentir...\"; \"Quero que minha roupa me ajude a...\"; \"Não preciso provar...\". As respostas podem ser \"confortável\", \"livre para me mover\" e \"que pertenço a todo lugar\". Podem ser também muito específicas: \"quero conseguir sentar no chão com meu sobrinho\" ou \"quero atravessar a cidade sem ficar ajustando a roupa\"."
+              },
+              {
+                "type": "paragraph",
+                "text": "Repare que aqui a imagem trabalha a serviço da vida, não o contrário. A melhor escolha para determinado dia pode ser a que quase não ocupa seus pensamentos depois que você sai de casa."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Visibilidade e limites"
+              },
+              {
+                "type": "paragraph",
+                "text": "Expressão pessoal não dá a outras pessoas o direito de exigir explicações sobre seu corpo ou sua imagem. Você não precisa justificar uma mudança de cabelo, uma maquiagem diferente ou a decisão de não comentar seu peso. Se alguém ultrapassar um limite, uma resposta simples pode bastar: \"prefiro não conversar sobre minha aparência\"; \"gosto assim\"; \"hoje não quero opiniões sobre isso\". Você escolhe o quanto compartilhar."
+              },
+              {
+                "type": "paragraph",
+                "text": "Do mesmo modo, tente oferecer aos outros a liberdade que deseja para si. Elogios podem valorizar escolhas ou atitudes sem avaliar o corpo de alguém. \"Adorei a combinação de cores\" e \"você parece animada com esse projeto\" são comentários diferentes de uma inspeção de aparência."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Um gesto de presença"
+              },
+              {
+                "type": "paragraph",
+                "text": "Escolha uma situação que acontecerá nos próximos dias. Registre uma sensação desejada, uma escolha prática que a favoreça e um limite que gostaria de respeitar. Se a situação mudar, a anotação continua válida como exploração, não como meta falhada."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "EXERCÍCIO — 06 | TRÊS CENAS REAIS"
+              },
+              {
+                "type": "paragraph",
+                "text": "Objetivo: ligar apresentação a necessidades e contextos.\nInstruções: escolha três situações da vida cotidiana. Para cada uma, escreva como quer se sentir, o que pode ajudar e o que não precisa provar.\nResultado esperado: três critérios pessoais de presença, sem padrão único."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "REFLEXÃO"
+              },
+              {
+                "type": "paragraph",
+                "text": "Em que ambiente me sinto mais livre para ser como sou — e o que esse lugar tem que eu poderia levar para outros contextos?"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Uma assinatura vai além da aparência"
+              },
+              {
+                "type": "paragraph",
+                "text": "O próximo capítulo reúne referências, histórias, escolhas e limites. Não queremos chegar a um tipo ideal. Queremos criar uma assinatura suficientemente clara para ajudar e suficientemente aberta para deixar você crescer."
+              }
+            ]
+          }
+        },
+        {
+          "id": "p02-capitulo-7",
+          "slug": "capitulo-7",
+          "title": "A minha assinatura",
+          "order": 6,
+          "mediaPlacements": [
+            {
+              "id": "p02-capitulo-7-imagem",
+              "mediaId": "p02-media-c07",
+              "anchor": "p02-capitulo-7",
+              "position": "before"
+            },
+            {
+              "id": "p02-capitulo-7-p02-caderno",
+              "mediaId": "p02-caderno",
+              "anchor": "p02-capitulo-7",
+              "position": "after"
+            },
+            {
+              "id": "p02-capitulo-7-p02-cartoes",
+              "mediaId": "p02-cartoes",
+              "anchor": "p02-capitulo-7",
+              "position": "after"
+            }
+          ],
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "CAPÍTULO 7 — A minha assinatura"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Juntar o que faz sentido"
+              },
+              {
+                "type": "paragraph",
+                "text": "Chegamos ao fim do guia com pedaços de uma conversa: um detalhe querido, cinco referências, uma história de estilo, uma forma mais funcional de olhar, uma experiência reversível e três cenas de presença. Eles não precisam se encaixar como peças perfeitas de um quebra-cabeça. Talvez apontem para uma direção nítida. Talvez revelem que você gosta de contraste e variedade. A assinatura pode acolher ambos."
+              },
+              {
+                "type": "paragraph",
+                "text": "Abra o Caderno da Minha Assinatura e releia o que escreveu. Sublinha as palavras que reaparecem: confortável, vibrante, delicado, prático, leve, simples, expressivo, reservado, vivo. Escolha até cinco; se uma palavra parecer uma imposição, retire-a. O objetivo é encontrar uma linguagem que lhe sirva, não uma identidade para defender."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O manifesto de uma página"
+              },
+              {
+                "type": "paragraph",
+                "text": "Escreva um pequeno manifesto começando por estas frases:"
+              },
+              {
+                "type": "paragraph",
+                "text": "Gosto de... Cite uma cor, textura, ambiente, forma de presença ou lembrança."
+              },
+              {
+                "type": "paragraph",
+                "text": "Quero me permitir... Uma experiência possível, mesmo pequena."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não preciso... Uma obrigação estética que deseja questionar."
+              },
+              {
+                "type": "paragraph",
+                "text": "Quando minha escolha mudar... Uma lembrança de que isso não anula sua história."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não use o manifesto como contrato para nunca mais hesitar. Ele é um retrato de hoje. As preferências podem amadurecer, o corpo pode atravessar fases, a vida pode pedir novas roupas e novos ritmos. Você continuará sendo autora das suas escolhas quando decidir reescrever tudo."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "A cápsula que já existe"
+              },
+              {
+                "type": "paragraph",
+                "text": "Antes de comprar qualquer coisa para celebrar a descoberta, experimente olhar para o que já tem. Escolha três elementos disponíveis que traduzam suas palavras: uma peça, um objeto, uma ação ou um detalhe. Anote uma combinação ou situação em que gostaria de usá-los. Este é o seu kit de partida, não uma lista de compras. Se não houver nada material, vale escolher um gesto — prender o cabelo de outro modo, reservar tempo para se arrumar ou sair sem se explicar."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Uma carta para as próximas versões"
+              },
+              {
+                "type": "paragraph",
+                "text": "Escreva para si mesma em seis meses. Não peça que esteja mais bonita, mais jovem ou mais adequada. Pergunte que experiências quer ter vivido, que sensações deseja reconhecer e que liberdade gostaria de manter. Termine com uma frase de autorização: \"Posso mudar de ideia\". Dobre a página ou guarde o arquivo. Se um dia voltar a lê-lo, não compare desempenho; repare apenas no que mudou e no que permaneceu."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "EXERCÍCIO — 07 | CADERNO DA MINHA ASSINATURA"
+              },
+              {
+                "type": "paragraph",
+                "text": "Objetivo: reunir um repertório pessoal sem transformá-lo em regra.\nInstruções: selecione cinco palavras, escreva o manifesto em quatro frases e escolha uma experiência pequena para o próximo mês. Mantenha privado se desejar.\nResultado esperado: a primeira versão de uma assinatura pessoal, revisável sempre."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "REFLEXÃO"
+              },
+              {
+                "type": "paragraph",
+                "text": "Se minha imagem pudesse me ajudar a viver com mais liberdade, em vez de buscar aprovação, qual escolha eu faria diferente?"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O que fica"
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez a melhor descoberta seja esta: você não precisa amar tudo que vê para tratar a própria imagem com respeito. Não precisa acertar o estilo, comprar a tendência ou vencer qualquer comparação. Pode observar, escolher, aprender e mudar. O espelho continua no mesmo lugar. Quem ganhou espaço para decidir foi você."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "CARTA DE ENCERRAMENTO — A liberdade de continuar mudando"
+              },
+              {
+                "type": "paragraph",
+                "text": "Obrigada por ter chegado até aqui. Não pelo número de páginas lidas, nem pela quantidade de exercícios preenchidos, mas pelo tempo de curiosidade que ofereceu a si mesma. Isso já é um gesto com significado."
+              },
+              {
+                "type": "paragraph",
+                "text": "Se encontrar novamente uma manhã difícil diante do armário, você não terá falhado no que leu. Volte a uma pergunta simples: do que preciso hoje? Às vezes a resposta será coragem para experimentar uma cor. Às vezes será conforto, menos ruído e a mesma roupa de ontem. Ambas podem ser escolhas autênticas."
+              },
+              {
+                "type": "paragraph",
+                "text": "Guarde o caderno como quem guarda uma coleção de pistas. Não como um certificado de autoestima, nem como um registro de mudanças obrigatórias. Sua história, suas preferências e seus limites merecem espaço mesmo quando estão em construção."
+              },
+              {
+                "type": "paragraph",
+                "text": "Eu sou bela do meu jeito não precisa ser uma frase que você é obrigada a sentir em todas as manhãs. Pode ser, primeiro, uma permissão: a de existir e se expressar sem precisar pedir aprovação."
+              },
+              {
+                "type": "paragraph",
+                "text": "Com carinho,  \nEquipe editorial EspelhoMeu"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "CADERNO DA MINHA ASSINATURA — COMO USAR"
+              },
+              {
+                "type": "paragraph",
+                "text": "O workbook complementar reúne sete fichas de capítulo e 14 cartões de reflexão (dois por capítulo). Você pode imprimir, preencher digitalmente por outro aplicativo ou responder num caderno. Não recolhemos respostas. Fotografia e publicação são sempre opcionais. Se algum exercício for desconfortável, pule sem prejuízo à leitura."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "FONTES, LIMITES E CUIDADOS EDITORIAIS"
+              },
+              {
+                "type": "paragraph",
+                "text": "Este é um guia autoral de expressão pessoal e escrita reflexiva. Situações narrativas são exemplos fictícios de cotidiano, não depoimentos verificáveis. O conteúdo não apresenta estatísticas, resultados experimentais ou promessas de eficácia; recomendações de estilo são opções, não regras universais. O livro não substitui psicoterapia, cuidados médicos, apoio individualizado ou orientação para sofrimento persistente com a imagem corporal. Os conceitos de identidade e expressão apresentados são propostas editoriais; nenhum método diagnóstico é reivindicado."
+              },
+              {
+                "type": "paragraph",
+                "text": "Atenção sobre imagens e privacidade: fotos de pessoas geradas por IA são ilustrações e não representam testemunhos ou resultados de usuárias. Não se deve solicitar imagens de corpo ou de rosto da leitora como condição de acesso ao conteúdo."
+              }
+            ]
+          }
+        }
+      ],
+      "source": {
+        "repository": "atlashub-digital/espelhomeu",
+        "path": "packages/project-content/sources/produto-02/00_MASTER_EDITORIAL/ESPELHOMEU_P02_MASTER_EDITORIAL.md"
+      }
     }
   ],
   "collections": [
@@ -1984,8 +2947,8 @@
       "slug": "biblioteca",
       "title": "Biblioteca EspelhoMeu",
       "publicationRefs": [
-        "uma-pausa-que-tambem-e-sua",
-        "7-dias-para-me-escolher"
+        "7-dias-para-me-escolher",
+        "eu-sou-bela-do-meu-jeito"
       ]
     }
   ],

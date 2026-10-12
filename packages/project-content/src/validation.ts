@@ -45,7 +45,7 @@ export function validateProjectContent(raw: unknown): ContentManifest {
     for (const media of p.media) {
       if (
         ["image", "document"].includes(media.kind) &&
-        (!/^\/(?:marca|conteudo\/produto-01)\/[a-zA-Z0-9/_.-]+$/.test(media.assetPath ?? "") ||
+        (!/^\/(?:marca|conteudo\/[a-z0-9-]+)\/[a-zA-Z0-9/_.-]+$/.test(media.assetPath ?? "") ||
           media.assetPath?.includes("..") ||
           (media.kind === "image" && !media.alt) ||
           !media.license)

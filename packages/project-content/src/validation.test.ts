@@ -78,15 +78,36 @@ describe("Produto 01 preview release", () => {
     try { expect(await accessiblePublication(raw.publications[0]!.id)).toBeNull(); }
     finally { spy.mockRestore(); }
   });
-  it("shows the curated Article and Guide without duplicating daily projections in Library", async () => {
+  it("shows only the two official Guides, preserving the legacy Article technically", async () => {
     const items = await catalog();
-    expect(items.map(p => p.id)).toEqual(["uma-pausa-que-tambem-e-sua", "7-dias-para-me-escolher"]);
+    expect(items.map(p => p.id)).toEqual(["7-dias-para-me-escolher", "eu-sou-bela-do-meu-jeito"]);
+    expect((await contentSource.getPublication("uma-pausa-que-tambem-e-sua"))?.type).toBe("article");
     for (const p of items) {
       expect(p).not.toHaveProperty("chapters");
       expect(p).not.toHaveProperty("body");
     }
     expect(JSON.stringify(raw)).not.toContain("R$");
     expect(JSON.stringify(raw)).not.toContain("MEDIA BRIEF");
+  });
+  it("resolves P02 as a seven-chapter Guide with media and extras, without inventing a Program", async () => {
+    const m = validateProjectContent(raw);
+    const p = (await accessiblePublication("eu-sou-bela-do-meu-jeito"))!;
+    expect(p.allowed).toBe(true);
+    const guide = m.publications.find(p => p.id === "eu-sou-bela-do-meu-jeito")!;
+    expect(guide.type).toBe("guide");
+    expect(guide.chapters).toHaveLength(7);
+    expect(guide.chapters.map(c => c.order)).toEqual([0, 1, 2, 3, 4, 5, 6]);
+    expect(guide.media.filter(m => m.kind === "image")).toHaveLength(8);
+    expect(guide.media.filter(m => m.kind === "document")).toHaveLength(2);
+    for (const chapter of guide.chapters)
+      expect(guide.media.some(m => m.id === chapter.mediaPlacements![0]!.mediaId)).toBe(true);
+    expect(m.programs?.map(p => p.id)).toEqual(["p01-jornada"]);
+    const text = JSON.stringify(guide.chapters);
+    for (const marker of ["FICHA EDITORIAL", "Checklist humano", "Rever licença", "99_ARQUIVO", "[EXERCÍCIO", "[REFLEXÃO", "[CALLOUT"])
+      expect(text).not.toContain(marker);
+    expect(text).toContain("Uma beleza que não precisa de permissão");
+    expect(text).toContain("A liberdade de continuar mudando");
+    expect(text).toContain("não substitui psicoterapia");
   });
   it("strips content at denied Publication and Journey boundaries", async () => {
     const fixture = validateProjectContent(raw).publications[0]!;

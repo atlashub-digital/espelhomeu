@@ -83,6 +83,7 @@ try {
     "/biblioteca",
     "/descobrir",
     "/ler/7-dias-para-me-escolher",
+    "/ler/eu-sou-bela-do-meu-jeito",
     "/ler/uma-pausa-que-tambem-e-sua",
     "/programas",
     "/programas/7-dias-para-me-escolher/p01-dia-1",
@@ -124,6 +125,38 @@ try {
       });
       checks.push(`${name} ${route}: render + no overflow + screenshot`);
     }
+    await page.goto(origin + "/biblioteca");
+    assert.equal(await page.locator(".publication-card").count(), 2);
+    assert.equal(await page.locator('.publication-card a[href="/ler/uma-pausa-que-tambem-e-sua"]').count(), 0);
+    for (const product of ["produto-01", "produto-02"])
+      assert.equal(await page.locator('.publication-card img').evaluateAll((images, product) => images.filter(img => img.src.includes(product)).length, product), 1);
+    checks.push(name + " Library: P01 + P02 covers; legacy Article excluded");
+    await page.goto(origin + "/ler/eu-sou-bela-do-meu-jeito");
+    assert.equal(await page.locator(".reader-sidebar li").count(), 7);
+    const p02Titles = ["A beleza também pode ser uma assinatura", "O que me chama a atenção", "Meu estilo tem história", "Espelho: ferramenta, não tribunal", "Experimentar é permitido", "Presença também é expressão", "A minha assinatura"];
+    for (let chapter = 1; chapter <= 7; chapter++) {
+      assert.equal(await page.locator(".reader-content h2").innerText(), p02Titles[chapter - 1]);
+      const picture = page.locator(".reader-content .reader-media img");
+      await picture.scrollIntoViewIfNeeded();
+      await picture.evaluate(image => image.decode());
+      assert.ok((await picture.getAttribute("src")).includes("capitulo-" + String(chapter).padStart(2, "0")));
+      const text = await page.locator(".reader-content").innerText();
+      assert.ok(!/FICHA EDITORIAL|Checklist humano|Rever licença|99_ARQUIVO|\[CALLOUT|\[EXERCÍCIO|\[REFLEXÃO/.test(text));
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+      await page.locator(".reader-content").screenshot({ path: path.join(evidence, name + "-p02-capitulo-" + chapter + ".png") });
+      if (chapter < 7) await page.getByRole("button", { name: "Concluir e continuar" }).click();
+    }
+    for (const [file, signature] of [["caderno.pdf", "%PDF-"], ["cartoes.zip", "PK"]]) {
+      const link = page.locator('.reader-content a[download][href$="' + file + '"]');
+      const [download] = await Promise.all([page.waitForEvent("download"), link.click()]);
+      assert.equal(await download.failure(), null);
+      const response = await fetch(origin + "/conteudo/produto-02/" + file);
+      assert.equal(response.status, 200);
+      assert.equal(Buffer.from(await response.arrayBuffer()).subarray(0, signature.length).toString(), signature);
+    }
+    await page.getByRole("button", { name: "Concluir leitura" }).click();
+    assert.equal(await page.locator("progress").getAttribute("value"), "100");
+    checks.push(name + " P02: seven chapters, images, no operational markers, workbook + cards downloads, completion");
     await page.goto(origin + "/ler/7-dias-para-me-escolher");
     await page.getByRole("button", { name: "Concluir e continuar" }).click();
     await page.getByRole("heading", { name: "Dia 1 — ESCUTAR", exact: true }).waitFor();

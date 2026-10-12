@@ -1,0 +1,7 @@
+[
+  {
+    "recipe": "sources/produto-02/import.json",
+    "source": "sources/produto-02/00_MASTER_EDITORIAL/ESPELHOMEU_P02_MASTER_EDITORIAL.md",
+    "delivery": "sources/produto-02/delivery.json"
+  }
+]

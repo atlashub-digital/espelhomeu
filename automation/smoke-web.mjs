@@ -8,6 +8,7 @@ const routes = [
   "/descobrir",
   "/biblioteca",
   "/ler/7-dias-para-me-escolher",
+  "/ler/eu-sou-bela-do-meu-jeito",
   "/ler/uma-pausa-que-tambem-e-sua",
   "/programas/7-dias-para-me-escolher",
   ...Array.from({ length: 7 }, (_, i) => "/programas/7-dias-para-me-escolher/p01-dia-" + (i + 1)),
