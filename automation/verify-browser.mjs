@@ -110,6 +110,11 @@ try {
         true,
         `Horizontal overflow: ${name} ${route}`,
       );
+      for (const img of await page.locator('.product-main img').all()) {
+        await img.scrollIntoViewIfNeeded();
+        await img.evaluate(image => image.decode());
+        assert.ok(await img.getAttribute("alt"));
+      }
       await page.screenshot({
         path: path.join(
           evidence,
@@ -123,8 +128,26 @@ try {
     await page.getByRole("button", { name: "Concluir e continuar" }).click();
     await page.getByRole("heading", { name: "Dia 1 — ESCUTAR", exact: true }).waitFor();
     assert.equal(await page.locator("progress").getAttribute("value"), "10");
-    for (let i = 1; i < 9; i++)
+    for (let day = 1; day <= 7; day++) {
+      const img = page.locator(".reader-content .reader-media img");
+      await img.scrollIntoViewIfNeeded();
+      await img.evaluate(image => image.decode());
+      assert.ok((await img.getAttribute("src")).includes("dia-" + String(day).padStart(2, "0")));
+      await page.locator(".reader-content").screenshot({ path: path.join(evidence, name + "-guide-dia-" + day + ".png") });
       await page.getByRole("button", { name: "Concluir e continuar" }).click();
+    }
+    await page.getByRole("button", { name: "Concluir e continuar" }).click();
+    const workbook = page.locator(".reader-content a[download]");
+    assert.equal(await workbook.getAttribute("href"), "/conteudo/produto-01/workbook.pdf");
+    const [download] = await Promise.all([page.waitForEvent("download"), workbook.click()]);
+    assert.equal(await download.failure(), null);
+    const pdf = await fetch(origin + "/conteudo/produto-01/workbook.pdf");
+    assert.equal(pdf.status, 200);
+    assert.ok(pdf.headers.get("content-type").includes("application/pdf"));
+    assert.equal(Buffer.from(await pdf.arrayBuffer()).subarray(0, 5).toString(), "%PDF-");
+    await page.locator(".reader-content").screenshot({ path: path.join(evidence, name + "-workbook.png") });
+    checks.push(name + " official media: seven Guide images + workbook download");
+
     await page.getByRole("button", { name: "Concluir leitura" }).click();
     assert.equal(await page.locator("progress").getAttribute("value"), "100");
     await page.getByRole("button", { name: /Uma carta antes do primeiro dia/ }).click();
@@ -140,6 +163,11 @@ try {
     const titles = ["Escutar", "Reconhecer", "Respeitar", "Escolher referências", "Criar espaço", "Experimentar", "Continuar"];
     for (let day = 1; day <= 7; day++) {
       await page.getByRole("heading", { level: 1, name: titles[day - 1], exact: true }).waitFor();
+      const dayImage = page.locator(".reader-content .reader-media img");
+      await dayImage.scrollIntoViewIfNeeded();
+      await dayImage.evaluate(image => image.decode());
+      assert.ok((await dayImage.getAttribute("src")).includes("dia-" + String(day).padStart(2, "0")));
+      await page.locator(".reader-content").screenshot({ path: path.join(evidence, name + "-journey-dia-" + day + ".png") });
       await page.getByText("Meu registro privado", { exact: true }).click();
       assert.ok((await page.locator(".journey-activities").innerText()).includes("Nada é enviado"));
       assert.equal(await page.locator("textarea").count(), 0);

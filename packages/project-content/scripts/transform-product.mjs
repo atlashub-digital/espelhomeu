@@ -27,8 +27,8 @@ function blocks(text) {
 function chapter(id, title, order, text) {
   return { id, slug: id, title, order, body: { format: "blocks", blocks: blocks(text) } };
 }
-export function transformProduct(master, articleSource) {
-  const masterPath = "packages/project-content/sources/produto-01/ESPELHOMEU_P01_MASTER_EDITORIAL_FINAL.md";
+export function transformProduct(master, articleSource, media) {
+  const masterPath = "packages/project-content/sources/produto-01/00_MASTER_EDITORIAL/ESPELHOMEU_P01_MASTER_EDITORIAL.md";
   const title = between(master, "**Título:** ", "  \n");
   const subtitle = between(master, "**Subtítulo:** ", "  \n");
   const main = between(master, "# 3. MASTER CONTENT — TEXTO FINAL PARA LEITURA", "# 4. WORKBOOK — CARTÕES DESTACÁVEIS");
@@ -38,7 +38,7 @@ export function transformProduct(master, articleSource) {
   const closing = main.slice(main.indexOf("## ÚLTIMA PÁGINA")).trim();
   const workbook = between(master, "### Cartão 0 — Minha intenção", "# 5. MEDIA BRIEF — DIREÇÃO DE ARTE");
   const description = between(master, "## Descrição curta", "## Dez frases editoriais originais");
-  const base = { schemaVersion: "0.2", status: "preview", locale: "pt-BR", authors: ["EspelhoMeu"], edition: "Preview candidate · Pré-publicação", access: { mode: "public" }, media: [], tags: [] };
+  const base = { schemaVersion: "0.2", status: "preview", locale: "pt-BR", authors: ["EspelhoMeu"], edition: "Homologação · Preview editorial v2.0", access: { mode: "public" }, media: [], tags: [] };
   const guideId = "7-dias-para-me-escolher";
   const guide = {
     ...base, id: guideId, slug: guideId, type: "guide", title, subtitle, description,
@@ -52,9 +52,9 @@ export function transformProduct(master, articleSource) {
   };
   const articleTitle = between(articleSource, "**Título:** ", "  \n");
   const article = {
-    ...base, id: "uma-pausa-que-tambem-e-sua", slug: "uma-pausa-que-tambem-e-sua", type: "article",
+    ...base, edition: "Homologação · Leitura gratuita v1.0", id: "uma-pausa-que-tambem-e-sua", slug: "uma-pausa-que-tambem-e-sua", type: "article",
     title: articleTitle, subtitle: between(articleSource, "**Subtítulo:** ", "  \n"),
-    tags: ["Pausas"], source: { repository: "atlashub-digital/espelhomeu", path: "packages/project-content/sources/produto-01/LEITURA_GRATUITA_ORIGINAL.md" },
+    tags: ["Pausas"], source: { repository: "atlashub-digital/espelhomeu", path: "packages/project-content/sources/produto-01/04_MARKETING_E_COMERCIAL/LEITURA_GRATUITA_LEAD_MAGNET_v1.0.md" },
     chapters: [chapter("primeiro-encontro", articleTitle, 0, between(articleSource, "# " + articleTitle + "\n", "# MINI MEDIA BRIEF"))],
   };
   // Schema 0.2 references whole Publications, not chapter fragments.
@@ -64,6 +64,24 @@ export function transformProduct(master, articleSource) {
     title: "Dia " + d[1] + " — " + d[2], subtitle: title, source: guide.source,
     chapters: [chapter("dia-" + d[1], plain(d[3].split("\n")[0].replace(/^### /, "")), 0, d[3])],
   }));
+  // Canonical MediaAsset and MediaPlacement contracts; no runtime Drive dependency.
+  const asset = id => {
+    const item = media.find(m => m.id === id);
+    if (!item) throw new Error("Missing official media: " + id);
+    return item;
+  };
+  guide.cover = asset("p01-capa").assetPath;
+  guide.media = media;
+  for (let i = 0; i < 7; i++) {
+    const image = asset("p01-media-dia-" + String(i + 1).padStart(2, "0"));
+    const placement = { id: "p01-dia-" + (i + 1) + "-abertura", mediaId: image.id,
+      anchor: "dia-" + (i + 1), position: "before" };
+    guide.chapters[i + 1].mediaPlacements = [placement];
+    readings[i].media = [image];
+    readings[i].chapters[0].mediaPlacements = [placement];
+  }
+  guide.chapters[9].mediaPlacements = [{ id: "p01-workbook-download",
+    mediaId: asset("p01-workbook").id, anchor: "mapa-do-que-e-meu", position: "before" }];
   const units = days.map((d, i) => {
     const text = d[3], day = Number(d[1]), prefix = "p01-dia-" + day;
     const exercise = between(text, "**EXERCÍCIO — ", "**VERSÃO DE DOIS MINUTOS:**");
@@ -86,6 +104,6 @@ export function transformProduct(master, articleSource) {
     publications: [article, guide, ...readings],
     collections: [{ schemaVersion: "0.1", id: "biblioteca", slug: "biblioteca", title: "Biblioteca EspelhoMeu", publicationRefs: [article.id, guide.id] }],
     programs: [{ schemaVersion: "0.2", id: "p01-jornada", slug: guideId, kind: "journey", status: "preview", locale: "pt-BR", title, description, authors: ["EspelhoMeu"], durationDays: 7, access: { mode: "public" }, units }],
-    metadata: { editorialStatus: "PREVIEW CANDIDATE / PRE-PUBLICAÇÃO", commercialApproval: false, source: masterPath },
+    metadata: { editorialStatus: "HOMOLOGAÇÃO / PREVIEW", commercialApproval: false, source: masterPath },
   };
 }

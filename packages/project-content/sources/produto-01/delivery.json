@@ -1,0 +1,70 @@
+{
+  "canonicalFolder": "https://drive.google.com/drive/folders/1dehnDcGNI8XwGPd2O35B2B-VkVFos57y",
+  "status": "HOMOLOGAÇÃO / PREVIEW",
+  "commercialApproval": false,
+  "files": [
+    {
+      "path": "apps/web/public/conteudo/produto-01/dia-01.jpg",
+      "gitBlobSha": "78e9499223db29902e3d2fe1a81197047b873b4c",
+      "bytes": 281261,
+      "sourceFile": "ABERTURA_DIA_01.jpg",
+      "driveFileId": "1XXnx0g8pjzoc87mKsqDHfeG5R1X55c1b"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-01/dia-02.jpg",
+      "gitBlobSha": "2a1aa3fbcdf8b8215202bdf58567c5587df8e459",
+      "bytes": 142565,
+      "sourceFile": "ABERTURA_DIA_02.jpg",
+      "driveFileId": "14ywoDDIpvgkCMiVAGe2NIlkzftyoLSXi"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-01/dia-03.jpg",
+      "gitBlobSha": "ef0dc4337f2bba25f598637e090625707972e916",
+      "bytes": 256185,
+      "sourceFile": "ABERTURA_DIA_03.jpg",
+      "driveFileId": "1DlL_HSUvXvendqnA5iMvwMHFwhU9K6LQ"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-01/dia-04.jpg",
+      "gitBlobSha": "39b86e25f06dee262a0037d3a9c91715c1d49c54",
+      "bytes": 265729,
+      "sourceFile": "ABERTURA_DIA_04.jpg",
+      "driveFileId": "1UVZeL1e8V-iEFYjkLHBalpRgyQWpX_tI"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-01/dia-05.jpg",
+      "gitBlobSha": "6f5d318db1dad35c35e832e938687fbf31c6c6f7",
+      "bytes": 148366,
+      "sourceFile": "ABERTURA_DIA_05.jpg",
+      "driveFileId": "1S-808J27O0b8n_QoN9orw5HVuegWf7cT"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-01/dia-06.jpg",
+      "gitBlobSha": "fb255536ddc0c0a774dbe517a4aebf5a3308076e",
+      "bytes": 267777,
+      "sourceFile": "ABERTURA_DIA_06.jpg",
+      "driveFileId": "1yJKOeDx50mVzyN3ZvZVuUtkc4onYkRG0"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-01/dia-07.jpg",
+      "gitBlobSha": "f2effe5f290e9f3fbcd87d99114f70c78d423811",
+      "bytes": 214986,
+      "sourceFile": "ABERTURA_DIA_07.jpg",
+      "driveFileId": "16QI-M6jDEPSQYcUWZmrnQu10wB8TVAS7"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-01/capa.jpg",
+      "gitBlobSha": "adfe39f1974d10c0c39f9cb0c4e392014f5222de",
+      "bytes": 751694,
+      "sourceFile": "CAPA_PREMIUM_1024x1536.jpg",
+      "driveFileId": "1ByeJmxkeiLCMlwKAA7Ozz0mGy9r5SG10"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-01/workbook.pdf",
+      "gitBlobSha": "136fb290f412072ce0a423d081a4825f0e2d92e5",
+      "bytes": 96881,
+      "sourceFile": "WORKBOOK_7_DIAS_v2.0.pdf",
+      "driveFileId": "1k8EUSbtsh1qt5S9DA9iJ2_xe2NDuQazu"
+    }
+  ]
+}

@@ -3,8 +3,8 @@
 **Título:** 7 Dias Para Me Escolher  
 **Subtítulo:** Um reencontro gentil comigo mesma  
 **Selo:** Coleção EspelhoMeu — Escolher · Expressar · Evoluir  
-**Versão:** Editorial Master FINAL 1.0 · 12 de outubro de 2026  
-**Estado:** Master editorial consolidado e diagramado; pré-publicação. A publicação comercial permanece condicionada a QA humano, licença de assets e gates de venda.  
+**Versão:** Editorial Master PREMIUM V2.0 · 12 de outubro de 2026  
+**Estado:** Manuscrito editorial para publicação; peça PDF de leitura e workbook diagramados na edição PREMIUM V2.0. A publicação comercial permanece condicionada a QA humano, licença de assets e gates de venda.  
 **Idioma:** Português brasileiro (pt-BR)  
 **Mercado:** Brasil; adaptação posterior para Portugal  
 **Público:** Pessoas adultas; comunicação prioritária para mulheres 35–55 como hipótese comercial, não critério de exclusão do conteúdo  

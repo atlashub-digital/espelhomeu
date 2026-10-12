@@ -1,0 +1,283 @@
+{
+  "ebook_pages": 29,
+  "workbook_pages": 8,
+  "errors": [],
+  "pages": [
+    {
+      "file": "ebook",
+      "page": 1,
+      "chars": 0,
+      "images": 1
+    },
+    {
+      "file": "ebook",
+      "page": 2,
+      "chars": 355,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 3,
+      "chars": 1520,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 4,
+      "chars": 870,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 5,
+      "chars": 63,
+      "images": 2
+    },
+    {
+      "file": "ebook",
+      "page": 6,
+      "chars": 1693,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 7,
+      "chars": 902,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 8,
+      "chars": 63,
+      "images": 2
+    },
+    {
+      "file": "ebook",
+      "page": 9,
+      "chars": 1561,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 10,
+      "chars": 947,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 11,
+      "chars": 63,
+      "images": 2
+    },
+    {
+      "file": "ebook",
+      "page": 12,
+      "chars": 1805,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 13,
+      "chars": 1375,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 14,
+      "chars": 147,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 15,
+      "chars": 63,
+      "images": 2
+    },
+    {
+      "file": "ebook",
+      "page": 16,
+      "chars": 1674,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 17,
+      "chars": 726,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 18,
+      "chars": 63,
+      "images": 2
+    },
+    {
+      "file": "ebook",
+      "page": 19,
+      "chars": 1583,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 20,
+      "chars": 796,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 21,
+      "chars": 63,
+      "images": 2
+    },
+    {
+      "file": "ebook",
+      "page": 22,
+      "chars": 1300,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 23,
+      "chars": 955,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 24,
+      "chars": 63,
+      "images": 2
+    },
+    {
+      "file": "ebook",
+      "page": 25,
+      "chars": 1687,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 26,
+      "chars": 836,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 27,
+      "chars": 927,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 28,
+      "chars": 775,
+      "images": 0
+    },
+    {
+      "file": "ebook",
+      "page": 29,
+      "chars": 162,
+      "images": 0
+    },
+    {
+      "file": "workbook",
+      "page": 1,
+      "chars": 309,
+      "images": 0
+    },
+    {
+      "file": "workbook",
+      "page": 2,
+      "chars": 308,
+      "images": 0
+    },
+    {
+      "file": "workbook",
+      "page": 3,
+      "chars": 328,
+      "images": 0
+    },
+    {
+      "file": "workbook",
+      "page": 4,
+      "chars": 342,
+      "images": 0
+    },
+    {
+      "file": "workbook",
+      "page": 5,
+      "chars": 296,
+      "images": 0
+    },
+    {
+      "file": "workbook",
+      "page": 6,
+      "chars": 335,
+      "images": 0
+    },
+    {
+      "file": "workbook",
+      "page": 7,
+      "chars": 315,
+      "images": 0
+    },
+    {
+      "file": "workbook",
+      "page": 8,
+      "chars": 399,
+      "images": 0
+    }
+  ],
+  "revision": "Publicação final corrigida de 12/10/2026",
+  "confirmed_title_pages": [
+    8,
+    18,
+    21,
+    24
+  ],
+  "seven_dividers": {
+    "1": {
+      "title": "ESCUTAR",
+      "font_size": 175,
+      "title_width_px": 766,
+      "right_margin_px": 254
+    },
+    "2": {
+      "title": "RECONHECER",
+      "font_size": 135,
+      "title_width_px": 899,
+      "right_margin_px": 121
+    },
+    "3": {
+      "title": "RESPEITAR",
+      "font_size": 175,
+      "title_width_px": 899,
+      "right_margin_px": 121
+    },
+    "4": {
+      "title": "ESCOLHER",
+      "font_size": 175,
+      "title_width_px": 884,
+      "right_margin_px": 136
+    },
+    "5": {
+      "title": "CRIAR ESPAÇO",
+      "font_size": 135,
+      "title_width_px": 924,
+      "right_margin_px": 96
+    },
+    "6": {
+      "title": "EXPERIMENTAR",
+      "font_size": 119,
+      "title_width_px": 903,
+      "right_margin_px": 117
+    },
+    "7": {
+      "title": "CONTINUAR",
+      "font_size": 151,
+      "title_width_px": 922,
+      "right_margin_px": 98
+    }
+  },
+  "pdf_content_page_bounds_errors": [],
+  "checked_titles_status": "all seven chapter opening titles within safe area",
+  "editorial_publication_gate": "AMF must perform human review before activation"
+}

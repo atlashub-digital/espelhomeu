@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import delivery from "../sources/produto-01/delivery.json";
 import { describe, expect, it, vi } from "vitest";
 import { ContentManifestSchema } from "@atlashub-digital/amf-content-schema";
 import { conservativeAccessResolver, createJourneyModel, authorizeJourney } from "@atlashub-digital/amf-experience-core";
@@ -24,6 +27,30 @@ describe("Produto 01 preview release", () => {
       expect(unit.unit.checkIns).toHaveLength(1);
       expect([...unit.unit.missions, ...unit.unit.reflections, ...unit.unit.checkIns].every(a => !a.required)).toBe(true);
     }
+  });
+  it("resolves official cover, seven base images and workbook without Drive runtime", () => {
+    const m = validateProjectContent(raw);
+    const guide = m.publications[1]!;
+    expect(guide.media).toHaveLength(9);
+    expect(guide.cover).toBe("/conteudo/produto-01/capa.jpg");
+    expect(guide.media.find(media => media.assetPath === guide.cover)?.kind).toBe("image");
+    for (let i = 0; i < 7; i++) {
+      const placement = guide.chapters[i + 1]!.mediaPlacements![0]!;
+      const media = guide.media.find(item => item.id === placement.mediaId)!;
+      expect(media.assetPath).toBe("/conteudo/produto-01/dia-" + String(i + 1).padStart(2, "0") + ".jpg");
+      expect(media.alt).toBeTruthy();
+      expect(m.publications[i + 2]!.media).toEqual([media]);
+      expect(m.publications[i + 2]!.chapters[0]!.mediaPlacements).toEqual([placement]);
+    }
+    expect(guide.media.find(media => media.id === "p01-workbook")?.kind).toBe("document");
+    for (const file of delivery.files) {
+      const bytes = readFileSync(new URL("../../../" + file.path, import.meta.url));
+      expect(bytes.length).toBe(file.bytes);
+      expect(createHash("sha1").update("blob " + bytes.length + "\0").update(bytes).digest("hex")).toBe(file.gitBlobSha);
+    }
+    const unsafe = structuredClone(raw);
+    unsafe.publications[1]!.media[0]!.assetPath = "/conteudo/produto-01/../private.jpg";
+    expect(() => validateProjectContent(unsafe)).toThrow();
   });
   it("rejects unresolved references, duplicate orders and incomplete seven-day content", () => {
     const broken = structuredClone(raw);

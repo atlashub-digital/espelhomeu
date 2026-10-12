@@ -44,14 +44,14 @@ export function validateProjectContent(raw: unknown): ContentManifest {
     }
     for (const media of p.media) {
       if (
-        media.kind === "image" &&
-        (!media.assetPath?.startsWith("/marca/") ||
-          media.assetPath.includes("..") ||
-          !media.alt ||
+        ["image", "document"].includes(media.kind) &&
+        (!/^\/(?:marca|conteudo\/produto-01)\/[a-zA-Z0-9/_.-]+$/.test(media.assetPath ?? "") ||
+          media.assetPath?.includes("..") ||
+          (media.kind === "image" && !media.alt) ||
           !media.license)
       )
         throw new Error(
-          "Image must have approved local asset, alt and license",
+          "Media must have a safe local asset, provenance and image alt",
         );
       if (media.attributionRequired && !media.attribution)
         throw new Error("Missing attribution");

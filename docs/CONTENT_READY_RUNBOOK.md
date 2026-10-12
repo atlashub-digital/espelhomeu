@@ -1,6 +1,6 @@
 # Golden Pilot — Produto 01 no Preview
 
-Estado editorial: **PREVIEW CANDIDATE / PRE-PUBLICAÇÃO**. O gate técnico não autoriza venda.
+Estado editorial: **HOMOLOGAÇÃO / PREVIEW**. O gate técnico não autoriza venda.
 PR #15 permanece DRAFT. Nenhum merge, release ou mudança de produção nesta etapa.
 
 ## Reproduzir
@@ -45,7 +45,7 @@ A verificação da waitlist usa só a API local sem DB; não envia inscrições 
 
 Originais integrais em `packages/project-content/sources/produto-01/`.
 Proveniência: [pasta editorial](https://drive.google.com/drive/folders/1dehnDcGNI8XwGPd2O35B2B-VkVFos57y).
-O master tem 42 936 bytes UTF-8; o Article original, 4 357 bytes.
+O master tem 42 987 bytes UTF-8; o Article original, 4 357 bytes.
 Não se extraiu texto do PDF.
 
 `scripts/transform-product.mjs` é o adapter estrutural **desta fonte editorial**,
@@ -64,8 +64,13 @@ mapeia headings/callouts e mantém o texto. Quebras de linha/listas ficam preser
 
 Briefs, hipóteses de preço, fontes e gates comerciais ficam no original humano;
 não entram nas Publications nem no Program. Todos os itens estão em status preview.
-As capas tipográficas existentes são a apresentação deste Preview; não se adicionaram
-imagens do Drive nem se declarou aprovação comercial de assets.
+Capa v2.0, sete imagens-base e workbook PDF são cópias integrais da pasta canónica,
+servidas localmente em apps/web/public/conteudo/produto-01. MEDIA_MAP fornece os alts.
+content/media.json usa apenas MediaAsset do Schema; placements usam os contratos existentes.
+delivery.json regista origem, tamanho e hash Git de cada binário, verificado pelos testes.
+Nenhum runtime consulta Drive. Não se declarou aprovação comercial de assets.
+O Article v1.0 mantém capa tipográfica: não há capa específica aprovada no pack.
+Ver docs/PRODUTO_01_REFRESH.md para mapeamento e diferenças de ingestão.
 
 Para substituir conteúdo: atualizar a fonte humana aprovada, executar content:sync,
 rever o diff e validar. Mudanças no formato da fonte exigem adaptar o conversor, nunca

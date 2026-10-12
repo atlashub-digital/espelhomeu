@@ -47,6 +47,8 @@ export function WebReader({ publication }: { publication: Publication }) {
     setCompleted(saved.completedChapterIds);
     heading.current?.focus();
   }
+  const cover = publication.media.find(m => m.kind === "image" && m.assetPath === publication.cover);
+  const documents = publication.media.filter(m => m.kind === "document");
   const placements = chapter?.mediaPlacements ?? [];
   const mediaAt = (position: "before" | "after" | "inline") =>
     placements
@@ -62,6 +64,7 @@ export function WebReader({ publication }: { publication: Publication }) {
         <span>{publication.edition}</span>
       </div>
       <header className="reader-header">
+        {cover && <div className="reader-cover"><ReaderMedia media={cover} /></div>}
         <p className="eyebrow">
           {publication.type === "guide" ? "Guia" : "Leitura"} ·{" "}
           {publication.readingMinutes ? `${publication.readingMinutes} min · ` : ""}{publication.locale}
@@ -72,6 +75,7 @@ export function WebReader({ publication }: { publication: Publication }) {
       </header>
       <div className="reader-layout">
         <aside className="reader-sidebar">
+          {documents.map(media => <ReaderMedia key={media.id} media={media} />)}
           <details open>
             <summary>Índice da leitura</summary>
             <ol>

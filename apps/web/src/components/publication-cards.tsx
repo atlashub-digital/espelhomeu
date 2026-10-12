@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Publication } from "@atlashub-digital/amf-content-schema";
 import { catalog } from "@/lib/content";
@@ -40,13 +41,15 @@ export async function PublicationCards({
         <article className="publication-card" key={p.id}>
           <Link
             href={`/ler/${p.slug}`}
-            className={`editorial-cover cover-${i % 2}`}
+            className={`editorial-cover cover-${i % 2}${p.cover ? " has-cover" : ""}`}
             aria-label={`Ler ${p.title}`}
           >
+            {p.cover ? <Image src={p.cover} fill sizes="(max-width: 520px) 88vw, 44vw" alt={`Capa de ${p.title}`} /> : <>
             <span className="cover-series">ESPELHOMEU · LEITURAS</span>
             <span className="cover-orbit" aria-hidden="true" />
             <span className="cover-title">{p.title}</span>
             <span className="cover-caption">{p.subtitle}</span>
+            </>}
           </Link>
           <div className="card-meta">
             <span>{labels[p.type] ?? p.type}</span>

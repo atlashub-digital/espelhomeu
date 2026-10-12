@@ -717,3 +717,12 @@ body {
 .experience .journey-activities summary { cursor: pointer; font-size: 18px; }
 .experience .journey-activities h3 { font-size: 25px; margin: 22px 0 12px; }
 .experience .activity-copy { line-height: 1.8; margin: 16px 0; }
+
+/* Official editorial assets: show complete artwork, never crop title or logo. */
+.experience .editorial-cover.has-cover { padding: 0; }
+.experience .editorial-cover.has-cover img { object-fit: contain; }
+.experience .reader-cover { float: right; width: 200px; margin: 0 0 24px 32px; }
+.experience .reader-header::after { content: ""; display: block; clear: both; }
+@media (max-width: 520px) {
+  .experience .reader-cover { float: none; width: 180px; margin: 0 auto 28px; }
+}

@@ -1,0 +1,144 @@
+[
+  {
+    "id": "p01-media-dia-01",
+    "kind": "image",
+    "title": "Abertura do dia 1",
+    "alt": "Espelho dourado, luz quente e ambiente acolhedor que evocam um instante de pausa.",
+    "assetPath": "/conteudo/produto-01/dia-01.jpg",
+    "publisher": "EspelhoMeu",
+    "sourcePage": "https://drive.google.com/file/d/1XXnx0g8pjzoc87mKsqDHfeG5R1X55c1b/view",
+    "license": "Uso autorizado para homologação/Preview; direitos comerciais pendentes de confirmação.",
+    "metadata": {
+      "sourceFile": "ABERTURA_DIA_01.jpg",
+      "editorialStatus": "HOMOLOGAÇÃO / PREVIEW",
+      "height": 680,
+      "width": 1080
+    }
+  },
+  {
+    "id": "p01-media-dia-02",
+    "kind": "image",
+    "title": "Abertura do dia 2",
+    "alt": "Moldura de espelho em cobre, luz dourada e reflexo feminino suavizado.",
+    "assetPath": "/conteudo/produto-01/dia-02.jpg",
+    "publisher": "EspelhoMeu",
+    "sourcePage": "https://drive.google.com/file/d/14ywoDDIpvgkCMiVAGe2NIlkzftyoLSXi/view",
+    "license": "Uso autorizado para homologação/Preview; direitos comerciais pendentes de confirmação.",
+    "metadata": {
+      "sourceFile": "ABERTURA_DIA_02.jpg",
+      "editorialStatus": "HOMOLOGAÇÃO / PREVIEW",
+      "height": 680,
+      "width": 1080
+    }
+  },
+  {
+    "id": "p01-media-dia-03",
+    "kind": "image",
+    "title": "Abertura do dia 3",
+    "alt": "Retrato editorial feminino com iluminação natural suave e flores claras.",
+    "assetPath": "/conteudo/produto-01/dia-03.jpg",
+    "publisher": "EspelhoMeu",
+    "sourcePage": "https://drive.google.com/file/d/1DlL_HSUvXvendqnA5iMvwMHFwhU9K6LQ/view",
+    "license": "Uso autorizado para homologação/Preview; direitos comerciais pendentes de confirmação.",
+    "metadata": {
+      "sourceFile": "ABERTURA_DIA_03.jpg",
+      "editorialStatus": "HOMOLOGAÇÃO / PREVIEW",
+      "height": 680,
+      "width": 1080
+    }
+  },
+  {
+    "id": "p01-media-dia-04",
+    "kind": "image",
+    "title": "Abertura do dia 4",
+    "alt": "Espelho, flores e decoração em tons champagne sob iluminação delicada.",
+    "assetPath": "/conteudo/produto-01/dia-04.jpg",
+    "publisher": "EspelhoMeu",
+    "sourcePage": "https://drive.google.com/file/d/1UVZeL1e8V-iEFYjkLHBalpRgyQWpX_tI/view",
+    "license": "Uso autorizado para homologação/Preview; direitos comerciais pendentes de confirmação.",
+    "metadata": {
+      "sourceFile": "ABERTURA_DIA_04.jpg",
+      "editorialStatus": "HOMOLOGAÇÃO / PREVIEW",
+      "height": 680,
+      "width": 1080
+    }
+  },
+  {
+    "id": "p01-media-dia-05",
+    "kind": "image",
+    "title": "Abertura do dia 5",
+    "alt": "Reflexo suave de uma mulher em espelho acobreado, junto a pontos de luz.",
+    "assetPath": "/conteudo/produto-01/dia-05.jpg",
+    "publisher": "EspelhoMeu",
+    "sourcePage": "https://drive.google.com/file/d/1S-808J27O0b8n_QoN9orw5HVuegWf7cT/view",
+    "license": "Uso autorizado para homologação/Preview; direitos comerciais pendentes de confirmação.",
+    "metadata": {
+      "sourceFile": "ABERTURA_DIA_05.jpg",
+      "editorialStatus": "HOMOLOGAÇÃO / PREVIEW",
+      "height": 680,
+      "width": 1080
+    }
+  },
+  {
+    "id": "p01-media-dia-06",
+    "kind": "image",
+    "title": "Abertura do dia 6",
+    "alt": "Mulher tranquila com a mão junto ao rosto em ambiente claro com flores.",
+    "assetPath": "/conteudo/produto-01/dia-06.jpg",
+    "publisher": "EspelhoMeu",
+    "sourcePage": "https://drive.google.com/file/d/1yJKOeDx50mVzyN3ZvZVuUtkc4onYkRG0/view",
+    "license": "Uso autorizado para homologação/Preview; direitos comerciais pendentes de confirmação.",
+    "metadata": {
+      "sourceFile": "ABERTURA_DIA_06.jpg",
+      "editorialStatus": "HOMOLOGAÇÃO / PREVIEW",
+      "height": 680,
+      "width": 1080
+    }
+  },
+  {
+    "id": "p01-media-dia-07",
+    "kind": "image",
+    "title": "Abertura do dia 7",
+    "alt": "Composição de espelho, flores e luz dourada sugerindo continuidade.",
+    "assetPath": "/conteudo/produto-01/dia-07.jpg",
+    "publisher": "EspelhoMeu",
+    "sourcePage": "https://drive.google.com/file/d/16QI-M6jDEPSQYcUWZmrnQu10wB8TVAS7/view",
+    "license": "Uso autorizado para homologação/Preview; direitos comerciais pendentes de confirmação.",
+    "metadata": {
+      "sourceFile": "ABERTURA_DIA_07.jpg",
+      "editorialStatus": "HOMOLOGAÇÃO / PREVIEW",
+      "height": 680,
+      "width": 1080
+    }
+  },
+  {
+    "id": "p01-capa",
+    "kind": "image",
+    "title": "7 Dias Para Me Escolher — Um reencontro gentil comigo mesma",
+    "alt": "Capa de 7 Dias Para Me Escolher — Um reencontro gentil comigo mesma",
+    "assetPath": "/conteudo/produto-01/capa.jpg",
+    "publisher": "EspelhoMeu",
+    "sourcePage": "https://drive.google.com/file/d/1ByeJmxkeiLCMlwKAA7Ozz0mGy9r5SG10/view",
+    "license": "Uso autorizado para homologação/Preview; direitos comerciais pendentes de confirmação.",
+    "metadata": {
+      "sourceFile": "CAPA_PREMIUM_1024x1536.jpg",
+      "editorialStatus": "HOMOLOGAÇÃO / PREVIEW",
+      "height": 1536,
+      "width": 1024
+    }
+  },
+  {
+    "id": "p01-workbook",
+    "kind": "document",
+    "title": "Workbook — 7 Dias Para Me Escolher (PDF, 8 páginas)",
+    "assetPath": "/conteudo/produto-01/workbook.pdf",
+    "publisher": "EspelhoMeu",
+    "sourcePage": "https://drive.google.com/file/d/1k8EUSbtsh1qt5S9DA9iJ2_xe2NDuQazu/view",
+    "license": "Uso autorizado para homologação/Preview; direitos comerciais pendentes de confirmação.",
+    "metadata": {
+      "sourceFile": "WORKBOOK_7_DIAS_v2.0.pdf",
+      "editorialStatus": "HOMOLOGAÇÃO / PREVIEW",
+      "pages": 8
+    }
+  }
+]

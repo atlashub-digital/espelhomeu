@@ -33,16 +33,22 @@ export function ReaderBody({ body }: { body?: BodySource }) {
 }
 // Safe project-owned rendering. Never evaluate HTML or arbitrary iframe content.
 export function ReaderMedia({ media }: { media: MediaAsset }) {
-  const local = media.assetPath?.startsWith("/marca/") ? media.assetPath : null;
+  const local = media.assetPath && /^\/(?:marca|conteudo\/produto-01)\/[a-zA-Z0-9/_.-]+$/.test(media.assetPath) && !media.assetPath.includes("..") ? media.assetPath : null;
   if (media.kind === "image" && local)
     return (
       <figure className="reader-media">
-        <Image src={local} width={300} height={300} alt={media.alt ?? ""} />
+        <Image src={local} width={typeof media.metadata?.width === "number" ? media.metadata.width : 300} height={typeof media.metadata?.height === "number" ? media.metadata.height : 300} sizes="(max-width: 800px) 88vw, 700px" alt={media.alt ?? ""} />
         <figcaption>
           {media.caption}
           {media.attributionRequired && media.attribution}
         </figcaption>
       </figure>
+    );
+  if (media.kind === "document" && local)
+    return (
+      <p className="reader-media">
+        <a className="text-link" href={local} download>{media.title ?? "Descarregar documento"}</a>
+      </p>
     );
   const url = media.kind === "embed" ? media.embedUrl : media.assetUrl;
   if (url && url.startsWith("https://"))
