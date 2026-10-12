@@ -33,8 +33,9 @@ const output = "docs/evidence/track-a/online";
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch();
 const checks = [], errors = [];
+let blocked = null;
 try {
-  for (const [device, viewport] of [
+  devices: for (const [device, viewport] of [
     ["desktop", { width: 1440, height: 1000 }],
     ["mobile", { width: 390, height: 844 }],
   ]) {
@@ -48,6 +49,19 @@ try {
       ["day-1", "/programas/7-dias-para-me-escolher/p01-dia-1"],
     ]) {
       const response = await page.goto(origin + route);
+      const location = new URL(page.url());
+      const title = await page.title();
+      // A protected preview is an unavailable verification environment, never a pass.
+      // Do not disable protection or invent bypass credentials.
+      if ((location.hostname === "vercel.com" && /login|sso/.test(location.pathname)) ||
+          ([401, 403].includes(response.status()) && /Authentication Required|Vercel/i.test(title))) {
+        blocked = { status: "BLOCKED_DEPLOYMENT_PROTECTION", route, httpStatus: response.status(), host: location.hostname, path: location.pathname, title };
+        await page.screenshot({ path: output + "/deployment-protection.png" });
+        console.log("::warning::Online browser verification BLOCKED by Vercel Deployment Protection. This is NOT a passing browser check; contentReady stays false.");
+        await page.close();
+        break devices;
+      }
+      console.log("Preview page: " + location.hostname + location.pathname + " · " + title);
       assert.equal(response.status(), 200, "Preview HTTP " + route);
       await page.locator(".product-main h1").waitFor();
       await page.evaluate(() => document.fonts.ready);
@@ -66,6 +80,6 @@ try {
   }
   assert.deepEqual(errors, []);
   assert.equal((await github("/pulls/" + pr)).head.sha, sha, "PR moved; evidence needs a new run");
-  await writeFile(output + "/verification.json", JSON.stringify({ sha, origin, checks, errors, humanReview: "pending" }, null, 2));
-  console.log("PASS online Preview: " + origin + " · " + checks.length + " checks · head " + sha);
+  await writeFile(output + "/verification.json", JSON.stringify({ sha, origin, status: blocked ? "BLOCKED" : "PASS", blocked, checks, errors, humanReview: "pending" }, null, 2));
+  if (!blocked) console.log("PASS online Preview: " + origin + " · " + checks.length + " checks · head " + sha);
 } finally { await browser.close(); }

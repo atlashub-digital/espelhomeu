@@ -36,6 +36,7 @@
   "gate": {
     "contentReady": false,
     "blockers": [
+      "Browser smoke online do Preview: requer acesso autenticado se houver Deployment Protection",
       "Revisão humana do Preview do Produto 01 sem bloqueadores; confirmar CI e deployment do mesmo head"
     ]
   }

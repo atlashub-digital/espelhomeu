@@ -34,6 +34,11 @@ desktop/mobile em `docs/evidence/track-a`. O CI publica esses ficheiros como art
 O CI também executa verify-preview.mjs: obtém o Ready associado ao head no GitHub,
 abre o Preview com Playwright e guarda dez screenshots online em track-a/online.
 Esse smoke online apenas navega: não submete formulários nem escreve dados.
+Se a Vercel redirecionar para login, o relatório online fica BLOCKED (não PASS),
+com screenshot e aviso no CI. O CI técnico pode estar verde enquanto o gate continua
+bloqueado por acesso ao ambiente de Preview. Não se desativa proteção automaticamente.
+Helena pode executar o smoke com acesso autorizado ou disponibilizar a sessão de
+verificação do mesmo projeto; revisão humana autenticada continua obrigatória.
 A verificação da waitlist usa só a API local sem DB; não envia inscrições a produção.
 
 ## Fonte e transformação
