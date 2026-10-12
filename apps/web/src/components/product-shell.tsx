@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode, CSSProperties } from "react";
-import { themeCssVariables } from "@atlashub/amf-experience-core";
+import { themeCssVariables } from "@atlashub-digital/amf-experience-core";
 import { theme, enabled } from "@espelhomeu/project-config";
 import logo from "../../public/marca/logo-principal-800.webp";
 

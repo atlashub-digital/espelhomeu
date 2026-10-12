@@ -2,7 +2,7 @@ import {
   defineProject,
   defineTheme,
   moduleEnabled,
-} from "@atlashub/amf-experience-core";
+} from "@atlashub-digital/amf-experience-core";
 import manifest from "../../../project.manifest.json";
 
 export const theme = defineTheme({

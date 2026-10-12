@@ -17,8 +17,8 @@
     "react-dom": "19.2.8",
     "@espelhomeu/project-config": "workspace:*",
     "@espelhomeu/project-content": "workspace:*",
-    "@atlashub/amf-content-schema": "github:atlashub-digital/amf-content-schema#d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b",
-    "@atlashub/amf-experience-core": "github:atlashub-digital/amf-experience-core#b4190cdbb67f7676fce0328c31ac6da44974427f"
+    "@atlashub-digital/amf-content-schema": "0.2.0",
+    "@atlashub-digital/amf-experience-core": "0.2.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

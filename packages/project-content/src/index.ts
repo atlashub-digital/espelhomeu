@@ -2,11 +2,11 @@ import { validateProjectContent } from "./validation";
 import type {
   ContentSource,
   AccessContext,
-} from "@atlashub/amf-experience-core";
+} from "@atlashub-digital/amf-experience-core";
 import {
   conservativeAccessResolver,
   findPublication,
-} from "@atlashub/amf-experience-core";
+} from "@atlashub-digital/amf-experience-core";
 import raw from "../content/manifest.json";
 
 export const manifest = validateProjectContent(raw);

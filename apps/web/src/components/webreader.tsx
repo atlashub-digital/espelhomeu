@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
 import { useMemo, useState, useRef } from "react";
-import type { Publication } from "@atlashub/amf-content-schema";
+import type { Publication } from "@atlashub-digital/amf-content-schema";
 import {
   createReaderModel,
   readerProgressPercentage,
-} from "@atlashub/amf-experience-core";
+} from "@atlashub-digital/amf-experience-core";
 import { createSessionProgressAdapter } from "@/lib/reader-progress";
 import { ReaderBody, ReaderMedia } from "./reader-body";
 

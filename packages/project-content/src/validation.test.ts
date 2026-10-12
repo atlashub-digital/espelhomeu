@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
-import { PublicationSchema } from "@atlashub/amf-content-schema";
-import { conservativeAccessResolver } from "@atlashub/amf-experience-core";
+import { PublicationSchema } from "@atlashub-digital/amf-content-schema";
+import { conservativeAccessResolver } from "@atlashub-digital/amf-experience-core";
 import raw from "../content/manifest.json";
 import { validateProjectContent } from "./validation";
 import { accessiblePublication, catalog, contentSource } from "./index";
@@ -11,11 +11,11 @@ describe("project content release policy", () => {
       ["essay", "guide"],
     );
   });
-  it("does not mislabel an essay as unsupported Article", () => {
+  it("accepts Article as canonical type (AMF schema 0.2.0)", () => {
     expect(
       PublicationSchema.safeParse({ ...raw.publications[0], type: "article" })
         .success,
-    ).toBe(false);
+    ).toBe(true);
   });
   it("rejects misplaced prices, duplicate slugs, unresolved media and unsupported bodies", () => {
     const priced = structuredClone(raw);
