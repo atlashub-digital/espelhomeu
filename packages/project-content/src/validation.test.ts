@@ -101,7 +101,7 @@ describe("Produto 01 preview release", () => {
     expect(guide.media.filter(m => m.kind === "document")).toHaveLength(2);
     for (const chapter of guide.chapters)
       expect(guide.media.some(m => m.id === chapter.mediaPlacements![0]!.mediaId)).toBe(true);
-    expect(m.programs?.map(p => p.id)).toEqual(["p01-jornada"]);
+    expect(raw.programs.map(p => p.id)).toEqual(["p01-jornada"]);
     const text = JSON.stringify(guide.chapters);
     for (const marker of ["FICHA EDITORIAL", "Checklist humano", "Rever licença", "99_ARQUIVO", "[EXERCÍCIO", "[REFLEXÃO", "[CALLOUT"])
       expect(text).not.toContain(marker);
