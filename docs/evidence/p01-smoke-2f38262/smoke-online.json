@@ -1,0 +1,242 @@
+{
+ "deployment": "dpl_5J7WS8o3CsijGDDedQ7kAX4YJmp2",
+ "url": "https://espelhomeu-cnga3vxol-atlas-hub1.vercel.app",
+ "sha": "2f382620c690abc2ebed5a882572d0def9465eee",
+ "method": "protection-bypass query param (SSO intacta)",
+ "routes": [
+  {
+   "route": "/",
+   "expected": 200,
+   "status": 200,
+   "ms": 81,
+   "ok": true,
+   "markers": [],
+   "sso_wall": false
+  },
+  {
+   "route": "/inicio",
+   "expected": 200,
+   "status": 200,
+   "ms": 168,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher",
+    "Um reencontro gentil comigo mesma"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/biblioteca",
+   "expected": 200,
+   "status": 200,
+   "ms": 335,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher",
+    "Um reencontro gentil comigo mesma"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/descobrir",
+   "expected": 200,
+   "status": 200,
+   "ms": 189,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher",
+    "Um reencontro gentil comigo mesma"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/programas",
+   "expected": 200,
+   "status": 200,
+   "ms": 215,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/programas/7-dias-para-me-escolher",
+   "expected": 200,
+   "status": 200,
+   "ms": 206,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher",
+    "Escutar",
+    "Reconhecer"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/meu-espelho",
+   "expected": 200,
+   "status": 200,
+   "ms": 194,
+   "ok": true,
+   "markers": [],
+   "sso_wall": false
+  },
+  {
+   "route": "/perfil",
+   "expected": 200,
+   "status": 200,
+   "ms": 81,
+   "ok": true,
+   "markers": [],
+   "sso_wall": false
+  },
+  {
+   "route": "/premium",
+   "expected": 200,
+   "status": 200,
+   "ms": 181,
+   "ok": true,
+   "markers": [],
+   "sso_wall": false
+  },
+  {
+   "route": "/comunidade",
+   "expected": 200,
+   "status": 200,
+   "ms": 83,
+   "ok": true,
+   "markers": [],
+   "sso_wall": false
+  },
+  {
+   "route": "/ler/7-dias-para-me-escolher",
+   "expected": 200,
+   "status": 200,
+   "ms": 255,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher",
+    "Um reencontro gentil comigo mesma",
+    "Mapa do Que \u00c9 Meu"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/ler/uma-pausa-que-tambem-e-sua",
+   "expected": 200,
+   "status": 200,
+   "ms": 152,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher",
+    "Mapa do Que \u00c9 Meu"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/ler/p01-leitura-dia-1",
+   "expected": 200,
+   "status": 200,
+   "ms": 150,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/ler/p01-leitura-dia-2",
+   "expected": 200,
+   "status": 200,
+   "ms": 218,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/ler/p01-leitura-dia-3",
+   "expected": 200,
+   "status": 200,
+   "ms": 160,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/ler/p01-leitura-dia-4",
+   "expected": 200,
+   "status": 200,
+   "ms": 172,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/ler/p01-leitura-dia-5",
+   "expected": 200,
+   "status": 200,
+   "ms": 185,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/ler/p01-leitura-dia-6",
+   "expected": 200,
+   "status": 200,
+   "ms": 224,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/ler/p01-leitura-dia-7",
+   "expected": 200,
+   "status": 200,
+   "ms": 192,
+   "ok": true,
+   "markers": [
+    "7 Dias Para Me Escolher"
+   ],
+   "sso_wall": false
+  },
+  {
+   "route": "/ler/publicacao-inexistente-xyz",
+   "expected": 404,
+   "status": 404,
+   "ms": 157,
+   "ok": true,
+   "markers": [],
+   "sso_wall": false
+  },
+  {
+   "route": "/privacidade",
+   "expected": 200,
+   "status": 200,
+   "ms": 93,
+   "ok": true,
+   "markers": [],
+   "sso_wall": false
+  },
+  {
+   "route": "/status",
+   "expected": 200,
+   "status": 200,
+   "ms": 386,
+   "ok": true,
+   "markers": [],
+   "sso_wall": false
+  }
+ ]
+}
