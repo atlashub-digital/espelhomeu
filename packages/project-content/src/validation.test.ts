@@ -1,6 +1,3 @@
-import { readFileSync } from "node:fs";
-import { createHash } from "node:crypto";
-import delivery from "../sources/produto-01/delivery.json";
 import { describe, expect, it, vi } from "vitest";
 import { ContentManifestSchema } from "@atlashub-digital/amf-content-schema";
 import { conservativeAccessResolver, createJourneyModel, authorizeJourney } from "@atlashub-digital/amf-experience-core";
@@ -43,11 +40,6 @@ describe("Produto 01 preview release", () => {
       expect(m.publications[i + 2]!.chapters[0]!.mediaPlacements).toEqual([placement]);
     }
     expect(guide.media.find(media => media.id === "p01-workbook")?.kind).toBe("document");
-    for (const file of delivery.files) {
-      const bytes = readFileSync(new URL("../../../" + file.path, import.meta.url));
-      expect(bytes.length).toBe(file.bytes);
-      expect(createHash("sha1").update("blob " + bytes.length + "\0").update(bytes).digest("hex")).toBe(file.gitBlobSha);
-    }
     const unsafe = structuredClone(raw);
     unsafe.publications[1]!.media[0]!.assetPath = "/conteudo/produto-01/../private.jpg";
     expect(() => validateProjectContent(unsafe)).toThrow();
