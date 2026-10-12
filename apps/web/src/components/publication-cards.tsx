@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Publication } from "@atlashub/amf-content-schema";
+import type { Publication } from "@atlashub-digital/amf-content-schema";
 import { catalog } from "@/lib/content";
 const labels: Partial<Record<Publication["type"], string>> = {
   essay: "Ensaio",

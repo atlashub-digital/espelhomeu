@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { BodySource, MediaAsset } from "@atlashub/amf-content-schema";
+import type { BodySource, MediaAsset } from "@atlashub-digital/amf-content-schema";
 export function ReaderBody({ body }: { body?: BodySource }) {
   if (!body) return null;
   if (body.format === "markdown-inline")

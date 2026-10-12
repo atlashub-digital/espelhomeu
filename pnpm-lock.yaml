@@ -63,12 +63,12 @@ importers:
 
   apps/web:
     dependencies:
-      '@atlashub/amf-content-schema':
-        specifier: github:atlashub-digital/amf-content-schema#d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b
-        version: https://codeload.github.com/atlashub-digital/amf-content-schema/tar.gz/d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b
-      '@atlashub/amf-experience-core':
-        specifier: github:atlashub-digital/amf-experience-core#b4190cdbb67f7676fce0328c31ac6da44974427f
-        version: https://codeload.github.com/atlashub-digital/amf-experience-core/tar.gz/b4190cdbb67f7676fce0328c31ac6da44974427f
+      '@atlashub-digital/amf-content-schema':
+        specifier: 0.2.0
+        version: 0.2.0
+      '@atlashub-digital/amf-experience-core':
+        specifier: 0.2.1
+        version: 0.2.1(@atlashub-digital/amf-content-schema@0.2.0)
       '@espelhomeu/project-config':
         specifier: workspace:*
         version: link:../../packages/project-config
@@ -118,12 +118,12 @@ importers:
 
   packages/project-config:
     dependencies:
-      '@atlashub/amf-content-schema':
-        specifier: github:atlashub-digital/amf-content-schema#d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b
-        version: https://codeload.github.com/atlashub-digital/amf-content-schema/tar.gz/d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b
-      '@atlashub/amf-experience-core':
-        specifier: github:atlashub-digital/amf-experience-core#b4190cdbb67f7676fce0328c31ac6da44974427f
-        version: https://codeload.github.com/atlashub-digital/amf-experience-core/tar.gz/b4190cdbb67f7676fce0328c31ac6da44974427f
+      '@atlashub-digital/amf-content-schema':
+        specifier: 0.2.0
+        version: 0.2.0
+      '@atlashub-digital/amf-experience-core':
+        specifier: 0.2.1
+        version: 0.2.1(@atlashub-digital/amf-content-schema@0.2.0)
     devDependencies:
       typescript:
         specifier: ^5.9.0
@@ -134,12 +134,12 @@ importers:
 
   packages/project-content:
     dependencies:
-      '@atlashub/amf-content-schema':
-        specifier: github:atlashub-digital/amf-content-schema#d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b
-        version: https://codeload.github.com/atlashub-digital/amf-content-schema/tar.gz/d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b
-      '@atlashub/amf-experience-core':
-        specifier: github:atlashub-digital/amf-experience-core#b4190cdbb67f7676fce0328c31ac6da44974427f
-        version: https://codeload.github.com/atlashub-digital/amf-experience-core/tar.gz/b4190cdbb67f7676fce0328c31ac6da44974427f
+      '@atlashub-digital/amf-content-schema':
+        specifier: 0.2.0
+        version: 0.2.0
+      '@atlashub-digital/amf-experience-core':
+        specifier: 0.2.1
+        version: 0.2.1(@atlashub-digital/amf-content-schema@0.2.0)
     devDependencies:
       typescript:
         specifier: ^5.9.0
@@ -167,15 +167,15 @@ packages:
     resolution: {integrity: sha512-U4+70Pc5ZS9osnCBCE5Jha/ciHM+Yp+CNMNC/7HvYbNRk1Ldd+f7qO65W5qfhu/TCv+/ozljlXXe9Nj8419DMA==}
     engines: {node: '>=10'}
 
-  '@atlashub/amf-content-schema@https://codeload.github.com/atlashub-digital/amf-content-schema/tar.gz/d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b':
-    resolution: {tarball: https://codeload.github.com/atlashub-digital/amf-content-schema/tar.gz/d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b}
-    version: 0.1.0
+  '@atlashub-digital/amf-content-schema@0.2.0':
+    resolution: {integrity: sha512-W/PjPTm4seRk1UP6Lhs7Sla5Otnn9atq9VgKxp1exXYdsZ7c5dyDB1jO/BLPUJa+k26+sfVojEXr2Djr7Nip1w==, tarball: https://npm.pkg.github.com/download/@atlashub-digital/amf-content-schema/0.2.0/903ab5f42ac8f0735b9c4ad97cb6d7a60385d7fa}
     engines: {node: '>=22'}
 
-  '@atlashub/amf-experience-core@https://codeload.github.com/atlashub-digital/amf-experience-core/tar.gz/b4190cdbb67f7676fce0328c31ac6da44974427f':
-    resolution: {tarball: https://codeload.github.com/atlashub-digital/amf-experience-core/tar.gz/b4190cdbb67f7676fce0328c31ac6da44974427f}
-    version: 0.1.0
+  '@atlashub-digital/amf-experience-core@0.2.1':
+    resolution: {integrity: sha512-AeLz8MQDG0qSSaZOv32dMYnokKZFI6phqN3O7WLeRf3doLqyApuGz5erMd/3/JVcH2BO4poB7krGYmNRVtpo5w==, tarball: https://npm.pkg.github.com/download/@atlashub-digital/amf-experience-core/0.2.1/6a337ee27964bc0f7ae3f4b28e552896cabc3d36}
     engines: {node: '>=22'}
+    peerDependencies:
+      '@atlashub-digital/amf-content-schema': 0.2.0
 
   '@babel/code-frame@7.29.7':
     resolution: {integrity: sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw==}
@@ -3699,13 +3699,13 @@ snapshots:
 
   '@alloc/quick-lru@5.3.0': {}
 
-  '@atlashub/amf-content-schema@https://codeload.github.com/atlashub-digital/amf-content-schema/tar.gz/d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b':
+  '@atlashub-digital/amf-content-schema@0.2.0':
     dependencies:
       zod: 4.6.5
 
-  '@atlashub/amf-experience-core@https://codeload.github.com/atlashub-digital/amf-experience-core/tar.gz/b4190cdbb67f7676fce0328c31ac6da44974427f':
+  '@atlashub-digital/amf-experience-core@0.2.1(@atlashub-digital/amf-content-schema@0.2.0)':
     dependencies:
-      '@atlashub/amf-content-schema': https://codeload.github.com/atlashub-digital/amf-content-schema/tar.gz/d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b
+      '@atlashub-digital/amf-content-schema': 0.2.0
 
   '@babel/code-frame@7.29.7':
     dependencies:

@@ -1,5 +1,5 @@
-import { ContentManifestSchema } from "@atlashub/amf-content-schema";
-import type { ContentManifest } from "@atlashub/amf-content-schema";
+import { ContentManifestSchema } from "@atlashub-digital/amf-content-schema";
+import type { ContentManifest } from "@atlashub-digital/amf-content-schema";
 
 export function validateProjectContent(raw: unknown): ContentManifest {
   const manifest = ContentManifestSchema.parse(raw);

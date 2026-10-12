@@ -19,8 +19,8 @@
     "analytics": false
   },
   "amf": {
-    "contentSchema": "d5c8c2056b1ac4d82e40ae47cc968f9450b0b32b",
-    "experienceCore": "b4190cdbb67f7676fce0328c31ac6da44974427f",
+    "contentSchema": "@atlashub-digital/amf-content-schema@0.2.0 (npm.pkg.github.com)",
+    "experienceCore": "@atlashub-digital/amf-experience-core@0.2.1 (npm.pkg.github.com)",
     "projectTemplateReference": "a34e5726d26ac4e6a41398097b4a960f8da60f77"
   },
   "content": {
@@ -36,9 +36,9 @@
   "gate": {
     "contentReady": false,
     "blockers": [
-      "AMF schema: Article type",
-      "AMF schema: structured Program/Journey contract",
-      "AMF core: Journey primitives"
+      "Preview Vercel verde com registry artifacts",
+      "Article + Guide + Journey real de 7 dias no content",
+      "Revisão humana do contrato 0.2 / jornada"
     ]
   }
 }

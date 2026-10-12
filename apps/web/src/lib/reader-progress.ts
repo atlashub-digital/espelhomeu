@@ -1,7 +1,7 @@
 import type {
   ReaderProgress,
   ReaderProgressAdapter,
-} from "@atlashub/amf-experience-core";
+} from "@atlashub-digital/amf-experience-core";
 
 // Deliberately ephemeral: no cookies, localStorage, reflections or account identity.
 // Track B can inject a project-scoped, consent-aware API adapter later.
