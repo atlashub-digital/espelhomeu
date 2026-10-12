@@ -13,9 +13,10 @@
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
-    "validate:content": "pnpm --filter @espelhomeu/project-content exec vitest run src/validation.test.ts",
+    "validate:content": "node packages/project-content/scripts/sync-editorial.mjs --check && pnpm --filter @espelhomeu/project-content exec vitest run src/validation.test.ts",
     "smoke:web": "node automation/smoke-web.mjs",
-    "verify:browser": "node automation/verify-browser.mjs"
+    "verify:browser": "node automation/verify-browser.mjs",
+    "content:sync": "node packages/project-content/scripts/sync-editorial.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

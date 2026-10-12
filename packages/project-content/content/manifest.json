@@ -1,207 +1,1908 @@
 {
-  "schemaVersion": "0.1",
+  "schemaVersion": "0.2",
   "project": "espelhomeu",
   "publications": [
     {
-      "schemaVersion": "0.1",
-      "id": "um-momento-para-mim",
-      "slug": "um-momento-para-mim",
-      "type": "essay",
+      "schemaVersion": "0.2",
       "status": "preview",
       "locale": "pt-BR",
-      "title": "Um momento para mim",
-      "subtitle": "Pequenas pausas. Novas possibilidades.",
-      "description": "Conteúdo demonstrativo para validar a experiência. A edição final será preparada pela AMF Content Ops.",
       "authors": [
         "EspelhoMeu"
       ],
-      "edition": "Fixture de engenharia · v1",
-      "tags": [
-        "Autoconhecimento",
-        "Pausas"
-      ],
-      "readingMinutes": 4,
-      "cover": "/marca/logo-principal-800.webp",
+      "edition": "Preview candidate · Pré-publicação",
       "access": {
         "mode": "public"
       },
-      "chapters": [
-        {
-          "id": "observar",
-          "slug": "observar",
-          "title": "Começar pelo que sinto",
-          "order": 0,
-          "body": {
-            "format": "blocks",
-            "blocks": [
-              {
-                "type": "paragraph",
-                "text": "Hoje, reserve um momento sem comparações. Observe o que faz sentido para você agora. Não existe uma resposta certa: existe a sua experiência."
-              },
-              {
-                "type": "callout",
-                "title": "Ao meu ritmo",
-                "text": "Não precisa decidir tudo hoje. Esta leitura não substitui orientação profissional."
-              }
-            ]
-          }
-        },
-        {
-          "id": "escolher",
-          "slug": "escolher",
-          "title": "Uma escolha possível",
-          "order": 1,
-          "body": {
-            "format": "blocks",
-            "blocks": [
-              {
-                "type": "paragraph",
-                "text": "Escolha uma pausa simples para esta semana. Pode ser uma leitura, um passeio ou alguns minutos de silêncio. O ritmo é seu."
-              },
-              {
-                "type": "callout",
-                "title": "Ao meu ritmo",
-                "text": "Não precisa decidir tudo hoje. Esta leitura não substitui orientação profissional."
-              }
-            ]
-          }
-        }
+      "media": [],
+      "tags": [
+        "Pausas"
       ],
-      "media": [
-        {
-          "id": "marca",
-          "kind": "image",
-          "assetPath": "/marca/logo-principal-800.webp",
-          "alt": "EspelhoMeu — O espelho que me conhece",
-          "license": "Marca oficial do projeto",
-          "attribution": "EspelhoMeu / AVS",
-          "attributionRequired": false
-        }
-      ],
+      "id": "uma-pausa-que-tambem-e-sua",
+      "slug": "uma-pausa-que-tambem-e-sua",
+      "type": "article",
+      "title": "Uma Pausa Que Também É Sua",
+      "subtitle": "Uma leitura breve para guardar",
       "source": {
         "repository": "atlashub-digital/espelhomeu",
-        "path": "packages/project-content/content/manifest.json"
-      },
-      "extensions": {
-        "fixture": true
-      }
-    },
-    {
-      "schemaVersion": "0.1",
-      "id": "um-reflexo-mais-gentil",
-      "slug": "um-reflexo-mais-gentil",
-      "type": "guide",
-      "status": "preview",
-      "locale": "pt-BR",
-      "title": "Um reflexo mais gentil",
-      "subtitle": "Observe. Experimente. Escolha.",
-      "description": "Conteúdo demonstrativo para validar a experiência. A edição final será preparada pela AMF Content Ops.",
-      "authors": [
-        "EspelhoMeu"
-      ],
-      "edition": "Fixture de engenharia · v1",
-      "tags": [
-        "Autoconhecimento",
-        "Pausas"
-      ],
-      "readingMinutes": 12,
-      "cover": "/marca/logo-principal-800.webp",
-      "access": {
-        "mode": "public"
+        "path": "packages/project-content/sources/produto-01/LEITURA_GRATUITA_ORIGINAL.md"
       },
       "chapters": [
         {
-          "id": "observar",
-          "slug": "observar",
-          "title": "Observar sem julgar",
+          "id": "primeiro-encontro",
+          "slug": "primeiro-encontro",
+          "title": "Uma Pausa Que Também É Sua",
           "order": 0,
           "body": {
             "format": "blocks",
             "blocks": [
               {
-                "type": "paragraph",
-                "text": "Encontre um lugar tranquilo e faça uma pausa. Perceba as palavras que costuma usar consigo. Você pode experimentar uma linguagem mais gentil, sem transformar isso numa obrigação."
+                "type": "heading",
+                "level": 3,
+                "text": "Uma leitura breve para guardar"
               },
               {
-                "type": "callout",
-                "title": "Ao meu ritmo",
-                "text": "Não precisa decidir tudo hoje. Esta leitura não substitui orientação profissional."
+                "type": "paragraph",
+                "text": "A manhã pode estar silenciosa e, ainda assim, já existir uma fila de assuntos à espera. Uma mensagem não respondida. O compromisso da tarde. Um pensamento sobre amanhã. Às vezes o dia começa antes de termos a sensação de chegar a ele."
+              },
+              {
+                "type": "paragraph",
+                "text": "Então acontece uma coisa pequena: a água fica pronta, a xícara aquece as mãos, a luz atravessa uma parede. Por alguns segundos, nada pede uma resposta imediata."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não precisamos chamar isso de grande mudança. Pode ser apenas uma pausa."
+              },
+              {
+                "type": "paragraph",
+                "text": "E talvez seja justamente isso que torna a pausa especial: não precisa virar uma nova tarefa. Não exige vela perfumada, música certa, aplicativo aberto ou fotografia bonita. Não existe um jeito único de fazer."
+              },
+              {
+                "type": "paragraph",
+                "text": "Se você quiser, aproveite estes minutos para fazer uma pergunta sem obrigação de responder bem:"
+              },
+              {
+                "type": "paragraph",
+                "text": "«O que seria bom considerar também hoje?»"
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez seja uma vontade pequena. Talvez seja um pedido de ajuda. Talvez seja a decisão de não aceitar mais uma coisa antes de olhar a agenda. Talvez você não saiba ainda."
+              },
+              {
+                "type": "paragraph",
+                "text": "É comum encontrar conselhos de autocuidado que parecem acrescentar itens à lista. Faça mais. Pense melhor. Sinta-se diferente. Aqui, a proposta é outra: observar o que já existe e escolher com alguma gentileza dentro das possibilidades reais."
+              },
+              {
+                "type": "paragraph",
+                "text": "Se o dia estiver apertado, basta ler. Se houver espaço, experimente o cartão abaixo. Ninguém precisa ver a sua resposta."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Um cartão só seu"
+              },
+              {
+                "type": "paragraph",
+                "text": "Hoje eu estou…\n____________________________________"
+              },
+              {
+                "type": "paragraph",
+                "text": "Seria bom ter um pouco mais de…\n____________________________________"
+              },
+              {
+                "type": "paragraph",
+                "text": "Um gesto pequeno e possível poderia ser…\n____________________________________"
+              },
+              {
+                "type": "paragraph",
+                "text": "Pode ser adiar uma tarefa não urgente. Ou conversar com alguém. Ou ouvir a própria música favorita enquanto arruma a cozinha. Ou reconhecer honestamente: «Hoje não vai dar. Vou tentar amanhã»."
+              },
+              {
+                "type": "paragraph",
+                "text": "Esse cartão não mede amor-próprio. Não avalia autoestima. Só abre uma conversa breve consigo mesma."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Uma frase para levar"
+              },
+              {
+                "type": "paragraph",
+                "text": "A próxima pausa também pode ter o seu nome."
+              },
+              {
+                "type": "paragraph",
+                "text": "Guarde esta página se quiser. Volte em outro dia. Uma resposta diferente não invalida a anterior."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Se quiser continuar"
+              },
+              {
+                "type": "paragraph",
+                "text": "Este primeiro encontro faz parte do universo EspelhoMeu — O espelho que me conhece."
+              },
+              {
+                "type": "paragraph",
+                "text": "A publicação 7 Dias Para Me Escolher reúne sete leituras originais, exercícios facultativos e um Mapa do Que É Meu para guardar. Os encontros exploram atenção, qualidades discretas, respeito pelo corpo, referências, limites, curiosidade e continuidade — sem padrões de beleza e sem notas."
+              },
+              {
+                "type": "paragraph",
+                "text": "CTA editorial: Conhecer os sete encontros."
+              },
+              {
+                "type": "paragraph",
+                "text": "Conteúdo de reflexão pessoal para adultos. Não substitui apoio profissional em situações de sofrimento significativo. A leitura completa é uma opção, não uma obrigação."
               }
             ]
-          },
-          "mediaPlacements": [
-            {
-              "id": "marca-abertura",
-              "mediaId": "marca",
-              "anchor": "observar",
-              "position": "before"
-            }
-          ]
-        },
+          }
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.2",
+      "status": "preview",
+      "locale": "pt-BR",
+      "authors": [
+        "EspelhoMeu"
+      ],
+      "edition": "Preview candidate · Pré-publicação",
+      "access": {
+        "mode": "public"
+      },
+      "media": [],
+      "tags": [
+        "Autocuidado",
+        "Mapa do Que É Meu"
+      ],
+      "id": "7-dias-para-me-escolher",
+      "slug": "7-dias-para-me-escolher",
+      "type": "guide",
+      "title": "7 Dias Para Me Escolher",
+      "subtitle": "Um reencontro gentil comigo mesma",
+      "description": "Sete encontros de leitura, reflexões e pequenos gestos para fazer mais espaço para você — e um mapa pessoal para guardar.",
+      "source": {
+        "repository": "atlashub-digital/espelhomeu",
+        "path": "packages/project-content/sources/produto-01/ESPELHOMEU_P01_MASTER_EDITORIAL_FINAL.md"
+      },
+      "chapters": [
         {
-          "id": "experimentar",
-          "slug": "experimentar",
-          "title": "Experimentar com liberdade",
-          "order": 1,
+          "id": "abertura",
+          "slug": "abertura",
+          "title": "Uma carta antes do primeiro dia",
+          "order": 0,
           "body": {
             "format": "blocks",
             "blocks": [
               {
+                "type": "heading",
+                "level": 3,
+                "text": "7 Dias Para Me Escolher"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Um reencontro gentil comigo mesma"
+              },
+              {
                 "type": "paragraph",
-                "text": "Uma mudança pode começar pequena: uma cor, uma rotina ou um momento de descanso. Escolha algo que desperte curiosidade, sem promessas de transformação e sem precisar agradar a outra pessoa."
+                "text": "Espelho meu, espelho meu. Hoje, eu me escolho."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Uma carta antes do primeiro dia"
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez exista, na sua casa, um canto que só recebe atenção quando o resto está em ordem. Uma gaveta que você pretende arrumar. Uma planta que precisa de outro vaso. Um livro que aguarda a hora certa."
+              },
+              {
+                "type": "paragraph",
+                "text": "Às vezes, o tempo para nós mesmas vai parar nesse mesmo lugar: depois."
+              },
+              {
+                "type": "paragraph",
+                "text": "Depois que o trabalho acalmar. Depois que a semana acabar. Depois que o dinheiro sobrar. Depois que todo mundo estiver bem. Depois, quando der."
+              },
+              {
+                "type": "paragraph",
+                "text": "Mas há outra maneira de começar. Não precisamos arrumar a vida inteira para encontrar cinco minutos. Nem precisamos nos transformar em pessoas mais disciplinadas, bonitas, corajosas ou produtivas. Podemos simplesmente fazer uma pergunta que quase nunca aparece nos compromissos do dia: «O que eu gostaria de considerar também?»"
+              },
+              {
+                "type": "paragraph",
+                "text": "Este guia não foi feito para consertar você. Não há nada aqui que precise ser aprovado por um espelho, por outra pessoa ou por uma versão ideal da sua vida. Ele é um convite para experimentar sete encontros sem plateia. Sete momentos nos quais você pode descobrir o que sente, lembrar do que já construiu e tomar uma decisão pequena — pequena o bastante para caber onde você está."
+              },
+              {
+                "type": "paragraph",
+                "text": "Se escrever fizer sentido, escreva. Se preferir apenas pensar, tudo bem. Se algum tema não servir para você, deixe passar. E, se uma reflexão trouxer sofrimento intenso, pare: procurar apoio de alguém de confiança ou de um profissional qualificado é uma escolha de cuidado, não uma falha do percurso."
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez você conclua que já tem feito muita coisa por si. Talvez encontre uma vontade esquecida. Talvez não descubra nada extraordinário. Todas essas respostas cabem aqui."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não vamos medir o quanto você se ama. Vamos abrir espaço para as suas próprias respostas."
               },
               {
                 "type": "callout",
-                "title": "Ao meu ritmo",
-                "text": "Não precisa decidir tudo hoje. Esta leitura não substitui orientação profissional."
+                "tone": "note",
+                "text": "O cuidado não precisa esperar até que sobre tempo. Às vezes ele começa quando decidimos o que fazer com alguns minutos que já existem."
+              },
+              {
+                "type": "paragraph",
+                "text": "Primeira pergunta — antes do Dia 1\nO que me trouxe até esta leitura: curiosidade, um desejo, uma pausa, um presente, outra coisa? Uma palavra já basta."
+              },
+              {
+                "type": "paragraph",
+                "text": "Uma orientação para o seu Mapa do Que É Meu\nAo final de cada encontro, haverá um pequeno registro. Guarde-o num caderno, nota privada ou cartão. No Dia 7, eles formarão o seu mapa. Você não precisa enviá-lo à marca, publicá-lo nem compartilhá-lo com ninguém."
               }
             ]
           }
         },
         {
-          "id": "escolher",
-          "slug": "escolher",
-          "title": "Escolher o que é meu",
+          "id": "dia-1",
+          "slug": "dia-1",
+          "title": "Dia 1 — ESCUTAR",
+          "order": 1,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O pequeno espaço entre todas as outras coisas"
+              },
+              {
+                "type": "paragraph",
+                "text": "O celular vibra. Uma mensagem pede resposta. Há uma louça para guardar, um trabalho para terminar, alguém para atender. Mesmo quando a manhã é tranquila, os pensamentos conseguem encher o silêncio com lembranças, planos e pendências."
+              },
+              {
+                "type": "paragraph",
+                "text": "Em muitos dias, seguimos funcionando sem parar para saber como estamos. Não porque sejamos descuidadas; simplesmente porque a vida é feita de movimento. E, nesse movimento, uma pergunta simples pode ficar sem lugar."
+              },
+              {
+                "type": "paragraph",
+                "text": "Como estou hoje?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Não «como deveria estar». Não «como pareço estar». Nem «como uma pessoa grata deveria responder». Apenas: como estou?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Imagine duas respostas possíveis. Na primeira, você diz: «Está tudo ótimo», embora o dia esteja pesado. Na segunda, diz: «Estou animada com uma coisa e cansada de outra». A segunda não resolve a agenda, mas aproxima a conversa da realidade. E a realidade costuma oferecer melhores pontos de partida do que uma obrigação de estar bem."
+              },
+              {
+                "type": "paragraph",
+                "text": "Há uma diferença entre perceber uma necessidade e conseguir atendê-la imediatamente. Talvez você precise de descanso e não possa parar agora. Talvez queira companhia, mas hoje esteja sozinha. O exercício não vai fingir que essas limitações desaparecem porque você decidiu se ouvir. Ele apenas permite incluir essa informação quando fizer a próxima escolha possível."
+              },
+              {
+                "type": "paragraph",
+                "text": "Pode ser o momento de adiar algo não urgente. Pode ser pedir ajuda. Pode ser sentar cinco minutos antes de começar outra tarefa. Pode até ser reconhecer que hoje não existe margem e decidir olhar para isso amanhã."
+              },
+              {
+                "type": "paragraph",
+                "text": "Você não precisa merecer uma pausa. A pausa pode ser apenas uma parte humana do dia."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — O termômetro sem números\nObjetivo: nomear o presente sem transformar sentimentos em desempenho.\nInstruções: complete, em palavras simples:"
+              },
+              {
+                "type": "paragraph",
+                "text": "- Neste momento, estou me sentindo…\n- Hoje seria bom ter um pouco mais de…\n- Uma escolha pequena e possível é…"
+              },
+              {
+                "type": "paragraph",
+                "text": "Experimente respostas concretas: «Estou inquieta», «gostaria de silêncio», «vou deixar o celular em outro cômodo enquanto tomo café». Não há necessidade de encontrar uma solução perfeita."
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: termine só a frase «Hoje seria bom ter mais…»."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nSe alguém que eu amo me contasse como foi o meu dia, que pergunta cuidadosa eu faria a essa pessoa?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 1\nMinha escolha possível: ____________________\nQuando posso experimentá-la: ____________________"
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: Hoje não precisei resolver tudo. Só me escutar com mais atenção."
+              }
+            ]
+          }
+        },
+        {
+          "id": "dia-2",
+          "slug": "dia-2",
+          "title": "Dia 2 — RECONHECER",
           "order": 2,
           "body": {
             "format": "blocks",
             "blocks": [
               {
+                "type": "heading",
+                "level": 3,
+                "text": "As coisas boas que parecem pequenas quando são nossas"
+              },
+              {
                 "type": "paragraph",
-                "text": "Pergunte a si mesma: o que quero manter? O que quero deixar para depois? As suas escolhas podem mudar. Este espaço acompanha essa liberdade."
+                "text": "Uma amiga conta que resolveu um problema difícil no trabalho. Você responde: «Que capacidade incrível de lidar com isso». Outra lembra o aniversário de alguém, mesmo em meio a uma semana corrida. Você pensa: «Como ela é atenciosa»."
+              },
+              {
+                "type": "paragraph",
+                "text": "Agora experimente a mesma generosidade de observação aplicada à sua própria história."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não é tão fácil, às vezes. O que fazemos bem pode parecer «normal» porque já nos acostumamos a fazer. A paciência que usamos numa conversa difícil vira só mais uma terça-feira. O esforço para aprender algo novo vira «o mínimo». A criatividade de improvisar uma solução vira «não foi nada»."
+              },
+              {
+                "type": "paragraph",
+                "text": "Mas imagine um álbum que não guardasse fotografias: guardasse pequenos episódios sobre quem você é. Numa página, o dia em que pediu desculpas e consertou uma conversa. Noutra, uma tarefa que parecia impossível e que você dividiu em partes. Noutra, uma decisão honesta que ninguém aplaudiu."
+              },
+              {
+                "type": "paragraph",
+                "text": "Esse álbum seria bem menos vistoso do que muitas vitrines digitais. Também seria mais seu."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não vamos procurar adjetivos grandiosos. «Sou extraordinária», se não corresponde ao que você sente, pode soar artificial. Vamos procurar provas. Uma qualidade reconhecida a partir de um episódio costuma ter mais substância do que um elogio repetido sem contexto."
+              },
+              {
+                "type": "paragraph",
+                "text": "Você pode ser persistente e ter desistido de algo. Pode ser cuidadosa e ter passado um dia sem paciência. Ninguém precisa apresentar uma personalidade impecável para reconhecer um gesto bom."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — Meu álbum invisível\nObjetivo: reconhecer recursos pessoais por meio de acontecimentos, sem comparação.\nInstruções: escolha três pequenas cenas da sua vida. Para cada uma, responda:"
+              },
+              {
+                "type": "paragraph",
+                "text": "1. O que aconteceu?\n2. O que fiz naquela situação?\n3. Que qualidade ou valor aparece nesse gesto?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Exemplos de valores possíveis: honestidade, curiosidade, perseverança, delicadeza, humor, capacidade de ouvir, senso prático. Use apenas os que fizerem sentido para você."
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: recorde uma única situação de que tenha gostado, mesmo que ninguém a tenha visto."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nQue qualidade minha eu costumo chamar de «nada demais» — mas reconheceria com carinho em outra pessoa?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 2\nTrês evidências da minha história:\n1. ____________________\n2. ____________________\n3. ____________________"
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: Minha história não cabe numa lista de defeitos."
+              }
+            ]
+          }
+        },
+        {
+          "id": "dia-3",
+          "slug": "dia-3",
+          "title": "Dia 3 — RESPEITAR",
+          "order": 3,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O corpo não precisa receber elogios para merecer cuidado"
+              },
+              {
+                "type": "paragraph",
+                "text": "Há manhãs em que uma roupa veste de um jeito diferente. Um cabelo não obedece. Uma fotografia mostra um ângulo que não agrada. E o espelho, que deveria apenas devolver uma imagem, parece receber uma tarefa exagerada: decidir como será o resto do dia."
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez você se reconheça nessa cena. Talvez não. De qualquer maneira, existe uma ideia simples que vale guardar: o respeito pelo próprio corpo não precisa depender da satisfação com a aparência."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não é necessário escolher entre «adoro cada detalhe» e «não gosto de nada». Há muitas possibilidades entre esses extremos. Você pode preferir uma roupa a outra, querer mudar o cabelo, aprender um estilo novo ou desejar permanecer exatamente como está. As escolhas de aparência pertencem a você; elas não determinam o seu valor."
+              },
+              {
+                "type": "paragraph",
+                "text": "Quando a autocrítica aparece, muitas pessoas tentam responder com um elogio radical: «Sou perfeita!». Mas, se essa frase parecer distante, não há motivo para forçá-la. Experimente algo mais sóbrio e verdadeiro: «Hoje essa imagem me incomodou, mas posso tratar meu corpo com respeito». Ou: «Posso escolher uma roupa confortável sem transformar isso numa opinião sobre quem eu sou»."
+              },
+              {
+                "type": "paragraph",
+                "text": "Respeito é uma palavra menos espetacular que paixão. Talvez por isso seja tão útil. Ele cabe nos dias bons e nos dias comuns. Cabe quando há energia e quando não há. Também inclui reconhecer necessidades específicas, limitações, deficiência, doença ou mudanças relacionadas à idade sem converter nenhuma delas em falha pessoal."
+              },
+              {
+                "type": "paragraph",
+                "text": "Neste dia, não vamos medir peso, analisar fotografias, identificar «defeitos» ou recomendar mudanças físicas. Vamos apenas observar o tom da conversa interior e experimentar uma alternativa mais justa."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — Uma frase habitável\nObjetivo: encontrar uma maneira menos hostil e mais verdadeira de falar consigo.\nInstruções: lembre uma situação leve em que fez uma crítica à própria aparência. Não é preciso repetir palavras que machucam. Escreva:"
+              },
+              {
+                "type": "paragraph",
+                "text": "- Situação: «Quando me vi em…»\n- O que senti: «Naquele instante, senti…»\n- Minha frase de respeito: «Posso… / Não preciso… / Tenho direito a…»"
+              },
+              {
+                "type": "paragraph",
+                "text": "Exemplo fictício: «Quando me vi naquela fotografia, fiquei desconfortável. Não preciso decidir o meu valor por uma imagem»."
+              },
+              {
+                "type": "paragraph",
+                "text": "Se este tema causar sofrimento relevante, não faça o exercício. Pode substituir por uma ação simples de conforto: ajustar a iluminação, beber água, descansar, trocar de roupa, pedir companhia ou outra necessidade que seja adequada ao seu contexto."
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: complete: «Hoje posso oferecer conforto ao meu corpo de uma maneira que seja possível para mim: …»."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nQue tipo de linguagem eu gostaria de ouvir quando alguém fala sobre o meu corpo? Posso começar usando uma parte dessa linguagem comigo?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 3\nMinha frase de respeito: ____________________"
               },
               {
                 "type": "callout",
-                "title": "Ao meu ritmo",
-                "text": "Não precisa decidir tudo hoje. Esta leitura não substitui orientação profissional."
+                "tone": "warning",
+                "text": "Se preocupações com aparência ou corpo lhe causarem sofrimento persistente ou intenso, este guia não substitui acompanhamento profissional. É perfeitamente válido deixar este capítulo para outra ocasião."
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: Não preciso amar cada imagem minha para me tratar com dignidade."
+              }
+            ]
+          }
+        },
+        {
+          "id": "dia-4",
+          "slug": "dia-4",
+          "title": "Dia 4 — ESCOLHER REFERÊNCIAS",
+          "order": 4,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O que uma fotografia não consegue contar"
+              },
+              {
+                "type": "paragraph",
+                "text": "Duas pessoas estão na mesma cafeteria. Uma escolhe a melhor luz e faz uma fotografia. A outra está ali para conversar. Na imagem publicada, talvez apareçam xícara, sorriso e uma janela bonita. O ruído da rua, o cansaço, a conversa inacabada e a pressa de voltar ao trabalho ficaram do lado de fora."
+              },
+              {
+                "type": "paragraph",
+                "text": "Toda fotografia escolhe um enquadramento. Isso não a torna falsa. Torna-a parcial."
+              },
+              {
+                "type": "paragraph",
+                "text": "Quando olhamos para os outros, vemos recortes. Quando olhamos para nós mesmas, conhecemos também o que ficou atrás da câmera. O risco é comparar uma vida inteira com uma imagem escolhida."
+              },
+              {
+                "type": "paragraph",
+                "text": "As redes sociais também podem ser fontes maravilhosas de referência: um estilo que não conhecíamos, uma maneira de cozinhar, uma forma de morar, uma ideia para aprender algo. Não precisamos rejeitar a inspiração. Só podemos fazer uma pergunta antes de transformá-la em obrigação: «Isso realmente combina comigo?»"
+              },
+              {
+                "type": "paragraph",
+                "text": "Pense numa pessoa cujo jeito de vestir você admira. Talvez goste das cores, mas não do caimento. Talvez adore a ousadia, mas prefira peças mais simples. A escolha adulta não é copiar tudo ou ignorar tudo. É recolher o que serve, deixar o resto e experimentar por conta própria."
+              },
+              {
+                "type": "paragraph",
+                "text": "Existe uma distância grande entre «que interessante, gostaria de experimentar» e «se eu não tiver isso, sou menos». A primeira frase convida. A segunda aperta."
+              },
+              {
+                "type": "paragraph",
+                "text": "Hoje vamos notar a diferença."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — Minha curadoria pessoal\nObjetivo: distinguir inspiração, desejo e pressão social.\nInstruções: escolha uma referência — foto, pessoa, tendência ou hábito — sem precisar abrir uma rede social agora. Pergunte:"
+              },
+              {
+                "type": "paragraph",
+                "text": "1. O que exatamente me chamou a atenção?\n2. Eu desejaria isso se ninguém visse o resultado?\n3. O que posso adaptar ao meu contexto, orçamento e gosto? Ou prefiro simplesmente admirar sem reproduzir?"
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: escolha uma conta, tendência ou hábito que lhe inspire de verdade. Escreva por quê, sem usar comparações."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nQue escolha minha continuaria fazendo sentido se nunca aparecesse numa fotografia?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 4\nUma inspiração que escolho manter, adaptar ou deixar ir: ____________________"
+              },
+              {
+                "type": "callout",
+                "tone": "note",
+                "text": "Uma referência pode abrir uma janela. Não precisa virar uma régua."
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: Posso gostar do que vejo sem me medir por isso."
+              }
+            ]
+          }
+        },
+        {
+          "id": "dia-5",
+          "slug": "dia-5",
+          "title": "Dia 5 — CRIAR ESPAÇO",
+          "order": 5,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O «sim» que saiu antes de consultar você"
+              },
+              {
+                "type": "paragraph",
+                "text": "«Pode ser rapidinho?»"
+              },
+              {
+                "type": "paragraph",
+                "text": "A pergunta chega numa mensagem. Às vezes é mesmo rápida. Às vezes ocupa a única hora livre da tarde. Você pode querer ajudar, e isso é bonito. Também pode precisar pensar antes de responder."
+              },
+              {
+                "type": "paragraph",
+                "text": "Dizer «sim» é uma escolha; dizer «não» também. O que costuma desaparecer é o intervalo entre a pergunta e a resposta."
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez você conheça esse intervalo: alguns segundos nos quais poderia consultar o horário, a energia, a vontade e as consequências de aceitar. Muitas pessoas passam direto por ele. Não por fraqueza; frequentemente por costume, afeto, pressa ou educação."
+              },
+              {
+                "type": "paragraph",
+                "text": "Um limite claro não precisa virar discussão. Pode começar com uma frase curta: «Hoje não consigo». «Posso ajudar durante meia hora». «Preciso verificar e respondo depois». São frases que não transformam a outra pessoa em vilã nem exigem uma grande explicação para a sua escolha."
+              },
+              {
+                "type": "paragraph",
+                "text": "Há, claro, contextos em que um limite explícito pode provocar conflito ou risco. Nesses casos, segurança vem primeiro. Não recomendamos confronto, nem julgamos quem precisa procurar apoio e alternativas antes de estabelecer limites."
+              },
+              {
+                "type": "paragraph",
+                "text": "Para o exercício de hoje, escolha uma situação simples e segura: o horário em que responde mensagens, uma tarefa opcional, um compromisso que ainda não aceitou ou a forma como protege um momento de descanso."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — O intervalo antes do sim\nObjetivo: preparar um limite pequeno e respeitoso.\nInstruções: recorde um pedido cotidiano de baixo risco. Responda:"
+              },
+              {
+                "type": "paragraph",
+                "text": "- O que foi pedido?\n- Tenho disponibilidade e vontade de aceitar?\n- Qual é uma resposta honesta e gentil?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Frases-modelo para adaptar:"
+              },
+              {
+                "type": "paragraph",
+                "text": "- «Obrigada por lembrar de mim. Hoje não consigo.»\n- «Consigo fazer esta parte, mas não a outra.»\n- «Antes de confirmar, preciso olhar o meu dia.»\n- «Neste momento prefiro não assumir esse compromisso.»"
+              },
+              {
+                "type": "paragraph",
+                "text": "Não é obrigatório usar nenhuma dessas frases imediatamente."
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: memorize uma frase: «Vou verificar antes de confirmar»."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nQual pequeno espaço da minha semana eu gostaria de proteger sem transformar isso numa disputa?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 5\nUma frase de limite que combina comigo: ____________________"
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: A gentileza com os outros também pode incluir clareza comigo."
+              }
+            ]
+          }
+        },
+        {
+          "id": "dia-6",
+          "slug": "dia-6",
+          "title": "Dia 6 — EXPERIMENTAR",
+          "order": 6,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "A alegria discreta de fazer algo que não precisa render"
+              },
+              {
+                "type": "paragraph",
+                "text": "Na infância, era possível passar meia hora desenhando uma casa de telhado roxo sem pensar em mostrar o resultado. Inventar uma música. Tentar uma receita. Escolher uma flor pelo perfume, sem saber o nome."
+              },
+              {
+                "type": "paragraph",
+                "text": "Na vida adulta, muitas coisas começam a pedir utilidade. Ler para aprender. Caminhar para cumprir metas. Cozinhar para economizar. Até descansar corre o risco de virar uma ferramenta para produzir mais amanhã."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não há nada errado em aprender, treinar ou cuidar das finanças. Mas é bom lembrar que algumas experiências podem existir simplesmente porque são interessantes para você."
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez você já tenha um hobby que adora. Talvez tenha deixado um hábito pelo caminho. Talvez ainda não saiba do que gosta nesta fase da vida, e isso também é uma descoberta legítima. A mulher que hoje prefere silêncio pode não ser a mesma que, anos atrás, queria passar o sábado inteiro entre amigos. Não é uma incoerência. É uma história que continua."
+              },
+              {
+                "type": "paragraph",
+                "text": "O convite de hoje não exige compras, equipamentos nem um novo compromisso. Pode começar com dez minutos, um objeto que já existe na sua casa ou um lugar por onde você passa."
+              },
+              {
+                "type": "paragraph",
+                "text": "Tente não perguntar «sou boa nisso?». Pergunte «isso me interessa?»."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — A lista que não precisa dar resultado\nObjetivo: recuperar ou descobrir escolhas motivadas por curiosidade e prazer pessoal.\nInstruções: faça uma lista de cinco experiências simples que gostaria de repetir ou conhecer. Exemplos: ouvir um álbum inteiro, andar por uma rua diferente, rabiscar um caderno, observar a luz do fim da tarde, fazer uma receita pequena, visitar uma biblioteca, cuidar de uma planta, aprender o nome de uma árvore. Escolha uma que seja acessível, gratuita ou de baixo custo. Reserve um momento possível — não uma obrigação."
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: responda «Uma coisa que me dá curiosidade hoje é…»."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nO que eu tentaria fazer se não precisasse ser boa, publicar nem justificar o meu interesse?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 6\nUma curiosidade só minha: ____________________"
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: Algumas coisas têm valor porque eu gosto delas. Isso basta."
+              }
+            ]
+          }
+        },
+        {
+          "id": "dia-7",
+          "slug": "dia-7",
+          "title": "Dia 7 — CONTINUAR",
+          "order": 7,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O que fica quando acaba a última página"
+              },
+              {
+                "type": "paragraph",
+                "text": "Não existe uma cerimônia oficial para terminar sete encontros consigo mesma. Ninguém vai conferir se você fez todos. Não haverá medalha para quem respondeu mais perguntas. Talvez isso seja uma das melhores partes desta jornada."
+              },
+              {
+                "type": "paragraph",
+                "text": "Pode ser que você tenha lido em sete dias seguidos. Pode ser que tenha parado no terceiro e recomeçado. Talvez tenha feito todos os exercícios de cabeça, numa caminhada ou enquanto esperava por alguém. O caminho não perde valor porque não foi perfeito."
+              },
+              {
+                "type": "paragraph",
+                "text": "Agora imagine que sobre a mesa estão sete pequenos papéis: sua escolha possível, três evidências da sua história, uma frase de respeito, uma referência selecionada, um limite, uma curiosidade e uma intenção. Nenhum desses papéis afirma quem você deve ser. Todos mostram alguma coisa sobre quem você escolheu escutar nesta semana."
+              },
+              {
+                "type": "paragraph",
+                "text": "Qual deles pede mais atenção?"
+              },
+              {
+                "type": "paragraph",
+                "text": "O próximo passo não precisa ser grande. Na verdade, é melhor que caiba no seu calendário verdadeiro: talvez dez minutos uma vez por semana; talvez uma conversa honesta com alguém; talvez retomar um interesse sem pressa. A continuidade é uma possibilidade, não uma cobrança."
+              },
+              {
+                "type": "paragraph",
+                "text": "Você pode mudar de ideia. Pode descobrir que algo já não combina. Pode voltar a este guia daqui a um mês e responder tudo de outro jeito. Isso não apaga a primeira leitura. Significa apenas que você continua vivendo."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — Uma carta pequena para o futuro\nObjetivo: reunir a jornada numa intenção concreta e flexível.\nInstruções: olhe para as frases dos seis dias anteriores. Escolha duas que quer guardar. Então, escreva uma carta de quatro linhas começando por:"
+              },
+              {
+                "type": "paragraph",
+                "text": "«Olá, eu de daqui a um mês. Hoje percebi que…»"
+              },
+              {
+                "type": "paragraph",
+                "text": "Acrescente:"
+              },
+              {
+                "type": "paragraph",
+                "text": "- «Quero continuar dando espaço para…»\n- «Quando o dia ficar cheio, gostaria de lembrar…»\n- «Uma escolha pequena que posso repetir é…»"
+              },
+              {
+                "type": "paragraph",
+                "text": "Escolha, se quiser, uma data para reler. Se não cumprir a ideia, poderá recomeçar sem dívida com ninguém."
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: escreva apenas «Quero me lembrar de…»."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nO que significa escolher a mim mesma nesta fase da vida, com as possibilidades reais que tenho agora?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 7\nMeu pacto flexível: ____________________\nUma data opcional para revisitar: ____________________"
+              },
+              {
+                "type": "callout",
+                "tone": "note",
+                "text": "A sua vida não precisa esperar por uma versão ideal de você para merecer escolhas, descanso, respeito e alegria."
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: Hoje eu me escolho — do jeito que posso."
+              }
+            ]
+          }
+        },
+        {
+          "id": "quando-voce-voltar",
+          "slug": "quando-voce-voltar",
+          "title": "Quando você voltar",
+          "order": 8,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "ÚLTIMA PÁGINA — QUANDO VOCÊ VOLTAR"
+              },
+              {
+                "type": "paragraph",
+                "text": "Feche este guia quando quiser. Deixe alguma pergunta sem resposta. Guarde uma frase que lhe pertence e esqueça outra que não faz sentido."
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez o melhor resultado desta leitura não seja sentir algo extraordinário. Talvez seja lembrar, numa tarde comum, que você pode consultar a própria vontade antes de preencher o próximo espaço da agenda."
+              },
+              {
+                "type": "paragraph",
+                "text": "Este caderno não é um espelho que decide por você. É um lugar para ouvir a resposta que é sua."
+              },
+              {
+                "type": "paragraph",
+                "text": "Obrigada por partilhar um pedaço do seu tempo."
+              },
+              {
+                "type": "paragraph",
+                "text": "EspelhoMeu — O espelho que me conhece.\nNão para decidir por mim. Para me ajudar a escolher."
+              },
+              {
+                "type": "paragraph",
+                "text": "Convite de continuidade, sem pressão: Há outras formas de explorar a sua imagem e a sua expressão. Na próxima publicação, Eu Sou Bela — Do Meu Jeito, a conversa começa por uma pergunta diferente: «E se a beleza também pudesse ter a minha assinatura?»."
+              }
+            ]
+          }
+        },
+        {
+          "id": "mapa-do-que-e-meu",
+          "slug": "mapa-do-que-e-meu",
+          "title": "Cartões e Mapa do Que É Meu",
+          "order": 9,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Cartão 0 — Minha intenção"
+              },
+              {
+                "type": "paragraph",
+                "text": "Abri este guia porque… ______________________________"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Cartão 1 — Minha escolha possível"
+              },
+              {
+                "type": "paragraph",
+                "text": "Hoje seria bom ter mais… ______________________________\nUm gesto que cabe no meu dia… ______________________________"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Cartão 2 — Meu álbum invisível"
+              },
+              {
+                "type": "paragraph",
+                "text": "Uma coisa que fiz… ______________________________\nO que ela mostra sobre mim… ______________________________\nOutra lembrança… ______________________________"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Cartão 3 — Uma frase de respeito"
+              },
+              {
+                "type": "paragraph",
+                "text": "Quando a aparência incomodar, posso dizer… ______________________________"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Cartão 4 — Minha curadoria"
+              },
+              {
+                "type": "paragraph",
+                "text": "Uma inspiração que desejo manter/adaptar/deixar ir… ______________________________\nPorque combina ou não combina comigo… ______________________________"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Cartão 5 — Um limite seguro"
+              },
+              {
+                "type": "paragraph",
+                "text": "Uma frase de limite que posso usar num contexto seguro… ______________________________"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Cartão 6 — Minha curiosidade"
+              },
+              {
+                "type": "paragraph",
+                "text": "Uma coisa que quero experimentar sem ter de ser boa… ______________________________"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Cartão 7 — Uma carta a mim mesma"
+              },
+              {
+                "type": "paragraph",
+                "text": "Querida eu de daqui a um mês…\nHoje percebi que… ______________________________\nQuero guardar… ______________________________\nUm gesto possível… ______________________________"
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Cartão final — O meu Mapa do Que É Meu"
+              },
+              {
+                "type": "paragraph",
+                "text": "Escutar: ____________________\nReconhecer: ____________________\nRespeitar: ____________________\nEscolher referências: ____________________\nCriar espaço: ____________________\nExperimentar: ____________________\nContinuar: ____________________"
+              },
+              {
+                "type": "paragraph",
+                "text": "Este mapa é privado. Pode mudar quantas vezes você quiser."
               }
             ]
           }
         }
+      ]
+    },
+    {
+      "schemaVersion": "0.2",
+      "status": "preview",
+      "locale": "pt-BR",
+      "authors": [
+        "EspelhoMeu"
       ],
-      "media": [
-        {
-          "id": "marca",
-          "kind": "image",
-          "assetPath": "/marca/logo-principal-800.webp",
-          "alt": "EspelhoMeu — O espelho que me conhece",
-          "license": "Marca oficial do projeto",
-          "attribution": "EspelhoMeu / AVS",
-          "attributionRequired": false
-        }
-      ],
+      "edition": "Preview candidate · Pré-publicação",
+      "access": {
+        "mode": "public"
+      },
+      "media": [],
+      "tags": [],
+      "id": "p01-leitura-dia-1",
+      "slug": "p01-leitura-dia-1",
+      "type": "article",
+      "title": "Dia 1 — ESCUTAR",
+      "subtitle": "7 Dias Para Me Escolher",
       "source": {
         "repository": "atlashub-digital/espelhomeu",
-        "path": "packages/project-content/content/manifest.json"
+        "path": "packages/project-content/sources/produto-01/ESPELHOMEU_P01_MASTER_EDITORIAL_FINAL.md"
       },
-      "extensions": {
-        "fixture": true
-      }
+      "chapters": [
+        {
+          "id": "dia-1",
+          "slug": "dia-1",
+          "title": "O pequeno espaço entre todas as outras coisas",
+          "order": 0,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O pequeno espaço entre todas as outras coisas"
+              },
+              {
+                "type": "paragraph",
+                "text": "O celular vibra. Uma mensagem pede resposta. Há uma louça para guardar, um trabalho para terminar, alguém para atender. Mesmo quando a manhã é tranquila, os pensamentos conseguem encher o silêncio com lembranças, planos e pendências."
+              },
+              {
+                "type": "paragraph",
+                "text": "Em muitos dias, seguimos funcionando sem parar para saber como estamos. Não porque sejamos descuidadas; simplesmente porque a vida é feita de movimento. E, nesse movimento, uma pergunta simples pode ficar sem lugar."
+              },
+              {
+                "type": "paragraph",
+                "text": "Como estou hoje?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Não «como deveria estar». Não «como pareço estar». Nem «como uma pessoa grata deveria responder». Apenas: como estou?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Imagine duas respostas possíveis. Na primeira, você diz: «Está tudo ótimo», embora o dia esteja pesado. Na segunda, diz: «Estou animada com uma coisa e cansada de outra». A segunda não resolve a agenda, mas aproxima a conversa da realidade. E a realidade costuma oferecer melhores pontos de partida do que uma obrigação de estar bem."
+              },
+              {
+                "type": "paragraph",
+                "text": "Há uma diferença entre perceber uma necessidade e conseguir atendê-la imediatamente. Talvez você precise de descanso e não possa parar agora. Talvez queira companhia, mas hoje esteja sozinha. O exercício não vai fingir que essas limitações desaparecem porque você decidiu se ouvir. Ele apenas permite incluir essa informação quando fizer a próxima escolha possível."
+              },
+              {
+                "type": "paragraph",
+                "text": "Pode ser o momento de adiar algo não urgente. Pode ser pedir ajuda. Pode ser sentar cinco minutos antes de começar outra tarefa. Pode até ser reconhecer que hoje não existe margem e decidir olhar para isso amanhã."
+              },
+              {
+                "type": "paragraph",
+                "text": "Você não precisa merecer uma pausa. A pausa pode ser apenas uma parte humana do dia."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — O termômetro sem números\nObjetivo: nomear o presente sem transformar sentimentos em desempenho.\nInstruções: complete, em palavras simples:"
+              },
+              {
+                "type": "paragraph",
+                "text": "- Neste momento, estou me sentindo…\n- Hoje seria bom ter um pouco mais de…\n- Uma escolha pequena e possível é…"
+              },
+              {
+                "type": "paragraph",
+                "text": "Experimente respostas concretas: «Estou inquieta», «gostaria de silêncio», «vou deixar o celular em outro cômodo enquanto tomo café». Não há necessidade de encontrar uma solução perfeita."
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: termine só a frase «Hoje seria bom ter mais…»."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nSe alguém que eu amo me contasse como foi o meu dia, que pergunta cuidadosa eu faria a essa pessoa?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 1\nMinha escolha possível: ____________________\nQuando posso experimentá-la: ____________________"
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: Hoje não precisei resolver tudo. Só me escutar com mais atenção."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.2",
+      "status": "preview",
+      "locale": "pt-BR",
+      "authors": [
+        "EspelhoMeu"
+      ],
+      "edition": "Preview candidate · Pré-publicação",
+      "access": {
+        "mode": "public"
+      },
+      "media": [],
+      "tags": [],
+      "id": "p01-leitura-dia-2",
+      "slug": "p01-leitura-dia-2",
+      "type": "article",
+      "title": "Dia 2 — RECONHECER",
+      "subtitle": "7 Dias Para Me Escolher",
+      "source": {
+        "repository": "atlashub-digital/espelhomeu",
+        "path": "packages/project-content/sources/produto-01/ESPELHOMEU_P01_MASTER_EDITORIAL_FINAL.md"
+      },
+      "chapters": [
+        {
+          "id": "dia-2",
+          "slug": "dia-2",
+          "title": "As coisas boas que parecem pequenas quando são nossas",
+          "order": 0,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "As coisas boas que parecem pequenas quando são nossas"
+              },
+              {
+                "type": "paragraph",
+                "text": "Uma amiga conta que resolveu um problema difícil no trabalho. Você responde: «Que capacidade incrível de lidar com isso». Outra lembra o aniversário de alguém, mesmo em meio a uma semana corrida. Você pensa: «Como ela é atenciosa»."
+              },
+              {
+                "type": "paragraph",
+                "text": "Agora experimente a mesma generosidade de observação aplicada à sua própria história."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não é tão fácil, às vezes. O que fazemos bem pode parecer «normal» porque já nos acostumamos a fazer. A paciência que usamos numa conversa difícil vira só mais uma terça-feira. O esforço para aprender algo novo vira «o mínimo». A criatividade de improvisar uma solução vira «não foi nada»."
+              },
+              {
+                "type": "paragraph",
+                "text": "Mas imagine um álbum que não guardasse fotografias: guardasse pequenos episódios sobre quem você é. Numa página, o dia em que pediu desculpas e consertou uma conversa. Noutra, uma tarefa que parecia impossível e que você dividiu em partes. Noutra, uma decisão honesta que ninguém aplaudiu."
+              },
+              {
+                "type": "paragraph",
+                "text": "Esse álbum seria bem menos vistoso do que muitas vitrines digitais. Também seria mais seu."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não vamos procurar adjetivos grandiosos. «Sou extraordinária», se não corresponde ao que você sente, pode soar artificial. Vamos procurar provas. Uma qualidade reconhecida a partir de um episódio costuma ter mais substância do que um elogio repetido sem contexto."
+              },
+              {
+                "type": "paragraph",
+                "text": "Você pode ser persistente e ter desistido de algo. Pode ser cuidadosa e ter passado um dia sem paciência. Ninguém precisa apresentar uma personalidade impecável para reconhecer um gesto bom."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — Meu álbum invisível\nObjetivo: reconhecer recursos pessoais por meio de acontecimentos, sem comparação.\nInstruções: escolha três pequenas cenas da sua vida. Para cada uma, responda:"
+              },
+              {
+                "type": "paragraph",
+                "text": "1. O que aconteceu?\n2. O que fiz naquela situação?\n3. Que qualidade ou valor aparece nesse gesto?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Exemplos de valores possíveis: honestidade, curiosidade, perseverança, delicadeza, humor, capacidade de ouvir, senso prático. Use apenas os que fizerem sentido para você."
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: recorde uma única situação de que tenha gostado, mesmo que ninguém a tenha visto."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nQue qualidade minha eu costumo chamar de «nada demais» — mas reconheceria com carinho em outra pessoa?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 2\nTrês evidências da minha história:\n1. ____________________\n2. ____________________\n3. ____________________"
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: Minha história não cabe numa lista de defeitos."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.2",
+      "status": "preview",
+      "locale": "pt-BR",
+      "authors": [
+        "EspelhoMeu"
+      ],
+      "edition": "Preview candidate · Pré-publicação",
+      "access": {
+        "mode": "public"
+      },
+      "media": [],
+      "tags": [],
+      "id": "p01-leitura-dia-3",
+      "slug": "p01-leitura-dia-3",
+      "type": "article",
+      "title": "Dia 3 — RESPEITAR",
+      "subtitle": "7 Dias Para Me Escolher",
+      "source": {
+        "repository": "atlashub-digital/espelhomeu",
+        "path": "packages/project-content/sources/produto-01/ESPELHOMEU_P01_MASTER_EDITORIAL_FINAL.md"
+      },
+      "chapters": [
+        {
+          "id": "dia-3",
+          "slug": "dia-3",
+          "title": "O corpo não precisa receber elogios para merecer cuidado",
+          "order": 0,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O corpo não precisa receber elogios para merecer cuidado"
+              },
+              {
+                "type": "paragraph",
+                "text": "Há manhãs em que uma roupa veste de um jeito diferente. Um cabelo não obedece. Uma fotografia mostra um ângulo que não agrada. E o espelho, que deveria apenas devolver uma imagem, parece receber uma tarefa exagerada: decidir como será o resto do dia."
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez você se reconheça nessa cena. Talvez não. De qualquer maneira, existe uma ideia simples que vale guardar: o respeito pelo próprio corpo não precisa depender da satisfação com a aparência."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não é necessário escolher entre «adoro cada detalhe» e «não gosto de nada». Há muitas possibilidades entre esses extremos. Você pode preferir uma roupa a outra, querer mudar o cabelo, aprender um estilo novo ou desejar permanecer exatamente como está. As escolhas de aparência pertencem a você; elas não determinam o seu valor."
+              },
+              {
+                "type": "paragraph",
+                "text": "Quando a autocrítica aparece, muitas pessoas tentam responder com um elogio radical: «Sou perfeita!». Mas, se essa frase parecer distante, não há motivo para forçá-la. Experimente algo mais sóbrio e verdadeiro: «Hoje essa imagem me incomodou, mas posso tratar meu corpo com respeito». Ou: «Posso escolher uma roupa confortável sem transformar isso numa opinião sobre quem eu sou»."
+              },
+              {
+                "type": "paragraph",
+                "text": "Respeito é uma palavra menos espetacular que paixão. Talvez por isso seja tão útil. Ele cabe nos dias bons e nos dias comuns. Cabe quando há energia e quando não há. Também inclui reconhecer necessidades específicas, limitações, deficiência, doença ou mudanças relacionadas à idade sem converter nenhuma delas em falha pessoal."
+              },
+              {
+                "type": "paragraph",
+                "text": "Neste dia, não vamos medir peso, analisar fotografias, identificar «defeitos» ou recomendar mudanças físicas. Vamos apenas observar o tom da conversa interior e experimentar uma alternativa mais justa."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — Uma frase habitável\nObjetivo: encontrar uma maneira menos hostil e mais verdadeira de falar consigo.\nInstruções: lembre uma situação leve em que fez uma crítica à própria aparência. Não é preciso repetir palavras que machucam. Escreva:"
+              },
+              {
+                "type": "paragraph",
+                "text": "- Situação: «Quando me vi em…»\n- O que senti: «Naquele instante, senti…»\n- Minha frase de respeito: «Posso… / Não preciso… / Tenho direito a…»"
+              },
+              {
+                "type": "paragraph",
+                "text": "Exemplo fictício: «Quando me vi naquela fotografia, fiquei desconfortável. Não preciso decidir o meu valor por uma imagem»."
+              },
+              {
+                "type": "paragraph",
+                "text": "Se este tema causar sofrimento relevante, não faça o exercício. Pode substituir por uma ação simples de conforto: ajustar a iluminação, beber água, descansar, trocar de roupa, pedir companhia ou outra necessidade que seja adequada ao seu contexto."
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: complete: «Hoje posso oferecer conforto ao meu corpo de uma maneira que seja possível para mim: …»."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nQue tipo de linguagem eu gostaria de ouvir quando alguém fala sobre o meu corpo? Posso começar usando uma parte dessa linguagem comigo?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 3\nMinha frase de respeito: ____________________"
+              },
+              {
+                "type": "callout",
+                "tone": "warning",
+                "text": "Se preocupações com aparência ou corpo lhe causarem sofrimento persistente ou intenso, este guia não substitui acompanhamento profissional. É perfeitamente válido deixar este capítulo para outra ocasião."
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: Não preciso amar cada imagem minha para me tratar com dignidade."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.2",
+      "status": "preview",
+      "locale": "pt-BR",
+      "authors": [
+        "EspelhoMeu"
+      ],
+      "edition": "Preview candidate · Pré-publicação",
+      "access": {
+        "mode": "public"
+      },
+      "media": [],
+      "tags": [],
+      "id": "p01-leitura-dia-4",
+      "slug": "p01-leitura-dia-4",
+      "type": "article",
+      "title": "Dia 4 — ESCOLHER REFERÊNCIAS",
+      "subtitle": "7 Dias Para Me Escolher",
+      "source": {
+        "repository": "atlashub-digital/espelhomeu",
+        "path": "packages/project-content/sources/produto-01/ESPELHOMEU_P01_MASTER_EDITORIAL_FINAL.md"
+      },
+      "chapters": [
+        {
+          "id": "dia-4",
+          "slug": "dia-4",
+          "title": "O que uma fotografia não consegue contar",
+          "order": 0,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O que uma fotografia não consegue contar"
+              },
+              {
+                "type": "paragraph",
+                "text": "Duas pessoas estão na mesma cafeteria. Uma escolhe a melhor luz e faz uma fotografia. A outra está ali para conversar. Na imagem publicada, talvez apareçam xícara, sorriso e uma janela bonita. O ruído da rua, o cansaço, a conversa inacabada e a pressa de voltar ao trabalho ficaram do lado de fora."
+              },
+              {
+                "type": "paragraph",
+                "text": "Toda fotografia escolhe um enquadramento. Isso não a torna falsa. Torna-a parcial."
+              },
+              {
+                "type": "paragraph",
+                "text": "Quando olhamos para os outros, vemos recortes. Quando olhamos para nós mesmas, conhecemos também o que ficou atrás da câmera. O risco é comparar uma vida inteira com uma imagem escolhida."
+              },
+              {
+                "type": "paragraph",
+                "text": "As redes sociais também podem ser fontes maravilhosas de referência: um estilo que não conhecíamos, uma maneira de cozinhar, uma forma de morar, uma ideia para aprender algo. Não precisamos rejeitar a inspiração. Só podemos fazer uma pergunta antes de transformá-la em obrigação: «Isso realmente combina comigo?»"
+              },
+              {
+                "type": "paragraph",
+                "text": "Pense numa pessoa cujo jeito de vestir você admira. Talvez goste das cores, mas não do caimento. Talvez adore a ousadia, mas prefira peças mais simples. A escolha adulta não é copiar tudo ou ignorar tudo. É recolher o que serve, deixar o resto e experimentar por conta própria."
+              },
+              {
+                "type": "paragraph",
+                "text": "Existe uma distância grande entre «que interessante, gostaria de experimentar» e «se eu não tiver isso, sou menos». A primeira frase convida. A segunda aperta."
+              },
+              {
+                "type": "paragraph",
+                "text": "Hoje vamos notar a diferença."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — Minha curadoria pessoal\nObjetivo: distinguir inspiração, desejo e pressão social.\nInstruções: escolha uma referência — foto, pessoa, tendência ou hábito — sem precisar abrir uma rede social agora. Pergunte:"
+              },
+              {
+                "type": "paragraph",
+                "text": "1. O que exatamente me chamou a atenção?\n2. Eu desejaria isso se ninguém visse o resultado?\n3. O que posso adaptar ao meu contexto, orçamento e gosto? Ou prefiro simplesmente admirar sem reproduzir?"
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: escolha uma conta, tendência ou hábito que lhe inspire de verdade. Escreva por quê, sem usar comparações."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nQue escolha minha continuaria fazendo sentido se nunca aparecesse numa fotografia?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 4\nUma inspiração que escolho manter, adaptar ou deixar ir: ____________________"
+              },
+              {
+                "type": "callout",
+                "tone": "note",
+                "text": "Uma referência pode abrir uma janela. Não precisa virar uma régua."
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: Posso gostar do que vejo sem me medir por isso."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.2",
+      "status": "preview",
+      "locale": "pt-BR",
+      "authors": [
+        "EspelhoMeu"
+      ],
+      "edition": "Preview candidate · Pré-publicação",
+      "access": {
+        "mode": "public"
+      },
+      "media": [],
+      "tags": [],
+      "id": "p01-leitura-dia-5",
+      "slug": "p01-leitura-dia-5",
+      "type": "article",
+      "title": "Dia 5 — CRIAR ESPAÇO",
+      "subtitle": "7 Dias Para Me Escolher",
+      "source": {
+        "repository": "atlashub-digital/espelhomeu",
+        "path": "packages/project-content/sources/produto-01/ESPELHOMEU_P01_MASTER_EDITORIAL_FINAL.md"
+      },
+      "chapters": [
+        {
+          "id": "dia-5",
+          "slug": "dia-5",
+          "title": "O «sim» que saiu antes de consultar você",
+          "order": 0,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O «sim» que saiu antes de consultar você"
+              },
+              {
+                "type": "paragraph",
+                "text": "«Pode ser rapidinho?»"
+              },
+              {
+                "type": "paragraph",
+                "text": "A pergunta chega numa mensagem. Às vezes é mesmo rápida. Às vezes ocupa a única hora livre da tarde. Você pode querer ajudar, e isso é bonito. Também pode precisar pensar antes de responder."
+              },
+              {
+                "type": "paragraph",
+                "text": "Dizer «sim» é uma escolha; dizer «não» também. O que costuma desaparecer é o intervalo entre a pergunta e a resposta."
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez você conheça esse intervalo: alguns segundos nos quais poderia consultar o horário, a energia, a vontade e as consequências de aceitar. Muitas pessoas passam direto por ele. Não por fraqueza; frequentemente por costume, afeto, pressa ou educação."
+              },
+              {
+                "type": "paragraph",
+                "text": "Um limite claro não precisa virar discussão. Pode começar com uma frase curta: «Hoje não consigo». «Posso ajudar durante meia hora». «Preciso verificar e respondo depois». São frases que não transformam a outra pessoa em vilã nem exigem uma grande explicação para a sua escolha."
+              },
+              {
+                "type": "paragraph",
+                "text": "Há, claro, contextos em que um limite explícito pode provocar conflito ou risco. Nesses casos, segurança vem primeiro. Não recomendamos confronto, nem julgamos quem precisa procurar apoio e alternativas antes de estabelecer limites."
+              },
+              {
+                "type": "paragraph",
+                "text": "Para o exercício de hoje, escolha uma situação simples e segura: o horário em que responde mensagens, uma tarefa opcional, um compromisso que ainda não aceitou ou a forma como protege um momento de descanso."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — O intervalo antes do sim\nObjetivo: preparar um limite pequeno e respeitoso.\nInstruções: recorde um pedido cotidiano de baixo risco. Responda:"
+              },
+              {
+                "type": "paragraph",
+                "text": "- O que foi pedido?\n- Tenho disponibilidade e vontade de aceitar?\n- Qual é uma resposta honesta e gentil?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Frases-modelo para adaptar:"
+              },
+              {
+                "type": "paragraph",
+                "text": "- «Obrigada por lembrar de mim. Hoje não consigo.»\n- «Consigo fazer esta parte, mas não a outra.»\n- «Antes de confirmar, preciso olhar o meu dia.»\n- «Neste momento prefiro não assumir esse compromisso.»"
+              },
+              {
+                "type": "paragraph",
+                "text": "Não é obrigatório usar nenhuma dessas frases imediatamente."
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: memorize uma frase: «Vou verificar antes de confirmar»."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nQual pequeno espaço da minha semana eu gostaria de proteger sem transformar isso numa disputa?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 5\nUma frase de limite que combina comigo: ____________________"
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: A gentileza com os outros também pode incluir clareza comigo."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.2",
+      "status": "preview",
+      "locale": "pt-BR",
+      "authors": [
+        "EspelhoMeu"
+      ],
+      "edition": "Preview candidate · Pré-publicação",
+      "access": {
+        "mode": "public"
+      },
+      "media": [],
+      "tags": [],
+      "id": "p01-leitura-dia-6",
+      "slug": "p01-leitura-dia-6",
+      "type": "article",
+      "title": "Dia 6 — EXPERIMENTAR",
+      "subtitle": "7 Dias Para Me Escolher",
+      "source": {
+        "repository": "atlashub-digital/espelhomeu",
+        "path": "packages/project-content/sources/produto-01/ESPELHOMEU_P01_MASTER_EDITORIAL_FINAL.md"
+      },
+      "chapters": [
+        {
+          "id": "dia-6",
+          "slug": "dia-6",
+          "title": "A alegria discreta de fazer algo que não precisa render",
+          "order": 0,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "A alegria discreta de fazer algo que não precisa render"
+              },
+              {
+                "type": "paragraph",
+                "text": "Na infância, era possível passar meia hora desenhando uma casa de telhado roxo sem pensar em mostrar o resultado. Inventar uma música. Tentar uma receita. Escolher uma flor pelo perfume, sem saber o nome."
+              },
+              {
+                "type": "paragraph",
+                "text": "Na vida adulta, muitas coisas começam a pedir utilidade. Ler para aprender. Caminhar para cumprir metas. Cozinhar para economizar. Até descansar corre o risco de virar uma ferramenta para produzir mais amanhã."
+              },
+              {
+                "type": "paragraph",
+                "text": "Não há nada errado em aprender, treinar ou cuidar das finanças. Mas é bom lembrar que algumas experiências podem existir simplesmente porque são interessantes para você."
+              },
+              {
+                "type": "paragraph",
+                "text": "Talvez você já tenha um hobby que adora. Talvez tenha deixado um hábito pelo caminho. Talvez ainda não saiba do que gosta nesta fase da vida, e isso também é uma descoberta legítima. A mulher que hoje prefere silêncio pode não ser a mesma que, anos atrás, queria passar o sábado inteiro entre amigos. Não é uma incoerência. É uma história que continua."
+              },
+              {
+                "type": "paragraph",
+                "text": "O convite de hoje não exige compras, equipamentos nem um novo compromisso. Pode começar com dez minutos, um objeto que já existe na sua casa ou um lugar por onde você passa."
+              },
+              {
+                "type": "paragraph",
+                "text": "Tente não perguntar «sou boa nisso?». Pergunte «isso me interessa?»."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — A lista que não precisa dar resultado\nObjetivo: recuperar ou descobrir escolhas motivadas por curiosidade e prazer pessoal.\nInstruções: faça uma lista de cinco experiências simples que gostaria de repetir ou conhecer. Exemplos: ouvir um álbum inteiro, andar por uma rua diferente, rabiscar um caderno, observar a luz do fim da tarde, fazer uma receita pequena, visitar uma biblioteca, cuidar de uma planta, aprender o nome de uma árvore. Escolha uma que seja acessível, gratuita ou de baixo custo. Reserve um momento possível — não uma obrigação."
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: responda «Uma coisa que me dá curiosidade hoje é…»."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nO que eu tentaria fazer se não precisasse ser boa, publicar nem justificar o meu interesse?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 6\nUma curiosidade só minha: ____________________"
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: Algumas coisas têm valor porque eu gosto delas. Isso basta."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.2",
+      "status": "preview",
+      "locale": "pt-BR",
+      "authors": [
+        "EspelhoMeu"
+      ],
+      "edition": "Preview candidate · Pré-publicação",
+      "access": {
+        "mode": "public"
+      },
+      "media": [],
+      "tags": [],
+      "id": "p01-leitura-dia-7",
+      "slug": "p01-leitura-dia-7",
+      "type": "article",
+      "title": "Dia 7 — CONTINUAR",
+      "subtitle": "7 Dias Para Me Escolher",
+      "source": {
+        "repository": "atlashub-digital/espelhomeu",
+        "path": "packages/project-content/sources/produto-01/ESPELHOMEU_P01_MASTER_EDITORIAL_FINAL.md"
+      },
+      "chapters": [
+        {
+          "id": "dia-7",
+          "slug": "dia-7",
+          "title": "O que fica quando acaba a última página",
+          "order": 0,
+          "body": {
+            "format": "blocks",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "O que fica quando acaba a última página"
+              },
+              {
+                "type": "paragraph",
+                "text": "Não existe uma cerimônia oficial para terminar sete encontros consigo mesma. Ninguém vai conferir se você fez todos. Não haverá medalha para quem respondeu mais perguntas. Talvez isso seja uma das melhores partes desta jornada."
+              },
+              {
+                "type": "paragraph",
+                "text": "Pode ser que você tenha lido em sete dias seguidos. Pode ser que tenha parado no terceiro e recomeçado. Talvez tenha feito todos os exercícios de cabeça, numa caminhada ou enquanto esperava por alguém. O caminho não perde valor porque não foi perfeito."
+              },
+              {
+                "type": "paragraph",
+                "text": "Agora imagine que sobre a mesa estão sete pequenos papéis: sua escolha possível, três evidências da sua história, uma frase de respeito, uma referência selecionada, um limite, uma curiosidade e uma intenção. Nenhum desses papéis afirma quem você deve ser. Todos mostram alguma coisa sobre quem você escolheu escutar nesta semana."
+              },
+              {
+                "type": "paragraph",
+                "text": "Qual deles pede mais atenção?"
+              },
+              {
+                "type": "paragraph",
+                "text": "O próximo passo não precisa ser grande. Na verdade, é melhor que caiba no seu calendário verdadeiro: talvez dez minutos uma vez por semana; talvez uma conversa honesta com alguém; talvez retomar um interesse sem pressa. A continuidade é uma possibilidade, não uma cobrança."
+              },
+              {
+                "type": "paragraph",
+                "text": "Você pode mudar de ideia. Pode descobrir que algo já não combina. Pode voltar a este guia daqui a um mês e responder tudo de outro jeito. Isso não apaga a primeira leitura. Significa apenas que você continua vivendo."
+              },
+              {
+                "type": "paragraph",
+                "text": "EXERCÍCIO — Uma carta pequena para o futuro\nObjetivo: reunir a jornada numa intenção concreta e flexível.\nInstruções: olhe para as frases dos seis dias anteriores. Escolha duas que quer guardar. Então, escreva uma carta de quatro linhas começando por:"
+              },
+              {
+                "type": "paragraph",
+                "text": "«Olá, eu de daqui a um mês. Hoje percebi que…»"
+              },
+              {
+                "type": "paragraph",
+                "text": "Acrescente:"
+              },
+              {
+                "type": "paragraph",
+                "text": "- «Quero continuar dando espaço para…»\n- «Quando o dia ficar cheio, gostaria de lembrar…»\n- «Uma escolha pequena que posso repetir é…»"
+              },
+              {
+                "type": "paragraph",
+                "text": "Escolha, se quiser, uma data para reler. Se não cumprir a ideia, poderá recomeçar sem dívida com ninguém."
+              },
+              {
+                "type": "paragraph",
+                "text": "VERSÃO DE DOIS MINUTOS: escreva apenas «Quero me lembrar de…»."
+              },
+              {
+                "type": "paragraph",
+                "text": "REFLEXÃO PARA GUARDAR\nO que significa escolher a mim mesma nesta fase da vida, com as possibilidades reais que tenho agora?"
+              },
+              {
+                "type": "paragraph",
+                "text": "MEU MAPA — DIA 7\nMeu pacto flexível: ____________________\nUma data opcional para revisitar: ____________________"
+              },
+              {
+                "type": "callout",
+                "tone": "note",
+                "text": "A sua vida não precisa esperar por uma versão ideal de você para merecer escolhas, descanso, respeito e alegria."
+              },
+              {
+                "type": "paragraph",
+                "text": "Fecho do encontro: Hoje eu me escolho — do jeito que posso."
+              }
+            ]
+          }
+        }
+      ]
     }
   ],
-  "collections": [],
+  "collections": [
+    {
+      "schemaVersion": "0.1",
+      "id": "biblioteca",
+      "slug": "biblioteca",
+      "title": "Biblioteca EspelhoMeu",
+      "publicationRefs": [
+        "uma-pausa-que-tambem-e-sua",
+        "7-dias-para-me-escolher"
+      ]
+    }
+  ],
+  "programs": [
+    {
+      "schemaVersion": "0.2",
+      "id": "p01-jornada",
+      "slug": "7-dias-para-me-escolher",
+      "kind": "journey",
+      "status": "preview",
+      "locale": "pt-BR",
+      "title": "7 Dias Para Me Escolher",
+      "description": "Sete encontros de leitura, reflexões e pequenos gestos para fazer mais espaço para você — e um mapa pessoal para guardar.",
+      "authors": [
+        "EspelhoMeu"
+      ],
+      "durationDays": 7,
+      "access": {
+        "mode": "public"
+      },
+      "units": [
+        {
+          "id": "p01-dia-1",
+          "kind": "day",
+          "day": 1,
+          "order": 0,
+          "title": "Escutar",
+          "publicationRefs": [
+            "p01-leitura-dia-1"
+          ],
+          "missions": [
+            {
+              "id": "p01-dia-1-exercicio",
+              "title": "O termômetro sem números",
+              "instructions": "Objetivo: nomear o presente sem transformar sentimentos em desempenho.\nInstruções: complete, em palavras simples:\n\n- Neste momento, estou me sentindo…\n- Hoje seria bom ter um pouco mais de…\n- Uma escolha pequena e possível é…\n\nExperimente respostas concretas: «Estou inquieta», «gostaria de silêncio», «vou deixar o celular em outro cômodo enquanto tomo café». Não há necessidade de encontrar uma solução perfeita.",
+              "required": false
+            },
+            {
+              "id": "p01-dia-1-dois-minutos",
+              "title": "VERSÃO DE DOIS MINUTOS",
+              "instructions": "termine só a frase «Hoje seria bom ter mais…».",
+              "required": false
+            }
+          ],
+          "reflections": [
+            {
+              "id": "p01-dia-1-reflexao",
+              "prompt": "Se alguém que eu amo me contasse como foi o meu dia, que pergunta cuidadosa eu faria a essa pessoa?",
+              "required": false
+            }
+          ],
+          "checkIns": [
+            {
+              "id": "p01-dia-1-mapa",
+              "kind": "text",
+              "prompt": "Minha escolha possível: ____________________\nQuando posso experimentá-la: ____________________",
+              "required": false
+            }
+          ]
+        },
+        {
+          "id": "p01-dia-2",
+          "kind": "day",
+          "day": 2,
+          "order": 1,
+          "title": "Reconhecer",
+          "publicationRefs": [
+            "p01-leitura-dia-2"
+          ],
+          "missions": [
+            {
+              "id": "p01-dia-2-exercicio",
+              "title": "Meu álbum invisível",
+              "instructions": "Objetivo: reconhecer recursos pessoais por meio de acontecimentos, sem comparação.\nInstruções: escolha três pequenas cenas da sua vida. Para cada uma, responda:\n\n1. O que aconteceu?\n2. O que fiz naquela situação?\n3. Que qualidade ou valor aparece nesse gesto?\n\nExemplos de valores possíveis: honestidade, curiosidade, perseverança, delicadeza, humor, capacidade de ouvir, senso prático. Use apenas os que fizerem sentido para você.",
+              "required": false
+            },
+            {
+              "id": "p01-dia-2-dois-minutos",
+              "title": "VERSÃO DE DOIS MINUTOS",
+              "instructions": "recorde uma única situação de que tenha gostado, mesmo que ninguém a tenha visto.",
+              "required": false
+            }
+          ],
+          "reflections": [
+            {
+              "id": "p01-dia-2-reflexao",
+              "prompt": "Que qualidade minha eu costumo chamar de «nada demais» — mas reconheceria com carinho em outra pessoa?",
+              "required": false
+            }
+          ],
+          "checkIns": [
+            {
+              "id": "p01-dia-2-mapa",
+              "kind": "text",
+              "prompt": "Três evidências da minha história:\n1. ____________________\n2. ____________________\n3. ____________________",
+              "required": false
+            }
+          ]
+        },
+        {
+          "id": "p01-dia-3",
+          "kind": "day",
+          "day": 3,
+          "order": 2,
+          "title": "Respeitar",
+          "publicationRefs": [
+            "p01-leitura-dia-3"
+          ],
+          "missions": [
+            {
+              "id": "p01-dia-3-exercicio",
+              "title": "Uma frase habitável",
+              "instructions": "Objetivo: encontrar uma maneira menos hostil e mais verdadeira de falar consigo.\nInstruções: lembre uma situação leve em que fez uma crítica à própria aparência. Não é preciso repetir palavras que machucam. Escreva:\n\n- Situação: «Quando me vi em…»\n- O que senti: «Naquele instante, senti…»\n- Minha frase de respeito: «Posso… / Não preciso… / Tenho direito a…»\n\nExemplo fictício: «Quando me vi naquela fotografia, fiquei desconfortável. Não preciso decidir o meu valor por uma imagem».\n\nSe este tema causar sofrimento relevante, não faça o exercício. Pode substituir por uma ação simples de conforto: ajustar a iluminação, beber água, descansar, trocar de roupa, pedir companhia ou outra necessidade que seja adequada ao seu contexto.",
+              "required": false
+            },
+            {
+              "id": "p01-dia-3-dois-minutos",
+              "title": "VERSÃO DE DOIS MINUTOS",
+              "instructions": "complete: «Hoje posso oferecer conforto ao meu corpo de uma maneira que seja possível para mim: …».",
+              "required": false
+            }
+          ],
+          "reflections": [
+            {
+              "id": "p01-dia-3-reflexao",
+              "prompt": "Que tipo de linguagem eu gostaria de ouvir quando alguém fala sobre o meu corpo? Posso começar usando uma parte dessa linguagem comigo?",
+              "required": false
+            }
+          ],
+          "checkIns": [
+            {
+              "id": "p01-dia-3-mapa",
+              "kind": "text",
+              "prompt": "Minha frase de respeito: ____________________",
+              "required": false
+            }
+          ]
+        },
+        {
+          "id": "p01-dia-4",
+          "kind": "day",
+          "day": 4,
+          "order": 3,
+          "title": "Escolher referências",
+          "publicationRefs": [
+            "p01-leitura-dia-4"
+          ],
+          "missions": [
+            {
+              "id": "p01-dia-4-exercicio",
+              "title": "Minha curadoria pessoal",
+              "instructions": "Objetivo: distinguir inspiração, desejo e pressão social.\nInstruções: escolha uma referência — foto, pessoa, tendência ou hábito — sem precisar abrir uma rede social agora. Pergunte:\n\n1. O que exatamente me chamou a atenção?\n2. Eu desejaria isso se ninguém visse o resultado?\n3. O que posso adaptar ao meu contexto, orçamento e gosto? Ou prefiro simplesmente admirar sem reproduzir?",
+              "required": false
+            },
+            {
+              "id": "p01-dia-4-dois-minutos",
+              "title": "VERSÃO DE DOIS MINUTOS",
+              "instructions": "escolha uma conta, tendência ou hábito que lhe inspire de verdade. Escreva por quê, sem usar comparações.",
+              "required": false
+            }
+          ],
+          "reflections": [
+            {
+              "id": "p01-dia-4-reflexao",
+              "prompt": "Que escolha minha continuaria fazendo sentido se nunca aparecesse numa fotografia?",
+              "required": false
+            }
+          ],
+          "checkIns": [
+            {
+              "id": "p01-dia-4-mapa",
+              "kind": "text",
+              "prompt": "Uma inspiração que escolho manter, adaptar ou deixar ir: ____________________",
+              "required": false
+            }
+          ]
+        },
+        {
+          "id": "p01-dia-5",
+          "kind": "day",
+          "day": 5,
+          "order": 4,
+          "title": "Criar espaço",
+          "publicationRefs": [
+            "p01-leitura-dia-5"
+          ],
+          "missions": [
+            {
+              "id": "p01-dia-5-exercicio",
+              "title": "O intervalo antes do sim",
+              "instructions": "Objetivo: preparar um limite pequeno e respeitoso.\nInstruções: recorde um pedido cotidiano de baixo risco. Responda:\n\n- O que foi pedido?\n- Tenho disponibilidade e vontade de aceitar?\n- Qual é uma resposta honesta e gentil?\n\nFrases-modelo para adaptar:\n\n- «Obrigada por lembrar de mim. Hoje não consigo.»\n- «Consigo fazer esta parte, mas não a outra.»\n- «Antes de confirmar, preciso olhar o meu dia.»\n- «Neste momento prefiro não assumir esse compromisso.»\n\nNão é obrigatório usar nenhuma dessas frases imediatamente.",
+              "required": false
+            },
+            {
+              "id": "p01-dia-5-dois-minutos",
+              "title": "VERSÃO DE DOIS MINUTOS",
+              "instructions": "memorize uma frase: «Vou verificar antes de confirmar».",
+              "required": false
+            }
+          ],
+          "reflections": [
+            {
+              "id": "p01-dia-5-reflexao",
+              "prompt": "Qual pequeno espaço da minha semana eu gostaria de proteger sem transformar isso numa disputa?",
+              "required": false
+            }
+          ],
+          "checkIns": [
+            {
+              "id": "p01-dia-5-mapa",
+              "kind": "text",
+              "prompt": "Uma frase de limite que combina comigo: ____________________",
+              "required": false
+            }
+          ]
+        },
+        {
+          "id": "p01-dia-6",
+          "kind": "day",
+          "day": 6,
+          "order": 5,
+          "title": "Experimentar",
+          "publicationRefs": [
+            "p01-leitura-dia-6"
+          ],
+          "missions": [
+            {
+              "id": "p01-dia-6-exercicio",
+              "title": "A lista que não precisa dar resultado",
+              "instructions": "Objetivo: recuperar ou descobrir escolhas motivadas por curiosidade e prazer pessoal.\nInstruções: faça uma lista de cinco experiências simples que gostaria de repetir ou conhecer. Exemplos: ouvir um álbum inteiro, andar por uma rua diferente, rabiscar um caderno, observar a luz do fim da tarde, fazer uma receita pequena, visitar uma biblioteca, cuidar de uma planta, aprender o nome de uma árvore. Escolha uma que seja acessível, gratuita ou de baixo custo. Reserve um momento possível — não uma obrigação.",
+              "required": false
+            },
+            {
+              "id": "p01-dia-6-dois-minutos",
+              "title": "VERSÃO DE DOIS MINUTOS",
+              "instructions": "responda «Uma coisa que me dá curiosidade hoje é…».",
+              "required": false
+            }
+          ],
+          "reflections": [
+            {
+              "id": "p01-dia-6-reflexao",
+              "prompt": "O que eu tentaria fazer se não precisasse ser boa, publicar nem justificar o meu interesse?",
+              "required": false
+            }
+          ],
+          "checkIns": [
+            {
+              "id": "p01-dia-6-mapa",
+              "kind": "text",
+              "prompt": "Uma curiosidade só minha: ____________________",
+              "required": false
+            }
+          ]
+        },
+        {
+          "id": "p01-dia-7",
+          "kind": "day",
+          "day": 7,
+          "order": 6,
+          "title": "Continuar",
+          "publicationRefs": [
+            "p01-leitura-dia-7"
+          ],
+          "missions": [
+            {
+              "id": "p01-dia-7-exercicio",
+              "title": "Uma carta pequena para o futuro",
+              "instructions": "Objetivo: reunir a jornada numa intenção concreta e flexível.\nInstruções: olhe para as frases dos seis dias anteriores. Escolha duas que quer guardar. Então, escreva uma carta de quatro linhas começando por:\n\n«Olá, eu de daqui a um mês. Hoje percebi que…»\n\nAcrescente:\n\n- «Quero continuar dando espaço para…»\n- «Quando o dia ficar cheio, gostaria de lembrar…»\n- «Uma escolha pequena que posso repetir é…»\n\nEscolha, se quiser, uma data para reler. Se não cumprir a ideia, poderá recomeçar sem dívida com ninguém.",
+              "required": false
+            },
+            {
+              "id": "p01-dia-7-dois-minutos",
+              "title": "VERSÃO DE DOIS MINUTOS",
+              "instructions": "escreva apenas «Quero me lembrar de…».",
+              "required": false
+            }
+          ],
+          "reflections": [
+            {
+              "id": "p01-dia-7-reflexao",
+              "prompt": "O que significa escolher a mim mesma nesta fase da vida, com as possibilidades reais que tenho agora?",
+              "required": false
+            }
+          ],
+          "checkIns": [
+            {
+              "id": "p01-dia-7-mapa",
+              "kind": "text",
+              "prompt": "Meu pacto flexível: ____________________\nUma data opcional para revisitar: ____________________",
+              "required": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "metadata": {
-    "fixture": true,
-    "provenance": "Original engineering fixtures; no private/commercial material imported."
+    "editorialStatus": "PREVIEW CANDIDATE / PRE-PUBLICAÇÃO",
+    "commercialApproval": false,
+    "source": "packages/project-content/sources/produto-01/ESPELHOMEU_P01_MASTER_EDITORIAL_FINAL.md"
   }
 }

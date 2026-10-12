@@ -82,8 +82,10 @@ try {
     "/inicio",
     "/biblioteca",
     "/descobrir",
-    "/ler/um-reflexo-mais-gentil",
+    "/ler/7-dias-para-me-escolher",
+    "/ler/uma-pausa-que-tambem-e-sua",
     "/programas",
+    "/programas/7-dias-para-me-escolher/p01-dia-1",
     "/perfil",
     "/meu-espelho",
     "/comunidade",
@@ -111,36 +113,45 @@ try {
       await page.screenshot({
         path: path.join(
           evidence,
-          `${name}-${route === "/ler/um-reflexo-mais-gentil" ? "reader" : route.slice(1)}.png`,
+          `${name}-${route === "/ler/7-dias-para-me-escolher" ? "reader" : route.slice(1).replaceAll("/", "-")}.png`,
         ),
         fullPage: true,
       });
       checks.push(`${name} ${route}: render + no overflow + screenshot`);
     }
-    await page.goto(origin + "/ler/um-reflexo-mais-gentil");
+    await page.goto(origin + "/ler/7-dias-para-me-escolher");
     await page.getByRole("button", { name: "Concluir e continuar" }).click();
-    await page
-      .getByRole("heading", { name: "Experimentar com liberdade" })
-      .waitFor();
-    assert.equal(await page.locator("progress").getAttribute("value"), "33");
-    await page.getByRole("button", { name: "Concluir e continuar" }).click();
+    await page.getByRole("heading", { name: "Dia 1 — ESCUTAR", exact: true }).waitFor();
+    assert.equal(await page.locator("progress").getAttribute("value"), "10");
+    for (let i = 1; i < 9; i++)
+      await page.getByRole("button", { name: "Concluir e continuar" }).click();
     await page.getByRole("button", { name: "Concluir leitura" }).click();
     assert.equal(await page.locator("progress").getAttribute("value"), "100");
-    assert.ok(
-      (await page.getByRole("status").last().innerText()).includes(
-        "Leitura concluída",
-      ),
-    );
-    await page.getByRole("button", { name: /Observar sem julgar/ }).click();
+    await page.getByRole("button", { name: /Uma carta antes do primeiro dia/ }).click();
     await page.getByRole("button", { name: "Continuar leitura" }).click();
-    await page.getByRole("heading", { name: "Observar sem julgar" }).waitFor();
-    checks.push(
-      `${name} Reader: chapter navigation + progress + completion + resume`,
-    );
+    await page.getByRole("heading", { name: "Uma carta antes do primeiro dia", exact: true }).first().waitFor();
+    checks.push(name + " Guide: ten chapters + navigation + progress + completion + resume");
+    await page.goto(origin + "/ler/uma-pausa-que-tambem-e-sua");
+    assert.ok((await page.locator(".reader-content").innerText()).includes("A manhã pode estar silenciosa"));
+    checks.push(name + " Article: original editorial text rendered");
+    await page.goto(origin + "/programas/7-dias-para-me-escolher");
+    assert.equal(await page.locator(".journey-days li").count(), 7);
+    await page.locator(".journey-days a").first().click();
+    const titles = ["Escutar", "Reconhecer", "Respeitar", "Escolher referências", "Criar espaço", "Experimentar", "Continuar"];
+    for (let day = 1; day <= 7; day++) {
+      await page.getByRole("heading", { level: 1, name: titles[day - 1], exact: true }).waitFor();
+      await page.getByText("Meu registro privado", { exact: true }).click();
+      assert.ok((await page.locator(".journey-activities").innerText()).includes("Nada é enviado"));
+      assert.equal(await page.locator("textarea").count(), 0);
+      if (day < 7) await page.getByRole("link", { name: "Próximo encontro" }).click();
+    }
+    await page.getByRole("link", { name: "Encontro anterior" }).click();
+    await page.getByRole("heading", { level: 1, name: "Experimentar", exact: true }).waitFor();
+    checks.push(name + " Journey: seven ordered days + references + next/previous + private optional prompts");
     await page.goto(origin + "/biblioteca");
-    await page.getByLabel("Buscar uma leitura").fill("gentil");
+    await page.getByLabel("Buscar uma leitura").fill("Escolher");
     await page.getByRole("button", { name: "Explorar", exact: true }).click();
-    await page.waitForURL("**/biblioteca?q=gentil&tipo=");
+    await page.waitForURL("**/biblioteca?q=Escolher&tipo=");
     assert.equal(await page.locator(".publication-card").count(), 1);
     checks.push(`${name} catalog search: data-driven filtering`);
     await page.goto(origin + "/status");
@@ -170,7 +181,7 @@ try {
       {
         node: process.version,
         browser: await browser.version(),
-        gate: "BLOCKED_UPSTREAM",
+        gate: "PENDING_HUMAN_PREVIEW_REVIEW",
         health,
         checks,
         pageErrors: errors,

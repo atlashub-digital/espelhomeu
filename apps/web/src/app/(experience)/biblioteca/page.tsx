@@ -18,7 +18,7 @@ export default async function Page({
         title="Uma leitura. Um novo olhar."
       >
         <p>
-          Reserve um momento para você. Explore as leituras de demonstração, com
+          Reserve um momento para você. Explore as leituras em pré-publicação, com
           liberdade e sem pressa.
         </p>
       </Intro>
@@ -36,7 +36,7 @@ export default async function Page({
           Formato
           <select name="tipo" defaultValue={type}>
             <option value="">Todos</option>
-            <option value="essay">Ensaio</option>
+            <option value="article">Artigo</option>
             <option value="guide">Guia</option>
             <option value="ebook">eBook</option>
           </select>

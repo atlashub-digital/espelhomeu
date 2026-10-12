@@ -1,10 +1,10 @@
 import { expect, it } from "vitest";
 import manifest from "../../../project.manifest.json";
 import { project, enabled } from "./index";
-it("keeps unsupported and paid modules disabled and records the blocked gate", () => {
+it("enables Journey while paid modules and the pending human gate stay closed", () => {
   expect(project.id).toBe("espelhomeu");
   expect(enabled("library")).toBe(true);
-  expect(enabled("programs")).toBe(false);
+  expect(enabled("programs")).toBe(true);
   expect(enabled("commerce")).toBe(false);
   expect(manifest.gate.contentReady).toBe(false);
   // Fase 3: pins deixaram de ser SHAs git e passaram a artifacts do registry

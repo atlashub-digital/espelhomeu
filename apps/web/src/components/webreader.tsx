@@ -64,7 +64,7 @@ export function WebReader({ publication }: { publication: Publication }) {
       <header className="reader-header">
         <p className="eyebrow">
           {publication.type === "guide" ? "Guia" : "Leitura"} ·{" "}
-          {publication.readingMinutes} min · {publication.locale}
+          {publication.readingMinutes ? `${publication.readingMinutes} min · ` : ""}{publication.locale}
         </p>
         <h1>{publication.title}</h1>
         <p>{publication.subtitle}</p>

@@ -10,7 +10,7 @@
   "modules": {
     "library": true,
     "webreader": true,
-    "programs": false,
+    "programs": true,
     "auth": false,
     "commerce": false,
     "community": false,
@@ -27,7 +27,7 @@
     "adapter": "git-json",
     "path": "packages/project-content/content/manifest.json",
     "releaseMode": "pull-request",
-    "fixture": true
+    "fixture": false
   },
   "deployment": {
     "web": "Vercel / apps/web",
@@ -36,9 +36,9 @@
   "gate": {
     "contentReady": false,
     "blockers": [
-      "Preview Vercel verde com registry artifacts",
-      "Article + Guide + Journey real de 7 dias no content",
-      "Revisão humana do contrato 0.2 / jornada"
+      "CI e browser smoke do Produto 01",
+      "Preview Vercel READY no mesmo commit",
+      "Revisão humana do Preview sem bloqueadores"
     ]
   }
 }

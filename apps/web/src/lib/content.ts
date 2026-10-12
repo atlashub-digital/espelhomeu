@@ -1,2 +1,2 @@
 import "server-only";
-export { accessiblePublication, catalog } from "@espelhomeu/project-content";
+export { accessiblePublication, catalog, accessibleJourney, programCatalog } from "@espelhomeu/project-content";

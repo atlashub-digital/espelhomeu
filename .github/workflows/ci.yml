@@ -26,6 +26,7 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: pnpm
+      - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - run: pnpm validate:content
       - run: pnpm lint

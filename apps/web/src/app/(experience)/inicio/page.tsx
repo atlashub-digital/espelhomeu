@@ -76,7 +76,7 @@ export default function Home() {
           </Link>
         </div>
         <p className="fixture-note">
-          Explore a experiência de leitura com conteúdos de demonstração.
+          Preview editorial · Leituras em pré-publicação.
         </p>
         <PublicationCards />
       </section>
@@ -89,8 +89,8 @@ export default function Home() {
             <em>com uma pausa.</em>
           </h2>
           <p>
-            As jornadas EspelhoMeu estão a ser preparadas. Conheça o espaço que
-            vai acompanhar cada etapa.
+            Explore os encontros disponíveis, no seu ritmo. Os exercícios são
+            opcionais e as suas respostas pertencem a você.
           </p>
           <Link className="button" href="/programas">
             Explorar jornadas →

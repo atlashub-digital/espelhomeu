@@ -7,7 +7,10 @@ const routes = [
   "/inicio",
   "/descobrir",
   "/biblioteca",
-  "/ler/um-reflexo-mais-gentil",
+  "/ler/7-dias-para-me-escolher",
+  "/ler/uma-pausa-que-tambem-e-sua",
+  "/programas/7-dias-para-me-escolher",
+  ...Array.from({ length: 7 }, (_, i) => "/programas/7-dias-para-me-escolher/p01-dia-" + (i + 1)),
   "/programas",
   "/perfil",
   "/meu-espelho",
@@ -25,3 +28,9 @@ const missing = await fetch(new URL("/ler/not-a-publication", origin));
 if (missing.status !== 404)
   throw new Error(`Unknown reader must return 404: ${missing.status}`);
 console.log("PASS unknown publication -> 404");
+
+for (const route of ["/programas/not-a-program", "/programas/7-dias-para-me-escolher/missing"]) {
+  const response = await fetch(new URL(route, origin));
+  if (response.status !== 404) throw new Error(route + ": expected 404, got " + response.status);
+  console.log("PASS " + route + " -> 404");
+}

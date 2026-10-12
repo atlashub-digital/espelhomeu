@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Publication } from "@atlashub-digital/amf-content-schema";
 import { catalog } from "@/lib/content";
 const labels: Partial<Record<Publication["type"], string>> = {
+  article: "Artigo",
   essay: "Ensaio",
   guide: "Guia",
   ebook: "eBook",
@@ -57,7 +58,7 @@ export async function PublicationCards({
           <p>{p.subtitle}</p>
           <div className="card-meta">
             <span>{accessLabels[p.access.mode]}</span>
-            <span>Demonstração</span>
+            <span>{p.status === "preview" ? "Pré-publicação" : "Publicado"}</span>
           </div>
         </article>
       ))}
