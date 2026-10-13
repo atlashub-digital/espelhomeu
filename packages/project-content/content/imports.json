@@ -3,5 +3,20 @@
     "recipe": "sources/produto-02/import.json",
     "source": "sources/produto-02/00_MASTER_EDITORIAL/ESPELHOMEU_P02_MASTER_EDITORIAL.md",
     "delivery": "sources/produto-02/delivery.json"
+  },
+  {
+    "recipe": "sources/produto-03/import.json",
+    "source": "sources/produto-03/00_MASTER_EDITORIAL/ESPELHOMEU_P03_MASTER_EDITORIAL.md",
+    "delivery": "sources/produto-03/delivery.json"
+  },
+  {
+    "recipe": "sources/produto-04/import.json",
+    "source": "sources/produto-04/00_MASTER_EDITORIAL/ESPELHOMEU_P04_MASTER_EDITORIAL.md",
+    "delivery": "sources/produto-04/delivery.json"
+  },
+  {
+    "recipe": "sources/produto-05/import.json",
+    "source": "sources/produto-05/00_MASTER_EDITORIAL/ESPELHOMEU_P05_MASTER_EDITORIAL.md",
+    "delivery": "sources/produto-05/delivery.json"
   }
 ]

@@ -78,9 +78,9 @@ describe("Produto 01 preview release", () => {
     try { expect(await accessiblePublication(raw.publications[0]!.id)).toBeNull(); }
     finally { spy.mockRestore(); }
   });
-  it("shows only the two official Guides, preserving the legacy Article technically", async () => {
+  it("shows the five official products, preserving the legacy Article technically", async () => {
     const items = await catalog();
-    expect(items.map(p => p.id)).toEqual(["7-dias-para-me-escolher", "eu-sou-bela-do-meu-jeito"]);
+    expect(items.map(p => p.id)).toEqual(["7-dias-para-me-escolher", "eu-sou-bela-do-meu-jeito", "21-dias-meu-melhor-reflexo", "recomecar-depois-dos-40", "diario-de-amor-proprio-30-encontros-comigo"]);
     expect((await contentSource.getPublication("uma-pausa-que-tambem-e-sua"))?.type).toBe("article");
     for (const p of items) {
       expect(p).not.toHaveProperty("chapters");

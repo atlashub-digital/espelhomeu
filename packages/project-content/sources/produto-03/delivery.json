@@ -1,0 +1,95 @@
+{
+  "product": "P03",
+  "files": [
+    {
+      "p": "03",
+      "id": "18wEMKcSV5WTUkbEEs5t3mVTNvKKI8WLR",
+      "name": "ATMOSFERA_ATO_03.jpg",
+      "path": "apps/web/public/conteudo/produto-03/ATMOSFERA_ATO_03.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/ATMOSFERA_ATO_03.jpg",
+      "bytes": 120231,
+      "sha256": "68f7e978f6da3f95a94191ba67a0dfa528a17a422a8257f568b3a334c6c65d97"
+    },
+    {
+      "p": "03",
+      "id": "1omb-QWzY7sphg2CXB78OmBdPIlQ-V5fD",
+      "name": "ATMOSFERA_ATO_02.jpg",
+      "path": "apps/web/public/conteudo/produto-03/ATMOSFERA_ATO_02.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/ATMOSFERA_ATO_02.jpg",
+      "bytes": 128456,
+      "sha256": "9265736ec1880ebbf5ab1f36a9fffb586ddbb5c13c68fa697e85a586e4eab689"
+    },
+    {
+      "p": "03",
+      "id": "1JGRtxGwXadFT0PgNDoMwg7EJJ6Pm45c1",
+      "name": "ATMOSFERA_ATO_01.jpg",
+      "path": "apps/web/public/conteudo/produto-03/ATMOSFERA_ATO_01.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/ATMOSFERA_ATO_01.jpg",
+      "bytes": 129700,
+      "sha256": "683702cfc20d3d726d13813028058b9e4ba3dfcdfdc50696da17ead503fd8936"
+    },
+    {
+      "p": "03",
+      "id": "1uBgCPO5mOKrc2ebA4OqySyLpttuhCqXh",
+      "name": "ABERTURA_ATO_03_FOTO_BASE.jpg",
+      "path": "apps/web/public/conteudo/produto-03/ABERTURA_ATO_03_FOTO_BASE.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/ABERTURA_ATO_03_FOTO_BASE.jpg",
+      "bytes": 380224,
+      "sha256": "44c04e85d45ce766597edffad2857b128d12a2b523b15326c351be241a4e796d"
+    },
+    {
+      "p": "03",
+      "id": "1xK4hznATNk2mcnGalBYkZqTZi5XrsdOM",
+      "name": "ABERTURA_ATO_02_FOTO_BASE.jpg",
+      "path": "apps/web/public/conteudo/produto-03/ABERTURA_ATO_02_FOTO_BASE.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/ABERTURA_ATO_02_FOTO_BASE.jpg",
+      "bytes": 401306,
+      "sha256": "6ea2b22271849a019771daf122c27bdd7e43d85003c688a96864ea962da13ba0"
+    },
+    {
+      "p": "03",
+      "id": "1Ndog_OO0JTc-daYt0AODVRHk1MqA26dS",
+      "name": "ABERTURA_ATO_01_FOTO_BASE.jpg",
+      "path": "apps/web/public/conteudo/produto-03/ABERTURA_ATO_01_FOTO_BASE.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/ABERTURA_ATO_01_FOTO_BASE.jpg",
+      "bytes": 397974,
+      "sha256": "ffa65ff1e87c1b6f671d5c36cb8c6f3da215b01dbf2877426d2d604466eab2bd"
+    },
+    {
+      "p": "03",
+      "id": "1B0NCixiq7aYLyVDARLRtW2BAMUnKdJ-l",
+      "name": "CAPA_APROVADA_VOLUME_03_v1.0.png",
+      "path": "apps/web/public/conteudo/produto-03/CAPA_APROVADA_VOLUME_03_v1.0.png",
+      "sourcePath": "01_CAPA_E_IDENTIDADE/CAPA_APROVADA_VOLUME_03_v1.0.png",
+      "bytes": 2295891,
+      "sha256": "d2096cf32fc477e2303a6662eb2196897da95173f6aaeb3364c95b116d7705bb"
+    },
+    {
+      "p": "03",
+      "id": "1VOO_qNRwZJhEjBpY3k4KGWrziyNPwtyN",
+      "name": "CARTOES_21_ENCONTROS_v1.0.pdf",
+      "path": "apps/web/public/conteudo/produto-03/CARTOES_21_ENCONTROS_v1.0.pdf",
+      "sourcePath": "03_WORKBOOK_E_EXTRAS/CARTOES_21_ENCONTROS_v1.0.pdf",
+      "bytes": 456152,
+      "sha256": "7849686746107e98810c070d22aff5fd0e1d04780d66b84a45d5e0c3bd19180f"
+    },
+    {
+      "p": "03",
+      "id": "1PnENbdqgvlovQmonWDnlwtzNGyjlAiBH",
+      "name": "CADERNO_MEU_MELHOR_REFLEXO_v1.0.pdf",
+      "path": "apps/web/public/conteudo/produto-03/CADERNO_MEU_MELHOR_REFLEXO_v1.0.pdf",
+      "sourcePath": "03_WORKBOOK_E_EXTRAS/CADERNO_MEU_MELHOR_REFLEXO_v1.0.pdf",
+      "bytes": 888444,
+      "sha256": "76731b0287110024c3c4d0b7b3f4a02d98e1a7fb887fcf0ca871c86ebd9b220e"
+    },
+    {
+      "p": "03",
+      "id": "1T--XSEgY9nrKXEPSXsp7JHNNGoa-xj3V",
+      "name": "ESPELHOMEU_P03_MASTER_EDITORIAL.md",
+      "path": "packages/project-content/sources/produto-03/00_MASTER_EDITORIAL/ESPELHOMEU_P03_MASTER_EDITORIAL.md",
+      "sourcePath": "00_MASTER_EDITORIAL/ESPELHOMEU_P03_MASTER_EDITORIAL.md",
+      "bytes": 42063,
+      "sha256": "dc7d49fdb52578b8467e7a689ab45c716ca551c98ef22392b35600d16b4e13da"
+    }
+  ]
+}

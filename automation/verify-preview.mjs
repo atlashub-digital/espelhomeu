@@ -43,6 +43,10 @@ try {
     page.on("pageerror", e => errors.push(e.message));
     for (const [name, route] of [
       ["library", "/biblioteca"],
+      ["21-dias-meu-melhor-reflexo", "/ler/21-dias-meu-melhor-reflexo"],
+      ["recomecar-depois-dos-40", "/ler/recomecar-depois-dos-40"],
+      ["diario-de-amor-proprio-30-encontros-comigo", "/ler/diario-de-amor-proprio-30-encontros-comigo"],
+
       ["guide-p02", "/ler/eu-sou-bela-do-meu-jeito"],
       ["guide", "/ler/7-dias-para-me-escolher"],
       ["journey", "/programas/7-dias-para-me-escolher"],

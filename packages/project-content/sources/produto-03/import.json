@@ -1,0 +1,500 @@
+{
+  "publication": {
+    "schemaVersion": "0.2",
+    "id": "21-dias-meu-melhor-reflexo",
+    "slug": "21-dias-meu-melhor-reflexo",
+    "type": "guide",
+    "status": "preview",
+    "locale": "pt-BR",
+    "title": "21 Dias — Meu Melhor Reflexo",
+    "subtitle": "Ver, experimentar e evoluir — uma jornada de pequenas escolhas.",
+    "authors": [
+      "EspelhoMeu"
+    ],
+    "edition": "Homologação · Preview editorial v1.0",
+    "tags": [
+      "21 encontros",
+      "Ver · Experimentar · Evoluir"
+    ],
+    "access": {
+      "mode": "public"
+    },
+    "media": [
+      {
+        "id": "p03-media-1",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-03/ATMOSFERA_ATO_03.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/18wEMKcSV5WTUkbEEs5t3mVTNvKKI8WLR/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "ATMOSFERA_ATO_03.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1800,
+          "height": 980
+        },
+        "alt": "Retrato editorial de mulher junto de flores em luz quente, com desfoque suave."
+      },
+      {
+        "id": "p03-media-2",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-03/ATMOSFERA_ATO_02.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1omb-QWzY7sphg2CXB78OmBdPIlQ-V5fD/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "ATMOSFERA_ATO_02.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1800,
+          "height": 980
+        },
+        "alt": "Retrato editorial de mulher junto de flores em luz quente, com desfoque suave."
+      },
+      {
+        "id": "p03-media-3",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-03/ATMOSFERA_ATO_01.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1JGRtxGwXadFT0PgNDoMwg7EJJ6Pm45c1/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "ATMOSFERA_ATO_01.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1800,
+          "height": 980
+        },
+        "alt": "Retrato editorial de mulher junto de flores em luz quente, com desfoque suave."
+      },
+      {
+        "id": "p03-media-4",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-03/ABERTURA_ATO_03_FOTO_BASE.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1uBgCPO5mOKrc2ebA4OqySyLpttuhCqXh/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "ABERTURA_ATO_03_FOTO_BASE.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1800,
+          "height": 980
+        },
+        "alt": "Retrato editorial de mulher junto de flores em luz quente."
+      },
+      {
+        "id": "p03-media-5",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-03/ABERTURA_ATO_02_FOTO_BASE.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1xK4hznATNk2mcnGalBYkZqTZi5XrsdOM/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "ABERTURA_ATO_02_FOTO_BASE.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1800,
+          "height": 980
+        },
+        "alt": "Retrato editorial de mulher junto de flores em luz quente."
+      },
+      {
+        "id": "p03-media-6",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-03/ABERTURA_ATO_01_FOTO_BASE.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1Ndog_OO0JTc-daYt0AODVRHk1MqA26dS/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "ABERTURA_ATO_01_FOTO_BASE.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1800,
+          "height": 980
+        },
+        "alt": "Retrato editorial de mulher junto de flores em luz quente."
+      },
+      {
+        "id": "p03-media-7",
+        "kind": "image",
+        "title": "21 Dias — Meu Melhor Reflexo",
+        "assetPath": "/conteudo/produto-03/CAPA_APROVADA_VOLUME_03_v1.0.png",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1B0NCixiq7aYLyVDARLRtW2BAMUnKdJ-l/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "CAPA_APROVADA_VOLUME_03_v1.0.png",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1024,
+          "height": 1536
+        },
+        "alt": "Mulher junto a um espelho e flores sob luz quente; capa 21 Dias — Meu Melhor Reflexo."
+      },
+      {
+        "id": "p03-media-8",
+        "kind": "document",
+        "title": "21 cartões de reflexão",
+        "assetPath": "/conteudo/produto-03/CARTOES_21_ENCONTROS_v1.0.pdf",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1VOO_qNRwZJhEjBpY3k4KGWrziyNPwtyN/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "CARTOES_21_ENCONTROS_v1.0.pdf",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      },
+      {
+        "id": "p03-media-9",
+        "kind": "document",
+        "title": "Caderno Meu Melhor Reflexo",
+        "assetPath": "/conteudo/produto-03/CADERNO_MEU_MELHOR_REFLEXO_v1.0.pdf",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1PnENbdqgvlovQmonWDnlwtzNGyjlAiBH/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "CADERNO_MEU_MELHOR_REFLEXO_v1.0.pdf",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      }
+    ],
+    "chapters": [
+      {
+        "id": "p03-secao-1",
+        "slug": "secao-1",
+        "title": "Carta de abertura — O espelho que não cobra",
+        "order": 0,
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-2",
+        "slug": "secao-2",
+        "title": "Dia 01 — Meu ponto de partida",
+        "order": 1,
+        "part": "ATO I — VER",
+        "mediaPlacements": [
+          {
+            "id": "p03-media-6-placement",
+            "mediaId": "p03-media-6",
+            "anchor": "p03-secao-2",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p03-secao-3",
+        "slug": "secao-3",
+        "title": "Dia 02 — O que me importa agora",
+        "order": 2,
+        "part": "ATO I — VER",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-4",
+        "slug": "secao-4",
+        "title": "Dia 03 — Meu dia real",
+        "order": 3,
+        "part": "ATO I — VER",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-5",
+        "slug": "secao-5",
+        "title": "Dia 04 — O que desejo preservar",
+        "order": 4,
+        "part": "ATO I — VER",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-6",
+        "slug": "secao-6",
+        "title": "Dia 05 — Pequenas alegrias e referências",
+        "order": 5,
+        "part": "ATO I — VER",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-7",
+        "slug": "secao-7",
+        "title": "Dia 06 — Decidir sem pressa",
+        "order": 6,
+        "part": "ATO I — VER",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-8",
+        "slug": "secao-8",
+        "title": "Dia 07 — Carta de observação",
+        "order": 7,
+        "part": "ATO I — VER",
+        "mediaPlacements": [
+          {
+            "id": "p03-media-3-placement",
+            "mediaId": "p03-media-3",
+            "anchor": "p03-secao-8",
+            "position": "after"
+          }
+        ]
+      },
+      {
+        "id": "p03-secao-9",
+        "slug": "secao-9",
+        "title": "Dia 08 — Uma experiência pequena",
+        "order": 8,
+        "part": "ATO II — EXPERIMENTAR",
+        "mediaPlacements": [
+          {
+            "id": "p03-media-5-placement",
+            "mediaId": "p03-media-5",
+            "anchor": "p03-secao-9",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p03-secao-10",
+        "slug": "secao-10",
+        "title": "Dia 09 — Uma rotina adaptável",
+        "order": 9,
+        "part": "ATO II — EXPERIMENTAR",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-11",
+        "slug": "secao-11",
+        "title": "Dia 10 — Uma linguagem visual só minha",
+        "order": 10,
+        "part": "ATO II — EXPERIMENTAR",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-12",
+        "slug": "secao-12",
+        "title": "Dia 11 — Fazer algo sem plateia",
+        "order": 11,
+        "part": "ATO II — EXPERIMENTAR",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-13",
+        "slug": "secao-13",
+        "title": "Dia 12 — Um pedido honesto, em contexto seguro",
+        "order": 12,
+        "part": "ATO II — EXPERIMENTAR",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-14",
+        "slug": "secao-14",
+        "title": "Dia 13 — Seguir a curiosidade",
+        "order": 13,
+        "part": "ATO II — EXPERIMENTAR",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-15",
+        "slug": "secao-15",
+        "title": "Dia 14 — Registrar preferências sem julgar",
+        "order": 14,
+        "part": "ATO II — EXPERIMENTAR",
+        "mediaPlacements": [
+          {
+            "id": "p03-media-2-placement",
+            "mediaId": "p03-media-2",
+            "anchor": "p03-secao-15",
+            "position": "after"
+          }
+        ]
+      },
+      {
+        "id": "p03-secao-16",
+        "slug": "secao-16",
+        "title": "Dia 15 — Rever escolhas com curiosidade",
+        "order": 15,
+        "part": "ATO III — EVOLUIR",
+        "mediaPlacements": [
+          {
+            "id": "p03-media-4-placement",
+            "mediaId": "p03-media-4",
+            "anchor": "p03-secao-16",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p03-secao-17",
+        "slug": "secao-17",
+        "title": "Dia 16 — Obstáculos não são defeitos",
+        "order": 16,
+        "part": "ATO III — EVOLUIR",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-18",
+        "slug": "secao-18",
+        "title": "Dia 17 — Ajustar antes de abandonar",
+        "order": 17,
+        "part": "ATO III — EVOLUIR",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-19",
+        "slug": "secao-19",
+        "title": "Dia 18 — Guardar referências que realmente servem",
+        "order": 18,
+        "part": "ATO III — EVOLUIR",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-20",
+        "slug": "secao-20",
+        "title": "Dia 19 — O que aprendi sobre preferências",
+        "order": 19,
+        "part": "ATO III — EVOLUIR",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-21",
+        "slug": "secao-21",
+        "title": "Dia 20 — O próximo capítulo",
+        "order": 20,
+        "part": "ATO III — EVOLUIR",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p03-secao-22",
+        "slug": "secao-22",
+        "title": "Dia 21 — Carta de continuidade",
+        "order": 21,
+        "part": "ATO III — EVOLUIR",
+        "mediaPlacements": [
+          {
+            "id": "p03-media-1-placement",
+            "mediaId": "p03-media-1",
+            "anchor": "p03-secao-22",
+            "position": "after"
+          }
+        ]
+      },
+      {
+        "id": "p03-secao-23",
+        "slug": "secao-23",
+        "title": "Meu mapa de continuidade",
+        "order": 22,
+        "mediaPlacements": [
+          {
+            "id": "p03-media-8-placement",
+            "mediaId": "p03-media-8",
+            "anchor": "p03-secao-23",
+            "position": "after"
+          },
+          {
+            "id": "p03-media-9-placement",
+            "mediaId": "p03-media-9",
+            "anchor": "p03-secao-23",
+            "position": "after"
+          }
+        ]
+      }
+    ],
+    "cover": "/conteudo/produto-03/CAPA_APROVADA_VOLUME_03_v1.0.png"
+  },
+  "sections": [
+    {
+      "start": "## Carta de abertura — O espelho que não cobra",
+      "end": "## ÍNDICE"
+    },
+    {
+      "start": "# ATO I — VER",
+      "end": "## Dia 02 — O que me importa agora"
+    },
+    {
+      "start": "## Dia 02 — O que me importa agora",
+      "end": "## Dia 03 — Meu dia real"
+    },
+    {
+      "start": "## Dia 03 — Meu dia real",
+      "end": "## Dia 04 — O que desejo preservar"
+    },
+    {
+      "start": "## Dia 04 — O que desejo preservar",
+      "end": "## Dia 05 — Pequenas alegrias e referências"
+    },
+    {
+      "start": "## Dia 05 — Pequenas alegrias e referências",
+      "end": "## Dia 06 — Decidir sem pressa"
+    },
+    {
+      "start": "## Dia 06 — Decidir sem pressa",
+      "end": "## Dia 07 — Carta de observação"
+    },
+    {
+      "start": "## Dia 07 — Carta de observação",
+      "end": "# ATO II — EXPERIMENTAR"
+    },
+    {
+      "start": "# ATO II — EXPERIMENTAR",
+      "end": "## Dia 09 — Uma rotina adaptável"
+    },
+    {
+      "start": "## Dia 09 — Uma rotina adaptável",
+      "end": "## Dia 10 — Uma linguagem visual só minha"
+    },
+    {
+      "start": "## Dia 10 — Uma linguagem visual só minha",
+      "end": "## Dia 11 — Fazer algo sem plateia"
+    },
+    {
+      "start": "## Dia 11 — Fazer algo sem plateia",
+      "end": "## Dia 12 — Um pedido honesto, em contexto seguro"
+    },
+    {
+      "start": "## Dia 12 — Um pedido honesto, em contexto seguro",
+      "end": "## Dia 13 — Seguir a curiosidade"
+    },
+    {
+      "start": "## Dia 13 — Seguir a curiosidade",
+      "end": "## Dia 14 — Registrar preferências sem julgar"
+    },
+    {
+      "start": "## Dia 14 — Registrar preferências sem julgar",
+      "end": "# ATO III — EVOLUIR"
+    },
+    {
+      "start": "# ATO III — EVOLUIR",
+      "end": "## Dia 16 — Obstáculos não são defeitos"
+    },
+    {
+      "start": "## Dia 16 — Obstáculos não são defeitos",
+      "end": "## Dia 17 — Ajustar antes de abandonar"
+    },
+    {
+      "start": "## Dia 17 — Ajustar antes de abandonar",
+      "end": "## Dia 18 — Guardar referências que realmente servem"
+    },
+    {
+      "start": "## Dia 18 — Guardar referências que realmente servem",
+      "end": "## Dia 19 — O que aprendi sobre preferências"
+    },
+    {
+      "start": "## Dia 19 — O que aprendi sobre preferências",
+      "end": "## Dia 20 — O próximo capítulo"
+    },
+    {
+      "start": "## Dia 20 — O próximo capítulo",
+      "end": "## Dia 21 — Carta de continuidade"
+    },
+    {
+      "start": "## Dia 21 — Carta de continuidade",
+      "end": "# Fechamento — Meu mapa de continuidade"
+    },
+    {
+      "start": "# Fechamento — Meu mapa de continuidade",
+      "end": "Fotografias e materiais promocionais devem observar"
+    }
+  ],
+  "omitParagraphs": [
+    "## Notas editoriais, segurança e referências"
+  ]
+}

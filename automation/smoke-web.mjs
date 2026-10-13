@@ -7,6 +7,10 @@ const routes = [
   "/inicio",
   "/descobrir",
   "/biblioteca",
+  "/ler/21-dias-meu-melhor-reflexo",
+  "/ler/recomecar-depois-dos-40",
+  "/ler/diario-de-amor-proprio-30-encontros-comigo",
+
   "/ler/7-dias-para-me-escolher",
   "/ler/eu-sou-bela-do-meu-jeito",
   "/ler/uma-pausa-que-tambem-e-sua",

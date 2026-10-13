@@ -5,7 +5,11 @@ export function importGuide(source, recipe) {
   function blocks(text) {
     return text.split(/\n\s*\n/).flatMap(part => {
       const p = part.trim();
-      if (!p || p === "---") return [];
+      if (!p || p === "---" || (recipe.omitParagraphs ?? []).includes(p)) return [];
+      const inlineCallout = p.match(/^>\s*\[CALLOUT[^\]]*\]\s*([\s\S]+)$/);
+      if (inlineCallout) return [{ type: "callout", tone: "note", text: plain(inlineCallout[1]) }];
+      const editorialReminder = p.match(/^>\s*\*\*Lembrete editorial:\*\*\s*([\s\S]+)$/);
+      if (editorialReminder) return [{ type: "callout", tone: "note", text: plain(editorialReminder[1]) }];
       const label = p.match(/^\[([^\]]+)\]\n([\s\S]+)$/);
       if (label) {
         if (label[1].startsWith("CALLOUT"))

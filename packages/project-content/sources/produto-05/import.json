@@ -1,0 +1,560 @@
+{
+  "publication": {
+    "schemaVersion": "0.2",
+    "id": "diario-de-amor-proprio-30-encontros-comigo",
+    "slug": "diario-de-amor-proprio-30-encontros-comigo",
+    "type": "ebook",
+    "status": "preview",
+    "locale": "pt-BR",
+    "title": "Diário de Amor-Próprio — 30 Encontros Comigo",
+    "subtitle": "Uma página de cada vez, sem obrigação de ser perfeita.",
+    "authors": [
+      "EspelhoMeu"
+    ],
+    "edition": "Homologação · Preview editorial v1.2 (master v1.0; extras v1.1)",
+    "tags": [
+      "Diário guiado",
+      "30 encontros independentes"
+    ],
+    "access": {
+      "mode": "public"
+    },
+    "media": [
+      {
+        "id": "p05-media-1",
+        "kind": "image",
+        "title": "Diário de Amor-Próprio — 30 Encontros Comigo",
+        "assetPath": "/conteudo/produto-05/CAPA_ESPELHOMEU-P05_v1.2.png",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1JYkadqViWHNg0UikEdpSCTb5z1_IZy8K/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "CAPA_ESPELHOMEU-P05_v1.2.png",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1024,
+          "height": 1536
+        },
+        "alt": "Ilustração editorial de mulher adulta em cenário mediterrânico iluminado pelo pôr do sol, com tipografia cobre e elementos florais."
+      },
+      {
+        "id": "p05-media-2",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-05/MEDIA_EXTRA_05_PAISAGEM_v1.1.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1YnNhdl2LndfDT48qyhTVaLWpE3x048jB/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "MEDIA_EXTRA_05_PAISAGEM_v1.1.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1024,
+          "height": 768
+        },
+        "alt": "Mulher de costas numa varanda florida, junto de uma mesa com caderno e xícara, com vista para a costa ao entardecer."
+      },
+      {
+        "id": "p05-media-3",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-05/MEDIA_EXTRA_05_EDITORIAL_v1.1.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1oB2UV0bjFj18XTtCXXPkR0Q5P-tLyB9n/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "MEDIA_EXTRA_05_EDITORIAL_v1.1.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1200,
+          "height": 900
+        },
+        "alt": "Mulher de costas numa varanda florida, junto de uma mesa com caderno e xícara, com vista para a costa ao entardecer."
+      },
+      {
+        "id": "p05-media-4",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-05/ATMOSFERA_05_DETALHE_v1.1.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1lJKZKsWF_NfV2KA6a8Qhyrkumeh_XzEp/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "ATMOSFERA_05_DETALHE_v1.1.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1024,
+          "height": 230
+        },
+        "alt": "Detalhe de mesa com caderno, caneta e xícara em luz quente."
+      },
+      {
+        "id": "p05-media-5",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-05/CENA_EDITORIAL_05_BASE_v1.1.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1EeFCcmPiPIh-DE9Aeo0Rjcjd9_0ZDqtg/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "CENA_EDITORIAL_05_BASE_v1.1.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 834,
+          "height": 660
+        },
+        "alt": "Mulher de costas numa varanda florida, junto de uma mesa com caderno e xícara, com vista para a costa ao entardecer."
+      },
+      {
+        "id": "p05-media-6",
+        "kind": "document",
+        "title": "30 cartões de reflexão",
+        "assetPath": "/conteudo/produto-05/CARTOES_ESPELHOMEU-P05_v1.1.pdf",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1lIHY9cioAvtG0wYKeFjjameaK1VjxZ2u/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "CARTOES_ESPELHOMEU-P05_v1.1.pdf",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      },
+      {
+        "id": "p05-media-7",
+        "kind": "document",
+        "title": "Caderno de escrita — 30 Encontros Comigo",
+        "assetPath": "/conteudo/produto-05/CADERNO_ESPELHOMEU-P05_v1.1.pdf",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1IcbNwZi54jMo5HyCFIIqYNcZXc_GyYEs/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "CADERNO_ESPELHOMEU-P05_v1.1.pdf",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      }
+    ],
+    "chapters": [
+      {
+        "id": "p05-secao-1",
+        "slug": "secao-1",
+        "title": "Como usar este diário",
+        "order": 0,
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-2",
+        "slug": "secao-2",
+        "title": "ENCONTRO 01 — Hoje estou",
+        "order": 1,
+        "part": "PARTE — PRESENÇA",
+        "mediaPlacements": [
+          {
+            "id": "p05-media-5-placement",
+            "mediaId": "p05-media-5",
+            "anchor": "p05-secao-2",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p05-secao-3",
+        "slug": "secao-3",
+        "title": "ENCONTRO 02 — Uma pequena alegria",
+        "order": 2,
+        "part": "PARTE — PRESENÇA",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-4",
+        "slug": "secao-4",
+        "title": "ENCONTRO 03 — O que já me sustentou",
+        "order": 3,
+        "part": "PARTE — PRESENÇA",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-5",
+        "slug": "secao-5",
+        "title": "ENCONTRO 04 — O que preciso",
+        "order": 4,
+        "part": "PARTE — PRESENÇA",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-6",
+        "slug": "secao-6",
+        "title": "ENCONTRO 05 — Um silêncio bom",
+        "order": 5,
+        "part": "PARTE — PRESENÇA",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-7",
+        "slug": "secao-7",
+        "title": "ENCONTRO 06 — Um descanso possível",
+        "order": 6,
+        "part": "PARTE — PRESENÇA",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-8",
+        "slug": "secao-8",
+        "title": "ENCONTRO 07 — Um gesto do passado",
+        "order": 7,
+        "part": "PARTE — HISTÓRIA",
+        "mediaPlacements": [
+          {
+            "id": "p05-media-4-placement",
+            "mediaId": "p05-media-4",
+            "anchor": "p05-secao-8",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p05-secao-9",
+        "slug": "secao-9",
+        "title": "ENCONTRO 08 — Uma aprendizagem",
+        "order": 8,
+        "part": "PARTE — HISTÓRIA",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-10",
+        "slug": "secao-10",
+        "title": "ENCONTRO 09 — Um erro sem sentença",
+        "order": 9,
+        "part": "PARTE — HISTÓRIA",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-11",
+        "slug": "secao-11",
+        "title": "ENCONTRO 10 — Uma coragem discreta",
+        "order": 10,
+        "part": "PARTE — HISTÓRIA",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-12",
+        "slug": "secao-12",
+        "title": "ENCONTRO 11 — Uma amizade",
+        "order": 11,
+        "part": "PARTE — HISTÓRIA",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-13",
+        "slug": "secao-13",
+        "title": "ENCONTRO 12 — O que permaneceu meu",
+        "order": 12,
+        "part": "PARTE — HISTÓRIA",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-14",
+        "slug": "secao-14",
+        "title": "ENCONTRO 13 — Um lugar de conforto",
+        "order": 13,
+        "part": "PARTE — CORPO E MUNDO",
+        "mediaPlacements": [
+          {
+            "id": "p05-media-2-placement",
+            "mediaId": "p05-media-2",
+            "anchor": "p05-secao-14",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p05-secao-15",
+        "slug": "secao-15",
+        "title": "ENCONTRO 14 — Uma sensação",
+        "order": 14,
+        "part": "PARTE — CORPO E MUNDO",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-16",
+        "slug": "secao-16",
+        "title": "ENCONTRO 15 — Respeito ao corpo",
+        "order": 15,
+        "part": "PARTE — CORPO E MUNDO",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-17",
+        "slug": "secao-17",
+        "title": "ENCONTRO 16 — Roupa e memória",
+        "order": 16,
+        "part": "PARTE — CORPO E MUNDO",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-18",
+        "slug": "secao-18",
+        "title": "ENCONTRO 17 — Um ritual cotidiano",
+        "order": 17,
+        "part": "PARTE — CORPO E MUNDO",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-19",
+        "slug": "secao-19",
+        "title": "ENCONTRO 18 — O que me dá energia sem cobrança",
+        "order": 18,
+        "part": "PARTE — CORPO E MUNDO",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-20",
+        "slug": "secao-20",
+        "title": "ENCONTRO 19 — Um sim honesto",
+        "order": 19,
+        "part": "PARTE — ESCOLHAS",
+        "mediaPlacements": [
+          {
+            "id": "p05-media-3-placement",
+            "mediaId": "p05-media-3",
+            "anchor": "p05-secao-20",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p05-secao-21",
+        "slug": "secao-21",
+        "title": "ENCONTRO 20 — Um não possível",
+        "order": 20,
+        "part": "PARTE — ESCOLHAS",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-22",
+        "slug": "secao-22",
+        "title": "ENCONTRO 21 — O que quero pedir",
+        "order": 21,
+        "part": "PARTE — ESCOLHAS",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-23",
+        "slug": "secao-23",
+        "title": "ENCONTRO 22 — Algo que não devo provar",
+        "order": 22,
+        "part": "PARTE — ESCOLHAS",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-24",
+        "slug": "secao-24",
+        "title": "ENCONTRO 23 — Uma escolha leve",
+        "order": 23,
+        "part": "PARTE — ESCOLHAS",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-25",
+        "slug": "secao-25",
+        "title": "ENCONTRO 24 — Uma referência minha",
+        "order": 24,
+        "part": "PARTE — ESCOLHAS",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-26",
+        "slug": "secao-26",
+        "title": "ENCONTRO 25 — O que me inspira",
+        "order": 25,
+        "part": "PARTE — CONTINUIDADE",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-27",
+        "slug": "secao-27",
+        "title": "ENCONTRO 26 — Um cuidado repetível",
+        "order": 26,
+        "part": "PARTE — CONTINUIDADE",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-28",
+        "slug": "secao-28",
+        "title": "ENCONTRO 27 — Um sonho sem prazo",
+        "order": 27,
+        "part": "PARTE — CONTINUIDADE",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-29",
+        "slug": "secao-29",
+        "title": "ENCONTRO 28 — Meu próximo passo",
+        "order": 28,
+        "part": "PARTE — CONTINUIDADE",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-30",
+        "slug": "secao-30",
+        "title": "ENCONTRO 29 — Carta carinhosa",
+        "order": 29,
+        "part": "PARTE — CONTINUIDADE",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-31",
+        "slug": "secao-31",
+        "title": "ENCONTRO 30 — O que escolho levar comigo",
+        "order": 30,
+        "part": "PARTE — CONTINUIDADE",
+        "mediaPlacements": []
+      },
+      {
+        "id": "p05-secao-32",
+        "slug": "secao-32",
+        "title": "Voltar a estas páginas",
+        "order": 31,
+        "mediaPlacements": [
+          {
+            "id": "p05-media-6-placement",
+            "mediaId": "p05-media-6",
+            "anchor": "p05-secao-32",
+            "position": "after"
+          },
+          {
+            "id": "p05-media-7-placement",
+            "mediaId": "p05-media-7",
+            "anchor": "p05-secao-32",
+            "position": "after"
+          }
+        ]
+      }
+    ],
+    "cover": "/conteudo/produto-05/CAPA_ESPELHOMEU-P05_v1.2.png"
+  },
+  "sections": [
+    {
+      "start": "**Nota de enquadramento:**",
+      "end": "## PARTE — PRESENÇA"
+    },
+    {
+      "start": "## PARTE — PRESENÇA",
+      "end": "### ENCONTRO 02 — Uma pequena alegria"
+    },
+    {
+      "start": "### ENCONTRO 02 — Uma pequena alegria",
+      "end": "### ENCONTRO 03 — O que já me sustentou"
+    },
+    {
+      "start": "### ENCONTRO 03 — O que já me sustentou",
+      "end": "### ENCONTRO 04 — O que preciso"
+    },
+    {
+      "start": "### ENCONTRO 04 — O que preciso",
+      "end": "### ENCONTRO 05 — Um silêncio bom"
+    },
+    {
+      "start": "### ENCONTRO 05 — Um silêncio bom",
+      "end": "### ENCONTRO 06 — Um descanso possível"
+    },
+    {
+      "start": "### ENCONTRO 06 — Um descanso possível",
+      "end": "## PARTE — HISTÓRIA"
+    },
+    {
+      "start": "## PARTE — HISTÓRIA",
+      "end": "### ENCONTRO 08 — Uma aprendizagem"
+    },
+    {
+      "start": "### ENCONTRO 08 — Uma aprendizagem",
+      "end": "### ENCONTRO 09 — Um erro sem sentença"
+    },
+    {
+      "start": "### ENCONTRO 09 — Um erro sem sentença",
+      "end": "### ENCONTRO 10 — Uma coragem discreta"
+    },
+    {
+      "start": "### ENCONTRO 10 — Uma coragem discreta",
+      "end": "### ENCONTRO 11 — Uma amizade"
+    },
+    {
+      "start": "### ENCONTRO 11 — Uma amizade",
+      "end": "### ENCONTRO 12 — O que permaneceu meu"
+    },
+    {
+      "start": "### ENCONTRO 12 — O que permaneceu meu",
+      "end": "## PARTE — CORPO E MUNDO"
+    },
+    {
+      "start": "## PARTE — CORPO E MUNDO",
+      "end": "### ENCONTRO 14 — Uma sensação"
+    },
+    {
+      "start": "### ENCONTRO 14 — Uma sensação",
+      "end": "### ENCONTRO 15 — Respeito ao corpo"
+    },
+    {
+      "start": "### ENCONTRO 15 — Respeito ao corpo",
+      "end": "### ENCONTRO 16 — Roupa e memória"
+    },
+    {
+      "start": "### ENCONTRO 16 — Roupa e memória",
+      "end": "### ENCONTRO 17 — Um ritual cotidiano"
+    },
+    {
+      "start": "### ENCONTRO 17 — Um ritual cotidiano",
+      "end": "### ENCONTRO 18 — O que me dá energia sem cobrança"
+    },
+    {
+      "start": "### ENCONTRO 18 — O que me dá energia sem cobrança",
+      "end": "## PARTE — ESCOLHAS"
+    },
+    {
+      "start": "## PARTE — ESCOLHAS",
+      "end": "### ENCONTRO 20 — Um não possível"
+    },
+    {
+      "start": "### ENCONTRO 20 — Um não possível",
+      "end": "### ENCONTRO 21 — O que quero pedir"
+    },
+    {
+      "start": "### ENCONTRO 21 — O que quero pedir",
+      "end": "### ENCONTRO 22 — Algo que não devo provar"
+    },
+    {
+      "start": "### ENCONTRO 22 — Algo que não devo provar",
+      "end": "### ENCONTRO 23 — Uma escolha leve"
+    },
+    {
+      "start": "### ENCONTRO 23 — Uma escolha leve",
+      "end": "### ENCONTRO 24 — Uma referência minha"
+    },
+    {
+      "start": "### ENCONTRO 24 — Uma referência minha",
+      "end": "## PARTE — CONTINUIDADE"
+    },
+    {
+      "start": "## PARTE — CONTINUIDADE",
+      "end": "### ENCONTRO 26 — Um cuidado repetível"
+    },
+    {
+      "start": "### ENCONTRO 26 — Um cuidado repetível",
+      "end": "### ENCONTRO 27 — Um sonho sem prazo"
+    },
+    {
+      "start": "### ENCONTRO 27 — Um sonho sem prazo",
+      "end": "### ENCONTRO 28 — Meu próximo passo"
+    },
+    {
+      "start": "### ENCONTRO 28 — Meu próximo passo",
+      "end": "### ENCONTRO 29 — Carta carinhosa"
+    },
+    {
+      "start": "### ENCONTRO 29 — Carta carinhosa",
+      "end": "### ENCONTRO 30 — O que escolho levar comigo"
+    },
+    {
+      "start": "### ENCONTRO 30 — O que escolho levar comigo",
+      "end": "## Três modos de voltar a estas páginas"
+    },
+    {
+      "start": "## Três modos de voltar a estas páginas",
+      "end": "## REFERÊNCIAS E FACT-CHECK"
+    }
+  ],
+  "omitParagraphs": []
+}
