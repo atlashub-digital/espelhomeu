@@ -57,7 +57,7 @@ try {
           ([401, 403].includes(response.status()) && /Authentication Required|Vercel/i.test(title))) {
         blocked = { status: "BLOCKED_DEPLOYMENT_PROTECTION", route, httpStatus: response.status(), host: location.hostname, path: location.pathname, title };
         await page.screenshot({ path: output + "/deployment-protection.png" });
-        console.log("::warning::Online browser verification BLOCKED by Vercel Deployment Protection. This is NOT a passing browser check; contentReady stays false.");
+        console.log("::warning::Online browser verification BLOCKED by Vercel Deployment Protection. This is NOT a passing browser check. Editorial gate approval is recorded separately.");
         await page.close();
         break devices;
       }
