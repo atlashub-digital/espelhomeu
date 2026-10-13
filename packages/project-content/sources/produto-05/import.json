@@ -11,7 +11,7 @@
     "authors": [
       "EspelhoMeu"
     ],
-    "edition": "Homologação · Preview editorial v1.2 (master v1.0; extras v1.1)",
+    "edition": "Homologação · Preview editorial v1.3 (extras v1.1)",
     "tags": [
       "Diário guiado",
       "30 encontros independentes"
@@ -20,86 +20,6 @@
       "mode": "public"
     },
     "media": [
-      {
-        "id": "p05-media-1",
-        "kind": "image",
-        "title": "Diário de Amor-Próprio — 30 Encontros Comigo",
-        "assetPath": "/conteudo/produto-05/CAPA_ESPELHOMEU-P05_v1.2.png",
-        "publisher": "EspelhoMeu",
-        "sourcePage": "https://drive.google.com/file/d/1JYkadqViWHNg0UikEdpSCTb5z1_IZy8K/view",
-        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
-        "metadata": {
-          "sourceFile": "CAPA_ESPELHOMEU-P05_v1.2.png",
-          "editorialStatus": "READY FOR AMF INGESTION",
-          "width": 1024,
-          "height": 1536
-        },
-        "alt": "Ilustração editorial de mulher adulta em cenário mediterrânico iluminado pelo pôr do sol, com tipografia cobre e elementos florais."
-      },
-      {
-        "id": "p05-media-2",
-        "kind": "image",
-        "title": "Imagem editorial",
-        "assetPath": "/conteudo/produto-05/MEDIA_EXTRA_05_PAISAGEM_v1.1.jpg",
-        "publisher": "EspelhoMeu",
-        "sourcePage": "https://drive.google.com/file/d/1YnNhdl2LndfDT48qyhTVaLWpE3x048jB/view",
-        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
-        "metadata": {
-          "sourceFile": "MEDIA_EXTRA_05_PAISAGEM_v1.1.jpg",
-          "editorialStatus": "READY FOR AMF INGESTION",
-          "width": 1024,
-          "height": 768
-        },
-        "alt": "Mulher de costas numa varanda florida, junto de uma mesa com caderno e xícara, com vista para a costa ao entardecer."
-      },
-      {
-        "id": "p05-media-3",
-        "kind": "image",
-        "title": "Imagem editorial",
-        "assetPath": "/conteudo/produto-05/MEDIA_EXTRA_05_EDITORIAL_v1.1.jpg",
-        "publisher": "EspelhoMeu",
-        "sourcePage": "https://drive.google.com/file/d/1oB2UV0bjFj18XTtCXXPkR0Q5P-tLyB9n/view",
-        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
-        "metadata": {
-          "sourceFile": "MEDIA_EXTRA_05_EDITORIAL_v1.1.jpg",
-          "editorialStatus": "READY FOR AMF INGESTION",
-          "width": 1200,
-          "height": 900
-        },
-        "alt": "Mulher de costas numa varanda florida, junto de uma mesa com caderno e xícara, com vista para a costa ao entardecer."
-      },
-      {
-        "id": "p05-media-4",
-        "kind": "image",
-        "title": "Imagem editorial",
-        "assetPath": "/conteudo/produto-05/ATMOSFERA_05_DETALHE_v1.1.jpg",
-        "publisher": "EspelhoMeu",
-        "sourcePage": "https://drive.google.com/file/d/1lJKZKsWF_NfV2KA6a8Qhyrkumeh_XzEp/view",
-        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
-        "metadata": {
-          "sourceFile": "ATMOSFERA_05_DETALHE_v1.1.jpg",
-          "editorialStatus": "READY FOR AMF INGESTION",
-          "width": 1024,
-          "height": 230
-        },
-        "alt": "Detalhe de mesa com caderno, caneta e xícara em luz quente."
-      },
-      {
-        "id": "p05-media-5",
-        "kind": "image",
-        "title": "Imagem editorial",
-        "assetPath": "/conteudo/produto-05/CENA_EDITORIAL_05_BASE_v1.1.jpg",
-        "publisher": "EspelhoMeu",
-        "sourcePage": "https://drive.google.com/file/d/1EeFCcmPiPIh-DE9Aeo0Rjcjd9_0ZDqtg/view",
-        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
-        "metadata": {
-          "sourceFile": "CENA_EDITORIAL_05_BASE_v1.1.jpg",
-          "editorialStatus": "READY FOR AMF INGESTION",
-          "width": 834,
-          "height": 660
-        },
-        "alt": "Mulher de costas numa varanda florida, junto de uma mesa com caderno e xícara, com vista para a costa ao entardecer."
-      },
       {
         "id": "p05-media-6",
         "kind": "document",
@@ -125,6 +45,70 @@
           "sourceFile": "CADERNO_ESPELHOMEU-P05_v1.1.pdf",
           "editorialStatus": "READY FOR AMF INGESTION"
         }
+      },
+      {
+        "id": "p05-media-1",
+        "kind": "image",
+        "title": "Diário de Amor-Próprio — 30 Encontros Comigo",
+        "assetPath": "/conteudo/produto-05/CAPA_ESPELHOMEU-P05_v1.3.png",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1Rf5sK1nJzVGS5ZavlPKevzeBgNizofSP/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "CAPA_ESPELHOMEU-P05_v1.3.png",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1296,
+          "height": 1944
+        },
+        "alt": "Capa de Diário de Amor-Próprio — 30 Encontros Comigo."
+      },
+      {
+        "id": "p05-editorial-1",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-05/MEDIA_EDITORIAL_P05_01_v1.3.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1ha0iICooz8AoC0FWGJNtFyZcKqPsYxTz/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "MEDIA_EDITORIAL_P05_01_v1.3.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1400,
+          "height": 1000
+        },
+        "alt": "Livro aberto e chá numa varanda com flores ao entardecer."
+      },
+      {
+        "id": "p05-editorial-2",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-05/MEDIA_EDITORIAL_P05_02_v1.3.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1yRmzlKY_otofANL1J-ocFaTT4Y02gFt4/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "MEDIA_EDITORIAL_P05_02_v1.3.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1400,
+          "height": 1000
+        },
+        "alt": "Mulher a caminhar em direção ao mar numa rua florida."
+      },
+      {
+        "id": "p05-editorial-3",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-05/MEDIA_EDITORIAL_P05_03_v1.3.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1MXg4jcK6tz_FggrnXZtVysW8Q0Xpld3l/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "MEDIA_EDITORIAL_P05_03_v1.3.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1400,
+          "height": 1000
+        },
+        "alt": "Mulher sentada perante uma vista costeira ao pôr do sol."
       }
     ],
     "chapters": [
@@ -133,7 +117,14 @@
         "slug": "secao-1",
         "title": "Como usar este diário",
         "order": 0,
-        "mediaPlacements": []
+        "mediaPlacements": [
+          {
+            "id": "p05-editorial-1-placement",
+            "mediaId": "p05-editorial-1",
+            "anchor": "p05-secao-1",
+            "position": "before"
+          }
+        ]
       },
       {
         "id": "p05-secao-2",
@@ -141,14 +132,7 @@
         "title": "ENCONTRO 01 — Hoje estou",
         "order": 1,
         "part": "PARTE — PRESENÇA",
-        "mediaPlacements": [
-          {
-            "id": "p05-media-5-placement",
-            "mediaId": "p05-media-5",
-            "anchor": "p05-secao-2",
-            "position": "before"
-          }
-        ]
+        "mediaPlacements": []
       },
       {
         "id": "p05-secao-3",
@@ -196,14 +180,7 @@
         "title": "ENCONTRO 07 — Um gesto do passado",
         "order": 7,
         "part": "PARTE — HISTÓRIA",
-        "mediaPlacements": [
-          {
-            "id": "p05-media-4-placement",
-            "mediaId": "p05-media-4",
-            "anchor": "p05-secao-8",
-            "position": "before"
-          }
-        ]
+        "mediaPlacements": []
       },
       {
         "id": "p05-secao-9",
@@ -251,14 +228,7 @@
         "title": "ENCONTRO 13 — Um lugar de conforto",
         "order": 13,
         "part": "PARTE — CORPO E MUNDO",
-        "mediaPlacements": [
-          {
-            "id": "p05-media-2-placement",
-            "mediaId": "p05-media-2",
-            "anchor": "p05-secao-14",
-            "position": "before"
-          }
-        ]
+        "mediaPlacements": []
       },
       {
         "id": "p05-secao-15",
@@ -308,8 +278,8 @@
         "part": "PARTE — ESCOLHAS",
         "mediaPlacements": [
           {
-            "id": "p05-media-3-placement",
-            "mediaId": "p05-media-3",
+            "id": "p05-editorial-2-placement",
+            "mediaId": "p05-editorial-2",
             "anchor": "p05-secao-20",
             "position": "before"
           }
@@ -361,7 +331,14 @@
         "title": "ENCONTRO 25 — O que me inspira",
         "order": 25,
         "part": "PARTE — CONTINUIDADE",
-        "mediaPlacements": []
+        "mediaPlacements": [
+          {
+            "id": "p05-editorial-3-placement",
+            "mediaId": "p05-editorial-3",
+            "anchor": "p05-secao-26",
+            "position": "before"
+          }
+        ]
       },
       {
         "id": "p05-secao-27",
@@ -424,7 +401,7 @@
         ]
       }
     ],
-    "cover": "/conteudo/produto-05/CAPA_ESPELHOMEU-P05_v1.2.png"
+    "cover": "/conteudo/produto-05/CAPA_ESPELHOMEU-P05_v1.3.png"
   },
   "sections": [
     {
@@ -553,8 +530,13 @@
     },
     {
       "start": "## Três modos de voltar a estas páginas",
-      "end": "## REFERÊNCIAS E FACT-CHECK"
+      "end": null
     }
   ],
-  "omitParagraphs": []
+  "omitParagraphs": [
+    "## REFERÊNCIAS E FACT-CHECK",
+    "Esta obra oferece reflexões pessoais e escrita criativa, sem estatísticas, aconselhamento clínico ou alegações de eficácia terapêutica. Cenas e exemplos são ficcionais. Revisão humana deve observar privacidade, linguagem inclusiva, acessibilidade e situações de vulnerabilidade emocional.",
+    "## NOTAS EDITORIAIS E DE MEDIA",
+    "As capas já aprovadas foram geradas por IA e necessitam de revisão humana de anatomia, reflexos, tipografia embutida, direitos de imagem e autorização de uso comercial. Fotografias derivadas são recortes dessas capas, não fotografias de pessoas reais identificadas. Qualquer texto embutido em mockups não constitui fonte editorial."
+  ]
 }

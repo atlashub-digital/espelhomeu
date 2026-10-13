@@ -140,6 +140,10 @@ try {
       for (const [i, chapter] of product.chapters.entries()) {
         assert.equal(await page.locator(".reader-content h2").innerText(), chapter.title);
         const text = await page.locator(".reader-content").innerText();
+        if (i === product.chapters.length - 1 && product.id === "recomecar-depois-dos-40")
+          assert.ok(text.includes("Três horizontes, sem pressa.") && text.includes("Mapa de Novos Capítulos"));
+        if (i === product.chapters.length - 1 && product.id === "diario-de-amor-proprio-30-encontros-comigo")
+          assert.ok(text.includes("Um índice afetivo") && text.includes("Uma página inteiramente sua"));
         assert.ok(!/\[MEDIA|\[CALLOUT|FICHA EDITORIAL|FACT-CHECK|NOTAS EDITORIAIS|Lembrete editorial:|99_ARQUIVO|R\$/.test(text));
         for (const img of await page.locator(".reader-content img").all()) {
           await img.scrollIntoViewIfNeeded(); await img.evaluate(image => image.decode());
