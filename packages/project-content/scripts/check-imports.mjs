@@ -40,3 +40,21 @@ syntaxes.omitParagraphs = ["[MEDIA 01] Operacional"];
 const text = "## Intro\n\n> [CALLOUT — INSIGHT] Texto preservado.\n\n[MEDIA 01] Operacional\n\n## QA";
 assert.deepEqual(importGuide(text, syntaxes).chapters[0].body.blocks.at(-1), { type: "callout", tone: "note", text: "Texto preservado." });
 console.log("PASS P01/P02 unchanged; three editorial shapes and inline callouts; no operational markers");
+
+// Final-sync supplements occur after operational notes, at EOF; no silent truncation.
+assert.equal(createHash("sha256").update(JSON.stringify(manifest.publications.find(p => p.id === "21-dias-meu-melhor-reflexo"))).digest("hex"), "841d52a2a97ebf01241d257cd261c0821ca3ad1d7f7391cdf4f20c29da0655be");
+const eofRecipe = structuredClone(other);
+eofRecipe.sections[0].end = null;
+assert.equal(importGuide("## Intro\n\nÚltimo parágrafo.", eofRecipe).chapters[0].body.blocks.at(-1).text, "Último parágrafo.");
+assert.throws(() => importGuide("Fonte sem marcador", eofRecipe), /boundary/);
+for (const [slug, supplement] of [
+  ["recomecar-depois-dos-40", "Três horizontes, sem pressa."],
+  ["diario-de-amor-proprio-30-encontros-comigo", "Uma página inteiramente sua"],
+]) {
+  const product = manifest.publications.find(p => p.id === slug);
+  assert.ok(JSON.stringify(product.chapters.at(-1).body).includes(supplement));
+  assert.equal(product.media.filter(m => m.kind === "image").length, 4);
+}
+const diary = manifest.publications.find(p => p.id === "diario-de-amor-proprio-30-encontros-comigo");
+assert.equal(new Set(diary.chapters.filter(c => c.part).map(c => c.part)).size, 5);
+console.log("PASS final supplements retained, five diary parts, current covers/media, EOF boundary guard");

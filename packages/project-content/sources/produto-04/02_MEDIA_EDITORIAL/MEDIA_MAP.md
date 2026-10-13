@@ -1,18 +1,11 @@
-# MEDIA MAP — ESPELHOMEU-P04 v1.1
+# Mapa de media · EspelhoMeu P04 · v1.2
 
-**Estado:** READY FOR AMF INGESTION. **Não é SALES READY.**
+**Capa:** `01_CAPA_E_IDENTIDADE/CAPA_ESPELHOMEU-P04_v1.2.png`, extraída da página 1 do PDF para evitar divergência de títulos.
 
-**Prioridade:** Master Markdown em `00_MASTER_EDITORIAL/`, PDF como prova visual e imagens sem texto para páginas internas sempre que possível.
+**Fotografias editoriais ativas:**
 
-| Asset | Função / posição | Alt text |
-|---|---|---|
-| `../01_CAPA_E_IDENTIDADE/CAPA_ESPELHOMEU-P04_v1.1.png` | Capa oficial, página 1, miniatura e landing | Mulher sentada em ambiente luminoso diante de espelho, sem qualquer gesto de escrita. |
-| `CENA_EDITORIAL_04_BASE_v1.1.jpg` | Aberturas de seção do e-book | Mulher observando o pôr do sol numa varanda florida, braços numa pose natural. |
-| `ATMOSFERA_04_DETALHE_v1.1.jpg` | Faixas de atmosfera em capítulos | Detalhe da costa florida em luz quente, sem pessoas a escrever. |
-| `MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg` | Inserção opcional em WebReader | Mulher caminhando por rua costeira florida ao entardecer, segurando um chapéu. |
-| `MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg` | Editorial ou campanha orgânica | Fotografia de atmosfera em tons champagne e cobre. |
+- `MEDIA_EDITORIAL_P04_01_v1.2.jpg`: abertura de capítulo ou transição, mulher em passeio ao pôr do sol. Alt: “Mulher numa paisagem costeira iluminada pelo entardecer.”
+- `MEDIA_EDITORIAL_P04_02_v1.2.jpg`: capítulo de pausa e presença, varanda sobre o mar. Alt: “Mulher sentada numa varanda com vista para a costa ao entardecer.”
+- `MEDIA_EDITORIAL_P04_03_v1.2.jpg`: caderno e contemplação, mesa com flores, livro e chá. Alt: “Caderno aberto, flores e chá numa varanda iluminada pelo pôr do sol.”
 
-**QA visual:** as imagens usadas não incluem a mão artificial a escrever em simultâneo com a personagem vista de costas. Os media antigos devem ser usados apenas a partir de `99_ARQUIVO` e nunca publicados.
-
-**Nota:** textos de imagens geradas por IA não constituem conteúdo editorial canónico. A AMF deve usar textos do master, não OCR de mockups. Direitos e utilização comercial sujeitos a revisão humana.
-
+**Critérios:** não apresentar as fotografias sintéticas como testemunho nem como pessoas reais identificadas; não extrair texto de maquetes. Os três media são opcionais no WebReader e não se sobrepõem aos conteúdos. Texto alternativo adaptável à posição final. Revisão humana de licenças e anatomia antes de distribuição comercial.

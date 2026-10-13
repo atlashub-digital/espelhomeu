@@ -11,7 +11,7 @@
     "authors": [
       "EspelhoMeu"
     ],
-    "edition": "Homologação · Preview editorial v1.1",
+    "edition": "Homologação · Preview editorial v1.2 (extras v1.1)",
     "tags": [
       "Novos capítulos",
       "Reflexão"
@@ -50,81 +50,65 @@
         "id": "p04-media-3",
         "kind": "image",
         "title": "Recomeçar Depois dos 40",
-        "assetPath": "/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.1.png",
+        "assetPath": "/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.2.png",
         "publisher": "EspelhoMeu",
-        "sourcePage": "https://drive.google.com/file/d/16qr8mCa6eClKEBgdKDP4sX5AOqhlJUwC/view",
+        "sourcePage": "https://drive.google.com/file/d/1PZVy1gxPtNvE4Mo4q24sIOWJ1U9VrzjB/view",
         "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
         "metadata": {
-          "sourceFile": "CAPA_ESPELHOMEU-P04_v1.1.png",
+          "sourceFile": "CAPA_ESPELHOMEU-P04_v1.2.png",
           "editorialStatus": "READY FOR AMF INGESTION",
-          "width": 1024,
-          "height": 1536
+          "width": 1296,
+          "height": 1944
         },
-        "alt": "Mulher sentada em ambiente luminoso diante de espelho, sem qualquer gesto de escrita."
+        "alt": "Capa de Recomeçar Depois dos 40."
       },
       {
-        "id": "p04-media-4",
+        "id": "p04-editorial-1",
         "kind": "image",
         "title": "Imagem editorial",
-        "assetPath": "/conteudo/produto-04/MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg",
+        "assetPath": "/conteudo/produto-04/MEDIA_EDITORIAL_P04_01_v1.2.jpg",
         "publisher": "EspelhoMeu",
-        "sourcePage": "https://drive.google.com/file/d/1vS3HXz_hiHL7cy7VUMmN-_ZALme0DkV5/view",
+        "sourcePage": "https://drive.google.com/file/d/1tUXwloTFZFn9UeK0tMe7wZiRN2ZJH5Wz/view",
         "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
         "metadata": {
-          "sourceFile": "MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg",
+          "sourceFile": "MEDIA_EDITORIAL_P04_01_v1.2.jpg",
           "editorialStatus": "READY FOR AMF INGESTION",
-          "width": 1024,
-          "height": 768
+          "width": 1400,
+          "height": 1000
         },
-        "alt": "Mulher de costas numa varanda florida, segurando um chapéu, com vista para a costa ao entardecer."
+        "alt": "Mulher numa paisagem costeira iluminada pelo entardecer."
       },
       {
-        "id": "p04-media-5",
+        "id": "p04-editorial-2",
         "kind": "image",
         "title": "Imagem editorial",
-        "assetPath": "/conteudo/produto-04/MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg",
+        "assetPath": "/conteudo/produto-04/MEDIA_EDITORIAL_P04_02_v1.2.jpg",
         "publisher": "EspelhoMeu",
-        "sourcePage": "https://drive.google.com/file/d/1K5D6FStlwLulKdgLCHIGK7Wogfx90_2m/view",
+        "sourcePage": "https://drive.google.com/file/d/148Izn5qjocfHAo5qvtKa-O7w7e40besE/view",
         "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
         "metadata": {
-          "sourceFile": "MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg",
+          "sourceFile": "MEDIA_EDITORIAL_P04_02_v1.2.jpg",
           "editorialStatus": "READY FOR AMF INGESTION",
-          "width": 1200,
-          "height": 900
+          "width": 1400,
+          "height": 1000
         },
-        "alt": "Mulher sentada numa varanda florida, com vista para a costa ao entardecer."
+        "alt": "Mulher sentada numa varanda com vista para a costa ao entardecer."
       },
       {
-        "id": "p04-media-6",
+        "id": "p04-editorial-3",
         "kind": "image",
         "title": "Imagem editorial",
-        "assetPath": "/conteudo/produto-04/ATMOSFERA_04_DETALHE_v1.1.jpg",
+        "assetPath": "/conteudo/produto-04/MEDIA_EDITORIAL_P04_03_v1.2.jpg",
         "publisher": "EspelhoMeu",
-        "sourcePage": "https://drive.google.com/file/d/18x_J13fLAfHI42QOY5kWwYKWLklwnxrm/view",
+        "sourcePage": "https://drive.google.com/file/d/1MuRFldl-a7ch-KInERDXfd-GV7IwpFGX/view",
         "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
         "metadata": {
-          "sourceFile": "ATMOSFERA_04_DETALHE_v1.1.jpg",
+          "sourceFile": "MEDIA_EDITORIAL_P04_03_v1.2.jpg",
           "editorialStatus": "READY FOR AMF INGESTION",
-          "width": 1024,
-          "height": 292
+          "width": 1400,
+          "height": 1000
         },
-        "alt": "Detalhe de roupa clara, flores e paisagem costeira."
-      },
-      {
-        "id": "p04-media-7",
-        "kind": "image",
-        "title": "Imagem editorial",
-        "assetPath": "/conteudo/produto-04/CENA_EDITORIAL_04_BASE_v1.1.jpg",
-        "publisher": "EspelhoMeu",
-        "sourcePage": "https://drive.google.com/file/d/1BNtU18CLBl6OxGAfVo7V27h87G_nMwfP/view",
-        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
-        "metadata": {
-          "sourceFile": "CENA_EDITORIAL_04_BASE_v1.1.jpg",
-          "editorialStatus": "READY FOR AMF INGESTION",
-          "width": 834,
-          "height": 538
-        },
-        "alt": "Mulher sentada numa varanda florida, com vista para a costa ao entardecer."
+        "alt": "Caderno aberto, flores e chá numa varanda iluminada pelo pôr do sol."
       }
     ],
     "chapters": [
@@ -142,8 +126,8 @@
         "order": 1,
         "mediaPlacements": [
           {
-            "id": "p04-media-7-placement",
-            "mediaId": "p04-media-7",
+            "id": "p04-editorial-1-placement",
+            "mediaId": "p04-editorial-1",
             "anchor": "p04-secao-2",
             "position": "before"
           }
@@ -163,8 +147,8 @@
         "order": 3,
         "mediaPlacements": [
           {
-            "id": "p04-media-6-placement",
-            "mediaId": "p04-media-6",
+            "id": "p04-editorial-2-placement",
+            "mediaId": "p04-editorial-2",
             "anchor": "p04-secao-4",
             "position": "before"
           }
@@ -182,14 +166,7 @@
         "slug": "secao-6",
         "title": "CAPÍTULO 05 — O que ainda quero descobrir",
         "order": 5,
-        "mediaPlacements": [
-          {
-            "id": "p04-media-4-placement",
-            "mediaId": "p04-media-4",
-            "anchor": "p04-secao-6",
-            "position": "before"
-          }
-        ]
+        "mediaPlacements": []
       },
       {
         "id": "p04-secao-7",
@@ -203,14 +180,7 @@
         "slug": "secao-8",
         "title": "CAPÍTULO 07 — O próximo capítulo é meu",
         "order": 7,
-        "mediaPlacements": [
-          {
-            "id": "p04-media-5-placement",
-            "mediaId": "p04-media-5",
-            "anchor": "p04-secao-8",
-            "position": "before"
-          }
-        ]
+        "mediaPlacements": []
       },
       {
         "id": "p04-secao-9",
@@ -218,6 +188,12 @@
         "title": "Mapa de Novos Capítulos e continuidade",
         "order": 8,
         "mediaPlacements": [
+          {
+            "id": "p04-editorial-3-placement",
+            "mediaId": "p04-editorial-3",
+            "anchor": "p04-secao-9",
+            "position": "before"
+          },
           {
             "id": "p04-media-1-placement",
             "mediaId": "p04-media-1",
@@ -233,7 +209,7 @@
         ]
       }
     ],
-    "cover": "/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.1.png"
+    "cover": "/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.2.png"
   },
   "sections": [
     {
@@ -270,7 +246,7 @@
     },
     {
       "start": "## Dez perguntas para outras estações da vida",
-      "end": "## REFERÊNCIAS E FACT-CHECK"
+      "end": null
     }
   ],
   "omitParagraphs": [
@@ -280,6 +256,10 @@
     "[MEDIA 04] Usar enquadramento fotográfico ligado ao tema ou composição tipográfica controlada; verificar MEDIA_MAP.",
     "[MEDIA 05] Usar enquadramento fotográfico ligado ao tema ou composição tipográfica controlada; verificar MEDIA_MAP.",
     "[MEDIA 06] Usar enquadramento fotográfico ligado ao tema ou composição tipográfica controlada; verificar MEDIA_MAP.",
-    "[MEDIA 07] Usar enquadramento fotográfico ligado ao tema ou composição tipográfica controlada; verificar MEDIA_MAP."
+    "[MEDIA 07] Usar enquadramento fotográfico ligado ao tema ou composição tipográfica controlada; verificar MEDIA_MAP.",
+    "## REFERÊNCIAS E FACT-CHECK",
+    "Este é um ensaio e um caderno reflexivo de autoria original. Não apresenta estatísticas, comparações de intervenções ou alegações de eficácia clínica. As cenas são hipotéticas; não representam testemunhos reais. A revisão humana deve confirmar a adequação psicológica da linguagem, a acessibilidade e possíveis implicações de género, idade, raça, mobilidade e condição socioeconómica.",
+    "## NOTAS EDITORIAIS E DE MEDIA",
+    "As capas já aprovadas foram geradas por IA e necessitam de revisão humana de anatomia, reflexos, tipografia embutida, direitos de imagem e autorização de uso comercial. Fotografias derivadas são recortes dessas capas, não fotografias de pessoas reais identificadas. Qualquer texto embutido em mockups não constitui fonte editorial."
   ]
 }

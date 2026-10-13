@@ -2,7 +2,7 @@
 
 *Uma página de cada vez, sem obrigação de ser perfeita.*
 
-**EspelhoMeu · Diário de escrita · Código ESPELHOMEU-P05 · v1.0 · pt-BR · 12/10/2026**
+**EspelhoMeu · Diário de escrita · Código ESPELHOMEU-P05 · v1.3 · pt-BR · 12/10/2026**
 
 ## FICHA EDITORIAL
 
@@ -428,3 +428,18 @@ Esta obra oferece reflexões pessoais e escrita criativa, sem estatísticas, aco
 ## NOTAS EDITORIAIS E DE MEDIA
 
 As capas já aprovadas foram geradas por IA e necessitam de revisão humana de anatomia, reflexos, tipografia embutida, direitos de imagem e autorização de uso comercial. Fotografias derivadas são recortes dessas capas, não fotografias de pessoas reais identificadas. Qualquer texto embutido em mockups não constitui fonte editorial.
+
+## Complemento editorial — Um índice afetivo
+
+O diário não precisa ser seguido em ordem. Use este mapa quando quiser uma entrada que combine com seu momento, sem classificar emoções como certas ou erradas.
+
+- **Quando quero me ouvir:** encontros 01, 04, 05 e 14.
+- **Quando preciso de um limite:** encontros 19, 20, 21 e 22.
+- **Quando quero lembrar meu caminho:** encontros 07, 08, 10 e 12.
+- **Quando busco um próximo passo:** encontros 25, 27, 28 e 30.
+
+### Uma página inteiramente sua
+
+Esta página não pede gratidão obrigatória, positividade nem compromisso diário. Pode ser preenchida, deixada em branco ou revisitada quando houver vontade. Escreva sobre o que está presente agora, um gesto possível dentro da sua realidade e algo que gostaria de guardar. Privacidade importa: escolha onde manter o diário e não se sinta obrigada a compartilhar o que escreveu.
+
+*Este diário é um recurso de reflexão pessoal e não substitui acompanhamento profissional quando necessário.*

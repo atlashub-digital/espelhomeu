@@ -4914,7 +4914,7 @@
       "authors": [
         "EspelhoMeu"
       ],
-      "edition": "Homologação · Preview editorial v1.1",
+      "edition": "Homologação · Preview editorial v1.2 (extras v1.1)",
       "tags": [
         "Novos capítulos",
         "Reflexão"
@@ -4953,81 +4953,65 @@
           "id": "p04-media-3",
           "kind": "image",
           "title": "Recomeçar Depois dos 40",
-          "assetPath": "/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.1.png",
+          "assetPath": "/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.2.png",
           "publisher": "EspelhoMeu",
-          "sourcePage": "https://drive.google.com/file/d/16qr8mCa6eClKEBgdKDP4sX5AOqhlJUwC/view",
+          "sourcePage": "https://drive.google.com/file/d/1PZVy1gxPtNvE4Mo4q24sIOWJ1U9VrzjB/view",
           "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
           "metadata": {
-            "sourceFile": "CAPA_ESPELHOMEU-P04_v1.1.png",
+            "sourceFile": "CAPA_ESPELHOMEU-P04_v1.2.png",
             "editorialStatus": "READY FOR AMF INGESTION",
-            "width": 1024,
-            "height": 1536
+            "width": 1296,
+            "height": 1944
           },
-          "alt": "Mulher sentada em ambiente luminoso diante de espelho, sem qualquer gesto de escrita."
+          "alt": "Capa de Recomeçar Depois dos 40."
         },
         {
-          "id": "p04-media-4",
+          "id": "p04-editorial-1",
           "kind": "image",
           "title": "Imagem editorial",
-          "assetPath": "/conteudo/produto-04/MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg",
+          "assetPath": "/conteudo/produto-04/MEDIA_EDITORIAL_P04_01_v1.2.jpg",
           "publisher": "EspelhoMeu",
-          "sourcePage": "https://drive.google.com/file/d/1vS3HXz_hiHL7cy7VUMmN-_ZALme0DkV5/view",
+          "sourcePage": "https://drive.google.com/file/d/1tUXwloTFZFn9UeK0tMe7wZiRN2ZJH5Wz/view",
           "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
           "metadata": {
-            "sourceFile": "MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg",
+            "sourceFile": "MEDIA_EDITORIAL_P04_01_v1.2.jpg",
             "editorialStatus": "READY FOR AMF INGESTION",
-            "width": 1024,
-            "height": 768
+            "width": 1400,
+            "height": 1000
           },
-          "alt": "Mulher de costas numa varanda florida, segurando um chapéu, com vista para a costa ao entardecer."
+          "alt": "Mulher numa paisagem costeira iluminada pelo entardecer."
         },
         {
-          "id": "p04-media-5",
+          "id": "p04-editorial-2",
           "kind": "image",
           "title": "Imagem editorial",
-          "assetPath": "/conteudo/produto-04/MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg",
+          "assetPath": "/conteudo/produto-04/MEDIA_EDITORIAL_P04_02_v1.2.jpg",
           "publisher": "EspelhoMeu",
-          "sourcePage": "https://drive.google.com/file/d/1K5D6FStlwLulKdgLCHIGK7Wogfx90_2m/view",
+          "sourcePage": "https://drive.google.com/file/d/148Izn5qjocfHAo5qvtKa-O7w7e40besE/view",
           "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
           "metadata": {
-            "sourceFile": "MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg",
+            "sourceFile": "MEDIA_EDITORIAL_P04_02_v1.2.jpg",
             "editorialStatus": "READY FOR AMF INGESTION",
-            "width": 1200,
-            "height": 900
+            "width": 1400,
+            "height": 1000
           },
-          "alt": "Mulher sentada numa varanda florida, com vista para a costa ao entardecer."
+          "alt": "Mulher sentada numa varanda com vista para a costa ao entardecer."
         },
         {
-          "id": "p04-media-6",
+          "id": "p04-editorial-3",
           "kind": "image",
           "title": "Imagem editorial",
-          "assetPath": "/conteudo/produto-04/ATMOSFERA_04_DETALHE_v1.1.jpg",
+          "assetPath": "/conteudo/produto-04/MEDIA_EDITORIAL_P04_03_v1.2.jpg",
           "publisher": "EspelhoMeu",
-          "sourcePage": "https://drive.google.com/file/d/18x_J13fLAfHI42QOY5kWwYKWLklwnxrm/view",
+          "sourcePage": "https://drive.google.com/file/d/1MuRFldl-a7ch-KInERDXfd-GV7IwpFGX/view",
           "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
           "metadata": {
-            "sourceFile": "ATMOSFERA_04_DETALHE_v1.1.jpg",
+            "sourceFile": "MEDIA_EDITORIAL_P04_03_v1.2.jpg",
             "editorialStatus": "READY FOR AMF INGESTION",
-            "width": 1024,
-            "height": 292
+            "width": 1400,
+            "height": 1000
           },
-          "alt": "Detalhe de roupa clara, flores e paisagem costeira."
-        },
-        {
-          "id": "p04-media-7",
-          "kind": "image",
-          "title": "Imagem editorial",
-          "assetPath": "/conteudo/produto-04/CENA_EDITORIAL_04_BASE_v1.1.jpg",
-          "publisher": "EspelhoMeu",
-          "sourcePage": "https://drive.google.com/file/d/1BNtU18CLBl6OxGAfVo7V27h87G_nMwfP/view",
-          "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
-          "metadata": {
-            "sourceFile": "CENA_EDITORIAL_04_BASE_v1.1.jpg",
-            "editorialStatus": "READY FOR AMF INGESTION",
-            "width": 834,
-            "height": 538
-          },
-          "alt": "Mulher sentada numa varanda florida, com vista para a costa ao entardecer."
+          "alt": "Caderno aberto, flores e chá numa varanda iluminada pelo pôr do sol."
         }
       ],
       "chapters": [
@@ -5054,8 +5038,8 @@
           "order": 1,
           "mediaPlacements": [
             {
-              "id": "p04-media-7-placement",
-              "mediaId": "p04-media-7",
+              "id": "p04-editorial-1-placement",
+              "mediaId": "p04-editorial-1",
               "anchor": "p04-secao-2",
               "position": "before"
             }
@@ -5242,8 +5226,8 @@
           "order": 3,
           "mediaPlacements": [
             {
-              "id": "p04-media-6-placement",
-              "mediaId": "p04-media-6",
+              "id": "p04-editorial-2-placement",
+              "mediaId": "p04-editorial-2",
               "anchor": "p04-secao-4",
               "position": "before"
             }
@@ -5407,14 +5391,7 @@
           "slug": "secao-6",
           "title": "CAPÍTULO 05 — O que ainda quero descobrir",
           "order": 5,
-          "mediaPlacements": [
-            {
-              "id": "p04-media-4-placement",
-              "mediaId": "p04-media-4",
-              "anchor": "p04-secao-6",
-              "position": "before"
-            }
-          ],
+          "mediaPlacements": [],
           "body": {
             "format": "blocks",
             "blocks": [
@@ -5574,14 +5551,7 @@
           "slug": "secao-8",
           "title": "CAPÍTULO 07 — O próximo capítulo é meu",
           "order": 7,
-          "mediaPlacements": [
-            {
-              "id": "p04-media-5-placement",
-              "mediaId": "p04-media-5",
-              "anchor": "p04-secao-8",
-              "position": "before"
-            }
-          ],
+          "mediaPlacements": [],
           "body": {
             "format": "blocks",
             "blocks": [
@@ -5667,6 +5637,12 @@
           "order": 8,
           "mediaPlacements": [
             {
+              "id": "p04-editorial-3-placement",
+              "mediaId": "p04-editorial-3",
+              "anchor": "p04-secao-9",
+              "position": "before"
+            },
+            {
               "id": "p04-media-1-placement",
               "mediaId": "p04-media-1",
               "anchor": "p04-secao-9",
@@ -5748,12 +5724,29 @@
               {
                 "type": "paragraph",
                 "text": "Frase para guardar: \"Eu não preciso começar do zero. Posso continuar a partir de mim.\""
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Complemento editorial — O meu próximo capítulo"
+              },
+              {
+                "type": "paragraph",
+                "text": "Três horizontes, sem pressa. Não é necessário reinventar a sua vida. Um próximo capítulo pode começar com uma escolha pequena, compatível com tempo, recursos e responsabilidades que já existem. Nos próximos 30 dias, identifique uma ação concreta de até quinze minutos. Para os 90 dias seguintes, escolha uma conversa, aprendizagem ou decisão que gostaria de explorar com apoio. Para os próximos 180 dias, deixe um desejo anotado — o caminho pode ser revisto sem representar fracasso."
+              },
+              {
+                "type": "paragraph",
+                "text": "Carta para a fase que começa. Escreva uma carta breve a partir do presente, sem exigir certezas. Não liste apenas metas: reconheça aquilo que deseja preservar e aquilo que precisa de espaço para crescer. Complete, se desejar: “Eu quero manter…”, “Eu posso repensar…”, “Eu me dou permissão para…”. Se uma pergunta não fizer sentido agora, deixe-a em aberto."
+              },
+              {
+                "type": "paragraph",
+                "text": "Este complemento amplia a reflexão e não constitui aconselhamento psicológico, médico, financeiro ou jurídico."
               }
             ]
           }
         }
       ],
-      "cover": "/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.1.png"
+      "cover": "/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.2.png"
     },
     {
       "schemaVersion": "0.2",
@@ -5767,7 +5760,7 @@
       "authors": [
         "EspelhoMeu"
       ],
-      "edition": "Homologação · Preview editorial v1.2 (master v1.0; extras v1.1)",
+      "edition": "Homologação · Preview editorial v1.3 (extras v1.1)",
       "tags": [
         "Diário guiado",
         "30 encontros independentes"
@@ -5776,86 +5769,6 @@
         "mode": "public"
       },
       "media": [
-        {
-          "id": "p05-media-1",
-          "kind": "image",
-          "title": "Diário de Amor-Próprio — 30 Encontros Comigo",
-          "assetPath": "/conteudo/produto-05/CAPA_ESPELHOMEU-P05_v1.2.png",
-          "publisher": "EspelhoMeu",
-          "sourcePage": "https://drive.google.com/file/d/1JYkadqViWHNg0UikEdpSCTb5z1_IZy8K/view",
-          "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
-          "metadata": {
-            "sourceFile": "CAPA_ESPELHOMEU-P05_v1.2.png",
-            "editorialStatus": "READY FOR AMF INGESTION",
-            "width": 1024,
-            "height": 1536
-          },
-          "alt": "Ilustração editorial de mulher adulta em cenário mediterrânico iluminado pelo pôr do sol, com tipografia cobre e elementos florais."
-        },
-        {
-          "id": "p05-media-2",
-          "kind": "image",
-          "title": "Imagem editorial",
-          "assetPath": "/conteudo/produto-05/MEDIA_EXTRA_05_PAISAGEM_v1.1.jpg",
-          "publisher": "EspelhoMeu",
-          "sourcePage": "https://drive.google.com/file/d/1YnNhdl2LndfDT48qyhTVaLWpE3x048jB/view",
-          "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
-          "metadata": {
-            "sourceFile": "MEDIA_EXTRA_05_PAISAGEM_v1.1.jpg",
-            "editorialStatus": "READY FOR AMF INGESTION",
-            "width": 1024,
-            "height": 768
-          },
-          "alt": "Mulher de costas numa varanda florida, junto de uma mesa com caderno e xícara, com vista para a costa ao entardecer."
-        },
-        {
-          "id": "p05-media-3",
-          "kind": "image",
-          "title": "Imagem editorial",
-          "assetPath": "/conteudo/produto-05/MEDIA_EXTRA_05_EDITORIAL_v1.1.jpg",
-          "publisher": "EspelhoMeu",
-          "sourcePage": "https://drive.google.com/file/d/1oB2UV0bjFj18XTtCXXPkR0Q5P-tLyB9n/view",
-          "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
-          "metadata": {
-            "sourceFile": "MEDIA_EXTRA_05_EDITORIAL_v1.1.jpg",
-            "editorialStatus": "READY FOR AMF INGESTION",
-            "width": 1200,
-            "height": 900
-          },
-          "alt": "Mulher de costas numa varanda florida, junto de uma mesa com caderno e xícara, com vista para a costa ao entardecer."
-        },
-        {
-          "id": "p05-media-4",
-          "kind": "image",
-          "title": "Imagem editorial",
-          "assetPath": "/conteudo/produto-05/ATMOSFERA_05_DETALHE_v1.1.jpg",
-          "publisher": "EspelhoMeu",
-          "sourcePage": "https://drive.google.com/file/d/1lJKZKsWF_NfV2KA6a8Qhyrkumeh_XzEp/view",
-          "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
-          "metadata": {
-            "sourceFile": "ATMOSFERA_05_DETALHE_v1.1.jpg",
-            "editorialStatus": "READY FOR AMF INGESTION",
-            "width": 1024,
-            "height": 230
-          },
-          "alt": "Detalhe de mesa com caderno, caneta e xícara em luz quente."
-        },
-        {
-          "id": "p05-media-5",
-          "kind": "image",
-          "title": "Imagem editorial",
-          "assetPath": "/conteudo/produto-05/CENA_EDITORIAL_05_BASE_v1.1.jpg",
-          "publisher": "EspelhoMeu",
-          "sourcePage": "https://drive.google.com/file/d/1EeFCcmPiPIh-DE9Aeo0Rjcjd9_0ZDqtg/view",
-          "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
-          "metadata": {
-            "sourceFile": "CENA_EDITORIAL_05_BASE_v1.1.jpg",
-            "editorialStatus": "READY FOR AMF INGESTION",
-            "width": 834,
-            "height": 660
-          },
-          "alt": "Mulher de costas numa varanda florida, junto de uma mesa com caderno e xícara, com vista para a costa ao entardecer."
-        },
         {
           "id": "p05-media-6",
           "kind": "document",
@@ -5881,6 +5794,70 @@
             "sourceFile": "CADERNO_ESPELHOMEU-P05_v1.1.pdf",
             "editorialStatus": "READY FOR AMF INGESTION"
           }
+        },
+        {
+          "id": "p05-media-1",
+          "kind": "image",
+          "title": "Diário de Amor-Próprio — 30 Encontros Comigo",
+          "assetPath": "/conteudo/produto-05/CAPA_ESPELHOMEU-P05_v1.3.png",
+          "publisher": "EspelhoMeu",
+          "sourcePage": "https://drive.google.com/file/d/1Rf5sK1nJzVGS5ZavlPKevzeBgNizofSP/view",
+          "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+          "metadata": {
+            "sourceFile": "CAPA_ESPELHOMEU-P05_v1.3.png",
+            "editorialStatus": "READY FOR AMF INGESTION",
+            "width": 1296,
+            "height": 1944
+          },
+          "alt": "Capa de Diário de Amor-Próprio — 30 Encontros Comigo."
+        },
+        {
+          "id": "p05-editorial-1",
+          "kind": "image",
+          "title": "Imagem editorial",
+          "assetPath": "/conteudo/produto-05/MEDIA_EDITORIAL_P05_01_v1.3.jpg",
+          "publisher": "EspelhoMeu",
+          "sourcePage": "https://drive.google.com/file/d/1ha0iICooz8AoC0FWGJNtFyZcKqPsYxTz/view",
+          "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+          "metadata": {
+            "sourceFile": "MEDIA_EDITORIAL_P05_01_v1.3.jpg",
+            "editorialStatus": "READY FOR AMF INGESTION",
+            "width": 1400,
+            "height": 1000
+          },
+          "alt": "Livro aberto e chá numa varanda com flores ao entardecer."
+        },
+        {
+          "id": "p05-editorial-2",
+          "kind": "image",
+          "title": "Imagem editorial",
+          "assetPath": "/conteudo/produto-05/MEDIA_EDITORIAL_P05_02_v1.3.jpg",
+          "publisher": "EspelhoMeu",
+          "sourcePage": "https://drive.google.com/file/d/1yRmzlKY_otofANL1J-ocFaTT4Y02gFt4/view",
+          "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+          "metadata": {
+            "sourceFile": "MEDIA_EDITORIAL_P05_02_v1.3.jpg",
+            "editorialStatus": "READY FOR AMF INGESTION",
+            "width": 1400,
+            "height": 1000
+          },
+          "alt": "Mulher de costas, com chapéu na mão, diante de uma paisagem costeira ao entardecer."
+        },
+        {
+          "id": "p05-editorial-3",
+          "kind": "image",
+          "title": "Imagem editorial",
+          "assetPath": "/conteudo/produto-05/MEDIA_EDITORIAL_P05_03_v1.3.jpg",
+          "publisher": "EspelhoMeu",
+          "sourcePage": "https://drive.google.com/file/d/1MXg4jcK6tz_FggrnXZtVysW8Q0Xpld3l/view",
+          "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+          "metadata": {
+            "sourceFile": "MEDIA_EDITORIAL_P05_03_v1.3.jpg",
+            "editorialStatus": "READY FOR AMF INGESTION",
+            "width": 1400,
+            "height": 1000
+          },
+          "alt": "Mulher sentada perante uma vista costeira ao pôr do sol."
         }
       ],
       "chapters": [
@@ -5889,7 +5866,14 @@
           "slug": "secao-1",
           "title": "Como usar este diário",
           "order": 0,
-          "mediaPlacements": [],
+          "mediaPlacements": [
+            {
+              "id": "p05-editorial-1-placement",
+              "mediaId": "p05-editorial-1",
+              "anchor": "p05-secao-1",
+              "position": "before"
+            }
+          ],
           "body": {
             "format": "blocks",
             "blocks": [
@@ -5919,14 +5903,7 @@
           "title": "ENCONTRO 01 — Hoje estou",
           "order": 1,
           "part": "PARTE — PRESENÇA",
-          "mediaPlacements": [
-            {
-              "id": "p05-media-5-placement",
-              "mediaId": "p05-media-5",
-              "anchor": "p05-secao-2",
-              "position": "before"
-            }
-          ],
+          "mediaPlacements": [],
           "body": {
             "format": "blocks",
             "blocks": [
@@ -6169,14 +6146,7 @@
           "title": "ENCONTRO 07 — Um gesto do passado",
           "order": 7,
           "part": "PARTE — HISTÓRIA",
-          "mediaPlacements": [
-            {
-              "id": "p05-media-4-placement",
-              "mediaId": "p05-media-4",
-              "anchor": "p05-secao-8",
-              "position": "before"
-            }
-          ],
+          "mediaPlacements": [],
           "body": {
             "format": "blocks",
             "blocks": [
@@ -6419,14 +6389,7 @@
           "title": "ENCONTRO 13 — Um lugar de conforto",
           "order": 13,
           "part": "PARTE — CORPO E MUNDO",
-          "mediaPlacements": [
-            {
-              "id": "p05-media-2-placement",
-              "mediaId": "p05-media-2",
-              "anchor": "p05-secao-14",
-              "position": "before"
-            }
-          ],
+          "mediaPlacements": [],
           "body": {
             "format": "blocks",
             "blocks": [
@@ -6671,8 +6634,8 @@
           "part": "PARTE — ESCOLHAS",
           "mediaPlacements": [
             {
-              "id": "p05-media-3-placement",
-              "mediaId": "p05-media-3",
+              "id": "p05-editorial-2-placement",
+              "mediaId": "p05-editorial-2",
               "anchor": "p05-secao-20",
               "position": "before"
             }
@@ -6919,7 +6882,14 @@
           "title": "ENCONTRO 25 — O que me inspira",
           "order": 25,
           "part": "PARTE — CONTINUIDADE",
-          "mediaPlacements": [],
+          "mediaPlacements": [
+            {
+              "id": "p05-editorial-3-placement",
+              "mediaId": "p05-editorial-3",
+              "anchor": "p05-secao-26",
+              "position": "before"
+            }
+          ],
           "body": {
             "format": "blocks",
             "blocks": [
@@ -7211,12 +7181,38 @@
               {
                 "type": "paragraph",
                 "text": "Para guardar: \"O diário termina na última página; a minha história continua fora dele.\""
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Complemento editorial — Um índice afetivo"
+              },
+              {
+                "type": "paragraph",
+                "text": "O diário não precisa ser seguido em ordem. Use este mapa quando quiser uma entrada que combine com seu momento, sem classificar emoções como certas ou erradas."
+              },
+              {
+                "type": "paragraph",
+                "text": "- Quando quero me ouvir: encontros 01, 04, 05 e 14.\n- Quando preciso de um limite: encontros 19, 20, 21 e 22.\n- Quando quero lembrar meu caminho: encontros 07, 08, 10 e 12.\n- Quando busco um próximo passo: encontros 25, 27, 28 e 30."
+              },
+              {
+                "type": "heading",
+                "level": 3,
+                "text": "Uma página inteiramente sua"
+              },
+              {
+                "type": "paragraph",
+                "text": "Esta página não pede gratidão obrigatória, positividade nem compromisso diário. Pode ser preenchida, deixada em branco ou revisitada quando houver vontade. Escreva sobre o que está presente agora, um gesto possível dentro da sua realidade e algo que gostaria de guardar. Privacidade importa: escolha onde manter o diário e não se sinta obrigada a compartilhar o que escreveu."
+              },
+              {
+                "type": "paragraph",
+                "text": "Este diário é um recurso de reflexão pessoal e não substitui acompanhamento profissional quando necessário."
               }
             ]
           }
         }
       ],
-      "cover": "/conteudo/produto-05/CAPA_ESPELHOMEU-P05_v1.2.png"
+      "cover": "/conteudo/produto-05/CAPA_ESPELHOMEU-P05_v1.3.png"
     }
   ],
   "collections": [

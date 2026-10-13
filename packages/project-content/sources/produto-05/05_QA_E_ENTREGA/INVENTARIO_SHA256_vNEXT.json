@@ -1,0 +1,132 @@
+[
+  {
+    "file": "00_MASTER_EDITORIAL/EBOOK_ESPELHOMEU-P05_v1.3.pdf",
+    "sha256": "d973cf5865fc42778ab782ca65944533eaef282ba85e82e516fb97ceada6cc7d",
+    "bytes": 4767502
+  },
+  {
+    "file": "00_MASTER_EDITORIAL/ESPELHOMEU_P05_MASTER_EDITORIAL.md",
+    "sha256": "045b5b5684451e06c2676b042253b79bf0ab8daf96f95cfd2ec5fe6c687ff3d7",
+    "bytes": 32534
+  },
+  {
+    "file": "00_MASTER_EDITORIAL/FICHA_E_INDICE.md",
+    "sha256": "e5065d8d53e2fbb3f4f864d86d69b84f082da06a2e486b85da1e4d10bdd3b9f7",
+    "bytes": 1581
+  },
+  {
+    "file": "01_CAPA_E_IDENTIDADE/CAPA_ESPELHOMEU-P05_v1.3.png",
+    "sha256": "1d79c1ecb330d8129bafa3e2c7764e4471dfa1ec1447b6bf65555b80e8f268de",
+    "bytes": 4910189
+  },
+  {
+    "file": "02_MEDIA_EDITORIAL/ATMOSFERA_05_DETALHE.jpg",
+    "sha256": "b5c40b3e2f4aeca5b3f80d72be37c4736388ab23acf59d523874cb9e934169b0",
+    "bytes": 78146
+  },
+  {
+    "file": "02_MEDIA_EDITORIAL/CENA_EDITORIAL_05_BASE.jpg",
+    "sha256": "859ed164243df638b62b8cda1b7c0e866f63e42d454e52d61cf968e00aa52614",
+    "bytes": 189129
+  },
+  {
+    "file": "02_MEDIA_EDITORIAL/MEDIA_EDITORIAL_P05_01_v1.3.jpg",
+    "sha256": "9914c0d4bfa91139a7a80cdf2f340407884045879688695cf8d9adc9cce1782d",
+    "bytes": 411200
+  },
+  {
+    "file": "02_MEDIA_EDITORIAL/MEDIA_EDITORIAL_P05_02_v1.3.jpg",
+    "sha256": "3e8765b573dca888852aa10db8e4a0fd3aec646605f77dc799139c3d2137955c",
+    "bytes": 435878
+  },
+  {
+    "file": "02_MEDIA_EDITORIAL/MEDIA_EDITORIAL_P05_03_v1.3.jpg",
+    "sha256": "c2c2d7cbeb7da99875dee7818800d4e8f07d9b35ce0666446a8d8b26e5eec8fa",
+    "bytes": 400068
+  },
+  {
+    "file": "02_MEDIA_EDITORIAL/MEDIA_MAP.md",
+    "sha256": "908dd8edf4a24ca3760e31ea7a3e3ac59fd6d9ad9b5d53edc0a307ca5003d7b0",
+    "bytes": 1038
+  },
+  {
+    "file": "03_WORKBOOK_E_EXTRAS/CADERNO_ESPELHOMEU-P05_v1.0.pdf",
+    "sha256": "17a3cd3da78d8e17ba314e587f01529d7b6da3b2760cd3464bc7372a47118c39",
+    "bytes": 131885
+  },
+  {
+    "file": "03_WORKBOOK_E_EXTRAS/CARTOES_ESPELHOMEU-P05_v1.0.pdf",
+    "sha256": "1175f3923b083ddb3918e3092bb0509fc19f810d56c05ca4c93279564d972033",
+    "bytes": 68229
+  },
+  {
+    "file": "04_MARKETING_E_COMERCIAL/CAMPANHA_ORGANICA_E_PAGA_v1.md",
+    "sha256": "7f9b42dd53e42931e485127120fbc2b83814a0f86fd5d5d8b0ed14d506dd5080",
+    "bytes": 1826
+  },
+  {
+    "file": "04_MARKETING_E_COMERCIAL/CARROSSEL_5_SLIDES/ESPELHOMEU_P05_SLIDE_01_v1.jpg",
+    "sha256": "a8ac352500efabd941a7d60b56ca71adea659ebcb3e774500c6a29fa2eecfa58",
+    "bytes": 339233
+  },
+  {
+    "file": "04_MARKETING_E_COMERCIAL/CARROSSEL_5_SLIDES/ESPELHOMEU_P05_SLIDE_02_v1.jpg",
+    "sha256": "cf1b5c5e243a60b6812f9a0774efbc33e7844d2d4f664ce1d0413fa79a43d428",
+    "bytes": 375792
+  },
+  {
+    "file": "04_MARKETING_E_COMERCIAL/CARROSSEL_5_SLIDES/ESPELHOMEU_P05_SLIDE_03_v1.jpg",
+    "sha256": "6edcf6c90d886cb2028da3e2ef4796251587fc5e617a5a0f272ebe9e5a89d5b6",
+    "bytes": 325030
+  },
+  {
+    "file": "04_MARKETING_E_COMERCIAL/CARROSSEL_5_SLIDES/ESPELHOMEU_P05_SLIDE_04_v1.jpg",
+    "sha256": "c94ae44b3bfdd6157711c8de8d8aa81042004b37243eed9897394dbb7c3de743",
+    "bytes": 333425
+  },
+  {
+    "file": "04_MARKETING_E_COMERCIAL/CARROSSEL_5_SLIDES/ESPELHOMEU_P05_SLIDE_05_v1.jpg",
+    "sha256": "e05f05008417a566b040f1df4c1b242e20d2f6c7fcbc9cf5a92eff9fdc43ab68",
+    "bytes": 369594
+  },
+  {
+    "file": "04_MARKETING_E_COMERCIAL/COPY_COMERCIAL_E_DERIVADOS.md",
+    "sha256": "0176646f279fbb14581e8c87587b2d204c55c5a26d1b632704b564fe8ba84a17",
+    "bytes": 2976
+  },
+  {
+    "file": "04_MARKETING_E_COMERCIAL/LEITURA_GRATUITA.md",
+    "sha256": "e942127f5805cd15a8c934ce6bface0c10bcc77b373a3bba4cb9bb2676c7865a",
+    "bytes": 815
+  },
+  {
+    "file": "04_MARKETING_E_COMERCIAL/POST_CAPA_05_1080x1080.jpg",
+    "sha256": "a68ffcfce2c1d3579b72577d8f2d35c2d1b356022341bbdfc6f710aa06738f6b",
+    "bytes": 228799
+  },
+  {
+    "file": "04_MARKETING_E_COMERCIAL/POST_CAPA_P05_v1.3.jpg",
+    "sha256": "084ebade73dee7e57dd911a05237d57be2aa66bcb4c81755d10d0894446f61d4",
+    "bytes": 309160
+  },
+  {
+    "file": "05_QA_E_ENTREGA/PROVA_VISUAL_vNEXT.jpg",
+    "sha256": "651d00922d6da23d0c04889ff5b632775ed34bfa1f6482870d19fe38cc079771",
+    "bytes": 85835
+  },
+  {
+    "file": "05_QA_E_ENTREGA/QA_PUBLICACAO.md",
+    "sha256": "69e9024934776dbc36aa176ba4d30b2bfe746b53fba82702a9f75e2e48006137",
+    "bytes": 1087
+  },
+  {
+    "file": "05_QA_E_ENTREGA/RELATORIO_QA_TECNICO_vNEXT.json",
+    "sha256": "5a76b8811339953d8d621e6875d80c4c862ffa611fd930f8880e953e2aa4fe08",
+    "bytes": 312
+  },
+  {
+    "file": "README_PRODUTO.md",
+    "sha256": "f51de210d311deb98a5938506a5efde6b58e3aed93d87caa6b8e67e49cf15205",
+    "bytes": 1354
+  }
+]

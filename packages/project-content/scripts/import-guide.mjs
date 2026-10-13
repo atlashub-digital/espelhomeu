@@ -27,7 +27,7 @@ export function importGuide(source, recipe) {
   if (recipe.sections.length !== publication.chapters.length) throw new Error("Source/chapter mapping mismatch");
   for (const [i, section] of recipe.sections.entries()) {
     const start = source.indexOf(section.start);
-    const end = source.indexOf(section.end, start + section.start.length);
+    const end = section.end === null ? source.length : source.indexOf(section.end, start + section.start.length);
     if (start < 0 || end < 0 || source.indexOf(section.start, start + 1) !== -1)
       throw new Error("Missing or ambiguous editorial boundary: " + section.start);
     publication.chapters[i].body = { format: "blocks", blocks: blocks(source.slice(start, end)) };

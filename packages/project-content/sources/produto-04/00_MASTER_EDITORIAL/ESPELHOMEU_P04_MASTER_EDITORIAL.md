@@ -2,7 +2,7 @@
 
 *Novos capítulos, escolhas próprias e a liberdade de continuar mudando.*
 
-**EspelhoMeu · Edição premium · Código ESPELHOMEU-P04 · v1.0 · pt-BR · 12/10/2026**
+**EspelhoMeu · Edição premium · Código ESPELHOMEU-P04 · v1.2 · pt-BR · 12/10/2026**
 
 ## FICHA EDITORIAL
 
@@ -327,3 +327,11 @@ Este é um ensaio e um caderno reflexivo de autoria original. Não apresenta est
 ## NOTAS EDITORIAIS E DE MEDIA
 
 As capas já aprovadas foram geradas por IA e necessitam de revisão humana de anatomia, reflexos, tipografia embutida, direitos de imagem e autorização de uso comercial. Fotografias derivadas são recortes dessas capas, não fotografias de pessoas reais identificadas. Qualquer texto embutido em mockups não constitui fonte editorial.
+
+## Complemento editorial — O meu próximo capítulo
+
+**Três horizontes, sem pressa.** Não é necessário reinventar a sua vida. Um próximo capítulo pode começar com uma escolha pequena, compatível com tempo, recursos e responsabilidades que já existem. Nos próximos 30 dias, identifique uma ação concreta de até quinze minutos. Para os 90 dias seguintes, escolha uma conversa, aprendizagem ou decisão que gostaria de explorar com apoio. Para os próximos 180 dias, deixe um desejo anotado — o caminho pode ser revisto sem representar fracasso.
+
+**Carta para a fase que começa.** Escreva uma carta breve a partir do presente, sem exigir certezas. Não liste apenas metas: reconheça aquilo que deseja preservar e aquilo que precisa de espaço para crescer. Complete, se desejar: “Eu quero manter…”, “Eu posso repensar…”, “Eu me dou permissão para…”. Se uma pergunta não fizer sentido agora, deixe-a em aberto.
+
+*Este complemento amplia a reflexão e não constitui aconselhamento psicológico, médico, financeiro ou jurídico.*

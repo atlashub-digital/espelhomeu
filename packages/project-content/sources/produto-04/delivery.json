@@ -21,57 +21,103 @@
     },
     {
       "p": "04",
-      "id": "1LQsp3INTrMIWULMrX4VCSY_yum9obSs8",
+      "id": "1XsQQrhB6JLsjueLlzl-Ha3niig7JmsZV",
+      "name": "README_PRODUTO.md",
+      "path": "packages/project-content/sources/produto-04/README_PRODUTO.md",
+      "sourcePath": "README_PRODUTO.md",
+      "bytes": 1330,
+      "sha256": "079065af1d691e04eba438107b3378fcf22a62e3d43db036835fb7198511c977"
+    },
+    {
+      "p": "04",
+      "id": "17WEIxKf9YcCmLVMnM3IC9cilcTcaLM-P",
       "name": "ESPELHOMEU_P04_MASTER_EDITORIAL.md",
       "path": "packages/project-content/sources/produto-04/00_MASTER_EDITORIAL/ESPELHOMEU_P04_MASTER_EDITORIAL.md",
       "sourcePath": "00_MASTER_EDITORIAL/ESPELHOMEU_P04_MASTER_EDITORIAL.md",
-      "bytes": 31645,
-      "sha256": "ab1c785ffca4cbf29f4c528c7a7cd04b8788ca695ff4f3b1d418745bd104d102"
+      "bytes": 32711,
+      "sha256": "7fda6e68d5cec3a5302406051159baaeaee0b5a3887b294f5cdee406f0d404ba"
     },
     {
       "p": "04",
-      "id": "16qr8mCa6eClKEBgdKDP4sX5AOqhlJUwC",
-      "name": "CAPA_ESPELHOMEU-P04_v1.1.png",
-      "path": "apps/web/public/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.1.png",
-      "sourcePath": "01_CAPA_E_IDENTIDADE/CAPA_ESPELHOMEU-P04_v1.1.png",
-      "bytes": 2121878,
-      "sha256": "6b6299594121821905b27fc604b28e8fa8411e0bd48f2b692e25dbeecec8b315"
+      "id": "1ajiTF7scKWy6mYscF6NyOxURBgTVs7_E",
+      "name": "MEDIA_MAP.md",
+      "path": "packages/project-content/sources/produto-04/02_MEDIA_EDITORIAL/MEDIA_MAP.md",
+      "sourcePath": "02_MEDIA_EDITORIAL/MEDIA_MAP.md",
+      "bytes": 1081,
+      "sha256": "87daabcd9550a42fb4291b843ad3f8c085b66f3f60eda24a1b5492d6d82fe67d"
     },
     {
       "p": "04",
-      "id": "1vS3HXz_hiHL7cy7VUMmN-_ZALme0DkV5",
-      "name": "MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg",
-      "path": "apps/web/public/conteudo/produto-04/MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg",
-      "sourcePath": "02_MEDIA_EDITORIAL/MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg",
-      "bytes": 326784,
-      "sha256": "29bd47c7143730c7a7b3271ef8e969ff2422973c1d5cbaaedcd4226742c5dc46"
+      "id": "1TRbAo4O9fdbRqdTdGJZCrOtdq5-ZGVTm",
+      "name": "CURADORIA_MEDIA_v1.2.md",
+      "path": "packages/project-content/sources/produto-04/02_MEDIA_EDITORIAL/CURADORIA_MEDIA_v1.2.md",
+      "sourcePath": "02_MEDIA_EDITORIAL/CURADORIA_MEDIA_v1.2.md",
+      "bytes": 1693,
+      "sha256": "df5f7e09df54e07e9cd8f26ceba2babfcbe0d3a9fb57a23dae061ee5b212fb0b"
     },
     {
       "p": "04",
-      "id": "1K5D6FStlwLulKdgLCHIGK7Wogfx90_2m",
-      "name": "MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg",
-      "path": "apps/web/public/conteudo/produto-04/MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg",
-      "sourcePath": "02_MEDIA_EDITORIAL/MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg",
-      "bytes": 359613,
-      "sha256": "250b6eb12b75ed5dad036b4d4fdf971fc3c5ceb75d61666b75f151ff40b4ed8d"
+      "id": "13ucTSUyFoHePTxZhPBGjEGtRiX87SI4G",
+      "name": "REVISAO_EDITORIAL_VISUAL_v1.2.md",
+      "path": "packages/project-content/sources/produto-04/05_QA_E_ENTREGA/REVISAO_EDITORIAL_VISUAL_v1.2.md",
+      "sourcePath": "05_QA_E_ENTREGA/REVISAO_EDITORIAL_VISUAL_v1.2.md",
+      "bytes": 1899,
+      "sha256": "3e0460295a34bfff38b18949b4c3067e8ddb8a04de6fad3799c4ecf867d692fb"
     },
     {
       "p": "04",
-      "id": "18x_J13fLAfHI42QOY5kWwYKWLklwnxrm",
-      "name": "ATMOSFERA_04_DETALHE_v1.1.jpg",
-      "path": "apps/web/public/conteudo/produto-04/ATMOSFERA_04_DETALHE_v1.1.jpg",
-      "sourcePath": "02_MEDIA_EDITORIAL/ATMOSFERA_04_DETALHE_v1.1.jpg",
-      "bytes": 131092,
-      "sha256": "f72ac8b0903e1cf77314aca86633065b71b08df59649161119420ce45738ed3f"
+      "id": "1tOr7p8V_akK3WeLZB07DFztg0ctPSahg",
+      "name": "QA_PUBLICACAO.md",
+      "path": "packages/project-content/sources/produto-04/05_QA_E_ENTREGA/QA_PUBLICACAO.md",
+      "sourcePath": "05_QA_E_ENTREGA/QA_PUBLICACAO.md",
+      "bytes": 1087,
+      "sha256": "26b7907b6c7f05cd2d568f428856868fa9585f96b485dfe571641b8460bd5f6d"
     },
     {
       "p": "04",
-      "id": "1BNtU18CLBl6OxGAfVo7V27h87G_nMwfP",
-      "name": "CENA_EDITORIAL_04_BASE_v1.1.jpg",
-      "path": "apps/web/public/conteudo/produto-04/CENA_EDITORIAL_04_BASE_v1.1.jpg",
-      "sourcePath": "02_MEDIA_EDITORIAL/CENA_EDITORIAL_04_BASE_v1.1.jpg",
-      "bytes": 195421,
-      "sha256": "e71a536ccacc053649019ed8fd575c3085b783d5e77c760366dd47f0440abdfa"
+      "id": "1jkQJLOJABfXb2j1Ueqa9FP02BLVE7sBD",
+      "name": "INVENTARIO_SHA256_vNEXT.json",
+      "path": "packages/project-content/sources/produto-04/05_QA_E_ENTREGA/INVENTARIO_SHA256_vNEXT.json",
+      "sourcePath": "05_QA_E_ENTREGA/INVENTARIO_SHA256_vNEXT.json",
+      "bytes": 4600,
+      "sha256": "b8ee64cfd6ac9b2ad7f4f134fafd8effdc5577cebbdc85b84ecd4c4d09afc369"
+    },
+    {
+      "p": "04",
+      "id": "1PZVy1gxPtNvE4Mo4q24sIOWJ1U9VrzjB",
+      "name": "CAPA_ESPELHOMEU-P04_v1.2.png",
+      "path": "apps/web/public/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.2.png",
+      "sourcePath": "01_CAPA_E_IDENTIDADE/CAPA_ESPELHOMEU-P04_v1.2.png",
+      "bytes": 5150886,
+      "sha256": "8c5bb01870fe5a8422f831cad40047bad70070f1c1272a9f7f0f71b269edba4d"
+    },
+    {
+      "p": "04",
+      "id": "1MuRFldl-a7ch-KInERDXfd-GV7IwpFGX",
+      "name": "MEDIA_EDITORIAL_P04_03_v1.2.jpg",
+      "path": "apps/web/public/conteudo/produto-04/MEDIA_EDITORIAL_P04_03_v1.2.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/MEDIA_EDITORIAL_P04_03_v1.2.jpg",
+      "bytes": 411200,
+      "sha256": "9914c0d4bfa91139a7a80cdf2f340407884045879688695cf8d9adc9cce1782d"
+    },
+    {
+      "p": "04",
+      "id": "148Izn5qjocfHAo5qvtKa-O7w7e40besE",
+      "name": "MEDIA_EDITORIAL_P04_02_v1.2.jpg",
+      "path": "apps/web/public/conteudo/produto-04/MEDIA_EDITORIAL_P04_02_v1.2.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/MEDIA_EDITORIAL_P04_02_v1.2.jpg",
+      "bytes": 400068,
+      "sha256": "c2c2d7cbeb7da99875dee7818800d4e8f07d9b35ce0666446a8d8b26e5eec8fa"
+    },
+    {
+      "p": "04",
+      "id": "1tUXwloTFZFn9UeK0tMe7wZiRN2ZJH5Wz",
+      "name": "MEDIA_EDITORIAL_P04_01_v1.2.jpg",
+      "path": "apps/web/public/conteudo/produto-04/MEDIA_EDITORIAL_P04_01_v1.2.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/MEDIA_EDITORIAL_P04_01_v1.2.jpg",
+      "bytes": 435878,
+      "sha256": "3e8765b573dca888852aa10db8e4a0fd3aec646605f77dc799139c3d2137955c"
     }
-  ]
+  ],
+  "edition": "v1.2"
 }
