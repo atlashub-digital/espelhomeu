@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "0.1",
+  "id": "espelhomeu",
+  "name": "EspelhoMeu",
+  "locale": "pt-BR",
+  "domains": {
+    "web": "https://espelho.lia.doctor",
+    "api": "https://api.espelhomeu.lia.doctor"
+  },
+  "modules": {
+    "library": true,
+    "webreader": true,
+    "programs": true,
+    "auth": false,
+    "commerce": false,
+    "community": false,
+    "attendant": false,
+    "companion": false,
+    "analytics": false
+  },
+  "amf": {
+    "contentSchema": "@atlashub-digital/amf-content-schema@0.2.0 (npm.pkg.github.com)",
+    "experienceCore": "@atlashub-digital/amf-experience-core@0.2.1 (npm.pkg.github.com)",
+    "projectTemplateReference": "a34e5726d26ac4e6a41398097b4a960f8da60f77"
+  },
+  "content": {
+    "adapter": "git-json",
+    "path": "packages/project-content/content/manifest.json",
+    "releaseMode": "pull-request",
+    "fixture": false
+  },
+  "deployment": {
+    "web": "Vercel / apps/web",
+    "api": "existing Fastify / Helena Track B"
+  },
+  "gate": {
+    "contentReady": true,
+    "blockers": []
+  }
+}

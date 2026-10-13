@@ -14,7 +14,11 @@
     "@espelhomeu/shared": "workspace:*",
     "next": "16.3.8",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "@espelhomeu/project-config": "workspace:*",
+    "@espelhomeu/project-content": "workspace:*",
+    "@atlashub-digital/amf-content-schema": "0.2.0",
+    "@atlashub-digital/amf-experience-core": "0.2.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

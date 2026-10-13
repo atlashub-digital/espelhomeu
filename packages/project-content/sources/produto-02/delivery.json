@@ -1,0 +1,175 @@
+{
+  "canonicalFolder": "https://drive.google.com/drive/folders/1zjI3zCbRNYBWHxpzutK0SiDXwar-E186",
+  "status": "READY FOR AMF INGESTION",
+  "commercialApproval": false,
+  "files": [
+    {
+      "path": "apps/web/public/conteudo/produto-02/capitulo-05.jpg",
+      "sha256": "8f272502dbc6c75452126675ca079557df4c823a976f5663a4a9d599a6d24b58",
+      "bytes": 239227,
+      "sourceFile": "FOTO_EDITORIAL_C05.jpg",
+      "driveFileId": "1zUxVGmnNFxHVDhn-xhaZlH9ExHfyujEH"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/capitulo-01.jpg",
+      "sha256": "4145d31a14823edb1a13669c2762af845c4e791701107743f10a47eedb214a4f",
+      "bytes": 246938,
+      "sourceFile": "FOTO_EDITORIAL_C01.jpg",
+      "driveFileId": "1C77-R492N_Hs8B8cBvrwrtMMf9v4gfwI"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/capitulo-06.jpg",
+      "sha256": "1bbee352841ac7a0226bff02643aa717c05549a38f5940efd32f74c3d61850de",
+      "bytes": 211776,
+      "sourceFile": "FOTO_EDITORIAL_C06.jpg",
+      "driveFileId": "1hjvFE0djBxq6sivd9VFP5NXjYMFpYXds"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/capitulo-07.jpg",
+      "sha256": "c13f6f8031e4724fc8ee0e49d1275f2191728784c7c9468c9e0011f4cf71a08a",
+      "bytes": 230332,
+      "sourceFile": "FOTO_EDITORIAL_C07.jpg",
+      "driveFileId": "1jKXxSYOLutTZmLyc1i0R3UCMZZiMezqB"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/capitulo-04.jpg",
+      "sha256": "34826340090c86108cd0e5b8c85f2119d63f1b29ac2d3295cb81a54836bdb423",
+      "bytes": 250407,
+      "sourceFile": "FOTO_EDITORIAL_C04.jpg",
+      "driveFileId": "19RCzpFQon2VFt44twSnA0P-FWWqI9wFX"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/capitulo-03.jpg",
+      "sha256": "37893efce9051c75420b095d2514369b34d37ca48355ce2d84dd945ec1567441",
+      "bytes": 252380,
+      "sourceFile": "FOTO_EDITORIAL_C03.jpg",
+      "driveFileId": "1MxYUWvNIeJNuSfiIvhFWqI9sQyhP7aYU"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/capitulo-02.jpg",
+      "sha256": "fe679df4c1069e092ea16cfdc0be5c4b951bfe5d619242ce82f81f1deb91c7f7",
+      "bytes": 236766,
+      "sourceFile": "FOTO_EDITORIAL_C02.jpg",
+      "driveFileId": "1TYAILAgaAMIdMcCPIOvQWqWDxytR8ita"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_08.png",
+      "sha256": "901bc7469067532670bf9a3cf1e8e09ee22ff1829cc3cea035826f0ce7d2e477",
+      "bytes": 43555,
+      "sourceFile": "CARTAO_REFLEXAO_08.png",
+      "driveFileId": "10dOR6PzGTNqyCTdl9GBng43V7PvLYBK7"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_10.png",
+      "sha256": "3ef3452c7f2bb81ba91d8e014edd74aa3744aa19210069b9bc9a26d8027bf325",
+      "bytes": 40761,
+      "sourceFile": "CARTAO_REFLEXAO_10.png",
+      "driveFileId": "169gCIpBkLC5L3o7iQViDI9vQWj7xqPn_"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_09.png",
+      "sha256": "f0416f5ff62aac7ba484b61a307157d31a136c026beb8ff74dea423d5a859e1d",
+      "bytes": 44037,
+      "sourceFile": "CARTAO_REFLEXAO_09.png",
+      "driveFileId": "1hb8b7iex36AL3RLtBeeHK9tPqFz8vfe-"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_11.png",
+      "sha256": "8c770de2e5ebc025a7365c565b9bcb0ae5efcb06a6736e125a3d7a3d787b8cd5",
+      "bytes": 39044,
+      "sourceFile": "CARTAO_REFLEXAO_11.png",
+      "driveFileId": "1CitVKiVXSDwYiKKJsmKWKXORM9lQEEGO"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_12.png",
+      "sha256": "1a61bd86b95517b9718f3808f4331faeb380a8bfc328e0dea60116ec4ea40b4c",
+      "bytes": 46587,
+      "sourceFile": "CARTAO_REFLEXAO_12.png",
+      "driveFileId": "1z5-s8dwWosTQjNGc0lJiHjkvUgki78Cb"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_14.png",
+      "sha256": "dfba102fe2c0f3c639ffc6f057f7429921b904f8b62d2b549b2e516940b959ae",
+      "bytes": 41678,
+      "sourceFile": "CARTAO_REFLEXAO_14.png",
+      "driveFileId": "1nS9xn2drYIbpLUBUniYjA9IV3jwwJj6n"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_13.png",
+      "sha256": "51e66edddcf8b2292fe2b2f1acebec1f6c0d259049ebb50edfb98fe9f192bbe5",
+      "bytes": 45490,
+      "sourceFile": "CARTAO_REFLEXAO_13.png",
+      "driveFileId": "1R8YP9aJQBfSc9zJVZxgbfdk7FhSeDHME"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_03.png",
+      "sha256": "f89e5e4f1ecd14395110deb5b5f8fdf53ccdc03c5a6d0a1a8b108a31a909ef22",
+      "bytes": 40628,
+      "sourceFile": "CARTAO_REFLEXAO_03.png",
+      "driveFileId": "1VLgK0MkMhd9sck1tngNXrElpunt_e8r3"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_01.png",
+      "sha256": "8c0ae8b6a902079012b4584729163ca1f0d26910fc0d2af6e640f6a0592bb870",
+      "bytes": 46838,
+      "sourceFile": "CARTAO_REFLEXAO_01.png",
+      "driveFileId": "1udL6mVV7F6LNqnwBl3IJco6mglEHIeJ6"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_02.png",
+      "sha256": "13427483dbc8761dcedd3dfbfbb12759b902a0d4f7cf8e351d8993f2f022763f",
+      "bytes": 41258,
+      "sourceFile": "CARTAO_REFLEXAO_02.png",
+      "driveFileId": "1K0gnrf0FkaU9yT7YPn3fxC9q4pf7Hn3j"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_04.png",
+      "sha256": "463faf6ade56fe254e18b61483ed9b3d86ccac6c5b8cad65e03c4d1d2620dd37",
+      "bytes": 43017,
+      "sourceFile": "CARTAO_REFLEXAO_04.png",
+      "driveFileId": "12oTBHDkpolYTMQhHdShyTp4ahSvLUkIt"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_05.png",
+      "sha256": "3a504691d41ae623c8f0e99aec96ed26049551fa2bcb7f9230947bf91bc0302b",
+      "bytes": 43476,
+      "sourceFile": "CARTAO_REFLEXAO_05.png",
+      "driveFileId": "1sg0hRxhij36VoufJsLyzUYOCHABKjCxp"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_06.png",
+      "sha256": "bc59a2f9e0f0264a40326097c1e287f9817b8e9da8ef45250b0d2727ccb61972",
+      "bytes": 43455,
+      "sourceFile": "CARTAO_REFLEXAO_06.png",
+      "driveFileId": "1lFCcFKc1bQGfBbAvaWZ1oHQVhoXeNVRJ"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartao_reflexao_07.png",
+      "sha256": "49c4c6b5e56c22fe2df62b2c1b2321f0dfec8c72734035cf31cac65b9d07bff6",
+      "bytes": 43959,
+      "sourceFile": "CARTAO_REFLEXAO_07.png",
+      "driveFileId": "1qvLQCykGxzziS_SfGtEUZem1w-khT2-Z"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/caderno.pdf",
+      "sha256": "6c3be1f7ddcc691e66cb1ea6cb43f56ae5a33fd075ad210b2cedef8d74a24e8e",
+      "bytes": 4358329,
+      "sourceFile": "CADERNO_DA_MINHA_ASSINATURA_v1.0.pdf",
+      "driveFileId": "11yktgdN2jFWb38kmUYail-F5xopJjWUq"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/capa.png",
+      "sha256": "aa73c7c99a8bbd2557798a1dad39a66cb375912ade72bcddfc4c1b0addb77a7b",
+      "bytes": 2191049,
+      "sourceFile": "CAPA_OFICIAL_P02_v1.0.png",
+      "driveFileId": "1opwjLZZxiwiCZHiD1r8myaU9Uk4GdZMN"
+    },
+    {
+      "path": "apps/web/public/conteudo/produto-02/cartoes.zip",
+      "sha256": "5785aba964457fe4d16637cfd38c4a1c4f44d0fab1ffe0c55ce8fb81798dfdda",
+      "bytes": 535227,
+      "sourceFile": "14 original CARTAO_REFLEXAO PNGs",
+      "derived": true
+    }
+  ]
+}

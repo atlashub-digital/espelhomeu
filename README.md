@@ -56,3 +56,13 @@ Comandos: `pnpm install`, `pnpm dev`, `pnpm lint`, `pnpm typecheck`, `pnpm test`
 - **Projeto correspondente no PaperClip:** link a registrar após confirmação.
 
 O link pendente do PaperClip não pressupõe que o projeto já tenha sido criado.
+
+## AMF Golden Pilot — Track A
+
+Integração pinned e experiência candidata em `/inicio`, Library em `/biblioteca` e Reader em `/ler/:slug`. A homepage publicada mantém-se. Conteúdo canónico: `packages/project-content/content/manifest.json`.
+
+- [Reprodução e publicação](docs/CONTENT_READY_RUNBOOK.md)
+- [Contratos upstream necessários — gate bloqueado](docs/AMF_UPSTREAM_REQUIREMENTS.md)
+- [Screenshots desktop/mobile e verificações](docs/evidence/track-a/README.md)
+
+Não declarar CONTENT READY sem Article e Program/Journey nos contratos AMF e validação completa do issue #10.

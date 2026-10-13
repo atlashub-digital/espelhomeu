@@ -1,0 +1,317 @@
+{
+  "publication": {
+    "schemaVersion": "0.2",
+    "id": "eu-sou-bela-do-meu-jeito",
+    "slug": "eu-sou-bela-do-meu-jeito",
+    "type": "guide",
+    "status": "preview",
+    "locale": "pt-BR",
+    "title": "Eu Sou Bela — Do Meu Jeito",
+    "subtitle": "Um guia para reconhecer e expressar a minha beleza real",
+    "description": "Uma publicação para explorar expressão pessoal, estilo, presença e o direito de escolher — sem notas de beleza, receitas universais ou obrigação de mudar.",
+    "authors": [
+      "EspelhoMeu"
+    ],
+    "edition": "Homologação · Preview editorial v1.0",
+    "tags": [
+      "Expressão pessoal",
+      "Caderno da Minha Assinatura"
+    ],
+    "access": {
+      "mode": "public"
+    },
+    "cover": "/conteudo/produto-02/capa.png",
+    "media": [
+      {
+        "id": "p02-capa",
+        "kind": "image",
+        "title": "Eu Sou Bela — Do Meu Jeito",
+        "alt": "Mulher com os olhos fechados segurando xícara, diante de flores, com título Eu Sou Bela — Do Meu Jeito.",
+        "assetPath": "/conteudo/produto-02/capa.png",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1opwjLZZxiwiCZHiD1r8myaU9Uk4GdZMN/view",
+        "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "width": 1024,
+          "height": 1536,
+          "sourceFile": "CAPA_OFICIAL_P02_v1.0.png",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      },
+      {
+        "id": "p02-media-c01",
+        "kind": "image",
+        "title": "A beleza também pode ser uma assinatura",
+        "alt": "Composição editorial de mulher em luz suave.",
+        "assetPath": "/conteudo/produto-02/capitulo-01.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1C77-R492N_Hs8B8cBvrwrtMMf9v4gfwI/view",
+        "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "width": 1420,
+          "height": 800,
+          "sourceFile": "FOTO_EDITORIAL_C01.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      },
+      {
+        "id": "p02-media-c02",
+        "kind": "image",
+        "title": "O que me chama a atenção",
+        "alt": "Composição editorial de mulher em luz suave.",
+        "assetPath": "/conteudo/produto-02/capitulo-02.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1TYAILAgaAMIdMcCPIOvQWqWDxytR8ita/view",
+        "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "width": 1420,
+          "height": 800,
+          "sourceFile": "FOTO_EDITORIAL_C02.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      },
+      {
+        "id": "p02-media-c03",
+        "kind": "image",
+        "title": "Meu estilo tem história",
+        "alt": "Composição editorial com mulher, flores e mockups do livro Eu Sou Bela — Do Meu Jeito.",
+        "assetPath": "/conteudo/produto-02/capitulo-03.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1MxYUWvNIeJNuSfiIvhFWqI9sQyhP7aYU/view",
+        "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "width": 1420,
+          "height": 800,
+          "sourceFile": "FOTO_EDITORIAL_C03.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      },
+      {
+        "id": "p02-media-c04",
+        "kind": "image",
+        "title": "Espelho: ferramenta, não tribunal",
+        "alt": "Composição editorial com mulher, flores e mockups do livro Eu Sou Bela — Do Meu Jeito.",
+        "assetPath": "/conteudo/produto-02/capitulo-04.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/19RCzpFQon2VFt44twSnA0P-FWWqI9wFX/view",
+        "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "width": 1420,
+          "height": 800,
+          "sourceFile": "FOTO_EDITORIAL_C04.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      },
+      {
+        "id": "p02-media-c05",
+        "kind": "image",
+        "title": "Experimentar é permitido",
+        "alt": "Composição editorial de mulher em luz suave.",
+        "assetPath": "/conteudo/produto-02/capitulo-05.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1zUxVGmnNFxHVDhn-xhaZlH9ExHfyujEH/view",
+        "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "width": 1420,
+          "height": 800,
+          "sourceFile": "FOTO_EDITORIAL_C05.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      },
+      {
+        "id": "p02-media-c06",
+        "kind": "image",
+        "title": "Presença também é expressão",
+        "alt": "Composição editorial de mulher em luz suave.",
+        "assetPath": "/conteudo/produto-02/capitulo-06.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1hjvFE0djBxq6sivd9VFP5NXjYMFpYXds/view",
+        "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "width": 1420,
+          "height": 800,
+          "sourceFile": "FOTO_EDITORIAL_C06.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      },
+      {
+        "id": "p02-media-c07",
+        "kind": "image",
+        "title": "A minha assinatura",
+        "alt": "Composição editorial de mulher em luz suave.",
+        "assetPath": "/conteudo/produto-02/capitulo-07.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1jKXxSYOLutTZmLyc1i0R3UCMZZiMezqB/view",
+        "license": "Ilustração de IA autorizada para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "width": 1420,
+          "height": 800,
+          "sourceFile": "FOTO_EDITORIAL_C07.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      },
+      {
+        "id": "p02-caderno",
+        "kind": "document",
+        "title": "Caderno da Minha Assinatura (PDF, 17 páginas)",
+        "assetPath": "/conteudo/produto-02/caderno.pdf",
+        "publisher": "EspelhoMeu",
+        "license": "Uso autorizado para Preview; aprovação comercial pendente."
+      },
+      {
+        "id": "p02-cartoes",
+        "kind": "document",
+        "title": "14 cartões de reflexão (ZIP de imagens PNG)",
+        "assetPath": "/conteudo/produto-02/cartoes.zip",
+        "publisher": "EspelhoMeu",
+        "license": "Uso autorizado para Preview; aprovação comercial pendente."
+      }
+    ],
+    "chapters": [
+      {
+        "id": "p02-capitulo-1",
+        "slug": "capitulo-1",
+        "title": "A beleza também pode ser uma assinatura",
+        "order": 0,
+        "mediaPlacements": [
+          {
+            "id": "p02-capitulo-1-imagem",
+            "mediaId": "p02-media-c01",
+            "anchor": "p02-capitulo-1",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p02-capitulo-2",
+        "slug": "capitulo-2",
+        "title": "O que me chama a atenção",
+        "order": 1,
+        "mediaPlacements": [
+          {
+            "id": "p02-capitulo-2-imagem",
+            "mediaId": "p02-media-c02",
+            "anchor": "p02-capitulo-2",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p02-capitulo-3",
+        "slug": "capitulo-3",
+        "title": "Meu estilo tem história",
+        "order": 2,
+        "mediaPlacements": [
+          {
+            "id": "p02-capitulo-3-imagem",
+            "mediaId": "p02-media-c03",
+            "anchor": "p02-capitulo-3",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p02-capitulo-4",
+        "slug": "capitulo-4",
+        "title": "Espelho: ferramenta, não tribunal",
+        "order": 3,
+        "mediaPlacements": [
+          {
+            "id": "p02-capitulo-4-imagem",
+            "mediaId": "p02-media-c04",
+            "anchor": "p02-capitulo-4",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p02-capitulo-5",
+        "slug": "capitulo-5",
+        "title": "Experimentar é permitido",
+        "order": 4,
+        "mediaPlacements": [
+          {
+            "id": "p02-capitulo-5-imagem",
+            "mediaId": "p02-media-c05",
+            "anchor": "p02-capitulo-5",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p02-capitulo-6",
+        "slug": "capitulo-6",
+        "title": "Presença também é expressão",
+        "order": 5,
+        "mediaPlacements": [
+          {
+            "id": "p02-capitulo-6-imagem",
+            "mediaId": "p02-media-c06",
+            "anchor": "p02-capitulo-6",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p02-capitulo-7",
+        "slug": "capitulo-7",
+        "title": "A minha assinatura",
+        "order": 6,
+        "mediaPlacements": [
+          {
+            "id": "p02-capitulo-7-imagem",
+            "mediaId": "p02-media-c07",
+            "anchor": "p02-capitulo-7",
+            "position": "before"
+          },
+          {
+            "id": "p02-capitulo-7-p02-caderno",
+            "mediaId": "p02-caderno",
+            "anchor": "p02-capitulo-7",
+            "position": "after"
+          },
+          {
+            "id": "p02-capitulo-7-p02-cartoes",
+            "mediaId": "p02-cartoes",
+            "anchor": "p02-capitulo-7",
+            "position": "after"
+          }
+        ]
+      }
+    ],
+    "source": {
+      "repository": "atlashub-digital/espelhomeu",
+      "path": "packages/project-content/sources/produto-02/00_MASTER_EDITORIAL/ESPELHOMEU_P02_MASTER_EDITORIAL.md"
+    }
+  },
+  "sections": [
+    {
+      "start": "## CARTA DE ABERTURA — Uma beleza que não precisa de permissão",
+      "end": "## CAPÍTULO 2 — O que me chama a atenção"
+    },
+    {
+      "start": "## CAPÍTULO 2 — O que me chama a atenção",
+      "end": "## CAPÍTULO 3 — Meu estilo tem história"
+    },
+    {
+      "start": "## CAPÍTULO 3 — Meu estilo tem história",
+      "end": "## CAPÍTULO 4 — Espelho: ferramenta, não tribunal"
+    },
+    {
+      "start": "## CAPÍTULO 4 — Espelho: ferramenta, não tribunal",
+      "end": "## CAPÍTULO 5 — Experimentar é permitido"
+    },
+    {
+      "start": "## CAPÍTULO 5 — Experimentar é permitido",
+      "end": "## CAPÍTULO 6 — Presença também é expressão"
+    },
+    {
+      "start": "## CAPÍTULO 6 — Presença também é expressão",
+      "end": "## CAPÍTULO 7 — A minha assinatura"
+    },
+    {
+      "start": "## CAPÍTULO 7 — A minha assinatura",
+      "end": "Rever licença, uso comercial e termos de qualquer ferramenta gráfica antes da publicação."
+    }
+  ]
+}

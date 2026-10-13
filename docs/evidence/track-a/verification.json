@@ -1,0 +1,38 @@
+{
+  "node": "v22.22.2",
+  "browser": "153.0.8010.0",
+  "gate": "BLOCKED_UPSTREAM",
+  "health": {
+    "status": "ok",
+    "service": "espelhomeu-api",
+    "version": "dev",
+    "db": "not_configured"
+  },
+  "checks": [
+    "desktop /inicio: render + no overflow + screenshot",
+    "desktop /biblioteca: render + no overflow + screenshot",
+    "desktop /descobrir: render + no overflow + screenshot",
+    "desktop /ler/um-reflexo-mais-gentil: render + no overflow + screenshot",
+    "desktop /programas: render + no overflow + screenshot",
+    "desktop /perfil: render + no overflow + screenshot",
+    "desktop /meu-espelho: render + no overflow + screenshot",
+    "desktop /comunidade: render + no overflow + screenshot",
+    "desktop /premium: render + no overflow + screenshot",
+    "desktop Reader: chapter navigation + progress + completion + resume",
+    "desktop catalog search: data-driven filtering",
+    "desktop waitlist: unchanged form + API 503 without DB + honest UI error",
+    "mobile /inicio: render + no overflow + screenshot",
+    "mobile /biblioteca: render + no overflow + screenshot",
+    "mobile /descobrir: render + no overflow + screenshot",
+    "mobile /ler/um-reflexo-mais-gentil: render + no overflow + screenshot",
+    "mobile /programas: render + no overflow + screenshot",
+    "mobile /perfil: render + no overflow + screenshot",
+    "mobile /meu-espelho: render + no overflow + screenshot",
+    "mobile /comunidade: render + no overflow + screenshot",
+    "mobile /premium: render + no overflow + screenshot",
+    "mobile Reader: chapter navigation + progress + completion + resume",
+    "mobile catalog search: data-driven filtering",
+    "mobile waitlist: unchanged form + API 503 without DB + honest UI error"
+  ],
+  "pageErrors": []
+}
