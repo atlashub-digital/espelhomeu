@@ -21,3 +21,22 @@ assert.equal(generated.chapters.length, 1);
 assert.equal(generated.chapters[0].body.blocks[1].text, "Texto editorial.");
 assert.ok(!JSON.stringify(generated.chapters).includes("Operacional"));
 console.log("PASS approved P01 unchanged; invalid boundaries rejected; second recipe without code changes");
+
+// P02 is also human-approved: ingestion must not change its canonical data.
+assert.equal(createHash("sha256").update(JSON.stringify(manifest.publications.find(p => p.id === "eu-sou-bela-do-meu-jeito"))).digest("hex"), "70d6bc34f76467b679feb6b15bae8a2145cbad54229125ec9462e9dcae0289aa");
+for (const [slug, count, entries, pattern] of [
+  ["21-dias-meu-melhor-reflexo", 23, 21, /^Dia \d/],
+  ["recomecar-depois-dos-40", 9, 7, /^CAPÍTULO /],
+  ["diario-de-amor-proprio-30-encontros-comigo", 32, 30, /^ENCONTRO /],
+]) {
+  const product = manifest.publications.find(p => p.id === slug);
+  assert.equal(product.chapters.length, count);
+  assert.equal(product.chapters.filter(c => pattern.test(c.title)).length, entries);
+  assert.equal(product.media.filter(m => m.kind === "document").length, 2);
+  assert.ok(!/\[MEDIA|\[CALLOUT|FICHA EDITORIAL|FACT-CHECK|NOTAS EDITORIAIS|Lembrete editorial:|99_ARQUIVO|R\$/.test(JSON.stringify(product)));
+}
+const syntaxes = structuredClone(other);
+syntaxes.omitParagraphs = ["[MEDIA 01] Operacional"];
+const text = "## Intro\n\n> [CALLOUT — INSIGHT] Texto preservado.\n\n[MEDIA 01] Operacional\n\n## QA";
+assert.deepEqual(importGuide(text, syntaxes).chapters[0].body.blocks.at(-1), { type: "callout", tone: "note", text: "Texto preservado." });
+console.log("PASS P01/P02 unchanged; three editorial shapes and inline callouts; no operational markers");

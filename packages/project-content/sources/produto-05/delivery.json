@@ -1,0 +1,77 @@
+{
+  "product": "P05",
+  "files": [
+    {
+      "p": "05",
+      "id": "1JYkadqViWHNg0UikEdpSCTb5z1_IZy8K",
+      "name": "CAPA_ESPELHOMEU-P05_v1.2.png",
+      "path": "apps/web/public/conteudo/produto-05/CAPA_ESPELHOMEU-P05_v1.2.png",
+      "sourcePath": "01_CAPA_E_IDENTIDADE/CAPA_ESPELHOMEU-P05_v1.2.png",
+      "bytes": 2221652,
+      "sha256": "2801ec58984119073b3997053845e45b1f73fc3afd085b5abe13513804ff5260"
+    },
+    {
+      "p": "05",
+      "id": "1W3CAgMc_b3KEuh1MplhHz8u628Id4sKP",
+      "name": "ESPELHOMEU_P05_MASTER_EDITORIAL.md",
+      "path": "packages/project-content/sources/produto-05/00_MASTER_EDITORIAL/ESPELHOMEU_P05_MASTER_EDITORIAL.md",
+      "sourcePath": "00_MASTER_EDITORIAL/ESPELHOMEU_P05_MASTER_EDITORIAL.md",
+      "bytes": 31533,
+      "sha256": "2a20e837f9c2e0e8e533397f3888945435aa4c3ce95699bbeade8a1336a46f98"
+    },
+    {
+      "p": "05",
+      "id": "1YnNhdl2LndfDT48qyhTVaLWpE3x048jB",
+      "name": "MEDIA_EXTRA_05_PAISAGEM_v1.1.jpg",
+      "path": "apps/web/public/conteudo/produto-05/MEDIA_EXTRA_05_PAISAGEM_v1.1.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/MEDIA_EXTRA_05_PAISAGEM_v1.1.jpg",
+      "bytes": 248599,
+      "sha256": "3c90397369daf39af9568a67854670fdcb3b48b672c14af5c0b1e67a61387bda"
+    },
+    {
+      "p": "05",
+      "id": "1oB2UV0bjFj18XTtCXXPkR0Q5P-tLyB9n",
+      "name": "MEDIA_EXTRA_05_EDITORIAL_v1.1.jpg",
+      "path": "apps/web/public/conteudo/produto-05/MEDIA_EXTRA_05_EDITORIAL_v1.1.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/MEDIA_EXTRA_05_EDITORIAL_v1.1.jpg",
+      "bytes": 333347,
+      "sha256": "ac0ebb62d2b243ad8e4be557f85792ecdc357305cb8e9d23fe4ce51a7c8ad565"
+    },
+    {
+      "p": "05",
+      "id": "1lJKZKsWF_NfV2KA6a8Qhyrkumeh_XzEp",
+      "name": "ATMOSFERA_05_DETALHE_v1.1.jpg",
+      "path": "apps/web/public/conteudo/produto-05/ATMOSFERA_05_DETALHE_v1.1.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/ATMOSFERA_05_DETALHE_v1.1.jpg",
+      "bytes": 67724,
+      "sha256": "7fa007399806c7cdf188c5fcceded6797b3fe90b8f3c3c24b8f289c311d17557"
+    },
+    {
+      "p": "05",
+      "id": "1EeFCcmPiPIh-DE9Aeo0Rjcjd9_0ZDqtg",
+      "name": "CENA_EDITORIAL_05_BASE_v1.1.jpg",
+      "path": "apps/web/public/conteudo/produto-05/CENA_EDITORIAL_05_BASE_v1.1.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/CENA_EDITORIAL_05_BASE_v1.1.jpg",
+      "bytes": 196152,
+      "sha256": "e19052efa671dc682fc949d4cbd7b4f045b5e8bdbb396623fc46f01158e3fefe"
+    },
+    {
+      "p": "05",
+      "id": "1lIHY9cioAvtG0wYKeFjjameaK1VjxZ2u",
+      "name": "CARTOES_ESPELHOMEU-P05_v1.1.pdf",
+      "path": "apps/web/public/conteudo/produto-05/CARTOES_ESPELHOMEU-P05_v1.1.pdf",
+      "sourcePath": "03_WORKBOOK_E_EXTRAS/CARTOES_ESPELHOMEU-P05_v1.1.pdf",
+      "bytes": 68229,
+      "sha256": "1175f3923b083ddb3918e3092bb0509fc19f810d56c05ca4c93279564d972033"
+    },
+    {
+      "p": "05",
+      "id": "1IcbNwZi54jMo5HyCFIIqYNcZXc_GyYEs",
+      "name": "CADERNO_ESPELHOMEU-P05_v1.1.pdf",
+      "path": "apps/web/public/conteudo/produto-05/CADERNO_ESPELHOMEU-P05_v1.1.pdf",
+      "sourcePath": "03_WORKBOOK_E_EXTRAS/CADERNO_ESPELHOMEU-P05_v1.1.pdf",
+      "bytes": 131885,
+      "sha256": "17a3cd3da78d8e17ba314e587f01529d7b6da3b2760cd3464bc7372a47118c39"
+    }
+  ]
+}

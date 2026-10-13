@@ -1,0 +1,285 @@
+{
+  "publication": {
+    "schemaVersion": "0.2",
+    "id": "recomecar-depois-dos-40",
+    "slug": "recomecar-depois-dos-40",
+    "type": "guide",
+    "status": "preview",
+    "locale": "pt-BR",
+    "title": "Recomeçar Depois dos 40",
+    "subtitle": "Novos capítulos, escolhas próprias e a liberdade de continuar mudando.",
+    "authors": [
+      "EspelhoMeu"
+    ],
+    "edition": "Homologação · Preview editorial v1.1",
+    "tags": [
+      "Novos capítulos",
+      "Reflexão"
+    ],
+    "access": {
+      "mode": "public"
+    },
+    "media": [
+      {
+        "id": "p04-media-1",
+        "kind": "document",
+        "title": "7 cartões de reflexão",
+        "assetPath": "/conteudo/produto-04/CARTOES_ESPELHOMEU-P04_v1.1.pdf",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1zoItEJBc37cK3LJ7nD-CKLACZLyl-g0Y/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "CARTOES_ESPELHOMEU-P04_v1.1.pdf",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      },
+      {
+        "id": "p04-media-2",
+        "kind": "document",
+        "title": "Mapa de Novos Capítulos",
+        "assetPath": "/conteudo/produto-04/CADERNO_ESPELHOMEU-P04_v1.1.pdf",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/17SaGywTlOlCZBHD_YJJKfzBbs-4BUsMp/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "CADERNO_ESPELHOMEU-P04_v1.1.pdf",
+          "editorialStatus": "READY FOR AMF INGESTION"
+        }
+      },
+      {
+        "id": "p04-media-3",
+        "kind": "image",
+        "title": "Recomeçar Depois dos 40",
+        "assetPath": "/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.1.png",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/16qr8mCa6eClKEBgdKDP4sX5AOqhlJUwC/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "CAPA_ESPELHOMEU-P04_v1.1.png",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1024,
+          "height": 1536
+        },
+        "alt": "Mulher sentada em ambiente luminoso diante de espelho, sem qualquer gesto de escrita."
+      },
+      {
+        "id": "p04-media-4",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-04/MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1vS3HXz_hiHL7cy7VUMmN-_ZALme0DkV5/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1024,
+          "height": 768
+        },
+        "alt": "Mulher de costas numa varanda florida, segurando um chapéu, com vista para a costa ao entardecer."
+      },
+      {
+        "id": "p04-media-5",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-04/MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1K5D6FStlwLulKdgLCHIGK7Wogfx90_2m/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1200,
+          "height": 900
+        },
+        "alt": "Mulher sentada numa varanda florida, com vista para a costa ao entardecer."
+      },
+      {
+        "id": "p04-media-6",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-04/ATMOSFERA_04_DETALHE_v1.1.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/18x_J13fLAfHI42QOY5kWwYKWLklwnxrm/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "ATMOSFERA_04_DETALHE_v1.1.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 1024,
+          "height": 292
+        },
+        "alt": "Detalhe de roupa clara, flores e paisagem costeira."
+      },
+      {
+        "id": "p04-media-7",
+        "kind": "image",
+        "title": "Imagem editorial",
+        "assetPath": "/conteudo/produto-04/CENA_EDITORIAL_04_BASE_v1.1.jpg",
+        "publisher": "EspelhoMeu",
+        "sourcePage": "https://drive.google.com/file/d/1BNtU18CLBl6OxGAfVo7V27h87G_nMwfP/view",
+        "license": "Asset editorial autorizado para Preview; aprovação comercial pendente.",
+        "metadata": {
+          "sourceFile": "CENA_EDITORIAL_04_BASE_v1.1.jpg",
+          "editorialStatus": "READY FOR AMF INGESTION",
+          "width": 834,
+          "height": 538
+        },
+        "alt": "Mulher sentada numa varanda florida, com vista para a costa ao entardecer."
+      }
+    ],
+    "chapters": [
+      {
+        "id": "p04-secao-1",
+        "slug": "secao-1",
+        "title": "Antes de começar",
+        "order": 0,
+        "mediaPlacements": []
+      },
+      {
+        "id": "p04-secao-2",
+        "slug": "secao-2",
+        "title": "CAPÍTULO 01 — Não existe prazo de validade para começar",
+        "order": 1,
+        "mediaPlacements": [
+          {
+            "id": "p04-media-7-placement",
+            "mediaId": "p04-media-7",
+            "anchor": "p04-secao-2",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p04-secao-3",
+        "slug": "secao-3",
+        "title": "CAPÍTULO 02 — A minha história é um recurso",
+        "order": 2,
+        "mediaPlacements": []
+      },
+      {
+        "id": "p04-secao-4",
+        "slug": "secao-4",
+        "title": "CAPÍTULO 03 — O tempo que quero para mim",
+        "order": 3,
+        "mediaPlacements": [
+          {
+            "id": "p04-media-6-placement",
+            "mediaId": "p04-media-6",
+            "anchor": "p04-secao-4",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p04-secao-5",
+        "slug": "secao-5",
+        "title": "CAPÍTULO 04 — Identidade além dos papéis",
+        "order": 4,
+        "mediaPlacements": []
+      },
+      {
+        "id": "p04-secao-6",
+        "slug": "secao-6",
+        "title": "CAPÍTULO 05 — O que ainda quero descobrir",
+        "order": 5,
+        "mediaPlacements": [
+          {
+            "id": "p04-media-4-placement",
+            "mediaId": "p04-media-4",
+            "anchor": "p04-secao-6",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p04-secao-7",
+        "slug": "secao-7",
+        "title": "CAPÍTULO 06 — Relações e limites que me fazem sentido",
+        "order": 6,
+        "mediaPlacements": []
+      },
+      {
+        "id": "p04-secao-8",
+        "slug": "secao-8",
+        "title": "CAPÍTULO 07 — O próximo capítulo é meu",
+        "order": 7,
+        "mediaPlacements": [
+          {
+            "id": "p04-media-5-placement",
+            "mediaId": "p04-media-5",
+            "anchor": "p04-secao-8",
+            "position": "before"
+          }
+        ]
+      },
+      {
+        "id": "p04-secao-9",
+        "slug": "secao-9",
+        "title": "Mapa de Novos Capítulos e continuidade",
+        "order": 8,
+        "mediaPlacements": [
+          {
+            "id": "p04-media-1-placement",
+            "mediaId": "p04-media-1",
+            "anchor": "p04-secao-9",
+            "position": "after"
+          },
+          {
+            "id": "p04-media-2-placement",
+            "mediaId": "p04-media-2",
+            "anchor": "p04-secao-9",
+            "position": "after"
+          }
+        ]
+      }
+    ],
+    "cover": "/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.1.png"
+  },
+  "sections": [
+    {
+      "start": "**Nota de enquadramento:**",
+      "end": "## SUMÁRIO"
+    },
+    {
+      "start": "## Carta de abertura — A partir de onde estou",
+      "end": "## CAPÍTULO 02 — A minha história é um recurso"
+    },
+    {
+      "start": "## CAPÍTULO 02 — A minha história é um recurso",
+      "end": "## CAPÍTULO 03 — O tempo que quero para mim"
+    },
+    {
+      "start": "## CAPÍTULO 03 — O tempo que quero para mim",
+      "end": "## CAPÍTULO 04 — Identidade além dos papéis"
+    },
+    {
+      "start": "## CAPÍTULO 04 — Identidade além dos papéis",
+      "end": "## CAPÍTULO 05 — O que ainda quero descobrir"
+    },
+    {
+      "start": "## CAPÍTULO 05 — O que ainda quero descobrir",
+      "end": "## CAPÍTULO 06 — Relações e limites que me fazem sentido"
+    },
+    {
+      "start": "## CAPÍTULO 06 — Relações e limites que me fazem sentido",
+      "end": "## CAPÍTULO 07 — O próximo capítulo é meu"
+    },
+    {
+      "start": "## CAPÍTULO 07 — O próximo capítulo é meu",
+      "end": "## Dez perguntas para outras estações da vida"
+    },
+    {
+      "start": "## Dez perguntas para outras estações da vida",
+      "end": "## REFERÊNCIAS E FACT-CHECK"
+    }
+  ],
+  "omitParagraphs": [
+    "[MEDIA 01] Usar enquadramento fotográfico ligado ao tema ou composição tipográfica controlada; verificar MEDIA_MAP.",
+    "[MEDIA 02] Usar enquadramento fotográfico ligado ao tema ou composição tipográfica controlada; verificar MEDIA_MAP.",
+    "[MEDIA 03] Usar enquadramento fotográfico ligado ao tema ou composição tipográfica controlada; verificar MEDIA_MAP.",
+    "[MEDIA 04] Usar enquadramento fotográfico ligado ao tema ou composição tipográfica controlada; verificar MEDIA_MAP.",
+    "[MEDIA 05] Usar enquadramento fotográfico ligado ao tema ou composição tipográfica controlada; verificar MEDIA_MAP.",
+    "[MEDIA 06] Usar enquadramento fotográfico ligado ao tema ou composição tipográfica controlada; verificar MEDIA_MAP.",
+    "[MEDIA 07] Usar enquadramento fotográfico ligado ao tema ou composição tipográfica controlada; verificar MEDIA_MAP."
+  ]
+}

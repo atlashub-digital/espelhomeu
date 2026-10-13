@@ -1,0 +1,77 @@
+{
+  "product": "P04",
+  "files": [
+    {
+      "p": "04",
+      "id": "1zoItEJBc37cK3LJ7nD-CKLACZLyl-g0Y",
+      "name": "CARTOES_ESPELHOMEU-P04_v1.1.pdf",
+      "path": "apps/web/public/conteudo/produto-04/CARTOES_ESPELHOMEU-P04_v1.1.pdf",
+      "sourcePath": "03_WORKBOOK_E_EXTRAS/CARTOES_ESPELHOMEU-P04_v1.1.pdf",
+      "bytes": 59940,
+      "sha256": "8e9d2ef1f877e885791baf3d867d4876a191c16e04187a61c7791ac0596bcbf2"
+    },
+    {
+      "p": "04",
+      "id": "17SaGywTlOlCZBHD_YJJKfzBbs-4BUsMp",
+      "name": "CADERNO_ESPELHOMEU-P04_v1.1.pdf",
+      "path": "apps/web/public/conteudo/produto-04/CADERNO_ESPELHOMEU-P04_v1.1.pdf",
+      "sourcePath": "03_WORKBOOK_E_EXTRAS/CADERNO_ESPELHOMEU-P04_v1.1.pdf",
+      "bytes": 114774,
+      "sha256": "9e26b10cc37b0066ff7f62752c87e7f3096f095d0afa3898e9a72cca88d09627"
+    },
+    {
+      "p": "04",
+      "id": "1LQsp3INTrMIWULMrX4VCSY_yum9obSs8",
+      "name": "ESPELHOMEU_P04_MASTER_EDITORIAL.md",
+      "path": "packages/project-content/sources/produto-04/00_MASTER_EDITORIAL/ESPELHOMEU_P04_MASTER_EDITORIAL.md",
+      "sourcePath": "00_MASTER_EDITORIAL/ESPELHOMEU_P04_MASTER_EDITORIAL.md",
+      "bytes": 31645,
+      "sha256": "ab1c785ffca4cbf29f4c528c7a7cd04b8788ca695ff4f3b1d418745bd104d102"
+    },
+    {
+      "p": "04",
+      "id": "16qr8mCa6eClKEBgdKDP4sX5AOqhlJUwC",
+      "name": "CAPA_ESPELHOMEU-P04_v1.1.png",
+      "path": "apps/web/public/conteudo/produto-04/CAPA_ESPELHOMEU-P04_v1.1.png",
+      "sourcePath": "01_CAPA_E_IDENTIDADE/CAPA_ESPELHOMEU-P04_v1.1.png",
+      "bytes": 2121878,
+      "sha256": "6b6299594121821905b27fc604b28e8fa8411e0bd48f2b692e25dbeecec8b315"
+    },
+    {
+      "p": "04",
+      "id": "1vS3HXz_hiHL7cy7VUMmN-_ZALme0DkV5",
+      "name": "MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg",
+      "path": "apps/web/public/conteudo/produto-04/MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/MEDIA_EXTRA_04_PAISAGEM_v1.1.jpg",
+      "bytes": 326784,
+      "sha256": "29bd47c7143730c7a7b3271ef8e969ff2422973c1d5cbaaedcd4226742c5dc46"
+    },
+    {
+      "p": "04",
+      "id": "1K5D6FStlwLulKdgLCHIGK7Wogfx90_2m",
+      "name": "MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg",
+      "path": "apps/web/public/conteudo/produto-04/MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/MEDIA_EXTRA_04_EDITORIAL_v1.1.jpg",
+      "bytes": 359613,
+      "sha256": "250b6eb12b75ed5dad036b4d4fdf971fc3c5ceb75d61666b75f151ff40b4ed8d"
+    },
+    {
+      "p": "04",
+      "id": "18x_J13fLAfHI42QOY5kWwYKWLklwnxrm",
+      "name": "ATMOSFERA_04_DETALHE_v1.1.jpg",
+      "path": "apps/web/public/conteudo/produto-04/ATMOSFERA_04_DETALHE_v1.1.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/ATMOSFERA_04_DETALHE_v1.1.jpg",
+      "bytes": 131092,
+      "sha256": "f72ac8b0903e1cf77314aca86633065b71b08df59649161119420ce45738ed3f"
+    },
+    {
+      "p": "04",
+      "id": "1BNtU18CLBl6OxGAfVo7V27h87G_nMwfP",
+      "name": "CENA_EDITORIAL_04_BASE_v1.1.jpg",
+      "path": "apps/web/public/conteudo/produto-04/CENA_EDITORIAL_04_BASE_v1.1.jpg",
+      "sourcePath": "02_MEDIA_EDITORIAL/CENA_EDITORIAL_04_BASE_v1.1.jpg",
+      "bytes": 195421,
+      "sha256": "e71a536ccacc053649019ed8fd575c3085b783d5e77c760366dd47f0440abdfa"
+    }
+  ]
+}

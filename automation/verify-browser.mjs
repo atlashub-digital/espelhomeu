@@ -1,7 +1,7 @@
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { createRequire } from "node:module";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import assert from "node:assert/strict";
@@ -74,11 +74,14 @@ try {
         ]
       : [],
   });
+  const manifest = JSON.parse(await readFile(path.join(root, "packages/project-content/content/manifest.json"), "utf8"));
+  const newProducts = manifest.publications.filter(p => ["21-dias-meu-melhor-reflexo", "recomecar-depois-dos-40", "diario-de-amor-proprio-30-encontros-comigo"].includes(p.id));
   const errors = [],
     checks = [];
   const page = await browser.newPage();
   page.on("pageerror", (e) => errors.push(e.message));
   const routes = [
+    ...newProducts.map(p => "/ler/" + p.slug),
     "/inicio",
     "/biblioteca",
     "/descobrir",
@@ -126,11 +129,39 @@ try {
       checks.push(`${name} ${route}: render + no overflow + screenshot`);
     }
     await page.goto(origin + "/biblioteca");
-    assert.equal(await page.locator(".publication-card").count(), 2);
+    assert.equal(await page.locator(".publication-card").count(), 5);
     assert.equal(await page.locator('.publication-card a[href="/ler/uma-pausa-que-tambem-e-sua"]').count(), 0);
-    for (const product of ["produto-01", "produto-02"])
+    for (const product of ["produto-01", "produto-02", "produto-03", "produto-04", "produto-05"])
       assert.equal(await page.locator('.publication-card img').evaluateAll((images, product) => images.filter(img => img.src.includes(product)).length, product), 1);
-    checks.push(name + " Library: P01 + P02 covers; legacy Article excluded");
+    checks.push(name + " Library: P01–P05 covers; legacy Article excluded");
+    for (const product of newProducts) {
+      await page.goto(origin + "/ler/" + product.slug);
+      assert.equal(await page.locator(".reader-sidebar li").count(), product.chapters.length);
+      for (const [i, chapter] of product.chapters.entries()) {
+        assert.equal(await page.locator(".reader-content h2").innerText(), chapter.title);
+        const text = await page.locator(".reader-content").innerText();
+        assert.ok(!/\[MEDIA|\[CALLOUT|FICHA EDITORIAL|FACT-CHECK|NOTAS EDITORIAIS|Lembrete editorial:|99_ARQUIVO|R\$/.test(text));
+        for (const img of await page.locator(".reader-content img").all()) {
+          await img.scrollIntoViewIfNeeded(); await img.evaluate(image => image.decode());
+          assert.ok(await img.getAttribute("alt"));
+        }
+        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+        if (i === 0 || i === product.chapters.length - 1 || chapter.mediaPlacements.length)
+          await page.locator(".reader-content").screenshot({ path: path.join(evidence, name + "-" + product.id + "-" + chapter.id + ".png") });
+        if (i < product.chapters.length - 1) await page.getByRole("button", { name: "Concluir e continuar" }).click();
+      }
+      for (const media of product.media.filter(m => m.kind === "document")) {
+        const link = page.locator('.reader-content a[download][href="' + media.assetPath + '"]');
+        const [download] = await Promise.all([page.waitForEvent("download"), link.click()]);
+        assert.equal(await download.failure(), null);
+        const response = await fetch(origin + media.assetPath);
+        assert.equal(response.status, 200);
+        assert.equal(Buffer.from(await response.arrayBuffer()).subarray(0, 5).toString(), "%PDF-");
+      }
+      await page.getByRole("button", { name: "Concluir leitura" }).click();
+      assert.equal(await page.locator("progress").getAttribute("value"), "100");
+      checks.push(name + " " + product.id + ": all sections, media, downloads, navigation, completion; no operational markers");
+    }
     await page.goto(origin + "/ler/eu-sou-bela-do-meu-jeito");
     assert.equal(await page.locator(".reader-sidebar li").count(), 7);
     const p02Titles = ["A beleza também pode ser uma assinatura", "O que me chama a atenção", "Meu estilo tem história", "Espelho: ferramenta, não tribunal", "Experimentar é permitido", "Presença também é expressão", "A minha assinatura"];
