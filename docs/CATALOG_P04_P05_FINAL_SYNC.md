@@ -42,7 +42,8 @@ mas têm nomes/ordem próprios: seguem os maps, não são uma deduplicação edi
 | P04 | abertura do capítulo 1 | capítulo 3, tempo/pausa | Mapa e continuidade |
 | P05 | acolhimento inicial | encontro 19, escolhas/autonomia | encontro 25, continuidade/pausa |
 
-Alts do MEDIA_MAP, capas identificadas pelo título. As imagens foram inspecionadas
+Alts do MEDIA_MAP, com a descrição P05/02 ajustada à imagem visível (mulher de costas
+com chapéu, sem inferir caminhada); capas identificadas pelo título. As imagens foram inspecionadas
 visualmente; direitos comerciais e revisão editorial certificada continuam gates
 humanos. Não se apresentam imagens sintéticas como testemunhos.
 
