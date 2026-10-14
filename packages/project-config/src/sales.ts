@@ -207,6 +207,7 @@ export function getCollectionValue(
     );
     if (matches.length !== 1) return null;
     const individual = matches[0];
+    if (!individual) return null;
     if (
       individual.cadence !== "once" ||
       individual.currency !== collection.currency ||
