@@ -241,9 +241,11 @@ export function commerceRoutes(
           "/checkout/retorno?session_id={CHECKOUT_SESSION_ID}",
       );
       form.set("customer_creation", "always");
-      opts.env.STRIPE_PAYMENT_METHODS.forEach((method, index) =>
-        form.set("payment_method_types[" + index + "]", method),
-      );
+      if (!opts.env.STRIPE_PAYMENT_METHODS.includes("automatic")) {
+        opts.env.STRIPE_PAYMENT_METHODS.forEach((method, index) =>
+          form.set("payment_method_types[" + index + "]", method),
+        );
+      }
       selection.selected.forEach((offer, index) => {
         const prefix = "line_items[" + index + "]";
         form.set(prefix + "[price_data][currency]", offer.currency);
