@@ -7,7 +7,7 @@ Hotmart is outside the launch critical path.
 The first-party EspelhoMeu checkout uses:
 - Sales Engine S1;
 - embedded Stripe Checkout Sessions + Payment Element;
-- card + Pix when enabled on the Stripe account;
+- cartão e métodos locais elegíveis via Stripe Payment Element; Pix aparece quando habilitado/elegível;
 - Fastify API as payment/order authority;
 - Postgres order ledger;
 - webhook-confirmed entitlements;
@@ -46,7 +46,7 @@ Configure only in the VPS environment, never Git:
 Operational values:
 - WEB_BASE_URL=https://espelho.lia.doctor
 - COMMERCE_ENABLED=true only after test-mode smoke
-- STRIPE_PAYMENT_METHODS=card,pix
+- STRIPE_PAYMENT_METHODS=automatic (ou card,pix depois de validar a conta)
 - ACCESS_TOKEN_DAYS=180
 
 Vercel already needs:
