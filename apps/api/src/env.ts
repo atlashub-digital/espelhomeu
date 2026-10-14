@@ -18,9 +18,10 @@ const Env = z.object({
   STRIPE_SECRET_KEY: z.string().min(1).optional(),
   STRIPE_PUBLISHABLE_KEY: z.string().min(1).optional(),
   STRIPE_WEBHOOK_SECRET: z.string().min(1).optional(),
+  STRIPE_API_VERSION: z.string().default("2025-06-30.basil"),
   STRIPE_PAYMENT_METHODS: z
     .string()
-    .default("card,pix")
+    .default("automatic")
     .transform((s) => s.split(",").map((v) => v.trim()).filter(Boolean)),
   ACCESS_TOKEN_DAYS: z.coerce.number().int().min(1).max(3650).default(180),
 });
