@@ -33,9 +33,12 @@ describe("approved S1 commercial registry", () => {
       "bundle-percurso": null,
       "bundle-voltar": null,
     });
-    expect(salesOffers.every((offer) => offer.purchaseEnabled === false)).toBe(
-      true,
-    );
+    expect(
+      salesOffers.filter((offer) => offer.purchaseEnabled).map((offer) => offer.id),
+    ).toEqual(["p01", "p02", "p03", "p04", "p05", "colecao"]);
+    expect(getSalesOffer("jornada")?.purchaseEnabled).toBe(false);
+    expect(getSalesOffer("membership")?.purchaseEnabled).toBe(false);
+    expect(getSalesOffer("bundle-primeiro")?.purchaseEnabled).toBe(false);
     expect(getSalesOffer("membership")?.cadence).toBe("month");
     expect(getSalesOffer("jornada")?.availability).toBe("preparing");
     expect(getSalesOffer("membership")?.availability).toBe("preparing");
