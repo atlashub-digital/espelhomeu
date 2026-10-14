@@ -42,7 +42,7 @@ export function SalesShell({
       </a>
       <div className="sales-announcement">
         Uma coleção para se escolher.{" "}
-        <span>Preview · compras ainda não disponíveis</span>
+        <span>Checkout próprio · cartão e Pix · acesso após confirmação</span>
       </div>
       <header className="sales-header">
         <SalesLink href="/" aria-label="EspelhoMeu — início">
@@ -170,8 +170,8 @@ function FAQ() {
             "O WebReader já está disponível: capítulos, índice, progresso e acesso aos materiais complementares. A Biblioteca reúne as leituras. Você pode experimentar essa experiência no Preview.",
           ],
           [
-            "Já posso comprar?",
-            "Ainda não. Os valores apresentados estão aprovados para a oferta, mas a compra e a cobrança não estão ativas neste Preview. Antes da abertura serão apresentados os termos de acesso, pagamento, cancelamento e suporte.",
+            "Como funciona a compra?",
+            "Os cinco volumes e a Coleção são ofertas digitais de pagamento único. O checkout acontece dentro do EspelhoMeu com processamento seguro por cartão ou Pix. Jornada e Membership continuam em preparação.",
           ],
           [
             "Preciso seguir todos os exercícios?",
@@ -230,7 +230,7 @@ function CollectionValue({ offer }: { offer: SalesOffer }) {
       </dl>
       <small>
         Comparação com os valores individuais atuais. Não é um preço anterior
-        nem uma promoção por tempo limitado. Compra ainda indisponível.
+        nem uma promoção por tempo limitado.
       </small>
     </div>
   );
@@ -389,17 +389,26 @@ function OfferBox({
       <div className="sales-offer-price">
         <strong>{formatOfferPrice(offer)}</strong>
         <small>
-          {offer.cadence === "month"
-            ? "Assinatura ainda não disponível"
-            : "Pagamento único · compra ainda não disponível"}
+          {offer.purchaseEnabled
+            ? "Pagamento único · acesso após confirmação"
+            : offer.cadence === "month"
+              ? "Assinatura ainda não disponível"
+              : "Oferta em preparação"}
         </small>
         <SalesLink
-          href={samplePath ?? "/colecao#volumes"}
+          href={
+            offer.purchaseEnabled
+              ? "/checkout/" + offer.id
+              : samplePath ?? "/colecao#volumes"
+          }
           className="sales-button"
           event={offer.id === "colecao" ? "collection_cta" : "offer_cta"}
           offerId={offer.id}
         >
-          {cta} ↗
+          {offer.purchaseEnabled
+            ? "Comprar agora · " + formatOfferPrice(offer)
+            : cta}{" "}
+          ↗
         </SalesLink>
         {reader && (
           <SalesLink
@@ -412,7 +421,9 @@ function OfferBox({
             Explorar o WebReader de demonstração →
           </SalesLink>
         )}
-        <small>Este Preview não processa pedidos ou pagamentos.</small>
+        <small>
+          O pagamento é confirmado antes da liberação do acesso integral.
+        </small>
       </div>
     </section>
   );
@@ -470,8 +481,8 @@ function WebReaderPreview({ product }: { product: SalesProduct }) {
           Ver a experiência real →
         </SalesLink>
         <small>
-          A demonstração editorial está aberta nesta fase. Acesso comercial por
-          compra será integrado nas próximas etapas.
+          A amostra continua aberta. O acesso integral ao Reader é liberado
+          após confirmação da compra.
         </small>
       </div>
     </section>
@@ -852,7 +863,7 @@ export function ProductSalesPage({
               {n.count} · WebReader · Extras digitais
             </div>
             <span className="sales-badge">
-              Amostra disponível · compra em preparação
+              Amostra disponível · checkout integrado
             </span>
           </div>
           <div className="sales-product-visual">
@@ -991,13 +1002,20 @@ export function ProductSalesPage({
             <strong>{formatOfferPrice(p.offer)}</strong>
           </span>
           <SalesLink
-            href={p.offer.path + "#amostra"}
+            href={
+              p.offer.purchaseEnabled
+                ? "/checkout/" + p.offer.id
+                : p.offer.path + "#amostra"
+            }
             className="sales-button"
             offerId={p.offer.id}
             event="offer_cta"
             surface="sticky"
           >
-            Ler amostra ↗
+            {p.offer.purchaseEnabled
+              ? "Comprar · " + formatOfferPrice(p.offer)
+              : "Ler amostra"}{" "}
+            ↗
           </SalesLink>
         </div>
       </div>
