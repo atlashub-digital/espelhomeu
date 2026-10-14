@@ -218,6 +218,10 @@ export function commerceRoutes(
           status: "created",
         })
         .returning({ id: orders.id });
+      if (!order) {
+        req.log.error("order insert returned no row");
+        return reply.code(500).send({ ok: false, error: "order_create_failed" });
+      }
 
       await opts.db.db.insert(orderItems).values(
         selection.selected.map((offer) => ({
