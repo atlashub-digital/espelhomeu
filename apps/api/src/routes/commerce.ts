@@ -447,24 +447,33 @@ export function commerceRoutes(
       } catch {
         return reply.code(400).send({ ok: false });
       }
-      const inserted = await opts.db.db
-        .insert(paymentEvents)
-        .values({
-          providerEventId: event.id,
-          eventType: event.type,
-          payloadHash: hash(raw),
-        })
-        .onConflictDoNothing({ target: paymentEvents.providerEventId })
-        .returning({ id: paymentEvents.id });
-      if (inserted.length === 0)
-        return reply.send({ ok: true, duplicate: true });
+      const [seen] = await opts.db.db
+        .select({ id: paymentEvents.id })
+        .from(paymentEvents)
+        .where(eq(paymentEvents.providerEventId, event.id))
+        .limit(1);
+      if (seen) return reply.send({ ok: true, duplicate: true });
+
+      const recordEvent = async () => {
+        await opts.db!.db
+          .insert(paymentEvents)
+          .values({
+            providerEventId: event.id,
+            eventType: event.type,
+            payloadHash: hash(raw),
+          })
+          .onConflictDoNothing({ target: paymentEvents.providerEventId });
+      };
 
       const object = event.data.object;
       const orderId = await orderIdFromStripeObject(
         opts.env.STRIPE_SECRET_KEY,
         object,
       );
-      if (!orderId) return reply.send({ ok: true, ignored: true });
+      if (!orderId) {
+        await recordEvent();
+        return reply.send({ ok: true, ignored: true });
+      }
 
       if (
         event.type === "checkout.session.completed" ||
@@ -499,6 +508,7 @@ export function commerceRoutes(
         await setOrderStatus(opts.db, orderId, "chargeback");
         await revokeOrder(opts.db, orderId);
       }
+      await recordEvent();
       return reply.send({ ok: true });
     });
   });
