@@ -13,6 +13,11 @@ import {
 } from "@espelhomeu/project-config/sales";
 import type { BodySource } from "@atlashub-digital/amf-content-schema";
 import { ReaderBody } from "../reader-body";
+const SampleChoice = createContext<{
+  index: number;
+  opened: boolean;
+  choose: (index: number, opened: boolean) => void;
+}>({ index: 0, opened: false, choose: () => {} });
 const Attribution = createContext<SalesAttribution>({});
 function emit(
   name: SalesEventName,
@@ -41,6 +46,7 @@ export function SalesSession({
   offerId?: string;
   surface: string;
 }) {
+  const [sample, setSample] = useState({ index: 0, opened: false });
   const encoded = JSON.stringify(attribution);
   useEffect(() => {
     emit(
@@ -55,7 +61,14 @@ export function SalesSession({
   }, [encoded, offerId, surface]);
   return (
     <Attribution.Provider value={attribution}>
-      <div className="sales-root">{children}</div>
+      <SampleChoice.Provider
+        value={{
+          ...sample,
+          choose: (index, opened) => setSample({ index, opened }),
+        }}
+      >
+        <div className="sales-root">{children}</div>
+      </SampleChoice.Provider>
     </Attribution.Provider>
   );
 }
@@ -66,6 +79,7 @@ export function SalesLink({
   event,
   offerId,
   surface = "offer",
+  onClick,
   ...rest
 }: {
   href: string;
@@ -76,6 +90,7 @@ export function SalesLink({
   surface?: string;
   id?: string;
   "aria-label"?: string;
+  onClick?: () => void;
 }) {
   const attr = useContext(Attribution);
   return (
@@ -84,6 +99,7 @@ export function SalesLink({
       href={withAttribution(href, attr)}
       className={className}
       onClick={() => {
+        onClick?.();
         if (event) emit(event, offerId, surface, attr);
       }}
     >
@@ -125,6 +141,27 @@ export function PathQuiz({
   samplePath: string;
 }) {
   const [step, setStep] = useState(-1);
+  const [answers, setAnswers] = useState<number[]>([]);
+  const sample = useContext(SampleChoice);
+  const approach = answers[1] ?? 0;
+  const recommendations = [
+    {
+      title: "Comece pela leitura.",
+      text: "Abra um trecho do Dia 1 — Escutar. Leia antes de decidir se quer fazer uma atividade.",
+      cta: "Ler um trecho do Dia 1",
+    },
+    {
+      title: "Comece por uma reflexão.",
+      text: "Abra um trecho do Dia 2 — Reconhecer. Leve uma pergunta consigo, sem obrigação de responder.",
+      cta: "Explorar o Dia 2",
+    },
+    {
+      title: "Comece com espaço para escrever.",
+      text: "Conheça os Cartões e o Mapa do Que É Meu. Você pode usar um caderno seu; nada será recolhido aqui.",
+      cta: "Conhecer o Mapa do Que É Meu",
+    },
+  ];
+  const recommendation = recommendations[approach];
   const attr = useContext(Attribution);
   return (
     <div className="sales-interaction" id="por-onde-comeco">
@@ -151,11 +188,12 @@ export function PathQuiz({
             <small>{step + 1} / 3</small>
             {questions[step].title}
           </legend>
-          {questions[step].options.map((option) => (
+          {questions[step].options.map((option, choice) => (
             <button
               key={option}
               data-testid="quiz-option"
               onClick={() => {
+                setAnswers((previous) => [...previous, choice]);
                 setStep(step + 1);
                 if (step === 2) emit("quiz_complete", offerId, "quiz", attr);
               }}
@@ -166,22 +204,48 @@ export function PathQuiz({
         </fieldset>
       ) : (
         <div data-testid="quiz-result" role="status">
-          <h3>Um pequeno começo já é um começo.</h3>
+          <h3>{recommendation.title}</h3>
           <p>
-            O P01 é o convite de entrada da coleção: sete leituras e atividades
-            opcionais, no ritmo que você escolher. Não é uma avaliação das suas
-            respostas.
+            {
+              [
+                "Você escolheu uma pequena pausa.",
+                "Você escolheu uma pergunta para refletir.",
+                "Você escolheu um começo sem pressa.",
+              ][answers[0]]
+            }
           </p>
+          <p>{recommendation.text}</p>
+          <p>
+            {
+              [
+                "Experimente um encontro de cada vez; o próximo pode esperar.",
+                "Volte quando surgir vontade, sem calendário obrigatório.",
+                "Fique apenas com a amostra hoje; não há compromisso de continuar.",
+              ][answers[2]]
+            }
+          </p>
+          <small>
+            Esta é uma sugestão editorial baseada no que você selecionou, não
+            uma avaliação.
+          </small>
           <SalesLink
             href={samplePath}
+            onClick={() => sample.choose(approach, true)}
             className="sales-button"
             event="sample_open"
             offerId={offerId}
             surface="quiz"
           >
-            Experimentar uma leitura →
+            {recommendation.cta} →
           </SalesLink>
-          <button className="sales-text-button" onClick={() => setStep(-1)}>
+          <button
+            className="sales-text-button"
+            onClick={() => {
+              setStep(-1);
+              setAnswers([]);
+              sample.choose(0, false);
+            }}
+          >
             Recomeçar
           </button>
         </div>
@@ -194,22 +258,21 @@ export function IntentSelector({
   kind,
   offerId,
   samplePath,
+  options,
 }: {
   kind: "expression" | "intention";
   offerId: string;
   samplePath: string;
+  options: {
+    label: string;
+    context: string;
+    chapterId: string;
+    title: string;
+  }[];
 }) {
-  const [selection, setSelection] = useState("");
+  const [selection, setSelection] = useState<number | null>(null);
+  const sample = useContext(SampleChoice);
   const attr = useContext(Attribution);
-  const options =
-    kind === "expression"
-      ? ["Presença", "Estilo", "Autenticidade", "Confiança nas escolhas"]
-      : [
-          "Ter mais espaço para mim",
-          "Explorar uma curiosidade",
-          "Rever meus limites",
-          "Continuar algo importante",
-        ];
   return (
     <div className="sales-interaction">
       <p className="sales-kicker">Escolha uma intenção</p>
@@ -219,33 +282,36 @@ export function IntentSelector({
           : "Que capítulo gostaria de abrir agora?"}
       </h2>
       <div className="sales-pills">
-        {options.map((o) => (
+        {options.map((o, index) => (
           <button
-            aria-pressed={selection === o}
-            key={o}
+            aria-pressed={selection === index}
+            data-testid="intent-option"
+            key={o.label}
             onClick={() => {
-              if (!selection) emit("quiz_start", offerId, "quiz", attr);
-              setSelection(o);
+              if (selection === null) emit("quiz_start", offerId, "quiz", attr);
+              setSelection(index);
+              sample.choose(index, true);
               emit("quiz_complete", offerId, "quiz", attr);
             }}
           >
-            {o}
+            {o.label}
           </button>
         ))}
       </div>
-      {selection && (
-        <div role="status">
+      {selection !== null && (
+        <div role="status" data-testid="intent-result">
           <p>
-            <strong>{selection}.</strong> Guarde essa intenção para acompanhar a
-            leitura. Você pode mudar de ideia.
+            <strong>{options[selection].label}.</strong>{" "}
+            {options[selection].context}
           </p>
+          <p>{options[selection].title}</p>
           <SalesLink
             href={samplePath}
             className="sales-link"
             offerId={offerId}
             event="sample_open"
           >
-            Conhecer uma amostra →
+            Ler este trecho →
           </SalesLink>
         </div>
       )}
@@ -264,8 +330,7 @@ export function InsidePreview({
   offerId: string;
   draw?: boolean;
 }) {
-  const [opened, setOpened] = useState(false);
-  const [index, setIndex] = useState(0);
+  const { opened, index, choose } = useContext(SampleChoice);
   const attr = useContext(Attribution);
   return (
     <section
@@ -285,7 +350,7 @@ export function InsidePreview({
             data-testid="sample-open"
             className="sales-button"
             onClick={() => {
-              setOpened(true);
+              choose(index, true);
               emit("sample_open", offerId, "sample", attr);
             }}
           >
@@ -307,7 +372,7 @@ export function InsidePreview({
               className="sales-text-button"
               data-testid="sample-next"
               onClick={() => {
-                setIndex((index + 1) % samples.length);
+                choose((index + 1) % samples.length, true);
                 emit("sample_open", offerId, "sample", attr);
               }}
             >

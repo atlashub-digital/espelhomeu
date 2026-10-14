@@ -1472,3 +1472,137 @@
     scroll-behavior: auto !important;
   }
 }
+
+.sales-root .sales-collection-intro {
+  padding: 72px max(24px, calc((100vw - 1200px) / 2));
+  background: #eee5d6;
+}
+.sales-root .sales-collection-intro > div {
+  max-width: 900px;
+  margin: 0 auto 42px;
+  text-align: center;
+}
+.sales-root .sales-collection-intro h1 {
+  font-family: var(--font-bodoni), serif;
+  font-size: clamp(44px, 5.2vw, 76px);
+  line-height: 1.05;
+  font-weight: 400;
+}
+.sales-root .sales-collection-intro .sales-actions {
+  justify-content: center;
+}
+.sales-root .sales-collection-intro > img {
+  width: 100%;
+  height: auto;
+}
+.sales-root .sales-collection-value {
+  max-width: 620px;
+  margin-top: 28px;
+}
+.sales-root .sales-collection-value dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid #ffffff40;
+  padding: 10px 0;
+}
+.sales-root .sales-collection-value dd {
+  margin: 0;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.sales-root .sales-collection-value small {
+  display: block;
+  margin-top: 16px;
+}
+.sales-root .sales-comparison {
+  margin: 40px 0;
+}
+.sales-root .sales-comparison article {
+  display: grid;
+  grid-template-columns: 100px 1.2fr 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 32px 0;
+  border-top: 1px solid #d6c7b7;
+}
+.sales-root .sales-comparison .sales-cover {
+  width: 100%;
+  height: auto;
+  transform: none;
+}
+.sales-root .sales-comparison h3 {
+  font-family: var(--font-bodoni), serif;
+  font-size: 30px;
+  line-height: 1.15;
+}
+.sales-root .sales-comparison dl {
+  margin: 0;
+}
+.sales-root .sales-comparison dt {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.sales-root .sales-comparison dd {
+  margin: 4px 0 16px;
+}
+.sales-root .sales-comparison article > .sales-link {
+  grid-column: 2 / -1;
+  justify-self: start;
+}
+.sales-root .sales-interest {
+  max-width: 760px;
+  margin: 48px auto;
+  padding: 36px;
+  background: #e9e4d9;
+  scroll-margin-top: 24px;
+}
+.sales-root .sales-interest h3 {
+  font-family: var(--font-bodoni), serif;
+  font-size: 36px;
+  line-height: 1.2;
+}
+.sales-root .sales-interest-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 28px 0;
+  cursor: pointer;
+}
+.sales-root .sales-interest-consent input {
+  min-width: 22px;
+  height: 22px;
+  margin-top: 5px;
+  accent-color: #864b32;
+}
+.sales-root .sales-interest-note {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.sales-root .sales-interest-note a {
+  text-decoration: underline;
+}
+.sales-root .sales-interest .sales-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+@media (max-width: 700px) {
+  .sales-root .sales-collection-intro {
+    padding: 44px 24px 28px;
+  }
+  .sales-root .sales-comparison article {
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+  }
+  .sales-root .sales-comparison dl {
+    grid-column: 1 / -1;
+  }
+  .sales-root .sales-comparison article > .sales-link {
+    grid-column: 1 / -1;
+  }
+  .sales-root .sales-interest {
+    margin: 32px 20px;
+    padding: 24px;
+  }
+}

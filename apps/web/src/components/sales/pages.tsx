@@ -1,6 +1,7 @@
 import Image from "next/image";
 import {
   formatOfferPrice,
+  getCollectionValue,
   getSalesOffer,
   salesOffers,
   type SalesOffer,
@@ -14,6 +15,7 @@ import {
   IntentSelector,
   InsidePreview,
 } from "./interactions";
+import { InterestRequest } from "./interest";
 import "./sales.css";
 
 const scene = "/conteudo/produto-04/MEDIA_EDITORIAL_P04_01_v1.2.jpg";
@@ -29,7 +31,12 @@ export function SalesShell({
   surface?: string;
 }) {
   return (
-    <SalesSession attribution={attribution} offerId={offerId} surface={surface}>
+    <SalesSession
+      key={offerId ?? surface}
+      attribution={attribution}
+      offerId={offerId}
+      surface={surface}
+    >
       <a className="skip-link" href="#sales-main">
         Ir para o conteúdo
       </a>
@@ -191,6 +198,163 @@ function FAQ() {
     </section>
   );
 }
+function CollectionValue({ offer }: { offer: SalesOffer }) {
+  const value = getCollectionValue(offer);
+  if (!value) return null;
+  const money = (amount: number) =>
+    new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: value.currency,
+    }).format(amount / 100);
+  return (
+    <div className="sales-collection-value" data-testid="collection-value">
+      <p>
+        {value.productCount} volumes e os materiais correspondentes, reunidos no
+        mesmo lugar.
+      </p>
+      <dl>
+        <div>
+          <dt>Soma dos volumes individuais</dt>
+          <dd>{money(value.individualTotalMinor)}</dd>
+        </div>
+        <div>
+          <dt>Coleção completa</dt>
+          <dd>{money(value.collectionAmountMinor)}</dd>
+        </div>
+        {value.savingMinor > 0 && (
+          <div>
+            <dt>Diferença a favor da coleção</dt>
+            <dd>{money(value.savingMinor)}</dd>
+          </div>
+        )}
+      </dl>
+      <small>
+        Comparação com os valores individuais atuais. Não é um preço anterior
+        nem uma promoção por tempo limitado. Compra ainda indisponível.
+      </small>
+    </div>
+  );
+}
+function CollectionDecision({
+  products,
+  offer,
+  attribution,
+}: {
+  products: SalesProduct[];
+  offer: SalesOffer;
+  attribution: SalesAttribution;
+}) {
+  return (
+    <SalesShell
+      attribution={attribution}
+      offerId={offer.id}
+      surface="collection"
+    >
+      <section className="sales-collection-intro">
+        <div>
+          <p className="sales-kicker">A coleção completa · cinco intenções</p>
+          <h1>
+            Uma leitura para hoje.
+            <br />
+            <em>Outras para quando fizer sentido.</em>
+          </h1>
+          <p>
+            Compare os volumes por intenção e formato. Escolha uma leitura ou
+            reúna os cinco caminhos na Coleção EspelhoMeu.
+          </p>
+          <div className="sales-actions">
+            <SalesLink
+              href="/colecao#oferta"
+              className="sales-button"
+              event="collection_cta"
+              offerId="colecao"
+            >
+              Conhecer a coleção · {formatOfferPrice(offer)} ↗
+            </SalesLink>
+            <SalesLink href="/colecao#comparar" className="sales-link">
+              Comparar os cinco volumes ↓
+            </SalesLink>
+          </div>
+        </div>
+        <Image
+          src="/comercial/COLECAO_HERO_1920x760.jpg"
+          width={1920}
+          height={760}
+          sizes="100vw"
+          priority
+          alt="Os cinco volumes da Coleção EspelhoMeu"
+        />
+      </section>
+      <OfferBox
+        offer={offer}
+        samplePath="/colecao#comparar"
+        cta="Escolher uma amostra"
+      />
+      <section
+        className="sales-section"
+        id="comparar"
+        data-testid="collection-comparison"
+      >
+        <p className="sales-kicker">Onde estou? O que quero explorar?</p>
+        <h2>
+          Cinco caminhos.
+          <br />
+          <em>Escolha pela intenção.</em>
+        </h2>
+        <div className="sales-comparison" id="volumes">
+          {products.map((p) => (
+            <article key={p.offer.id}>
+              <Cover p={p} />
+              <div>
+                <p className="sales-kicker">{p.narrative.intent}</p>
+                <h3>{p.title}</h3>
+                <p>{p.narrative.context}</p>
+              </div>
+              <dl>
+                <div>
+                  <dt>Estrutura</dt>
+                  <dd>{p.narrative.count}</dd>
+                </div>
+                <div>
+                  <dt>Materiais</dt>
+                  <dd>{p.extras.map((e) => e.title).join(" · ")}</dd>
+                </div>
+                <div>
+                  <dt>Individual</dt>
+                  <dd>{formatOfferPrice(p.offer)}</dd>
+                </div>
+              </dl>
+              <SalesLink
+                href={p.offer.path + "#amostra"}
+                className="sales-link"
+                event="sample_open"
+                offerId={p.offer.id}
+              >
+                Experimentar este volume ↗
+              </SalesLink>
+            </article>
+          ))}
+        </div>
+        <p>
+          Todos incluem leitura no WebReader e os seus materiais
+          correspondentes. A Coleção reúne os cinco volumes; Companion e
+          Membership são propostas separadas.
+        </p>
+        <SalesLink
+          href="/colecao#oferta"
+          className="sales-button"
+          event="collection_cta"
+          offerId="colecao"
+        >
+          Voltar à oferta completa · {formatOfferPrice(offer)} ↑
+        </SalesLink>
+      </section>
+      <WebReaderPreview product={products[0]} />
+      <Bundles />
+      <FAQ />
+    </SalesShell>
+  );
+}
 function OfferBox({
   offer,
   reader,
@@ -215,6 +379,7 @@ function OfferBox({
           Leitura digital no WebReader e materiais correspondentes, no seu
           ritmo.
         </p>
+        {offer.id === "colecao" && <CollectionValue offer={offer} />}
         <p className="sales-badge">
           {offer.availability === "preparing"
             ? "Em preparação"
@@ -344,7 +509,7 @@ function Bundles() {
               {o.productRefs.join(" + ").toUpperCase()}
             </p>
             <h3>{o.title}</h3>
-            <p>Preço em definição · sem compra ativa</p>
+            <p>Combinação em preparação · sem compra ativa</p>
             <div>
               {o.productRefs.map((id) => {
                 const p = getSalesOffer(id)!;
@@ -377,6 +542,14 @@ export function CollectionPage({
 }) {
   const products = salesProducts();
   const offer = getSalesOffer("colecao")!;
+  if (!home)
+    return (
+      <CollectionDecision
+        products={products}
+        offer={offer}
+        attribution={attribution}
+      />
+    );
   return (
     <SalesShell
       attribution={attribution}
@@ -529,8 +702,7 @@ export function CollectionPage({
         </div>
       </section>
       <WebReaderPreview product={products[0]} />
-      <OfferBox offer={offer} samplePath="/7-dias-para-me-escolher#amostra" />
-      <Bundles />
+
       <section className="sales-section sales-future">
         <p className="sales-kicker">O que vem depois</p>
         <h2>
@@ -712,6 +884,10 @@ export function ProductSalesPage({
         )}
         {(n.interaction === "expression" || n.interaction === "intention") && (
           <IntentSelector
+            options={p.intentions.map((option, index) => ({
+              ...option,
+              title: p.samples[index].title,
+            }))}
             kind={n.interaction}
             offerId={p.offer.id}
             samplePath={p.offer.path + "#amostra"}
@@ -776,34 +952,36 @@ export function ProductSalesPage({
           <p className="sales-kicker">Se fizer sentido continuar</p>
           <h2>{n.next}</h2>
           <div>
-            {p.offer.crossSellIds.map((id) => {
-              const o = getSalesOffer(id)!;
-              return (
-                <SalesLink
-                  key={id}
-                  href={o.path}
-                  event={
-                    id === "colecao"
-                      ? "collection_cta"
-                      : id.startsWith("bundle")
-                        ? "bundle_cta"
-                        : "offer_cta"
-                  }
-                  offerId={id}
-                  surface="cross-sell"
-                >
-                  <small>
-                    {o.availability === "preparing"
-                      ? "Em preparação"
-                      : o.amountMinor === null
-                        ? "Combinação em preparação"
-                        : "Conhecer"}
-                  </small>
-                  <h3>{o.title}</h3>
-                  <strong>{formatOfferPrice(o)} ↗</strong>
-                </SalesLink>
-              );
-            })}
+            {p.offer.crossSellIds
+              .filter((id) => getSalesOffer(id)?.amountMinor !== null)
+              .map((id) => {
+                const o = getSalesOffer(id)!;
+                return (
+                  <SalesLink
+                    key={id}
+                    href={o.path}
+                    event={
+                      id === "colecao"
+                        ? "collection_cta"
+                        : id.startsWith("bundle")
+                          ? "bundle_cta"
+                          : "offer_cta"
+                    }
+                    offerId={id}
+                    surface="cross-sell"
+                  >
+                    <small>
+                      {o.availability === "preparing"
+                        ? "Em preparação"
+                        : o.amountMinor === null
+                          ? "Combinação em preparação"
+                          : "Conhecer"}
+                    </small>
+                    <h3>{o.title}</h3>
+                    <strong>{formatOfferPrice(o)} ↗</strong>
+                  </SalesLink>
+                );
+              })}
           </div>
         </section>
         <FAQ />
@@ -864,15 +1042,22 @@ export function FuturePage({
           Valor aprovado para a proposta. {member ? "Assinatura" : "Compra"}{" "}
           ainda não disponível.
         </small>
+        <SalesLink href={offer.path + "#interesse"} className="sales-button">
+          Quero saber quando estiver disponível ↓
+        </SalesLink>
         <SalesLink
           href="/colecao"
-          className="sales-button"
+          className="sales-link"
           event="collection_cta"
           offerId="colecao"
         >
           Enquanto isso, explore a coleção ↗
         </SalesLink>
       </section>
+      <InterestRequest
+        title={offer.title}
+        contact={process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@lia.doctor"}
+      />
       <section className="sales-section">
         <p className="sales-kicker">Proposta, não funcionalidades ativas</p>
         <div className="sales-future-grid">

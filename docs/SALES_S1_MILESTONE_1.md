@@ -102,3 +102,32 @@ Helena: smoke autenticado no Preview do mesmo head; confirmar o binding Vercel.
 MGJ/Laura/PDG: revisão visual, narrativa e CRO antes de otimizar/completar S1.
 S2/S3 só depois do gate: checkout, confirmação, identidade, grants/revogação,
 políticas comerciais e fulfillment. Não houve lançamento público ou SALES READY.
+
+## Fecho do review — milestone 1
+
+- `/` mantém descoberta de marca, escolha por intenção e prova do Reader. `/colecao`
+  tem hero próprio, oferta completa prioritária e comparação de intenção, estrutura,
+  materiais e preço individual de cada volume; não repete a sequência da homepage.
+- Valor da coleção calculado pelo Offer Registry: soma dos preços individuais atuais,
+  preço da coleção e diferença. Não é compare-at, desconto anterior ou urgência.
+  O cálculo recusa referências incompletas, preço ausente e moeda/cadência divergente.
+- P01: a primeira escolha contextualiza o convite, a segunda escolhe leitura (Dia 1),
+  reflexão (Dia 2) ou escrita (Cartões/Mapa), a terceira determina a orientação de ritmo.
+  O CTA abre a amostra correspondente. Sem inferência, score ou persistência de respostas.
+- P02/P04: cada intenção aponta explicitamente para um capítulo existente, apresenta
+  contexto e abre dois blocos canónicos desse capítulo; nenhuma alteração editorial.
+- Bundles sem preço saem do cross-sell principal. Na coleção permanecem identificados
+  como combinações em preparação, sem valor indefinido apresentado como oferta.
+- Jornada/Membership: pedido manual por email com consentimento próprio e desmarcado.
+  Ver SALES_INTEREST_PREVIEW.md. Não reutiliza a finalidade da waitlist de 21 Dias,
+  não afirma inscrição automática e não envia emails nos testes.
+
+### Fronteira de release — bloqueante
+
+`gate.salesReady=false` e `purchaseEnabled=false` permanecem explícitos. CI verde,
+Preview READY e smoke aprovado **não autorizam merge nem lançamento**. Esta PR
+substitui a homepage e o merge para main pode disparar os deploys existentes; por isso
+permanece DRAFT e sem auto-merge. Exige autorização explícita do PDG para release
+produtivo, ou implementação/revisão prévia de um feature flag seguro para produção.
+Aprovação técnica/visual deste milestone não substitui essa autorização. Não foi
+alterada configuração de deploy nem ativada produção nesta entrega.

@@ -7,6 +7,7 @@ import {
   getSalesOffer,
   getSalesOfferByPath,
   formatOfferPrice,
+  getCollectionValue,
   getAccessPresentation,
   readAttribution,
   withAttribution,
@@ -43,8 +44,66 @@ describe("approved S1 commercial registry", () => {
       /29,90\/mês/,
     );
     expect(formatOfferPrice(getSalesOffer("bundle-voltar")!)).toBe(
-      "Preço em definição",
+      "Em preparação",
     );
+  });
+  it("derives collection value from current referenced offers and follows price changes", () => {
+    const collection = getSalesOffer("colecao")!;
+    expect(getCollectionValue(collection)).toEqual({
+      productCount: 5,
+      individualTotalMinor: 11650,
+      collectionAmountMinor: 7990,
+      savingMinor: 3660,
+      currency: "BRL",
+    });
+    const updated = salesOffers.map((entry) =>
+      entry.id === "p01" ? { ...entry, amountMinor: 1290 } : entry,
+    );
+    expect(getCollectionValue(collection, updated)?.savingMinor).toBe(3760);
+    expect(
+      getCollectionValue({ ...collection, amountMinor: 12000 })?.savingMinor,
+    ).toBe(0);
+  });
+  it("omits incomparable, incomplete or ambiguous bundle comparisons", () => {
+    const collection = getSalesOffer("colecao")!;
+    const p01 = getSalesOffer("p01")!;
+    for (const changed of [
+      { ...p01, amountMinor: null },
+      { ...p01, amountMinor: -1 },
+      { ...p01, amountMinor: 1.5 },
+      { ...p01, amountMinor: Number.NaN },
+      { ...p01, amountMinor: Number.MAX_SAFE_INTEGER },
+      { ...p01, cadence: "month" as const },
+      { ...p01, currency: "EUR" as never },
+    ]) {
+      expect(
+        getCollectionValue(
+          collection,
+          salesOffers.map((entry) => (entry.id === "p01" ? changed : entry)),
+        ),
+      ).toBeNull();
+    }
+    expect(
+      getCollectionValue(
+        collection,
+        salesOffers.filter((entry) => entry.id !== "p01"),
+      ),
+    ).toBeNull();
+    expect(
+      getCollectionValue(collection, [
+        ...salesOffers,
+        { ...p01, id: "duplicate" },
+      ]),
+    ).toBeNull();
+    expect(
+      getCollectionValue({ ...collection, productRefs: ["p01", "p01"] }),
+    ).toBeNull();
+    expect(
+      getCollectionValue({ ...collection, productRefs: ["p01", "missing"] }),
+    ).toBeNull();
+    expect(getCollectionValue({ ...collection, amountMinor: null })).toBeNull();
+    expect(getCollectionValue(getSalesOffer("membership")!)).toBeNull();
+    expect(getCollectionValue(getSalesOffer("jornada")!)).toBeNull();
   });
   it("resolves catalog and cross-sell references without changing AMF contracts", () => {
     expect(productOffers).toHaveLength(5);

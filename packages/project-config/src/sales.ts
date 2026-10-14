@@ -167,12 +167,62 @@ export const getSalesOffer = (id: string) =>
 export const getSalesOfferByPath = (path: string) =>
   salesOffers.find((entry) => entry.path === path);
 export function formatOfferPrice(entry: SalesOffer): string {
-  if (entry.amountMinor === null) return "Preço em definição";
+  if (entry.amountMinor === null) return "Em preparação";
   const price = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: entry.currency,
   }).format(entry.amountMinor / 100);
   return entry.cadence === "month" ? `${price}/mês` : price;
+}
+
+/** Current configured individual prices, never a historical or promotional reference price. */
+export function getCollectionValue(
+  collection: SalesOffer,
+  registry: readonly SalesOffer[] = salesOffers,
+): {
+  productCount: number;
+  individualTotalMinor: number;
+  collectionAmountMinor: number;
+  savingMinor: number;
+  currency: SalesOffer["currency"];
+} | null {
+  const validAmount = (amount: number | null): amount is number =>
+    amount !== null && Number.isSafeInteger(amount) && amount >= 0;
+  if (
+    collection.cadence !== "once" ||
+    collection.accessPolicy.mode !== "bundle" ||
+    !validAmount(collection.amountMinor) ||
+    collection.productRefs.length < 2 ||
+    new Set(collection.productRefs).size !== collection.productRefs.length
+  )
+    return null;
+
+  let individualTotalMinor = 0;
+  for (const ref of collection.productRefs) {
+    const matches = registry.filter(
+      (entry) =>
+        entry.productRefs.length === 1 &&
+        entry.productRefs[0] === ref &&
+        entry.accessPolicy.mode === "one-time",
+    );
+    if (matches.length !== 1) return null;
+    const individual = matches[0];
+    if (
+      individual.cadence !== "once" ||
+      individual.currency !== collection.currency ||
+      !validAmount(individual.amountMinor)
+    )
+      return null;
+    individualTotalMinor += individual.amountMinor;
+    if (!Number.isSafeInteger(individualTotalMinor)) return null;
+  }
+  return {
+    productCount: collection.productRefs.length,
+    individualTotalMinor,
+    collectionAmountMinor: collection.amountMinor,
+    savingMinor: Math.max(0, individualTotalMinor - collection.amountMinor),
+    currency: collection.currency,
+  };
 }
 
 export const accessStateLabels = {

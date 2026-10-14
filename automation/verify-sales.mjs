@@ -73,6 +73,28 @@ export async function verifySales({ browser, origin, evidence }) {
             .count(),
           0,
         );
+        assert.equal(
+          (await page.locator("main").innerText()).includes(
+            "Preço em definição",
+          ),
+          false,
+        );
+        if (route === "/")
+          assert.equal(
+            await page.getByTestId("collection-comparison").count(),
+            0,
+          );
+        if (route === "/colecao") {
+          assert.equal(
+            await page.getByTestId("collection-comparison").count(),
+            1,
+          );
+          const value = (
+            await page.getByTestId("collection-value").innerText()
+          ).replace(/\s/g, "");
+          for (const amount of ["116,50", "79,90", "36,60"])
+            assert.ok(value.includes(amount));
+        }
         await page.evaluate(() => window.scrollTo(0, 0));
         await page.screenshot({
           path: path.join(
@@ -129,6 +151,118 @@ export async function verifySales({ browser, origin, evidence }) {
       checks.push(
         `${name} S1 P01 three-question quiz completes and emits allowlisted events`,
       );
+
+      const quizPaths = [
+        ["Comece pela leitura.", "Dia 1 — ESCUTAR"],
+        ["Comece por uma reflexão.", "Dia 2 — RECONHECER"],
+        ["Comece com espaço para escrever.", "Cartões e Mapa do Que É Meu"],
+      ];
+      for (let choice = 0; choice < quizPaths.length; choice++) {
+        await page
+          .getByTestId("quiz-result")
+          .getByRole("button", { name: "Recomeçar" })
+          .click();
+        await page.getByTestId("quiz-start").click();
+        for (let question = 0; question < 3; question++)
+          await page.getByTestId("quiz-option").nth(choice).click();
+        assert.ok(
+          (await page.getByTestId("quiz-result").innerText()).includes(
+            quizPaths[choice][0],
+          ),
+        );
+        await page.getByTestId("quiz-result").locator("a").click();
+        await page.getByTestId("sample-body").waitFor();
+        assert.equal(
+          await page.getByTestId("sample-body").locator("h3").innerText(),
+          quizPaths[choice][1],
+        );
+        await page.screenshot({
+          path: path.join(evidence, `${name}-sales-quiz-path-${choice}.png`),
+          fullPage: true,
+        });
+      }
+      const eventData = JSON.stringify(
+        await page.evaluate(() => window.__salesEvents),
+      );
+      assert.ok(
+        !/answers|selection|respostas|Uma pequena pausa/.test(eventData),
+      );
+      checks.push(
+        `${name} S1 P01 three distinct editorial paths and samples; no answers in events`,
+      );
+      for (const [route, titles] of [
+        [
+          "/eu-sou-bela-do-meu-jeito",
+          [
+            "Presença também é expressão",
+            "Meu estilo tem história",
+            "A minha assinatura",
+            "Experimentar é permitido",
+          ],
+        ],
+        [
+          "/recomecar-depois-dos-40",
+          ["CAPÍTULO 03", "CAPÍTULO 05", "CAPÍTULO 06", "CAPÍTULO 07"],
+        ],
+      ]) {
+        await page.goto(origin + route);
+        await page.locator('[data-sales-ready="true"]').waitFor();
+        for (let i = 0; i < titles.length; i++) {
+          await page.getByTestId("intent-option").nth(i).click();
+          assert.ok(
+            (await page.getByTestId("intent-result").innerText()).includes(
+              titles[i],
+            ),
+          );
+          assert.ok(
+            (
+              await page.getByTestId("sample-body").locator("h3").innerText()
+            ).includes(titles[i]),
+          );
+        }
+        await page.screenshot({
+          path: path.join(
+            evidence,
+            `${name}-sales-intent-${route.slice(1)}.png`,
+          ),
+          fullPage: true,
+        });
+        checks.push(
+          `${name} S1 ${route}: all four intentions route to matching canonical samples`,
+        );
+      }
+      for (const route of ["/jornada", "/membership"]) {
+        await page.goto(origin + route);
+        await page.locator('[data-sales-ready="true"]').waitFor();
+        assert.equal(
+          await page.getByTestId("interest-consent").isChecked(),
+          false,
+        );
+        assert.equal(await page.getByTestId("interest-email").count(), 0);
+        await page.getByTestId("interest-consent").check();
+        const href = await page
+          .getByTestId("interest-email")
+          .getAttribute("href");
+        assert.ok(href.startsWith("mailto:"));
+        assert.ok(
+          decodeURIComponent(href).includes(
+            route === "/jornada" ? "Jornada EspelhoMeu" : "EspelhoMeu contínuo",
+          ),
+        );
+        assert.ok(!/utm_|quiz|cpf=/i.test(href));
+        await page.screenshot({
+          path: path.join(
+            evidence,
+            `${name}-sales-interest-${route.slice(1)}.png`,
+          ),
+          fullPage: true,
+        });
+        await page.getByTestId("interest-consent").uncheck();
+        assert.equal(await page.getByTestId("interest-email").count(), 0);
+        checks.push(
+          `${name} S1 ${route}: purpose-specific manual interest request gated by consent, no email sent`,
+        );
+      }
 
       await page.goto(`${origin}/diario-de-amor-proprio`);
       await page.waitForFunction(() =>
