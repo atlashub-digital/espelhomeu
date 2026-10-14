@@ -6,6 +6,7 @@ import { createDb, type Db } from "./db/client";
 import type { Env } from "./env";
 import { healthRoutes } from "./routes/health";
 import { waitlistRoutes } from "./routes/waitlist";
+import { commerceRoutes } from "./routes/commerce";
 
 export async function buildApp(env: Env) {
   const app = Fastify({
@@ -25,6 +26,7 @@ export async function buildApp(env: Env) {
 
   healthRoutes(app, { db, version: env.APP_VERSION });
   waitlistRoutes(app, { db });
+  commerceRoutes(app, { db, env });
 
   return app;
 }
