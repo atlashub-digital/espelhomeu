@@ -203,7 +203,7 @@ export function CheckoutClient({
           </button>
         )}
         <ul className="checkout-assurance">
-          <li>✓ Cartão e Pix</li>
+          <li>✓ Cartão e Pix quando disponíveis na sua região</li>
           <li>✓ Pagamento processado em ambiente seguro</li>
           <li>✓ Acesso liberado após confirmação</li>
         </ul>
