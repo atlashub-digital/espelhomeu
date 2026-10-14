@@ -8,8 +8,21 @@ const Env = z.object({
     .string()
     .default("http://localhost:3000")
     .transform((s) => s.split(",").map((o) => o.trim()).filter(Boolean)),
+  WEB_BASE_URL: z.url().default("http://localhost:3000"),
   DATABASE_URL: z.url().optional(),
   APP_VERSION: z.string().default("dev"),
+  COMMERCE_ENABLED: z
+    .enum(["true", "false"])
+    .default("false")
+    .transform((value) => value === "true"),
+  STRIPE_SECRET_KEY: z.string().min(1).optional(),
+  STRIPE_PUBLISHABLE_KEY: z.string().min(1).optional(),
+  STRIPE_WEBHOOK_SECRET: z.string().min(1).optional(),
+  STRIPE_PAYMENT_METHODS: z
+    .string()
+    .default("card,pix")
+    .transform((s) => s.split(",").map((v) => v.trim()).filter(Boolean)),
+  ACCESS_TOKEN_DAYS: z.coerce.number().int().min(1).max(3650).default(180),
 });
 
 export type Env = z.infer<typeof Env>;
