@@ -63,10 +63,31 @@ export async function verifySales({ browser, origin, evidence }) {
           );
         assert.ok(
           links.every(
-            (href) => !/checkout|stripe\.com|pixgo|misticpay/i.test(href),
+            (href) => !/stripe\.com|pixgo|misticpay/i.test(href),
           ),
-          `Payment link in preview: ${route}`,
+          `External payment link leaked into sales page: ${route}`,
         );
+        if (
+          route === "/colecao" ||
+          [
+            "/7-dias-para-me-escolher",
+            "/eu-sou-bela-do-meu-jeito",
+            "/21-dias-meu-melhor-reflexo",
+            "/recomecar-depois-dos-40",
+            "/diario-de-amor-proprio",
+          ].includes(route)
+        ) {
+          assert.ok(
+            links.some((href) => href?.startsWith("/checkout/")),
+            `First-party checkout missing: ${route}`,
+          );
+        }
+        if (route === "/jornada" || route === "/membership") {
+          assert.ok(
+            links.every((href) => !href?.startsWith("/checkout/")),
+            `Future offer must not expose checkout: ${route}`,
+          );
+        }
         assert.equal(
           await page
             .locator('input[name="cpf"], input[autocomplete="cc-number"]')
@@ -104,7 +125,7 @@ export async function verifySales({ browser, origin, evidence }) {
           fullPage: true,
         });
         checks.push(
-          `${name} S1 ${route}: render, media, no overflow, no payment link, screenshot`,
+          `${name} S2 ${route}: render, media, no overflow, first-party checkout boundary, screenshot`,
         );
       }
       // Each interaction uses only temporary browser state. No checkout or member mutation.
@@ -263,6 +284,29 @@ export async function verifySales({ browser, origin, evidence }) {
           `${name} S1 ${route}: purpose-specific manual interest request gated by consent, no email sent`,
         );
       }
+
+      await page.goto(`${origin}/checkout/p01`);
+      await page.locator("h1").waitFor();
+      assert.ok(
+        (await page.locator("main").innerText()).includes("7 Dias Para Me Escolher"),
+      );
+      assert.equal(
+        await page.locator('input[autocomplete="cc-number"]').count(),
+        0,
+        "Raw card inputs are never rendered by EspelhoMeu",
+      );
+      await page
+        .getByRole("button", { name: "Continuar para pagamento seguro" })
+        .click();
+      await page.getByRole("alert").waitFor();
+      assert.ok(
+        (await page.getByRole("alert").innerText()).includes(
+          "temporariamente indisponível",
+        ),
+      );
+      checks.push(
+        `${name} S2 checkout P01: branded embedded surface + fail-closed when commerce runtime is disabled`,
+      );
 
       await page.goto(`${origin}/diario-de-amor-proprio`);
       await page.waitForFunction(() =>
