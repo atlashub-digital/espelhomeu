@@ -42,6 +42,15 @@ try {
     const page = await browser.newPage({ viewport });
     page.on("pageerror", e => errors.push(e.message));
     for (const [name, route] of [
+      ["sales-home", "/"],
+      ["sales-collection", "/colecao"],
+      ["sales-p01", "/7-dias-para-me-escolher"],
+      ["sales-p02", "/eu-sou-bela-do-meu-jeito"],
+      ["sales-p03", "/21-dias-meu-melhor-reflexo"],
+      ["sales-p04", "/recomecar-depois-dos-40"],
+      ["sales-p05", "/diario-de-amor-proprio"],
+      ["sales-jornada", "/jornada"],
+      ["sales-membership", "/membership"],
       ["library", "/biblioteca"],
       ["21-dias-meu-melhor-reflexo", "/ler/21-dias-meu-melhor-reflexo"],
       ["recomecar-depois-dos-40", "/ler/recomecar-depois-dos-40"],
@@ -67,7 +76,7 @@ try {
       }
       console.log("Preview page: " + location.hostname + location.pathname + " · " + title);
       assert.equal(response.status(), 200, "Preview HTTP " + route);
-      await page.locator(".product-main h1").waitFor();
+      await page.locator("main h1").waitFor();
       await page.evaluate(() => document.fonts.ready);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, route);
       await page.screenshot({ path: output + "/" + device + "-" + name + ".png", fullPage: true });

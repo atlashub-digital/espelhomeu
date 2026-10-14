@@ -5,6 +5,7 @@ import { mkdir, writeFile, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import assert from "node:assert/strict";
+import { verifySales } from "./verify-sales.mjs";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const webRequire = createRequire(path.join(root, "apps/web/package.json"));
 const env = {
@@ -20,7 +21,7 @@ const web = spawn(
     "--hostname",
     "127.0.0.1",
   ],
-  { cwd: path.join(root, "apps/web"), env, stdio: "pipe" },
+  { cwd: path.join(root, "apps/web"), env: { ...env, VERCEL_ENV: "preview" }, stdio: "pipe" },
 );
 const api = spawn(process.execPath, ["dist/server.js"], {
   cwd: path.join(root, "apps/api"),
@@ -254,7 +255,7 @@ try {
     assert.ok(
       (await page.locator("main").innerText()).includes("not_configured"),
     );
-    await page.goto(origin + "/");
+    await page.goto(origin + "/lista-de-espera");
     await page
       .getByLabel("Email", { exact: true })
       .fill("preview@example.invalid");
@@ -270,6 +271,7 @@ try {
       `${name} waitlist: unchanged form + API 503 without DB + honest UI error`,
     );
   }
+  checks.push(...await verifySales({ browser, origin, evidence }));
   assert.deepEqual(errors, []);
   await writeFile(
     path.join(evidence, "verification.json"),
