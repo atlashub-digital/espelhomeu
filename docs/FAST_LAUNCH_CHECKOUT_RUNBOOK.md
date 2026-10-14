@@ -51,6 +51,7 @@ Operational values:
 
 Vercel already needs:
 - NEXT_PUBLIC_API_URL=https://api.espelhomeu.lia.doctor
+- COMMERCE_ACCESS_ENFORCED=true only at the final release gate
 
 ## Webhook
 
