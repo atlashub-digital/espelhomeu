@@ -15,7 +15,7 @@ import {
 } from "./sales";
 
 describe("approved S1 commercial registry", () => {
-  it("keeps approved prices, unapproved bundles and disabled fulfillment explicit", () => {
+  it("keeps approved prices and enables only launch-ready one-time offers", () => {
     expect(
       Object.fromEntries(
         salesOffers.map((offer) => [offer.id, offer.amountMinor]),
