@@ -44,6 +44,6 @@ export async function accessibleJourney(ref: string) {
     return {
       allowed: false as const,
       decision: { allowed: false, reason: "entitlement_required" },
-    } as typeof result;
+    } as unknown as typeof result;
   return result;
 }
