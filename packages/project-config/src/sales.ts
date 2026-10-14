@@ -11,7 +11,7 @@ export interface SalesOffer {
   readonly currency: "BRL";
   readonly cadence: "once" | "month";
   readonly availability: "preview" | "preparing" | "unpriced";
-  readonly purchaseEnabled: false;
+  readonly purchaseEnabled: boolean;
   readonly accessPolicy: AccessPolicy;
   readonly crossSellIds: readonly string[];
 }
@@ -46,7 +46,7 @@ function offer(
     currency: "BRL",
     cadence: mode === "membership" ? "month" : "once",
     availability,
-    purchaseEnabled: false,
+    purchaseEnabled: amountMinor !== null && availability === "preview",
     crossSellIds,
     // Planned commercial policy only. The homologated editorial catalog is unchanged.
     accessPolicy: {
