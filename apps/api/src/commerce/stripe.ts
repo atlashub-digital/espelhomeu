@@ -22,6 +22,7 @@ async function stripeRequest<T>(
 ): Promise<T> {
   const headers = new Headers(init.headers);
   headers.set("Authorization", "Bearer " + secret);
+  headers.set("Stripe-Version", process.env.STRIPE_API_VERSION || "2025-06-30.basil");
   if (idempotencyKey) headers.set("Idempotency-Key", idempotencyKey);
   const response = await fetch("https://api.stripe.com" + path, {
     ...init,
