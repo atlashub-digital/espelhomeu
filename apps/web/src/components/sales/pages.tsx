@@ -42,7 +42,7 @@ export function SalesShell({
       </a>
       <div className="sales-announcement">
         Uma coleção para se escolher.{" "}
-        <span>Checkout próprio · cartão e Pix · acesso após confirmação</span>
+        <span>Checkout próprio · pagamento seguro · acesso após confirmação</span>
       </div>
       <header className="sales-header">
         <SalesLink href="/" aria-label="EspelhoMeu — início">
@@ -171,7 +171,7 @@ function FAQ() {
           ],
           [
             "Como funciona a compra?",
-            "Os cinco volumes e a Coleção são ofertas digitais de pagamento único. O checkout acontece dentro do EspelhoMeu com processamento seguro por cartão ou Pix. Jornada e Membership continuam em preparação.",
+            "Os cinco volumes e a Coleção são ofertas digitais de pagamento único. O checkout acontece dentro do EspelhoMeu com processamento seguro pelos métodos disponíveis para a compra. Jornada e Membership continuam em preparação.",
           ],
           [
             "Preciso seguir todos os exercícios?",
