@@ -109,6 +109,8 @@ export async function createPixPayment(
 
   if (!env.MISTICPAY_CLIENT_ID || !env.MISTICPAY_CLIENT_SECRET)
     throw new Error("misticpay_not_configured");
+  if (digits(input.payerDocument).length !== 11)
+    throw new Error("misticpay_cpf_required");
   const authorization = Buffer.from(
     env.MISTICPAY_CLIENT_ID + ":" + env.MISTICPAY_CLIENT_SECRET,
   ).toString("base64");
@@ -211,7 +213,7 @@ export async function getPixPayment(
     providerPaymentId,
     state: normalizeMisticPayState(String(data.transactionState ?? data.status ?? "")),
     feeMinor:
-      typeof data.fee === "number" ? normalizePossibleMinor(data.fee) : null,
+      typeof data.fee === "number" ? Math.round(data.fee * 100) : null,
   };
 }
 
@@ -253,10 +255,3 @@ function normalizeMisticPayState(status: string): PixState {
   }
 }
 
-function normalizePossibleMinor(value: number) {
-  // MisticPay docs have shown fee/value fields in both decimal-reais and integer-like examples.
-  // Keep adapter conversion isolated until account-level payloads are observed in smoke.
-  return Number.isInteger(value) && value >= 100
-    ? value
-    : Math.round(value * 100);
-}
