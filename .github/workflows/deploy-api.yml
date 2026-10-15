@@ -111,6 +111,40 @@ jobs:
 
             docker compose pull api
             docker compose up -d api
+
+            API_CID="$(docker compose ps -q api)"
+            if [ -z "$API_CID" ]; then
+              echo "API container was not created"
+              exit 1
+            fi
+
+            echo "Waiting for API health..."
+            for attempt in $(seq 1 30); do
+              STATUS="$(docker inspect -f '{{.State.Status}}' "$API_CID")"
+              HEALTH="$(docker inspect -f '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "$API_CID")"
+              echo "attempt=$attempt status=$STATUS health=$HEALTH"
+
+              if [ "$HEALTH" = "healthy" ]; then
+                break
+              fi
+
+              if [ "$STATUS" = "restarting" ] || [ "$STATUS" = "exited" ] || [ "$STATUS" = "dead" ]; then
+                echo "API failed during startup"
+                docker logs --tail=120 "$API_CID" || true
+                exit 1
+              fi
+
+              if [ "$attempt" -eq 30 ]; then
+                echo "API did not become healthy in time"
+                docker logs --tail=120 "$API_CID" || true
+                exit 1
+              fi
+
+              sleep 2
+            done
+
+            docker compose exec -T api wget -qO- http://127.0.0.1:4000/health
+            echo
             docker compose ps
             docker image prune -f
             docker logout ghcr.io
