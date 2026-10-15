@@ -227,3 +227,54 @@
   .checkout-intro h1 { font-size: clamp(2.8rem, 14vw, 4.5rem); }
   .checkout-footer { padding: 1.25rem 1rem; }
 }
+
+.checkout-payer {
+  display: grid;
+  gap: .9rem;
+  margin-top: 1rem;
+}
+.checkout-payer label,
+.checkout-pix label {
+  display: grid;
+  gap: .4rem;
+  font-size: .9rem;
+  font-weight: 650;
+}
+.checkout-payer input,
+.checkout-pix textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(138, 74, 43, .25);
+  border-radius: .8rem;
+  background: #fff;
+  color: #3b2419;
+  padding: .85rem .95rem;
+  font: inherit;
+}
+.checkout-payer input:focus,
+.checkout-pix textarea:focus {
+  outline: 2px solid rgba(138, 74, 43, .25);
+  outline-offset: 2px;
+}
+.checkout-pix {
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+  padding: 1rem 0 .3rem;
+}
+.checkout-qr {
+  width: min(280px, 100%);
+  aspect-ratio: 1;
+  object-fit: contain;
+  margin: 0 auto;
+  border-radius: 1rem;
+  background: #fff;
+  padding: .7rem;
+  border: 1px solid rgba(138, 74, 43, .14);
+}
+.checkout-pix textarea {
+  resize: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .78rem;
+  line-height: 1.45;
+}
