@@ -1,106 +1,175 @@
-# EspelhoMeu — Fast Launch Checkout Runbook
+# EspelhoMeu — Fast Launch PIX Runbook
 
 ## Decision
 
 Hotmart is outside the launch critical path.
 
-The first-party EspelhoMeu checkout uses:
-- Sales Engine S1;
-- embedded Stripe Checkout Sessions + Payment Element;
-- cartão e métodos locais elegíveis via Stripe Payment Element; Pix aparece quando habilitado/elegível;
-- Fastify API as payment/order authority;
-- Postgres order ledger;
-- webhook-confirmed entitlements;
-- first-party access cookie for Reader/Journey.
+Brazil / BRL uses the first-party EspelhoMeu checkout with ARO-style PIX routing.
 
-The browser never sends raw card data to the EspelhoMeu API.
+Initial provider:
+**PixGo**
+
+Fallback/future provider:
+**MisticPay**
+
+International:
+**Stripe**, outside the BR PIX launch gate.
+
+## Launch flow
+
+```
+Sales Page
+→ /checkout/[offer]
+→ payer data
+→ PIX create
+→ QR + Copia e Cola
+→ PixGo
+→ webhook/status verification
+→ order APPROVED
+→ entitlement
+→ Library / WebReader
+```
 
 ## Launch offers
 
-- P01 — R$ 11,90
-- P02 — R$ 19,90
-- P03 — R$ 29,90
-- P04 — R$ 24,90
-- P05 — R$ 29,90
-- Coleção — R$ 79,90
+- P01 — R$11,90
+- P02 — R$19,90
+- P03 — R$29,90
+- P04 — R$24,90
+- P05 — R$29,90
+- Coleção — R$79,90
 
 Jornada and Membership remain non-purchasable.
 
 ## Order bumps
 
-Initial checkout bumps:
 - P01 → P02
 - P02 → P03
 - P04 → P05
 - P05 → P04
 
-No automatic discount is claimed. The bump uses the approved individual price.
+No automatic discount is claimed.
+
+## PIX rendering
+
+PixGo is payment infrastructure, not checkout branding.
+
+The checkout uses the canonical PIX Copia e Cola payload as the payment source.
+
+Controlled test may temporarily render the provider-supplied QR to prove payment correctness.
+
+Before public SALES READY:
+- render a clean QR from the canonical PIX payload;
+- do not depend on provider visual branding;
+- retain Copia e Cola as fallback;
+- verify the rendered QR decodes byte-for-byte to the canonical payload.
+
+Do not alter the PIX payload when re-rendering.
 
 ## Runtime secrets
 
-Configure only in the VPS environment, never Git:
-- STRIPE_SECRET_KEY
-- STRIPE_PUBLISHABLE_KEY
-- STRIPE_WEBHOOK_SECRET
+Keep runtime secrets in:
 
-Operational values:
-- WEB_BASE_URL=https://espelho.lia.doctor
-- COMMERCE_ENABLED=true only after test-mode smoke
-- STRIPE_PAYMENT_METHODS=automatic (ou card,pix depois de validar a conta)
-- ACCESS_TOKEN_DAYS=180
+`/opt/espelhomeu/.env`
 
-Vercel already needs:
-- NEXT_PUBLIC_API_URL=https://api.espelhomeu.lia.doctor
-- COMMERCE_ACCESS_ENFORCED=true only at the final release gate
+Never commit them.
 
-## Webhook
+Minimum BR/PIX:
 
-Production endpoint:
+```
+WEB_BASE_URL=https://espelho.lia.doctor
+API_PUBLIC_BASE_URL=https://api.espelhomeu.lia.doctor
+COMMERCE_ENABLED=false
+BR_PIX_PROVIDER=pixgo
+PIXGO_API_KEY=<secret>
+PIXGO_WEBHOOK_SECRET=<secret>
+ACCESS_TOKEN_DAYS=180
+```
 
-POST https://api.espelhomeu.lia.doctor/commerce/webhooks/stripe
+Optional notifications:
 
-Subscribe at minimum:
-- checkout.session.completed
-- checkout.session.async_payment_succeeded
-- checkout.session.async_payment_failed
-- checkout.session.expired
-- charge.refunded
-- charge.dispute.created
+```
+REVENUE_TELEGRAM_BOT_TOKEN=
+REVENUE_TELEGRAM_CHAT_ID=
+REVENUE_DISCORD_WEBHOOK_URL=
+```
 
-The endpoint verifies the Stripe signature, stores only event id/type/hash for audit, is idempotent, and never logs secrets or raw payment data.
+## Revenue notifications
+
+Notifications are operational outputs, never financial authority.
+
+Current events:
+- payment approved;
+- payment refunded.
+
+Notifications contain only:
+- project;
+- offer;
+- amount/currency;
+- provider;
+- short order reference.
+
+No CPF/CNPJ, email or secret is sent.
+
+Failure to notify never changes payment/order/entitlement state.
+
+## Hermes
+
+Hermes is not part of the payment confirmation path for launch.
+
+Phase 0:
+- direct Telegram/Discord notification.
+
+Phase 1:
+- Hermes reads ARO normalized events;
+- explains the event;
+- produces daily/weekly summaries;
+- detects anomalies;
+- posts operational context.
+
+Hermes must not decide whether a payment is APPROVED.
+
+## Database migration
+
+Apply the commerce migration before enabling commerce.
+
+Verify:
+- orders
+- order_items
+- payment_events
+- entitlements
+- access_tokens
+
+## Activation sequence
+
+1. deploy current API image/config with COMMERCE_ENABLED=false;
+2. apply migration;
+3. configure PixGo secrets;
+4. verify API health;
+5. set BR_PIX_PROVIDER=pixgo;
+6. set COMMERCE_ENABLED=true;
+7. create controlled P01 PIX;
+8. validate QR/Copia-e-Cola;
+9. pay;
+10. provider confirmation/webhook/status;
+11. order APPROVED;
+12. entitlement granted;
+13. claim access;
+14. Reader open;
+15. Collection grant test;
+16. refund/revoke test where provider supports it;
+17. clean QR rendering gate;
+18. authenticated smoke;
+19. PDG release approval.
 
 ## Access
 
-After a paid Checkout Session:
-1. return to /checkout/retorno;
-2. claim endpoint verifies the Session server-side;
-3. order becomes approved;
-4. entitlements are granted;
-5. opaque access token is set as an httpOnly cookie;
-6. Reader/Journey resolves active product entitlements through the API.
+Return/client polling does not create financial truth.
 
-The return URL alone never grants access.
+The API verifies provider state server-side before changing order state and granting entitlement.
 
-## Release gate
+## SALES READY
 
-Before SALES READY=true:
-1. CI green;
-2. API migration applied;
-3. Stripe test session PASS;
-4. card success PASS;
-5. card decline PASS;
-6. Pix PASS if enabled;
-7. webhook event PASS;
-8. duplicate webhook PASS;
-9. entitlement grant PASS;
-10. refund/revoke PASS;
-11. P01 Reader/Journey locked before payment and open after payment;
-12. Collection grants P01–P05;
-13. desktop/mobile checkout PASS;
-14. authenticated production-stage smoke PASS;
-15. PDG release approval.
+Remain false until the complete controlled PIX transaction passes.
 
-## Known launch limitation
-
-The first release uses a durable browser access cookie instead of a full account login.
-Account recovery / magic link is the next identity hardening step and must be completed before relying on the cookie as the only long-term access mechanism.
+`COMMERCE_ACCESS_ENFORCED=true` is a final release gate, not an implementation default.
