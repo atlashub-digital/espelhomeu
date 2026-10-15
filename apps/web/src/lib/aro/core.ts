@@ -171,6 +171,14 @@ export function sameOrigin(origin: string | null, host: string | null, protocol:
 export function protectedAsset(pathname: string) {
   try {
     const path = decodeURIComponent(pathname);
-    return /\.(pdf|zip|md|docx)$/i.test(path) || /\/cartao_reflexao_\d+\.png$/i.test(path);
+    const file = path.split("/").pop() ?? "";
+    if (!/\/conteudo\//.test(path)) {
+      return (
+        /\.(pdf|zip|md|docx)$/i.test(path) ||
+        /\/cartao_reflexao_\d+\.png$/i.test(path)
+      );
+    }
+    // Dentro de /conteudo/ só a capa é pública (marketing); o resto é pago.
+    return !/^capa[._-]/i.test(file);
   } catch { return true; }
 }

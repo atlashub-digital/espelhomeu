@@ -88,4 +88,8 @@ it("protects downloads and cards including encoded paths, while keeping covers p
   expect(protectedAsset("/conteudo/produto-01/workbook%2Epdf")).toBe(true);
   expect(protectedAsset("/conteudo/produto-02/cartao_reflexao_01.png")).toBe(true);
   expect(protectedAsset("/conteudo/produto-02/capa.png")).toBe(false);
+  expect(protectedAsset("/conteudo/produto-01/capa.jpg")).toBe(false);
+  expect(protectedAsset("/conteudo/produto-03/CAPA_APROVADA_VOLUME_03_v1.0.png")).toBe(false);
+  expect(protectedAsset("/conteudo/produto-01/dia-01.jpg")).toBe(true);
+  expect(protectedAsset("/conteudo/produto-04/MEDIA_EDITORIAL_P04_01_v1.2.jpg")).toBe(true);
 });
