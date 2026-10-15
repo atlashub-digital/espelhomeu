@@ -30,6 +30,9 @@ const Env = z.object({
   PIXGO_WEBHOOK_SECRET: z.string().min(1).optional(),
   MISTICPAY_CLIENT_ID: z.string().min(1).optional(),
   MISTICPAY_CLIENT_SECRET: z.string().min(1).optional(),
+  REVENUE_TELEGRAM_BOT_TOKEN: z.string().min(1).optional(),
+  REVENUE_TELEGRAM_CHAT_ID: z.string().min(1).optional(),
+  REVENUE_DISCORD_WEBHOOK_URL: z.url().optional(),
 });
 
 export type Env = z.infer<typeof Env>;
