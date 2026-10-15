@@ -1,3 +1,4 @@
+import { sameOrigin } from "./core";
 import { describe, it, expect } from "vitest";
 import {
   activeProductRefs,
@@ -71,4 +72,13 @@ describe("ARO capability and entitlement boundary", () => {
     ]);
     expect(offerCodes.jornada).toBeUndefined();
   });
+});
+
+it("requires same scheme and actual HTTP host; rejects absent, malformed and foreign origins", () => {
+  expect(sameOrigin("https://preview.example", "preview.example", "https:")).toBe(true);
+  expect(sameOrigin("http://127.0.0.1:3000", "127.0.0.1:3000", "http:")).toBe(true);
+  expect(sameOrigin("https://evil.example", "preview.example", "https:")).toBe(false);
+  expect(sameOrigin("http://preview.example", "preview.example", "https:")).toBe(false);
+  expect(sameOrigin(null, "preview.example", "https:")).toBe(false);
+  expect(sameOrigin("invalid", "preview.example", "https:")).toBe(false);
 });

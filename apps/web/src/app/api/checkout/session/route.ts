@@ -1,3 +1,4 @@
+import { sameOrigin } from "@/lib/aro/core";
 import { NextRequest, NextResponse } from "next/server";
 import QRCode from "qrcode";
 import { readAttribution } from "@espelhomeu/project-config/sales";
@@ -13,7 +14,7 @@ import {
 } from "@/lib/aro/core";
 export const runtime = "nodejs";
 export async function POST(request: NextRequest) {
-  if (request.headers.get("origin") !== request.nextUrl.origin)
+  if (!sameOrigin(request.headers.get("origin"), request.headers.get("host"), request.nextUrl.protocol))
     return NextResponse.json({ error: "invalid_origin" }, { status: 403 });
   const idem = request.headers.get("idempotency-key") || "";
   if (!UUID.test(idem))

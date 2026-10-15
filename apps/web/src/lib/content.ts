@@ -40,7 +40,7 @@ export async function accessibleJourney(ref: string) {
   const access = await getCommerceAccess();
   const result = await baseAccessibleJourney(ref, access as never);
   if (!result) return null;
-  if (ref === "7-dias-para-me-escolher" && !hasProduct(access, "p01"))
+  if (["7-dias-para-me-escolher", "p01-jornada"].includes(ref) && !hasProduct(access, "p01"))
     return {
       allowed: false as const,
       decision: { allowed: false, reason: "entitlement_required" },

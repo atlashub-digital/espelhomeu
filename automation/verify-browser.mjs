@@ -290,6 +290,14 @@ try {
       `${name} waitlist: unchanged form + API 503 without DB + honest UI error`,
     );
   }
+  const denied = await browser.newPage();
+  for (const route of ["/ler/p01-leitura-dia-1", "/ler/p01-leitura-dia-7", "/programas/p01-jornada", "/programas/p01-jornada/p01-dia-1"]) {
+    await denied.goto(origin + route);
+    await denied.getByRole("heading", { level: 1, name: /acesso reservado/ }).waitFor();
+    assert.equal(await denied.locator(".reader-content").count(), 0, route);
+    checks.push("anonymous canonical ID denied: " + route);
+  }
+  await denied.close();
   checks.push(...await verifySales({ browser, origin, evidence, mockAro }));
   assert.deepEqual(errors, []);
   await writeFile(

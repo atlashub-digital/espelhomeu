@@ -28,7 +28,7 @@ const paidPublications: Record<string, string> = {
   "diario-de-amor-proprio-30-encontros-comigo": "p05",
 };
 export function requiredProductForPublication(ref: string) {
-  return paidPublications[ref] ?? null;
+  return paidPublications[ref] ?? (/^p01-leitura-dia-[1-7]$/.test(ref) ? "p01" : null);
 }
 export function hasProduct(access: CommerceAccess, productRef: string) {
   return (

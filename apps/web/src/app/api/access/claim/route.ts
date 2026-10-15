@@ -1,8 +1,9 @@
+import { sameOrigin } from "@/lib/aro/core";
 import { NextRequest, NextResponse } from "next/server";
 import { currentCapability, resolveCheckoutAccess } from "@/lib/aro/client";
 /** Compatibility surface: resolves ARO access; never creates a local token or grant. */
 export async function POST(request: NextRequest) {
-  if (request.headers.get("origin") !== request.nextUrl.origin)
+  if (!sameOrigin(request.headers.get("origin"), request.headers.get("host"), request.nextUrl.protocol))
     return NextResponse.json({ error: "invalid_origin" }, { status: 403 });
   try {
     const capability = await currentCapability();

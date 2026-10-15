@@ -158,3 +158,12 @@ export function activeProductRefs(
     ),
   );
 }
+
+/** Compare with the actual HTTP Host: Next can normalize nextUrl to its internal hostname. */
+export function sameOrigin(origin: string | null, host: string | null, protocol: string) {
+  if (!origin || !host) return false;
+  try {
+    const url = new URL(origin);
+    return url.origin === protocol + "//" + host;
+  } catch { return false; }
+}

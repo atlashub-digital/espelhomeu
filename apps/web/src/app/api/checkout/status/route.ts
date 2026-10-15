@@ -1,7 +1,8 @@
+import { sameOrigin } from "@/lib/aro/core";
 import { NextRequest, NextResponse } from "next/server";
 import { currentCapability, getAroCheckout } from "@/lib/aro/client";
 export async function POST(request: NextRequest) {
-  if (request.headers.get("origin") !== request.nextUrl.origin)
+  if (!sameOrigin(request.headers.get("origin"), request.headers.get("host"), request.nextUrl.protocol))
     return NextResponse.json({ error: "invalid_origin" }, { status: 403 });
   try {
     const capability = await currentCapability();
