@@ -152,7 +152,7 @@ export async function createPixPayment(
           : null,
     feeMinor:
       typeof data.transactionFee === "number"
-        ? normalizePossibleMinor(data.transactionFee)
+        ? Math.round(data.transactionFee)
         : null,
   };
 }
