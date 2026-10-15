@@ -46,10 +46,27 @@ jobs:
     env:
       HAS_VPS: ${{ secrets.VPS_HOST != '' }}
     steps:
+      - uses: actions/checkout@v4
+        if: env.HAS_VPS == 'true'
+
       - name: Sem secrets da VPS, salta o deploy
         if: env.HAS_VPS != 'true'
         run: echo "VPS_HOST não configurado; imagem publicada mas não implantada."
-      - name: Atualizar contentores na VPS
+
+      - name: Sincronizar configuração da VPS
+        if: env.HAS_VPS == 'true'
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          port: 22022
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "infra/vps/docker-compose.yml,infra/vps/Caddyfile"
+          target: "/opt/espelhomeu"
+          strip_components: 2
+          overwrite: true
+
+      - name: Migrar e atualizar contentores na VPS
         if: env.HAS_VPS == 'true'
         uses: appleboy/ssh-action@v1
         with:
@@ -58,11 +75,27 @@ jobs:
           port: 22022
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            set -e
+            set -euo pipefail
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             cd /opt/espelhomeu
+
             export APP_VERSION=${{ github.sha }}
+            IMAGE="ghcr.io/${{ github.repository }}-api:${{ github.sha }}"
+
+            docker compose up -d db
+            docker pull "$IMAGE"
+
+            ORDERS_TABLE="$(docker compose exec -T db sh -lc 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -tAc "select to_regclass('"'"'public.orders'"'"');"' | tr -d '[:space:]')"
+            if [ "$ORDERS_TABLE" != "orders" ]; then
+              echo "Applying commerce migration 0002_quick_checkout.sql"
+              docker run --rm --entrypoint cat "$IMAGE" /app/drizzle/0002_quick_checkout.sql \
+                | docker compose exec -T db sh -lc 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
+            else
+              echo "Commerce migration already present; skipping."
+            fi
+
             docker compose pull api
             docker compose up -d api
+            docker compose ps
             docker image prune -f
             docker logout ghcr.io
