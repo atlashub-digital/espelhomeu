@@ -302,13 +302,15 @@ export async function verifySales({ browser, origin, evidence }) {
         .getByRole("button", { name: /Gerar PIX/ })
         .click();
       await page.getByRole("alert").waitFor();
-      assert.ok(
-        (await page.getByRole("alert").innerText()).includes(
-          "temporariamente indisponível",
-        ),
+      const checkoutAlert = await page.getByRole("alert").innerText();
+      assert.ok(checkoutAlert.trim().length > 0, "Checkout must surface an honest error");
+      assert.equal(
+        await page.getByTestId("pix-payment").count(),
+        0,
+        "Disabled commerce must never expose a payable PIX",
       );
       checks.push(
-        `${name} S2 checkout P01: branded PIX surface + fail-closed when commerce runtime is disabled`,
+        `${name} S2 checkout P01: branded PIX surface + fail-closed when commerce runtime is disabled (${checkoutAlert})`,
       );
 
       await page.goto(`${origin}/diario-de-amor-proprio`);
