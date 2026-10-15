@@ -58,6 +58,71 @@ export function selectedPixProvider(env: Env): PixProvider {
   return env.BR_PIX_PROVIDER;
 }
 
+function pixGoPaymentFromPayload(
+  payload: Record<string, any>,
+): PixPayment | null {
+  const data =
+    payload.data && typeof payload.data === "object" ? payload.data : payload;
+  const id = String(data.payment_id ?? data.id ?? "");
+  const qr = String(data.qr_code ?? data.copy_paste ?? data.pix_code ?? "");
+  if (!id || !qr) return null;
+  return {
+    provider: "pixgo",
+    providerPaymentId: id,
+    state: normalizePixGoState(String(data.status ?? "pending")),
+    qrCodeText: qr,
+    qrImage:
+      typeof data.qr_image_url === "string"
+        ? data.qr_image_url
+        : typeof data.qr_code_base64 === "string"
+          ? data.qr_code_base64
+          : null,
+    expiresAt: typeof data.expires_at === "string" ? data.expires_at : null,
+    feeMinor:
+      typeof data.amounts?.fee === "number"
+        ? Math.round(data.amounts.fee * 100)
+        : null,
+  };
+}
+
+async function recoverPixGoCreate(
+  env: Env,
+  externalId: string,
+): Promise<PixPayment | null> {
+  if (!env.PIXGO_API_KEY) return null;
+  const search = await jsonFetch(
+    "https://pixgo.org/api/v1/payments?external_id=" +
+      encodeURIComponent(externalId) +
+      "&limit=20&offset=0",
+    {
+      method: "GET",
+      headers: { "X-API-Key": env.PIXGO_API_KEY },
+    },
+  );
+  const rows = Array.isArray(search.data) ? search.data : [];
+  const row = rows.find(
+    (entry) =>
+      entry &&
+      typeof entry === "object" &&
+      String(entry.external_id ?? "") === externalId,
+  ) as Record<string, any> | undefined;
+  if (!row) return null;
+
+  const direct = pixGoPaymentFromPayload(row);
+  if (direct) return direct;
+
+  const paymentId = String(row.payment_id ?? "").trim();
+  if (!paymentId) return null;
+  const full = await jsonFetch(
+    "https://pixgo.org/api/v1/payment/" + encodeURIComponent(paymentId),
+    {
+      method: "GET",
+      headers: { "X-API-Key": env.PIXGO_API_KEY },
+    },
+  );
+  return pixGoPaymentFromPayload(full);
+}
+
 export async function createPixPayment(
   env: Env,
   provider: PixProvider,
@@ -65,46 +130,46 @@ export async function createPixPayment(
 ): Promise<PixPayment> {
   if (provider === "pixgo") {
     if (!env.PIXGO_API_KEY) throw new Error("pixgo_not_configured");
-    const payload = await jsonFetch("https://pixgo.org/api/v1/payment/create", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "X-API-Key": env.PIXGO_API_KEY,
-      },
-      body: JSON.stringify({
-        amount: money(input.amountMinor),
-        description: input.description,
-        receiver_name: input.payerName,
-        receiver_cpf: digits(input.payerDocument),
-        receiver_email: input.payerEmail,
-        external_id: input.orderId,
-        webhook_url:
-          env.API_PUBLIC_BASE_URL.replace(/\/$/, "") +
-          "/commerce/webhooks/pixgo",
-      }),
-    });
-    const data =
-      payload.data && typeof payload.data === "object" ? payload.data : payload;
-    const id = String(data.payment_id ?? data.id ?? "");
-    const qr = String(data.qr_code ?? data.copy_paste ?? data.pix_code ?? "");
-    if (!id || !qr) throw new Error("pixgo_invalid_response");
-    return {
-      provider,
-      providerPaymentId: id,
-      state: normalizePixGoState(String(data.status ?? "pending")),
-      qrCodeText: qr,
-      qrImage:
-        typeof data.qr_image_url === "string"
-          ? data.qr_image_url
-          : typeof data.qr_code_base64 === "string"
-            ? data.qr_code_base64
-            : null,
-      expiresAt: typeof data.expires_at === "string" ? data.expires_at : null,
-      feeMinor:
-        typeof data.amounts?.fee === "number"
-          ? Math.round(data.amounts.fee * 100)
-          : null,
-    };
+    let payload: Record<string, any>;
+    try {
+      payload = await jsonFetch("https://pixgo.org/api/v1/payment/create", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "X-API-Key": env.PIXGO_API_KEY,
+        },
+        body: JSON.stringify({
+          amount: money(input.amountMinor),
+          description: input.description,
+          receiver_name: input.payerName,
+          receiver_cpf: digits(input.payerDocument),
+          receiver_email: input.payerEmail,
+          external_id: input.orderId,
+          webhook_url:
+            env.API_PUBLIC_BASE_URL.replace(/\/$/, "") +
+            "/commerce/webhooks/pixgo",
+        }),
+      });
+    } catch (error) {
+      try {
+        const recovered = await recoverPixGoCreate(env, input.orderId);
+        if (recovered) return recovered;
+      } catch {
+        // Preserve the original provider/create error. A second charge must not
+        // be issued automatically when creation is ambiguous.
+      }
+      throw error;
+    }
+
+    const payment = pixGoPaymentFromPayload(payload);
+    if (!payment) {
+      const recovered = await recoverPixGoCreate(env, input.orderId).catch(
+        () => null,
+      );
+      if (recovered) return recovered;
+      throw new Error("pixgo_invalid_response");
+    }
+    return payment;
   }
 
   if (!env.MISTICPAY_CLIENT_ID || !env.MISTICPAY_CLIENT_SECRET)
