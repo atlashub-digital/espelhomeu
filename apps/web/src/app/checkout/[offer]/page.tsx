@@ -56,7 +56,7 @@ export default async function Page({
         </div>
       </header>
 
-      <main className="checkout-grid">
+      <main className="checkout-grid" data-checkout-version="aro-pix-v1">
         <section className="checkout-intro">
           <Link href={offer.path} className="checkout-back">
             ← Voltar à página do produto
