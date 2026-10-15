@@ -52,7 +52,7 @@ export default async function Page({
         </Link>
         <div>
           <span>Checkout EspelhoMeu</span>
-          <small>Pagamento seguro · acesso digital</small>
+          <small>PIX Brasil · acesso digital</small>
         </div>
       </header>
 
@@ -86,8 +86,8 @@ export default async function Page({
           <div className="checkout-trust">
             <strong>Sem redirecionamento para uma loja externa.</strong>
             <p>
-              O pagamento acontece dentro desta página. A etapa segura de cartão
-              ou Pix é fornecida pelo processador de pagamento.
+              Para compras em BRL, o PIX é gerado nesta página e confirmado
+              pelo nosso backend antes de liberar o acesso.
             </p>
           </div>
         </section>
