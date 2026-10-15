@@ -43,85 +43,8 @@ O passo de SSH para a VPS só corre quando os secrets `VPS_HOST`, `VPS_USER` e `
 
 Por fazer antes de haver dados reais: `pg_dump` diário cifrado para armazenamento fora da VPS (ver docs/ARQUITETURA.md).
 
+## Integração ARO
 
-## Fast Launch PIX — secrets e ativação
-
-Para o primeiro lançamento BR/PIX, manter os secrets no ficheiro local da VPS:
-
-`/opt/espelhomeu/.env`
-
-Não colocar API keys em Git, chat, Docker image ou frontend.
-
-Variáveis mínimas:
-
-```bash
-WEB_BASE_URL=https://espelho.lia.doctor
-API_PUBLIC_BASE_URL=https://api.espelhomeu.lia.doctor
-COMMERCE_ENABLED=false
-BR_PIX_PROVIDER=pixgo
-PIXGO_API_KEY=<secret>
-PIXGO_WEBHOOK_SECRET=<secret>
-ACCESS_TOKEN_DAYS=180
-```
-
-Manter `COMMERCE_ENABLED=false` durante deploy/migration. Ativar apenas no gate de PIX controlado.
-
-### Editar secrets na VPS
-
-```bash
-ssh -p 22022 <user>@<vps>
-cd /opt/espelhomeu
-sudo cp .env ".env.backup.$(date +%Y%m%d-%H%M%S)"
-sudo nano .env
-sudo chmod 600 .env
-```
-
-Depois de guardar:
-
-```bash
-docker compose config >/dev/null
-docker compose up -d api
-docker compose ps
-curl -fsS https://api.espelhomeu.lia.doctor/health
-```
-
-### Aplicar migration do Commerce
-
-Enquanto as migrations ainda não fazem parte do deploy automático, usar o método documentado por túnel SSH e Drizzle a partir de uma cópia atual do repositório:
-
-```bash
-ssh -p 22022 -L 5432:127.0.0.1:5432 <user>@<vps>
-```
-
-Noutra shell, no repositório no head homologado:
-
-```bash
-DATABASE_URL='postgres://espelhomeu:<password>@127.0.0.1:5432/espelhomeu' \
-  pnpm --filter api db:migrate
-```
-
-Verificar antes de ativar commerce:
-
-```sql
-select to_regclass('public.orders');
-select to_regclass('public.order_items');
-select to_regclass('public.payment_events');
-select to_regclass('public.entitlements');
-select to_regclass('public.access_tokens');
-```
-
-### Ativar gate controlado
-
-Depois da migration + health:
-
-```bash
-cd /opt/espelhomeu
-sudo nano .env
-# alterar:
-# COMMERCE_ENABLED=true
-
-docker compose up -d api
-curl -fsS https://api.espelhomeu.lia.doctor/health
-```
-
-A aplicação continua com `SALES READY=false` até a compra PIX ponta-a-ponta passar.
+O projeto não executa pagamentos. Ver `docs/FAST_LAUNCH_CHECKOUT_RUNBOOK.md`.
+A API guarda apenas recibos de webhook em 0003_aro_webhook_receipts; aplicar via processo
+Helena, sem migration financeira local. Não reativar 0002_quick_checkout.

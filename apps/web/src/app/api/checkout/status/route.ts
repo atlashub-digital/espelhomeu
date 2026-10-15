@@ -1,33 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-
-function apiBase() {
-  return (process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000").replace(
-    /\/$/,
-    "",
-  );
-}
-
+import { currentCapability, getAroCheckout } from "@/lib/aro/client";
 export async function POST(request: NextRequest) {
-  const claim = request.cookies.get("espelho_checkout_claim")?.value;
-  const dot = claim?.indexOf(".") ?? -1;
-  const orderId = dot > 0 ? claim!.slice(0, dot) : "";
-  const claimSecret = dot > 0 ? claim!.slice(dot + 1) : "";
-  if (!orderId || !claimSecret)
-    return NextResponse.json({ ok: false, error: "claim_missing" }, { status: 401 });
-
+  if (request.headers.get("origin") !== request.nextUrl.origin)
+    return NextResponse.json({ error: "invalid_origin" }, { status: 403 });
   try {
-    const upstream = await fetch(apiBase() + "/commerce/checkout/pix/status", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ orderId, claimSecret }),
-      cache: "no-store",
-    });
-    const payload = await upstream.json().catch(() => ({}));
-    return NextResponse.json(payload, { status: upstream.status });
-  } catch {
+    const capability = await currentCapability();
+    if (!capability)
+      return NextResponse.json({ error: "checkout_missing" }, { status: 401 });
+    const session = await getAroCheckout(capability);
     return NextResponse.json(
-      { ok: false, error: "status_unavailable" },
-      { status: 502 },
+      { status: session.state, orderId: session.order_id },
+      { headers: { "Cache-Control": "no-store" } },
     );
+  } catch {
+    return NextResponse.json({ error: "status_unavailable" }, { status: 503 });
   }
 }

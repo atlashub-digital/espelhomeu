@@ -1,175 +1,76 @@
-# EspelhoMeu — Fast Launch PIX Runbook
+# EspelhoMeu — consumidor ARO / preparação E7
 
-## Decision
+Substitui a implementação financeira local anterior do PR #30. SALES READY=false.
 
-Hotmart is outside the launch critical path.
+## Contrato
 
-Brazil / BRL uses the first-party EspelhoMeu checkout with ARO-style PIX routing.
+Fonte canónica: `atlashub-digital/atlashub-finance`, `openapi/aro-v1.yaml`, contrato
+`docs/35_PROJECT_INTEGRATION_CONTRACT_V1.md`, kit Developer e plano
+`docs/41_ESPELHOMEU_PILOT_EXECUTION.md` do branch backend auditado em
+`9b9247ced0d5634cff64935009dad63cd3412564`.
 
-Initial provider:
-**PixGo**
+- Sales → `/checkout/p01` (p01–p05/colecao) → BFF Next → ARO
+  `POST /v1/checkout-sessions`; códigos `p01-br`…`p05-br`, `colecao-br`.
+- Preços apresentados vêm do registry homologado; valor financeiro final vem do ARO.
+  Roteamento/provider/preço confirmado/order/grant/revoke pertencem exclusivamente ao ARO.
+- CPF/CNPJ vai apenas para criar a sessão; não é persistido no EspelhoMeu nem registado.
+- Idempotency-Key estável por tentativa/dados; retry não muda a chave. QR local codifica
+  `qr_payload` sem alterações; Copia e Cola usa `copy_paste`.
+- Cookie cifrado AES-GCM HttpOnly contém capacidade de checkout, não direitos de acesso.
+  Não é aceite o token antigo `espelho_access`. Checkout secret não entra em JSON/browser logs.
+- Polling usa `X-ARO-Checkout-Secret` no servidor. UI recebe só estados normalizados.
+- Antes do acesso: sessão comprovada → order canónico (`GET /v1/orders/{id}` com server key)
+  → customer_id canónico → `POST /v1/entitlements/resolve`. Apenas ACTIVE, dentro da validade,
+  no projeto e source_order_id da sessão permite Reader/Journey/download. Email digitado
+  não é identidade e não permite herdar outras compras desse email.
+- V1 mantém a compra desta sessão guest por sete dias, não uma conta multi-dispositivo.
+  Recuperação de identidade/login e agregação de compras são trabalho posterior.
+- Library apresenta adquirido/bloqueado; amostras comerciais continuam públicas. Conteúdo
+  integral e downloads PDF/ZIP/Markdown passam por autorização no servidor.
+- Retorno/sucesso e webhook nunca concedem acesso. Re-resolve no-store a cada acesso;
+  falha/timeouts/revogação bloqueiam. Jornada/Membership não têm checkout.
 
-Fallback/future provider:
-**MisticPay**
+## Configuração — Helena
 
-International:
-**Stripe**, outside the BR PIX launch gate.
+Vercel/server web: `ARO_API_URL=https://aro.atlashub.si`, `ARO_PROJECT_SLUG=espelhomeu`,
+`ARO_PUBLIC_KEY`, `ARO_SERVER_KEY`, `ARO_WEBHOOK_SECRET`, API origin existente.
+Não imprimir valores. Nenhuma credencial de PixGo/MisticPay/Stripe no projeto.
+O server key também deriva a chave de cifragem da capacidade; rotação invalida as
+sessões guest existentes. Não colocar credenciais ARO no NEXT_PUBLIC.
 
-## Launch flow
+API Fastify existente: apenas `ARO_WEBHOOK_SECRET` e DATABASE_URL já usada pela aplicação
+para receipt dedupe. Não executa pagamento, reconciliação, order ou entitlement.
 
-```
-Sales Page
-→ /checkout/[offer]
-→ payer data
-→ PIX create
-→ QR + Copia e Cola
-→ PixGo
-→ webhook/status verification
-→ order APPROVED
-→ entitlement
-→ Library / WebReader
-```
+`POST /api/aro/webhook`: raw bytes + timestamp de 5 min + HMAC-SHA256 constante +
+project/event ID. Encaminha os mesmos bytes/headers à API `/aro/webhook`, que verifica
+novamente e grava só event ID/project/hash/timestamp em `aro_webhook_receipts`.
+Unique PK faz dedupe concorrente; ID igual/hash diferente retorna 409. Sem DB/schema,
+retorna 503, permitindo retry. Nenhum corpo com PII ou header secreto é guardado.
 
-## Launch offers
+## Plano durável de dados
 
-- P01 — R$11,90
-- P02 — R$19,90
-- P03 — R$29,90
-- P04 — R$24,90
-- P05 — R$29,90
-- Coleção — R$79,90
+- Migration local financeira 0002 retirada do journal/caminho de execução e conservada
+  em `docs/commerce/retired/0002_quick_checkout.sql` como referência histórica.
+- Schema financeiro, providers, state machines/grants locais e deploy hook de 0002 removidos.
+- Nova migration **0003_aro_webhook_receipts**, posterior ao timestamp de 0002, cria somente
+  a tabela de dedupe. Não foi aplicada nesta tarefa; Helena valida/aplica no deploy da API.
+- Tabelas financeiras legadas que já existam permanecem intocadas e não são consultadas.
+  Não há DROP, backfill, migração de dinheiro ou conversão de direitos locais.
+- Antes do smoke E7, confirmar API com 0003 e segredo HMAC igual ao configurado no ARO/web.
+  O ARO deve alcançar o endpoint configurado; não desligar a proteção do Preview.
 
-Jornada and Membership remain non-purchasable.
+## Verificação determinística
 
-## Order bumps
+`corepack enable`, `pnpm install --frozen-lockfile`, `pnpm validate:content`, `pnpm lint`,
+`pnpm typecheck`, `pnpm test`, `pnpm build`, `pnpm verify:browser`.
 
-- P01 → P02
-- P02 → P03
-- P04 → P05
-- P05 → P04
+Browser CI sobe um HTTP double local ARO com credenciais sintéticas, sem acesso a
+providers. Prova P01→request ARO, PENDING bloqueado, ACTIVE abre, REVOKED bloqueia,
+retorno forjado negado, downloads protegidos e regressão editorial autorizada por
+entitlement da coleção. Nada neste smoke cria PIX real. O teste de webhook cobre
+assinatura inválida/corpo alterado/expirado/projeto errado, duplicação e falha de receipt.
 
-No automatic discount is claimed.
-
-## PIX rendering
-
-PixGo is payment infrastructure, not checkout branding.
-
-The checkout uses the canonical PIX Copia e Cola payload as the payment source.
-
-Controlled test may temporarily render the provider-supplied QR to prove payment correctness.
-
-Before public SALES READY:
-- render a clean QR from the canonical PIX payload;
-- do not depend on provider visual branding;
-- retain Copia e Cola as fallback;
-- verify the rendered QR decodes byte-for-byte to the canonical payload.
-
-Do not alter the PIX payload when re-rendering.
-
-## Runtime secrets
-
-Keep runtime secrets in:
-
-`/opt/espelhomeu/.env`
-
-Never commit them.
-
-Minimum BR/PIX:
-
-```
-WEB_BASE_URL=https://espelho.lia.doctor
-API_PUBLIC_BASE_URL=https://api.espelhomeu.lia.doctor
-COMMERCE_ENABLED=false
-BR_PIX_PROVIDER=pixgo
-PIXGO_API_KEY=<secret>
-PIXGO_WEBHOOK_SECRET=<secret>
-ACCESS_TOKEN_DAYS=180
-```
-
-Optional notifications:
-
-```
-REVENUE_TELEGRAM_BOT_TOKEN=
-REVENUE_TELEGRAM_CHAT_ID=
-REVENUE_DISCORD_WEBHOOK_URL=
-```
-
-## Revenue notifications
-
-Notifications are operational outputs, never financial authority.
-
-Current events:
-- payment approved;
-- payment refunded.
-
-Notifications contain only:
-- project;
-- offer;
-- amount/currency;
-- provider;
-- short order reference.
-
-No CPF/CNPJ, email or secret is sent.
-
-Failure to notify never changes payment/order/entitlement state.
-
-## Hermes
-
-Hermes is not part of the payment confirmation path for launch.
-
-Phase 0:
-- direct Telegram/Discord notification.
-
-Phase 1:
-- Hermes reads ARO normalized events;
-- explains the event;
-- produces daily/weekly summaries;
-- detects anomalies;
-- posts operational context.
-
-Hermes must not decide whether a payment is APPROVED.
-
-## Database migration
-
-Apply the commerce migration before enabling commerce.
-
-Verify:
-- orders
-- order_items
-- payment_events
-- entitlements
-- access_tokens
-
-## Activation sequence
-
-1. deploy current API image/config with COMMERCE_ENABLED=false;
-2. apply migration;
-3. configure PixGo secrets;
-4. verify API health;
-5. set BR_PIX_PROVIDER=pixgo;
-6. set COMMERCE_ENABLED=true;
-7. create controlled P01 PIX;
-8. validate QR/Copia-e-Cola;
-9. pay;
-10. provider confirmation/webhook/status;
-11. order APPROVED;
-12. entitlement granted;
-13. claim access;
-14. Reader open;
-15. Collection grant test;
-16. refund/revoke test where provider supports it;
-17. clean QR rendering gate;
-18. authenticated smoke;
-19. PDG release approval.
-
-## Access
-
-Return/client polling does not create financial truth.
-
-The API verifies provider state server-side before changing order state and granting entitlement.
-
-## SALES READY
-
-Remain false until the complete controlled PIX transaction passes.
-
-`COMMERCE_ACCESS_ENFORCED=true` is a final release gate, not an implementation default.
+E7 real é separado: Helena faz deploy/config/binding, confirma P01→ARO e posteriormente
+executa a prova financeira autorizada pelo PDG. Esta tarefa para antes de PIX real,
+merge, publicação ou SALES READY. Quota Vercel pode impedir Preview sem afetar o CI;
+reportar estado observado, não promover builds manualmente.

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export function ClaimAccess({ sessionId }: { sessionId: string }) {
+export function ClaimAccess() {
   const [message, setMessage] = useState("Confirmando o pagamento…");
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export function ClaimAccess({ sessionId }: { sessionId: string }) {
         const response = await fetch("/api/access/claim", {
           method: "POST",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify({ sessionId }),
+          body: "{}",
         });
         const payload = (await response.json().catch(() => ({}))) as {
           ok?: boolean;
@@ -26,7 +26,8 @@ export function ClaimAccess({ sessionId }: { sessionId: string }) {
         if (cancelled) return;
         if (response.ok && payload.ok) {
           const target = new URL("/checkout/sucesso", window.location.origin);
-          if (payload.offerId) target.searchParams.set("offer", payload.offerId);
+          if (payload.offerId)
+            target.searchParams.set("offer", payload.offerId);
           if (payload.productRefs?.length)
             target.searchParams.set("owned", payload.productRefs.join(","));
           window.location.replace(target.toString());
@@ -52,7 +53,7 @@ export function ClaimAccess({ sessionId }: { sessionId: string }) {
     return () => {
       cancelled = true;
     };
-  }, [sessionId]);
+  }, []);
 
   return (
     <div className="checkout-processing" role="status">

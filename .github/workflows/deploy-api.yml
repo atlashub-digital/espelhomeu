@@ -100,15 +100,6 @@ jobs:
             docker compose up -d db
             docker pull "$IMAGE"
 
-            ORDERS_TABLE="$(docker compose exec -T db sh -lc 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -tAc "select to_regclass('"'"'public.orders'"'"');"' | tr -d '[:space:]')"
-            if [ "$ORDERS_TABLE" != "orders" ]; then
-              echo "Applying commerce migration 0002_quick_checkout.sql"
-              docker run --rm --entrypoint cat "$IMAGE" /app/drizzle/0002_quick_checkout.sql \
-                | docker compose exec -T db sh -lc 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
-            else
-              echo "Commerce migration already present; skipping."
-            fi
-
             docker compose pull api
             docker compose up -d api
 

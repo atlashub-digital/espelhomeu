@@ -7,6 +7,7 @@ import {
   readAttribution,
 } from "@espelhomeu/project-config/sales";
 import { CheckoutClient } from "@/components/checkout/checkout-client";
+import { offerCodes } from "@/lib/aro/core";
 import { salesProducts } from "@/lib/sales-data";
 
 const bumpByOffer: Record<string, string> = {
@@ -27,6 +28,7 @@ export default async function Page({
   const offer = getSalesOffer(offerId);
   if (
     !offer ||
+    !Object.hasOwn(offerCodes, offerId) ||
     !offer.purchaseEnabled ||
     offer.amountMinor === null ||
     offer.cadence !== "once"
@@ -86,8 +88,8 @@ export default async function Page({
           <div className="checkout-trust">
             <strong>Sem redirecionamento para uma loja externa.</strong>
             <p>
-              Para compras em BRL, o PIX é gerado nesta página e confirmado
-              pelo nosso backend antes de liberar o acesso.
+              Para compras em BRL, o PIX é gerado nesta página e confirmado pelo
+              nosso backend antes de liberar o acesso.
             </p>
           </div>
         </section>

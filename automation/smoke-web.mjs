@@ -1,3 +1,4 @@
+const fetch = (url) => globalThis.fetch(url, { headers: process.env.SMOKE_AUTH_COOKIE ? { Cookie: process.env.SMOKE_AUTH_COOKIE } : {} });
 const origin = process.env.SMOKE_WEB_URL || "http://localhost:3000";
 const routes = [
   "/",

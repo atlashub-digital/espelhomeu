@@ -1,3 +1,5 @@
+> HISTÓRICO — substituído pela decisão de consumidor ARO central. Não implementar Hotmart nem ledger local. Ver docs/FAST_LAUNCH_CHECKOUT_RUNBOOK.md.
+
 # S2 — auditoria Hotmart e design Commerce / Checkout
 
 Data: 2026-10-14. Estado: **DESIGN PROPOSTO / AUDITORIA DA CONTA PENDENTE**.

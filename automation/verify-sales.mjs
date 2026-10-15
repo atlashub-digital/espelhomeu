@@ -14,7 +14,7 @@ const routes = [
 ];
 
 /** Runs inside the existing CI browser/server lifecycle; never contacts payment providers. */
-export async function verifySales({ browser, origin, evidence }) {
+export async function verifySales({ browser, origin, evidence, mockAro }) {
   const checks = [];
   for (const [name, viewport] of [
     ["desktop", { width: 1440, height: 1000 }],
@@ -62,9 +62,7 @@ export async function verifySales({ browser, origin, evidence }) {
             anchors.map((anchor) => anchor.getAttribute("href")),
           );
         assert.ok(
-          links.every(
-            (href) => !/stripe\.com|pixgo|misticpay/i.test(href),
-          ),
+          links.every((href) => !/stripe\.com|pixgo|misticpay/i.test(href)),
           `External payment link leaked into sales page: ${route}`,
         );
         if (
@@ -288,7 +286,9 @@ export async function verifySales({ browser, origin, evidence }) {
       await page.goto(`${origin}/checkout/p01`);
       await page.locator("h1").waitFor();
       assert.ok(
-        (await page.locator("main").innerText()).includes("7 Dias Para Me Escolher"),
+        (await page.locator("main").innerText()).includes(
+          "7 Dias Para Me Escolher",
+        ),
       );
       assert.equal(
         await page.locator('input[autocomplete="cc-number"]').count(),
@@ -303,26 +303,48 @@ export async function verifySales({ browser, origin, evidence }) {
           response.url().includes("/api/checkout/session") &&
           response.request().method() === "POST",
       );
-      await page
-        .getByRole("button", { name: /Gerar PIX/ })
-        .click();
-      const disabledResponse = await checkoutResponse;
-      assert.equal(
-        disabledResponse.status(),
-        503,
-        "Preview must fail closed while commerce runtime is disabled",
+      await page.getByRole("button", { name: /Gerar PIX/ }).click();
+      const created = await checkoutResponse;
+      assert.equal(created.status(), 201);
+      const checkout = await created.json();
+      assert.ok(!JSON.stringify(checkout).includes("checkout_secret"));
+      await page.getByTestId("pix-payment").waitFor();
+      assert.ok(
+        (await page.locator("textarea").inputValue()).includes(
+          "CI-ONLY-NOT-A-PAYABLE-PIX",
+        ),
       );
       assert.equal(
-        await page.getByTestId("pix-payment").count(),
-        0,
-        "Disabled commerce must never expose a payable PIX",
+        mockAro.requests
+          .filter((r) => r.path === "/v1/checkout-sessions")
+          .at(-1).body.offer,
+        "p01-br",
       );
       await page.screenshot({
-        path: path.join(evidence, `${name}-checkout-pix-disabled.png`),
+        path: path.join(evidence, `${name}-aro-p01-pending.png`),
         fullPage: true,
       });
+      const guard = await context.newPage();
+      await guard.goto(origin + "/ler/7-dias-para-me-escolher");
+      assert.equal(
+        await guard.locator(".reader-content").count(),
+        0,
+        "Pending does not grant access",
+      );
+      mockAro.setState(checkout.orderId, "APPROVED");
+      await page.waitForURL((url) => url.pathname === "/checkout/sucesso");
+      await guard.reload();
+      assert.ok(await guard.locator(".reader-content").count());
+      mockAro.revoke(checkout.orderId);
+      await guard.reload();
+      assert.equal(
+        await guard.locator(".reader-content").count(),
+        0,
+        "ARO revoke immediately blocks Reader",
+      );
+      await guard.close();
       checks.push(
-        `${name} S2 checkout P01: branded PIX surface + API 503 fail-closed + no payable PIX`,
+        `${name} ARO P01: request reaches contract double, PIX, PENDING locked, ACTIVE opens, REVOKED locks`,
       );
 
       await page.goto(`${origin}/diario-de-amor-proprio`);

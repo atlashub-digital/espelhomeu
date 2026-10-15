@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
 type OfferView = {
   id: string;
@@ -10,7 +11,7 @@ type OfferView = {
 
 type PixCheckout = {
   orderId: string;
-  provider: string;
+  amount: { amount_minor: number; currency: string };
   qrCodeText: string;
   qrImage?: string | null;
   expiresAt?: string | null;
@@ -36,6 +37,7 @@ export function CheckoutClient({
   bump?: OfferView | null;
   attribution: Record<string, string>;
 }) {
+  const attempt = useRef<{ body: string; key: string } | null>(null);
   const [includeBump, setIncludeBump] = useState(false);
   const [phase, setPhase] = useState<
     "summary" | "loading" | "pix" | "confirming"
@@ -53,7 +55,7 @@ export function CheckoutClient({
   );
 
   useEffect(() => {
-    if (!pix || phase !== "pix") return;
+    if (!pix || !["pix", "confirming"].includes(phase)) return;
     let stopped = false;
     let timer: number | undefined;
 
@@ -68,7 +70,7 @@ export function CheckoutClient({
           status?: string;
         };
         if (stopped) return;
-        if (payload.status === "approved") {
+        if (payload.status === "APPROVED") {
           setPhase("confirming");
           const claim = await fetch("/api/access/claim", {
             method: "POST",
@@ -82,7 +84,8 @@ export function CheckoutClient({
           };
           if (claim.ok && granted.ok) {
             const target = new URL("/checkout/sucesso", window.location.origin);
-            if (granted.offerId) target.searchParams.set("offer", granted.offerId);
+            if (granted.offerId)
+              target.searchParams.set("offer", granted.offerId);
             if (granted.productRefs?.length)
               target.searchParams.set("owned", granted.productRefs.join(","));
             window.location.replace(target.toString());
@@ -91,9 +94,14 @@ export function CheckoutClient({
           setError(
             "Pagamento confirmado. O acesso ainda está a ser liberado; não pague novamente.",
           );
+          if (!stopped) timer = window.setTimeout(check, 2500);
           return;
         }
-        if (["failed", "canceled", "refunded", "chargeback"].includes(payload.status || "")) {
+        if (
+          ["FAILED", "CANCELED", "EXPIRED", "REFUNDED", "CHARGEBACK"].includes(
+            payload.status || "",
+          )
+        ) {
           setError(
             "Esta cobrança não está mais ativa. Nenhuma nova cobrança será feita automaticamente.",
           );
@@ -117,28 +125,38 @@ export function CheckoutClient({
     setError("");
 
     const document = digits(payerDocument);
-    if (!payerName.trim() || !payerEmail.trim() || ![11, 14].includes(document.length)) {
+    if (
+      !payerName.trim() ||
+      !payerEmail.trim() ||
+      ![11, 14].includes(document.length)
+    ) {
       setError("Preencha nome, email e CPF/CNPJ para gerar o PIX.");
       return;
     }
 
     setPhase("loading");
     try {
+      const body = JSON.stringify({
+        offerId: offer.id,
+        bumpOfferIds: includeBump && bump ? [bump.id] : [],
+        payerName: payerName.trim(),
+        payerDocument: document,
+        payerEmail: payerEmail.trim().toLowerCase(),
+        attribution,
+      });
+      if (!attempt.current || attempt.current.body !== body)
+        attempt.current = { body, key: crypto.randomUUID() };
       const response = await fetch("/api/checkout/session", {
         method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          offerId: offer.id,
-          bumpOfferIds: includeBump && bump ? [bump.id] : [],
-          payerName: payerName.trim(),
-          payerDocument: document,
-          payerEmail: payerEmail.trim().toLowerCase(),
-          attribution,
-        }),
+        headers: {
+          "content-type": "application/json",
+          "Idempotency-Key": attempt.current.key,
+        },
+        body,
       });
       const payload = (await response.json().catch(() => ({}))) as {
         orderId?: string;
-        provider?: string;
+        amount?: { amount_minor: number; currency: string };
         qrCodeText?: string;
         qrImage?: string | null;
         expiresAt?: string | null;
@@ -147,7 +165,7 @@ export function CheckoutClient({
       if (
         !response.ok ||
         !payload.orderId ||
-        !payload.provider ||
+        !payload.amount ||
         !payload.qrCodeText
       ) {
         throw new Error(payload.error || "checkout_unavailable");
@@ -155,7 +173,7 @@ export function CheckoutClient({
 
       setPix({
         orderId: payload.orderId,
-        provider: payload.provider,
+        amount: payload.amount,
         qrCodeText: payload.qrCodeText,
         qrImage: payload.qrImage,
         expiresAt: payload.expiresAt,
@@ -164,10 +182,9 @@ export function CheckoutClient({
     } catch (cause) {
       setPhase("summary");
       setError(
-        cause instanceof Error &&
-          cause.message === "invalid_payer_document"
+        cause instanceof Error && cause.message === "invalid_payer_document"
           ? "CPF/CNPJ inválido. Revise o documento informado."
-          : "O PIX está temporariamente indisponível. Nenhuma cobrança foi realizada.",
+          : "Não foi possível obter o PIX. Tente novamente com os mesmos dados para consultar a mesma tentativa; não pague uma segunda cobrança.",
       );
     }
   }
@@ -206,7 +223,7 @@ export function CheckoutClient({
 
         <div className="checkout-total">
           <span>Total</span>
-          <strong>{money(total)}</strong>
+          <strong>{money(pix?.amount.amount_minor ?? total)}</strong>
         </div>
 
         {phase === "summary" && (
@@ -264,7 +281,10 @@ export function CheckoutClient({
               PIX gerado · aguardando confirmação
             </p>
             {pix.qrImage && (
-              <img
+              <Image
+                width={320}
+                height={320}
+                unoptimized
                 className="checkout-qr"
                 src={pix.qrImage}
                 alt="QR Code PIX para pagamento"
@@ -282,8 +302,8 @@ export function CheckoutClient({
               {copied ? "PIX copiado ✓" : "Copiar código PIX"}
             </button>
             <small>
-              Depois de pagar no seu banco, mantenha esta página aberta. O acesso
-              é liberado automaticamente após a confirmação.
+              Depois de pagar no seu banco, mantenha esta página aberta. O
+              acesso é liberado automaticamente após a confirmação.
             </small>
             {pix.expiresAt && (
               <small>
