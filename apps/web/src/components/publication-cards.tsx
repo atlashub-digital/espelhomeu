@@ -1,6 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Publication } from "@atlashub-digital/amf-content-schema";
+import {
+  getCommerceAccess,
+  hasProduct,
+  requiredProductForPublication,
+} from "@/lib/commerce-access";
 import { catalog } from "@/lib/content";
 const labels: Partial<Record<Publication["type"], string>> = {
   article: "Artigo",
@@ -28,6 +33,7 @@ export async function PublicationCards({
   query?: string;
   type?: string;
 }) {
+  const access = await getCommerceAccess();
   const publications = (await catalog()).filter(
     (p) =>
       (!type || p.type === type) &&
@@ -44,12 +50,21 @@ export async function PublicationCards({
             className={`editorial-cover cover-${i % 2}${p.cover ? " has-cover" : ""}`}
             aria-label={`Ler ${p.title}`}
           >
-            {p.cover ? <Image src={p.cover} fill sizes="(max-width: 520px) 88vw, 44vw" alt={`Capa de ${p.title}`} /> : <>
-            <span className="cover-series">ESPELHOMEU · LEITURAS</span>
-            <span className="cover-orbit" aria-hidden="true" />
-            <span className="cover-title">{p.title}</span>
-            <span className="cover-caption">{p.subtitle}</span>
-            </>}
+            {p.cover ? (
+              <Image
+                src={p.cover}
+                fill
+                sizes="(max-width: 520px) 88vw, 44vw"
+                alt={`Capa de ${p.title}`}
+              />
+            ) : (
+              <>
+                <span className="cover-series">ESPELHOMEU · LEITURAS</span>
+                <span className="cover-orbit" aria-hidden="true" />
+                <span className="cover-title">{p.title}</span>
+                <span className="cover-caption">{p.subtitle}</span>
+              </>
+            )}
           </Link>
           <div className="card-meta">
             <span>{labels[p.type] ?? p.type}</span>
@@ -60,8 +75,16 @@ export async function PublicationCards({
           </h2>
           <p>{p.subtitle}</p>
           <div className="card-meta">
-            <span>{accessLabels[p.access.mode]}</span>
-            <span>{p.status === "preview" ? "Pré-publicação" : "Publicado"}</span>
+            <span>
+              {requiredProductForPublication(p.id)
+                ? hasProduct(access, requiredProductForPublication(p.id)!)
+                  ? "Adquirido"
+                  : "Bloqueado · amostra na página do produto"
+                : accessLabels[p.access.mode]}
+            </span>
+            <span>
+              {p.status === "preview" ? "Pré-publicação" : "Publicado"}
+            </span>
           </div>
         </article>
       ))}

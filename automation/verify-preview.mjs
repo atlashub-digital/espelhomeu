@@ -82,13 +82,13 @@ try {
       await page.screenshot({ path: output + "/" + device + "-" + name + ".png", fullPage: true });
       checks.push(device + " " + route);
     }
-    for (const title of ["Reconhecer", "Respeitar", "Escolher referências", "Criar espaço", "Experimentar", "Continuar"]) {
-      await page.getByRole("link", { name: "Próximo encontro" }).click();
-      await page.getByRole("heading", { level: 1, name: title, exact: true }).waitFor();
+    // Public Preview has no trusted ARO capability. Canonical IDs and slugs must both deny.
+    for (const route of ["/ler/p01-leitura-dia-1", "/programas/p01-jornada", "/programas/7-dias-para-me-escolher/p01-dia-1"]) {
+      await page.goto(origin + route);
+      await page.getByRole("heading", { level: 1, name: /acesso reservado/ }).waitFor();
+      assert.equal(await page.locator(".reader-content").count(), 0, route);
+      checks.push(device + " entitlement required " + route);
     }
-    await page.getByRole("link", { name: "Encontro anterior" }).click();
-    await page.getByRole("heading", { level: 1, name: "Experimentar", exact: true }).waitFor();
-    checks.push(device + " all seven Journey days and previous/next");
     await page.close();
   }
   assert.deepEqual(errors, []);

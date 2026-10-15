@@ -9,6 +9,7 @@ const Env = z.object({
     .default("http://localhost:3000")
     .transform((s) => s.split(",").map((o) => o.trim()).filter(Boolean)),
   DATABASE_URL: z.url().optional(),
+  ARO_WEBHOOK_SECRET: z.preprocess(value => value === "" ? undefined : value, z.string().min(32).optional()),
   APP_VERSION: z.string().default("dev"),
 });
 

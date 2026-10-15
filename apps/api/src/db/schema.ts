@@ -39,3 +39,11 @@ export const waitlist = pgTable("waitlist", {
   consentVersion: text("consent_version").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
+
+/** Notification dedupe only. ARO remains the sole payment/entitlement authority. */
+export const aroWebhookReceipts = pgTable("aro_webhook_receipts", {
+  eventId: uuid("event_id").primaryKey(),
+  project: text("project").notNull(),
+  payloadHash: text("payload_hash").notNull(),
+  receivedAt: timestamp("received_at", { withTimezone: true }).notNull().defaultNow(),
+});
