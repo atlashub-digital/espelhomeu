@@ -4,7 +4,7 @@ import {
   randomBytes,
   timingSafeEqual,
 } from "node:crypto";
-import { and, eq, gt, inArray, or } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import {
@@ -436,7 +436,12 @@ export function pixCommerceRoutes(
       )
         return reply.code(401).send({ ok: false });
 
-      const payload = JSON.parse(raw) as Record<string, any>;
+      let payload: Record<string, any>;
+      try {
+        payload = JSON.parse(raw) as Record<string, any>;
+      } catch {
+        return reply.code(400).send({ ok: false });
+      }
       const event = String(payload.event ?? req.headers["x-webhook-event"] ?? "");
       const data =
         payload.data && typeof payload.data === "object" ? payload.data : payload;
@@ -454,19 +459,34 @@ export function pixCommerceRoutes(
         .limit(1);
       if (seen) return reply.send({ ok: true, duplicate: true });
 
-      const [order] = await opts.db.db
-        .select()
-        .from(orders)
-        .where(
-          and(
-            eq(orders.provider, "pixgo"),
-            or(
-              paymentId ? eq(orders.providerPaymentId, paymentId) : undefined,
-              externalId ? eq(orders.id, externalId) : undefined,
-            ),
-          ),
+      const orderByExternal =
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+          externalId,
         )
-        .limit(1);
+          ? (
+              await opts.db.db
+                .select()
+                .from(orders)
+                .where(and(eq(orders.provider, "pixgo"), eq(orders.id, externalId)))
+                .limit(1)
+            )[0]
+          : undefined;
+      const orderByPayment =
+        !orderByExternal && paymentId
+          ? (
+              await opts.db.db
+                .select()
+                .from(orders)
+                .where(
+                  and(
+                    eq(orders.provider, "pixgo"),
+                    eq(orders.providerPaymentId, paymentId),
+                  ),
+                )
+                .limit(1)
+            )[0]
+          : undefined;
+      const order = orderByExternal ?? orderByPayment;
       if (!order) {
         await recordProviderEvent(opts.db, providerEventId, event, raw);
         return reply.send({ ok: true, ignored: true });
@@ -490,7 +510,12 @@ export function pixCommerceRoutes(
         return reply.code(400).send({ ok: false });
 
       const raw = req.body.toString("utf8");
-      const payload = JSON.parse(raw) as Record<string, any>;
+      let payload: Record<string, any>;
+      try {
+        payload = JSON.parse(raw) as Record<string, any>;
+      } catch {
+        return reply.code(400).send({ ok: false });
+      }
       const transactionId = String(payload.transactionId ?? "");
       if (!transactionId)
         return reply.code(400).send({ ok: false });
