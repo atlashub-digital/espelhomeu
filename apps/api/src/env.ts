@@ -24,6 +24,12 @@ const Env = z.object({
     .default("automatic")
     .transform((s) => s.split(",").map((v) => v.trim()).filter(Boolean)),
   ACCESS_TOKEN_DAYS: z.coerce.number().int().min(1).max(3650).default(180),
+  API_PUBLIC_BASE_URL: z.url().default("http://localhost:4000"),
+  BR_PIX_PROVIDER: z.enum(["pixgo", "misticpay"]).default("pixgo"),
+  PIXGO_API_KEY: z.string().min(1).optional(),
+  PIXGO_WEBHOOK_SECRET: z.string().min(1).optional(),
+  MISTICPAY_CLIENT_ID: z.string().min(1).optional(),
+  MISTICPAY_CLIENT_SECRET: z.string().min(1).optional(),
 });
 
 export type Env = z.infer<typeof Env>;
