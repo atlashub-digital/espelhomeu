@@ -42,3 +42,9 @@ O passo de SSH para a VPS só corre quando os secrets `VPS_HOST`, `VPS_USER` e `
 ## Backups
 
 Por fazer antes de haver dados reais: `pg_dump` diário cifrado para armazenamento fora da VPS (ver docs/ARQUITETURA.md).
+
+## Integração ARO
+
+O projeto não executa pagamentos. Ver `docs/FAST_LAUNCH_CHECKOUT_RUNBOOK.md`.
+A API guarda apenas recibos de webhook em 0003_aro_webhook_receipts; aplicar via processo
+Helena, sem migration financeira local. Não reativar 0002_quick_checkout.

@@ -5,6 +5,7 @@ import Fastify from "fastify";
 import { createDb, type Db } from "./db/client";
 import type { Env } from "./env";
 import { healthRoutes } from "./routes/health";
+import { aroReceiptRoutes } from "./routes/aro-receipts";
 import { waitlistRoutes } from "./routes/waitlist";
 
 export async function buildApp(env: Env) {
@@ -25,6 +26,7 @@ export async function buildApp(env: Env) {
 
   healthRoutes(app, { db, version: env.APP_VERSION });
   waitlistRoutes(app, { db });
+  await app.register(aroReceiptRoutes, { db, secret: env.ARO_WEBHOOK_SECRET });
 
   return app;
 }

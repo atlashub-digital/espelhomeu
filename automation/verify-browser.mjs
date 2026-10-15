@@ -5,11 +5,19 @@ import { mkdir, writeFile, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import assert from "node:assert/strict";
+import { startMockAro } from "./mock-aro.mjs";
+import { randomUUID } from "node:crypto";
 import { verifySales } from "./verify-sales.mjs";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const webRequire = createRequire(path.join(root, "apps/web/package.json"));
+const mockAro = await startMockAro();
 const env = {
   ...process.env,
+  CI: "true",
+  ARO_API_URL: mockAro.url,
+  ARO_PUBLIC_KEY: "synthetic-public-key",
+  ARO_SERVER_KEY: "synthetic-server-key-for-ci-only",
+  ARO_PROJECT_SLUG: "espelhomeu",
   HOST: "127.0.0.1",
   NEXT_PUBLIC_API_URL: "http://127.0.0.1:4000",
 };
@@ -55,9 +63,12 @@ try {
   assert.equal(health.status, "ok");
   assert.equal(health.db, "not_configured");
   await mkdir(evidence, { recursive: true });
+  const editorialSession = await fetch(origin + "/api/checkout/session", { method:"POST", headers:{"content-type":"application/json", origin, "Idempotency-Key":randomUUID()}, body:JSON.stringify({offerId:"colecao",payerName:"CI Editorial QA",payerEmail:"qa@example.invalid",payerDocument:"52998224725"}) });
+  assert.equal(editorialSession.status,201);
+  const sessionCookie = editorialSession.headers.get("set-cookie").split(";")[0];
   const smoke = spawn(process.execPath, ["automation/smoke-web.mjs"], {
     cwd: root,
-    env: { ...env, SMOKE_WEB_URL: origin },
+    env: { ...env, SMOKE_WEB_URL: origin, SMOKE_AUTH_COOKIE: sessionCookie },
     stdio: "inherit",
   });
   assert.equal(await new Promise((r) => smoke.on("exit", r)), 0);
@@ -79,7 +90,15 @@ try {
   const newProducts = manifest.publications.filter(p => ["21-dias-meu-melhor-reflexo", "recomecar-depois-dos-40", "diario-de-amor-proprio-30-encontros-comigo"].includes(p.id));
   const errors = [],
     checks = [];
+  const anonymous = await browser.newPage();
+  await anonymous.goto(origin + "/ler/7-dias-para-me-escolher?paid=true&owned=p01");
+  assert.equal(await anonymous.locator(".reader-content").count(),0,"Return query must not unlock Reader");
+  assert.ok((await anonymous.locator("h1").innerText()).includes("acesso reservado"));
+  assert.equal((await fetch(origin + "/conteudo/produto-01/workbook.pdf")).status,403);
+  await anonymous.close();
+  checks.push("ARO anonymous Reader and downloads locked; forged query ignored");
   const page = await browser.newPage();
+  await page.context().addCookies([{name:"espelho_aro_checkout", value:sessionCookie.slice(sessionCookie.indexOf("=")+1), url:origin}]);
   page.on("pageerror", (e) => errors.push(e.message));
   const routes = [
     ...newProducts.map(p => "/ler/" + p.slug),
@@ -159,7 +178,7 @@ try {
         const link = page.locator('.reader-content a[download][href="' + media.assetPath + '"]');
         const [download] = await Promise.all([page.waitForEvent("download"), link.click()]);
         assert.equal(await download.failure(), null);
-        const response = await fetch(origin + media.assetPath);
+        const response = await fetch(origin + media.assetPath, { headers: { Cookie: sessionCookie } });
         assert.equal(response.status, 200);
         assert.equal(Buffer.from(await response.arrayBuffer()).subarray(0, 5).toString(), "%PDF-");
       }
@@ -186,7 +205,7 @@ try {
       const link = page.locator('.reader-content a[download][href$="' + file + '"]');
       const [download] = await Promise.all([page.waitForEvent("download"), link.click()]);
       assert.equal(await download.failure(), null);
-      const response = await fetch(origin + "/conteudo/produto-02/" + file);
+      const response = await fetch(origin + "/conteudo/produto-02/" + file, { headers: { Cookie: sessionCookie } });
       assert.equal(response.status, 200);
       assert.equal(Buffer.from(await response.arrayBuffer()).subarray(0, signature.length).toString(), signature);
     }
@@ -210,7 +229,7 @@ try {
     assert.equal(await workbook.getAttribute("href"), "/conteudo/produto-01/workbook.pdf");
     const [download] = await Promise.all([page.waitForEvent("download"), workbook.click()]);
     assert.equal(await download.failure(), null);
-    const pdf = await fetch(origin + "/conteudo/produto-01/workbook.pdf");
+    const pdf = await fetch(origin + "/conteudo/produto-01/workbook.pdf", { headers: { Cookie: sessionCookie } });
     assert.equal(pdf.status, 200);
     assert.ok(pdf.headers.get("content-type").includes("application/pdf"));
     assert.equal(Buffer.from(await pdf.arrayBuffer()).subarray(0, 5).toString(), "%PDF-");
@@ -271,7 +290,18 @@ try {
       `${name} waitlist: unchanged form + API 503 without DB + honest UI error`,
     );
   }
-  checks.push(...await verifySales({ browser, origin, evidence }));
+  for (const asset of ["/conteudo/produto-01/workbook%2Epdf", "/conteudo/produto-02/cartao_reflexao_01.png", "/_next/image?url=%2Fconteudo%2Fproduto-02%2Fcartao_reflexao_01.png&w=640&q=75"]) {
+    assert.equal((await fetch(origin + asset)).status, 403, "protected asset " + asset);
+  }
+  const denied = await browser.newPage();
+  for (const route of ["/ler/p01-leitura-dia-1", "/ler/p01-leitura-dia-7", "/programas/p01-jornada", "/programas/p01-jornada/p01-dia-1"]) {
+    await denied.goto(origin + route);
+    await denied.getByRole("heading", { level: 1, name: /acesso reservado/ }).waitFor();
+    assert.equal(await denied.locator(".reader-content").count(), 0, route);
+    checks.push("anonymous canonical ID denied: " + route);
+  }
+  await denied.close();
+  checks.push(...await verifySales({ browser, origin, evidence, mockAro }));
   assert.deepEqual(errors, []);
   await writeFile(
     path.join(evidence, "verification.json"),
@@ -295,4 +325,5 @@ try {
   if (browser) await browser.close();
   web.kill("SIGTERM");
   api.kill("SIGTERM");
+  await mockAro.close();
 }

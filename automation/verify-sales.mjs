@@ -14,7 +14,7 @@ const routes = [
 ];
 
 /** Runs inside the existing CI browser/server lifecycle; never contacts payment providers. */
-export async function verifySales({ browser, origin, evidence }) {
+export async function verifySales({ browser, origin, evidence, mockAro }) {
   const checks = [];
   for (const [name, viewport] of [
     ["desktop", { width: 1440, height: 1000 }],
@@ -62,11 +62,30 @@ export async function verifySales({ browser, origin, evidence }) {
             anchors.map((anchor) => anchor.getAttribute("href")),
           );
         assert.ok(
-          links.every(
-            (href) => !/checkout|stripe\.com|pixgo|misticpay/i.test(href),
-          ),
-          `Payment link in preview: ${route}`,
+          links.every((href) => !/stripe\.com|pixgo|misticpay/i.test(href)),
+          `External payment link leaked into sales page: ${route}`,
         );
+        if (
+          route === "/colecao" ||
+          [
+            "/7-dias-para-me-escolher",
+            "/eu-sou-bela-do-meu-jeito",
+            "/21-dias-meu-melhor-reflexo",
+            "/recomecar-depois-dos-40",
+            "/diario-de-amor-proprio",
+          ].includes(route)
+        ) {
+          assert.ok(
+            links.some((href) => href?.startsWith("/checkout/")),
+            `First-party checkout missing: ${route}`,
+          );
+        }
+        if (route === "/jornada" || route === "/membership") {
+          assert.ok(
+            links.every((href) => !href?.startsWith("/checkout/")),
+            `Future offer must not expose checkout: ${route}`,
+          );
+        }
         assert.equal(
           await page
             .locator('input[name="cpf"], input[autocomplete="cc-number"]')
@@ -104,7 +123,7 @@ export async function verifySales({ browser, origin, evidence }) {
           fullPage: true,
         });
         checks.push(
-          `${name} S1 ${route}: render, media, no overflow, no payment link, screenshot`,
+          `${name} S2 ${route}: render, media, no overflow, first-party checkout boundary, screenshot`,
         );
       }
       // Each interaction uses only temporary browser state. No checkout or member mutation.
@@ -263,6 +282,70 @@ export async function verifySales({ browser, origin, evidence }) {
           `${name} S1 ${route}: purpose-specific manual interest request gated by consent, no email sent`,
         );
       }
+
+      await page.goto(`${origin}/checkout/p01`);
+      await page.locator("h1").waitFor();
+      assert.ok(
+        (await page.locator("main").innerText()).includes(
+          "7 Dias Para Me Escolher",
+        ),
+      );
+      assert.equal(
+        await page.locator('input[autocomplete="cc-number"]').count(),
+        0,
+        "Raw card inputs are never rendered by EspelhoMeu",
+      );
+      await page.getByLabel("Nome").fill("Cliente Teste");
+      await page.getByLabel("Email").fill("preview@example.invalid");
+      await page.getByLabel("CPF ou CNPJ do pagador").fill("52998224725");
+      const checkoutResponse = page.waitForResponse(
+        (response) =>
+          response.url().includes("/api/checkout/session") &&
+          response.request().method() === "POST",
+      );
+      await page.getByRole("button", { name: /Gerar PIX/ }).click();
+      const created = await checkoutResponse;
+      assert.equal(created.status(), 201);
+      const checkout = await created.json();
+      assert.ok(!JSON.stringify(checkout).includes("checkout_secret"));
+      await page.getByTestId("pix-payment").waitFor();
+      assert.ok(
+        (await page.locator("textarea").inputValue()).includes(
+          "CI-ONLY-NOT-A-PAYABLE-PIX",
+        ),
+      );
+      assert.equal(
+        mockAro.requests
+          .filter((r) => r.path === "/v1/checkout-sessions")
+          .at(-1).body.offer,
+        "p01-br",
+      );
+      await page.screenshot({
+        path: path.join(evidence, `${name}-aro-p01-pending.png`),
+        fullPage: true,
+      });
+      const guard = await context.newPage();
+      await guard.goto(origin + "/ler/7-dias-para-me-escolher");
+      assert.equal(
+        await guard.locator(".reader-content").count(),
+        0,
+        "Pending does not grant access",
+      );
+      mockAro.setState(checkout.orderId, "APPROVED");
+      await page.waitForURL((url) => url.pathname === "/checkout/sucesso");
+      await guard.reload();
+      assert.ok(await guard.locator(".reader-content").count());
+      mockAro.revoke(checkout.orderId);
+      await guard.reload();
+      assert.equal(
+        await guard.locator(".reader-content").count(),
+        0,
+        "ARO revoke immediately blocks Reader",
+      );
+      await guard.close();
+      checks.push(
+        `${name} ARO P01: request reaches contract double, PIX, PENDING locked, ACTIVE opens, REVOKED locks`,
+      );
 
       await page.goto(`${origin}/diario-de-amor-proprio`);
       await page.waitForFunction(() =>

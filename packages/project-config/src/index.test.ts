@@ -1,11 +1,11 @@
 import { expect, it } from "vitest";
 import manifest from "../../../project.manifest.json";
 import { project, enabled } from "./index";
-it("records human editorial homologation while commerce stays disabled", () => {
+it("records editorial homologation with commerce module staged but SALES READY false", () => {
   expect(project.id).toBe("espelhomeu");
   expect(enabled("library")).toBe(true);
   expect(enabled("programs")).toBe(true);
-  expect(enabled("commerce")).toBe(false);
+  expect(enabled("commerce")).toBe(true);
   expect(manifest.gate.contentReady).toBe(true);
   expect(manifest.gate.salesReady).toBe(false);
   // Fase 3: pins deixaram de ser SHAs git e passaram a artifacts do registry

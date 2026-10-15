@@ -12,7 +12,7 @@
     "webreader": true,
     "programs": true,
     "auth": false,
-    "commerce": false,
+    "commerce": true,
     "community": false,
     "attendant": false,
     "companion": false,
@@ -36,6 +36,10 @@
   "gate": {
     "contentReady": true,
     "salesReady": false,
-    "blockers": []
+    "blockers": [
+      "checkout production credentials",
+      "webhook production verification",
+      "final authenticated purchase smoke"
+    ]
   }
 }
