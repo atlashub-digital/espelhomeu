@@ -295,8 +295,11 @@ export async function verifySales({ browser, origin, evidence }) {
         0,
         "Raw card inputs are never rendered by EspelhoMeu",
       );
+      await page.getByLabel("Nome").fill("Cliente Teste");
+      await page.getByLabel("Email").fill("preview@example.invalid");
+      await page.getByLabel("CPF ou CNPJ do pagador").fill("52998224725");
       await page
-        .getByRole("button", { name: "Continuar para pagamento seguro" })
+        .getByRole("button", { name: /Gerar PIX/ })
         .click();
       await page.getByRole("alert").waitFor();
       assert.ok(
@@ -305,7 +308,7 @@ export async function verifySales({ browser, origin, evidence }) {
         ),
       );
       checks.push(
-        `${name} S2 checkout P01: branded embedded surface + fail-closed when commerce runtime is disabled`,
+        `${name} S2 checkout P01: branded PIX surface + fail-closed when commerce runtime is disabled`,
       );
 
       await page.goto(`${origin}/diario-de-amor-proprio`);
