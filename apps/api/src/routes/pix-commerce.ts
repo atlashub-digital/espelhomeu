@@ -29,6 +29,7 @@ import {
   paymentEvents,
 } from "../db/schema";
 import type { Env } from "../env";
+import { notifyRevenueEvent } from "../commerce/notifications";
 
 const PixCheckoutRequest = z.object({
   offerId: z.string(),
@@ -133,6 +134,7 @@ async function revokeOrder(db: Db, orderId: string) {
 
 async function setOrderFromPixState(
   db: Db,
+  env: Env,
   orderId: string,
   state: PixState,
   buyerEmail?: string | null,
@@ -147,6 +149,13 @@ async function setOrderFromPixState(
           : state === "refunded"
             ? "refunded"
             : "pending";
+
+  const [current] = await db.db
+    .select()
+    .from(orders)
+    .where(eq(orders.id, orderId))
+    .limit(1);
+
   await db.db
     .update(orders)
     .set({
@@ -158,6 +167,23 @@ async function setOrderFromPixState(
 
   if (state === "approved") await grantOrder(db, orderId);
   if (state === "refunded") await revokeOrder(db, orderId);
+
+  if (
+    current &&
+    current.status !== status &&
+    (status === "approved" || status === "refunded")
+  ) {
+    await notifyRevenueEvent(env, {
+      type: status === "approved" ? "payment.approved" : "payment.refunded",
+      project: "espelhomeu",
+      orderId: current.id,
+      offerId: current.baseOfferId,
+      amountMinor: current.amountMinor,
+      currency: current.currency,
+      provider: current.provider,
+    });
+  }
+
   return status;
 }
 
@@ -351,6 +377,7 @@ export function pixCommerceRoutes(
         );
         const status = await setOrderFromPixState(
           opts.db,
+          opts.env,
           order.id,
           payment.state,
           order.buyerEmail,
@@ -518,7 +545,7 @@ export function pixCommerceRoutes(
         }
       }
 
-      await setOrderFromPixState(opts.db, order.id, state, order.buyerEmail);
+      await setOrderFromPixState(opts.db, opts.env, order.id, state, order.buyerEmail);
       await recordProviderEvent(opts.db, providerEventId, event, raw);
       return reply.send({ ok: true });
     });
@@ -569,6 +596,7 @@ export function pixCommerceRoutes(
 
         await setOrderFromPixState(
           opts.db,
+          opts.env,
           order.id,
           verified.state,
           order.buyerEmail,
