@@ -4,3 +4,5 @@
 <!-- build: E7 checkout production attempt 2 (token fix) -->
 
 <!-- build: E7 production com framework=nextjs -->
+
+<!-- build: E7 com chaves ARO completas -->
