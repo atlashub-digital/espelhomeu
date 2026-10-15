@@ -290,6 +290,9 @@ try {
       `${name} waitlist: unchanged form + API 503 without DB + honest UI error`,
     );
   }
+  for (const asset of ["/conteudo/produto-01/workbook%2Epdf", "/conteudo/produto-02/cartao_reflexao_01.png", "/_next/image?url=%2Fconteudo%2Fproduto-02%2Fcartao_reflexao_01.png&w=640&q=75"]) {
+    assert.equal((await fetch(origin + asset)).status, 403, "protected asset " + asset);
+  }
   const denied = await browser.newPage();
   for (const route of ["/ler/p01-leitura-dia-1", "/ler/p01-leitura-dia-7", "/programas/p01-jornada", "/programas/p01-jornada/p01-dia-1"]) {
     await denied.goto(origin + route);

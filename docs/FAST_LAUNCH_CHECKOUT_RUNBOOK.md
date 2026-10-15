@@ -26,7 +26,8 @@ Fonte canónica: `atlashub-digital/atlashub-finance`, `openapi/aro-v1.yaml`, con
 - V1 mantém a compra desta sessão guest por sete dias, não uma conta multi-dispositivo.
   Recuperação de identidade/login e agregação de compras são trabalho posterior.
 - Library apresenta adquirido/bloqueado; amostras comerciais continuam públicas. Conteúdo
-  integral e downloads PDF/ZIP/Markdown passam por autorização no servidor.
+  integral, cartões individuais e downloads PDF/ZIP/Markdown passam por autorização no servidor.
+  Assets protegidos não entram no image optimizer/cache partilhado; capas/media comerciais permanecem públicos.
 - Retorno/sucesso e webhook nunca concedem acesso. Re-resolve no-store a cada acesso;
   falha/timeouts/revogação bloqueiam. Jornada/Membership não têm checkout.
 
@@ -74,3 +75,10 @@ E7 real é separado: Helena faz deploy/config/binding, confirma P01→ARO e post
 executa a prova financeira autorizada pelo PDG. Esta tarefa para antes de PIX real,
 merge, publicação ou SALES READY. Quota Vercel pode impedir Preview sem afetar o CI;
 reportar estado observado, não promover builds manualmente.
+
+## Preview do mesmo head
+
+O ignoreCommand agora calcula paths a partir da raiz Git, mesmo quando o Vercel executa
+em apps/web. Antes, alterações em src podiam ser ignoradas por pathspec relativo ao
+subdiretório (status “Canceled by Ignored Build Step”). Isto corrige somente a decisão
+de build em código; nenhuma configuração de conta/proteção/produção foi alterada.

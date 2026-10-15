@@ -1,4 +1,4 @@
-import { sameOrigin } from "./core";
+import { sameOrigin, protectedAsset } from "./core";
 import { describe, it, expect } from "vitest";
 import {
   activeProductRefs,
@@ -81,4 +81,11 @@ it("requires same scheme and actual HTTP host; rejects absent, malformed and for
   expect(sameOrigin("http://preview.example", "preview.example", "https:")).toBe(false);
   expect(sameOrigin(null, "preview.example", "https:")).toBe(false);
   expect(sameOrigin("invalid", "preview.example", "https:")).toBe(false);
+});
+
+it("protects downloads and cards including encoded paths, while keeping covers public", () => {
+  expect(protectedAsset("/conteudo/produto-01/workbook.pdf")).toBe(true);
+  expect(protectedAsset("/conteudo/produto-01/workbook%2Epdf")).toBe(true);
+  expect(protectedAsset("/conteudo/produto-02/cartao_reflexao_01.png")).toBe(true);
+  expect(protectedAsset("/conteudo/produto-02/capa.png")).toBe(false);
 });

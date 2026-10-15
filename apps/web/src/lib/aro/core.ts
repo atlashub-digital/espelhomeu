@@ -167,3 +167,10 @@ export function sameOrigin(origin: string | null, host: string | null, protocol:
     return url.origin === protocol + "//" + host;
   } catch { return false; }
 }
+
+export function protectedAsset(pathname: string) {
+  try {
+    const path = decodeURIComponent(pathname);
+    return /\.(pdf|zip|md|docx)$/i.test(path) || /\/cartao_reflexao_\d+\.png$/i.test(path);
+  } catch { return true; }
+}

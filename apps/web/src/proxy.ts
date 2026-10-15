@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { aroConfig, resolveCheckoutAccess } from "./lib/aro/client";
-import { openSession, sessionCookie } from "./lib/aro/core";
+import { openSession, sessionCookie, protectedAsset } from "./lib/aro/core";
 export async function proxy(request: NextRequest) {
-  if (!/\.(pdf|zip|md|docx)$/i.test(request.nextUrl.pathname))
+  // Protected assets never enter the shared image optimizer cache.
+  if (request.nextUrl.pathname === "/_next/image") {
+    const target = request.nextUrl.searchParams.get("url") ?? "";
+    return protectedAsset(target) ? new NextResponse(null, { status: 403 }) : NextResponse.next();
+  }
+  if (!protectedAsset(request.nextUrl.pathname))
     return NextResponse.next();
   const product = /\/conteudo\/produto-0([1-5])\//.exec(
-    request.nextUrl.pathname,
+    decodeURIComponent(request.nextUrl.pathname),
   )?.[1];
   if (!product) return new NextResponse(null, { status: 403 });
   try {
@@ -27,4 +32,4 @@ export async function proxy(request: NextRequest) {
     headers: { "Cache-Control": "no-store" },
   });
 }
-export const config = { matcher: ["/conteudo/:path*"] };
+export const config = { matcher: ["/conteudo/:path*", "/_next/image"] };
