@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useRef, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 
 type OfferView = {
   id: string;
@@ -8,73 +8,23 @@ type OfferView = {
   amountMinor: number;
 };
 
-type StripeElement = {
-  mount(target: HTMLElement): void;
-  destroy?: () => void;
+type PixCheckout = {
+  orderId: string;
+  provider: string;
+  qrCodeText: string;
+  qrImage?: string | null;
+  expiresAt?: string | null;
 };
-
-type CheckoutSdk = {
-  createPaymentElement(): StripeElement;
-  createContactDetailsElement(): StripeElement;
-  loadActions(): Promise<
-    | {
-        type: "success";
-        actions: {
-          confirm(): Promise<
-            | { error?: { message?: string } }
-            | { message?: string }
-            | undefined
-          >;
-        };
-      }
-    | { type: "error"; error?: { message?: string } }
-  >;
-};
-
-type StripeInstance = {
-  initCheckoutElementsSdk(options: {
-    clientSecret: string;
-  }): CheckoutSdk | Promise<CheckoutSdk>;
-};
-
-declare global {
-  interface Window {
-    Stripe?: (publishableKey: string) => StripeInstance;
-  }
-}
-
-let stripeScriptPromise: Promise<void> | null = null;
-
-function loadStripeJs() {
-  if (window.Stripe) return Promise.resolve();
-  if (stripeScriptPromise) return stripeScriptPromise;
-  stripeScriptPromise = new Promise<void>((resolve, reject) => {
-    const existing = document.querySelector<HTMLScriptElement>(
-      'script[data-espelho-stripe="true"]',
-    );
-    if (existing) {
-      existing.addEventListener("load", () => resolve(), { once: true });
-      existing.addEventListener("error", () => reject(new Error("stripe_load")), {
-        once: true,
-      });
-      return;
-    }
-    const script = document.createElement("script");
-    script.src = "https://js.stripe.com/endive/stripe.js";
-    script.async = true;
-    script.dataset.espelhoStripe = "true";
-    script.onload = () => resolve();
-    script.onerror = () => reject(new Error("stripe_load"));
-    document.head.appendChild(script);
-  });
-  return stripeScriptPromise;
-}
 
 function money(amountMinor: number) {
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
   }).format(amountMinor / 100);
+}
+
+function digits(value: string) {
+  return value.replace(/\D/g, "");
 }
 
 export function CheckoutClient({
@@ -87,20 +37,91 @@ export function CheckoutClient({
   attribution: Record<string, string>;
 }) {
   const [includeBump, setIncludeBump] = useState(false);
-  const [phase, setPhase] = useState<"summary" | "loading" | "payment">(
-    "summary",
-  );
+  const [phase, setPhase] = useState<
+    "summary" | "loading" | "pix" | "confirming"
+  >("summary");
   const [error, setError] = useState("");
-  const checkout = useRef<CheckoutSdk | null>(null);
-  const contactTarget = useRef<HTMLDivElement | null>(null);
-  const paymentTarget = useRef<HTMLDivElement | null>(null);
+  const [payerName, setPayerName] = useState("");
+  const [payerDocument, setPayerDocument] = useState("");
+  const [payerEmail, setPayerEmail] = useState("");
+  const [pix, setPix] = useState<PixCheckout | null>(null);
+  const [copied, setCopied] = useState(false);
+
   const total = useMemo(
     () => offer.amountMinor + (includeBump && bump ? bump.amountMinor : 0),
     [offer.amountMinor, includeBump, bump],
   );
 
-  async function startCheckout() {
+  useEffect(() => {
+    if (!pix || phase !== "pix") return;
+    let stopped = false;
+    let timer: number | undefined;
+
+    async function check() {
+      try {
+        const response = await fetch("/api/checkout/status", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: "{}",
+        });
+        const payload = (await response.json().catch(() => ({}))) as {
+          status?: string;
+        };
+        if (stopped) return;
+        if (payload.status === "approved") {
+          setPhase("confirming");
+          const claim = await fetch("/api/access/claim", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: "{}",
+          });
+          const granted = (await claim.json().catch(() => ({}))) as {
+            ok?: boolean;
+            offerId?: string;
+            productRefs?: string[];
+          };
+          if (claim.ok && granted.ok) {
+            const target = new URL("/checkout/sucesso", window.location.origin);
+            if (granted.offerId) target.searchParams.set("offer", granted.offerId);
+            if (granted.productRefs?.length)
+              target.searchParams.set("owned", granted.productRefs.join(","));
+            window.location.replace(target.toString());
+            return;
+          }
+          setError(
+            "Pagamento confirmado. O acesso ainda está a ser liberado; não pague novamente.",
+          );
+          return;
+        }
+        if (["failed", "canceled", "refunded", "chargeback"].includes(payload.status || "")) {
+          setError(
+            "Esta cobrança não está mais ativa. Nenhuma nova cobrança será feita automaticamente.",
+          );
+          return;
+        }
+      } catch {
+        // Keep the PIX on-screen. A webhook can still complete the order.
+      }
+      if (!stopped) timer = window.setTimeout(check, 2500);
+    }
+
+    timer = window.setTimeout(check, 1800);
+    return () => {
+      stopped = true;
+      if (timer) window.clearTimeout(timer);
+    };
+  }, [pix, phase]);
+
+  async function startCheckout(event: FormEvent) {
+    event.preventDefault();
     setError("");
+
+    const document = digits(payerDocument);
+    if (!payerName.trim() || !payerEmail.trim() || ![11, 14].includes(document.length)) {
+      setError("Preencha nome, email e CPF/CNPJ para gerar o PIX.");
+      return;
+    }
+
     setPhase("loading");
     try {
       const response = await fetch("/api/checkout/session", {
@@ -109,57 +130,53 @@ export function CheckoutClient({
         body: JSON.stringify({
           offerId: offer.id,
           bumpOfferIds: includeBump && bump ? [bump.id] : [],
+          payerName: payerName.trim(),
+          payerDocument: document,
+          payerEmail: payerEmail.trim().toLowerCase(),
           attribution,
         }),
       });
       const payload = (await response.json().catch(() => ({}))) as {
-        clientSecret?: string;
-        publishableKey?: string;
+        orderId?: string;
+        provider?: string;
+        qrCodeText?: string;
+        qrImage?: string | null;
+        expiresAt?: string | null;
         error?: string;
       };
-      if (!response.ok || !payload.clientSecret || !payload.publishableKey)
+      if (
+        !response.ok ||
+        !payload.orderId ||
+        !payload.provider ||
+        !payload.qrCodeText
+      ) {
         throw new Error(payload.error || "checkout_unavailable");
+      }
 
-      await loadStripeJs();
-      if (!window.Stripe) throw new Error("stripe_unavailable");
-      const instance = window.Stripe(payload.publishableKey);
-      const sdk = await instance.initCheckoutElementsSdk({
-        clientSecret: payload.clientSecret,
+      setPix({
+        orderId: payload.orderId,
+        provider: payload.provider,
+        qrCodeText: payload.qrCodeText,
+        qrImage: payload.qrImage,
+        expiresAt: payload.expiresAt,
       });
-      checkout.current = sdk;
-      setPhase("payment");
-      await new Promise<void>((resolve) =>
-        window.requestAnimationFrame(() => resolve()),
-      );
-      if (!contactTarget.current || !paymentTarget.current)
-        throw new Error("checkout_mount");
-      sdk.createContactDetailsElement().mount(contactTarget.current);
-      sdk.createPaymentElement().mount(paymentTarget.current);
-    } catch {
+      setPhase("pix");
+    } catch (cause) {
       setPhase("summary");
       setError(
-        "O checkout está temporariamente indisponível. Nenhuma cobrança foi realizada.",
+        cause instanceof Error &&
+          cause.message === "invalid_payer_document"
+          ? "CPF/CNPJ inválido. Revise o documento informado."
+          : "O PIX está temporariamente indisponível. Nenhuma cobrança foi realizada.",
       );
     }
   }
 
-  async function confirmPayment(event: FormEvent) {
-    event.preventDefault();
-    if (!checkout.current) return;
-    setError("");
-    const result = await checkout.current.loadActions();
-    if (result.type === "error") {
-      setError(result.error?.message || "Revise os dados de pagamento.");
-      return;
-    }
-    const confirmed = await result.actions.confirm();
-    const message =
-      confirmed && "error" in confirmed
-        ? confirmed.error?.message
-        : confirmed && "message" in confirmed
-          ? confirmed.message
-          : undefined;
-    if (message) setError(message);
+  async function copyPix() {
+    if (!pix) return;
+    await navigator.clipboard.writeText(pix.qrCodeText);
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1800);
   }
 
   return (
@@ -193,39 +210,97 @@ export function CheckoutClient({
         </div>
 
         {phase === "summary" && (
-          <button className="checkout-primary" onClick={startCheckout}>
-            Continuar para pagamento seguro
-          </button>
+          <form className="checkout-payer" onSubmit={startCheckout}>
+            <label>
+              Nome
+              <input
+                name="name"
+                autoComplete="name"
+                value={payerName}
+                onChange={(event) => setPayerName(event.target.value)}
+                placeholder="Seu nome"
+                required
+              />
+            </label>
+            <label>
+              Email
+              <input
+                name="email"
+                type="email"
+                autoComplete="email"
+                value={payerEmail}
+                onChange={(event) => setPayerEmail(event.target.value)}
+                placeholder="voce@exemplo.com"
+                required
+              />
+            </label>
+            <label>
+              CPF ou CNPJ do pagador
+              <input
+                name="document"
+                inputMode="numeric"
+                autoComplete="off"
+                value={payerDocument}
+                onChange={(event) => setPayerDocument(event.target.value)}
+                placeholder="Somente números"
+                required
+              />
+            </label>
+            <button className="checkout-primary" type="submit">
+              Gerar PIX · {money(total)}
+            </button>
+          </form>
         )}
+
         {phase === "loading" && (
           <button className="checkout-primary" disabled>
-            Preparando checkout…
+            Gerando PIX seguro…
           </button>
         )}
+
+        {(phase === "pix" || phase === "confirming") && pix && (
+          <div className="checkout-pix" data-testid="pix-payment">
+            <p className="checkout-eyebrow">
+              PIX gerado · aguardando confirmação
+            </p>
+            {pix.qrImage && (
+              <img
+                className="checkout-qr"
+                src={pix.qrImage}
+                alt="QR Code PIX para pagamento"
+              />
+            )}
+            <label>
+              PIX Copia e Cola
+              <textarea readOnly value={pix.qrCodeText} rows={4} />
+            </label>
+            <button
+              type="button"
+              className="checkout-primary"
+              onClick={copyPix}
+            >
+              {copied ? "PIX copiado ✓" : "Copiar código PIX"}
+            </button>
+            <small>
+              Depois de pagar no seu banco, mantenha esta página aberta. O acesso
+              é liberado automaticamente após a confirmação.
+            </small>
+            <small>Processamento: {pix.provider}</small>
+            {pix.expiresAt && (
+              <small>
+                Validade da cobrança:{" "}
+                {new Date(pix.expiresAt).toLocaleString("pt-BR")}
+              </small>
+            )}
+          </div>
+        )}
+
         <ul className="checkout-assurance">
-          <li>✓ Cartão e Pix quando disponíveis na sua região</li>
-          <li>✓ Pagamento processado em ambiente seguro</li>
-          <li>✓ Acesso liberado após confirmação</li>
+          <li>✓ PIX dentro do EspelhoMeu</li>
+          <li>✓ Confirmação server-side antes do acesso</li>
+          <li>✓ O mesmo pedido controla os seus produtos digitais</li>
         </ul>
       </section>
-
-      <form
-        className="checkout-payment"
-        onSubmit={confirmPayment}
-        hidden={phase !== "payment"}
-      >
-        <p className="checkout-eyebrow">Pagamento</p>
-        <h2>Finalize sem sair do EspelhoMeu.</h2>
-        <div ref={contactTarget} className="checkout-stripe-slot" />
-        <div ref={paymentTarget} className="checkout-stripe-slot" />
-        <button className="checkout-primary" type="submit">
-          Pagar {money(total)}
-        </button>
-        <small>
-          Os dados do cartão são enviados diretamente ao processador de
-          pagamento e não passam pelos nossos servidores.
-        </small>
-      </form>
 
       {error && (
         <p className="checkout-error" role="alert">
