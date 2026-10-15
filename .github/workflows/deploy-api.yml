@@ -83,6 +83,20 @@ jobs:
             IMAGE="ghcr.io/${{ github.repository }}-api:${{ github.sha }}"
             export API_IMAGE="$IMAGE"
 
+            # Persist the exact deployed artifact so manual docker compose
+            # operations cannot silently fall back to :latest.
+            if grep -q '^API_IMAGE=' .env; then
+              sed -i "s#^API_IMAGE=.*#API_IMAGE=$IMAGE#" .env
+            else
+              printf '\nAPI_IMAGE=%s\n' "$IMAGE" >> .env
+            fi
+            if grep -q '^APP_VERSION=' .env; then
+              sed -i "s#^APP_VERSION=.*#APP_VERSION=${{ github.sha }}#" .env
+            else
+              printf 'APP_VERSION=%s\n' "${{ github.sha }}" >> .env
+            fi
+            chmod 600 .env
+
             docker compose up -d db
             docker pull "$IMAGE"
 
