@@ -61,6 +61,8 @@ export const orders = pgTable(
     id: uuid("id").primaryKey().defaultRandom(),
     provider: text("provider").notNull().default("stripe"),
     providerSessionId: text("provider_session_id"),
+    providerPaymentId: text("provider_payment_id"),
+    paymentMethod: text("payment_method"),
     baseOfferId: text("base_offer_id").notNull(),
     amountMinor: integer("amount_minor").notNull(),
     currency: text("currency").notNull().default("BRL"),
@@ -72,6 +74,7 @@ export const orders = pgTable(
   },
   (table) => [
     uniqueIndex("orders_provider_session_unique").on(table.providerSessionId),
+    uniqueIndex("orders_provider_payment_unique").on(table.provider, table.providerPaymentId),
   ],
 );
 
