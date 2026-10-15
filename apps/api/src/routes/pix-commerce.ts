@@ -197,7 +197,7 @@ function verifyPixGoSignature(
 ) {
   const seconds = Number(timestamp);
   if (!Number.isFinite(seconds)) return false;
-  if (Math.abs(Date.now() / 1000 - seconds) > 600) return false;
+  if (Math.abs(Date.now() / 1000 - seconds) > 300) return false;
   const expected = createHmac("sha256", secret)
     .update(timestamp + "." + raw)
     .digest("hex");
@@ -492,7 +492,7 @@ export function pixCommerceRoutes(
         return reply.send({ ok: true, ignored: true });
       }
 
-      const state: PixState =
+      let state: PixState =
         event === "payment.completed"
           ? "approved"
           : event === "payment.refunded"
@@ -500,6 +500,24 @@ export function pixCommerceRoutes(
             : event === "payment.expired"
               ? "canceled"
               : "pending";
+
+      if (event === "payment.completed" && order.providerPaymentId) {
+        try {
+          const verified = await getPixPayment(
+            opts.env,
+            "pixgo",
+            order.providerPaymentId,
+          );
+          state = verified.state;
+        } catch (error) {
+          req.log.warn(
+            { err: error, orderId: order.id },
+            "PixGo completed webhook status verification failed",
+          );
+          return reply.code(503).send({ ok: false, retry: true });
+        }
+      }
+
       await setOrderFromPixState(opts.db, order.id, state, order.buyerEmail);
       await recordProviderEvent(opts.db, providerEventId, event, raw);
       return reply.send({ ok: true });
