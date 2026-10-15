@@ -1,0 +1,55 @@
+{
+  "folder": "1OpPnqvWDJWH46BhsvN50jDAHK9K2shqg",
+  "pack": "ESPELHOMEU_MARKETING_PRO_20261013_v1",
+  "use": "Preview S1; aprovação comercial de direitos pendente",
+  "files": [
+    {
+      "id": "1vekZAfV4oUAyXIO7X0ZpsLpG4OIRgx4g",
+      "file": "BUNDLE_02_P04_P05_1080x1080.jpg",
+      "sha256": "529d263cb16e6b15c97d6d0df87095e42500c9ace5ace196e2fb0941476edf4d",
+      "bytes": 401184
+    },
+    {
+      "id": "1Jupt_M_BHkPC3M4UQ0USNcd4zoh93X-1",
+      "file": "BUNDLE_01_P01_P02_1080x1080.jpg",
+      "sha256": "e114c165446325a89f033d72505d228ff94ede5eb317e23999a2ee495d6b08f7",
+      "bytes": 389727
+    },
+    {
+      "id": "1tUXZ7b5KN74sdSPxuToS_H0g9xFhZC4B",
+      "file": "COLECAO_HERO_1920x760.jpg",
+      "sha256": "6d9c7a1e026822f8b616b4c3276ecdc3ff5e8e0d22c27e3082157c1cda856ce8",
+      "bytes": 426846
+    },
+    {
+      "id": "1nIanXBwoXUiPLgOQssQWIYWFfRFFf2Sh",
+      "file": "P05_HERO_1600x900.jpg",
+      "sha256": "14cf0dcd0b92dab126202a77b6c592a7bcba2943c712efb25b9190e3cfa2d88a",
+      "bytes": 283978
+    },
+    {
+      "id": "1qbAkPAb-D36Xwdb9kiOUTyurYis5a5N0",
+      "file": "P04_HERO_1600x900.jpg",
+      "sha256": "b94f971927bb89e979dc16231ebdf639fa591eb7a1338a073ea75950bda57859",
+      "bytes": 273457
+    },
+    {
+      "id": "1Mo2tGME5kzat6XuOQDETQqIHoJcUH_Zy",
+      "file": "P03_HERO_1600x900.jpg",
+      "sha256": "a56d2b4b2ec269bab675f1c4bffe76e2f7d8f126827389b9ce7f974819f2ade2",
+      "bytes": 281739
+    },
+    {
+      "id": "1K5EDDRUut6igg5XWH23XQuXQDf_sR2bM",
+      "file": "P02_HERO_1600x900.jpg",
+      "sha256": "7b0af916eadcd7102e6e532f2e5bc5e25f8dd1a692d8fec203ee805c5904c00e",
+      "bytes": 276375
+    },
+    {
+      "id": "1SjcOxshOFDfl0ft3quBVGuLP32NiNRl-",
+      "file": "P01_HERO_1600x900.jpg",
+      "sha256": "13e77d6eb37fe23cbbeaae6046db6c339aff1fdc37be30f14170a8c5fdf1cb69",
+      "bytes": 263510
+    }
+  ]
+}

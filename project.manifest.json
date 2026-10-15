@@ -35,6 +35,7 @@
   },
   "gate": {
     "contentReady": true,
+    "salesReady": false,
     "blockers": []
   }
 }

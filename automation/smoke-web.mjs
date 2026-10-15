@@ -1,6 +1,15 @@
 const origin = process.env.SMOKE_WEB_URL || "http://localhost:3000";
 const routes = [
   "/",
+  "/colecao",
+  "/7-dias-para-me-escolher",
+  "/eu-sou-bela-do-meu-jeito",
+  "/21-dias-meu-melhor-reflexo",
+  "/recomecar-depois-dos-40",
+  "/diario-de-amor-proprio",
+  "/jornada",
+  "/membership",
+  "/lista-de-espera",
   "/privacidade",
   "/status",
   "/prototipo",
