@@ -285,7 +285,6 @@ export function CheckoutClient({
               Depois de pagar no seu banco, mantenha esta página aberta. O acesso
               é liberado automaticamente após a confirmação.
             </small>
-            <small>Processamento: {pix.provider}</small>
             {pix.expiresAt && (
               <small>
                 Validade da cobrança:{" "}
