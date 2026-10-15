@@ -298,19 +298,31 @@ export async function verifySales({ browser, origin, evidence }) {
       await page.getByLabel("Nome").fill("Cliente Teste");
       await page.getByLabel("Email").fill("preview@example.invalid");
       await page.getByLabel("CPF ou CNPJ do pagador").fill("52998224725");
+      const checkoutResponse = page.waitForResponse(
+        (response) =>
+          response.url().includes("/api/checkout/session") &&
+          response.request().method() === "POST",
+      );
       await page
         .getByRole("button", { name: /Gerar PIX/ })
         .click();
-      await page.getByRole("alert").waitFor();
-      const checkoutAlert = await page.getByRole("alert").innerText();
-      assert.ok(checkoutAlert.trim().length > 0, "Checkout must surface an honest error");
+      const disabledResponse = await checkoutResponse;
+      assert.equal(
+        disabledResponse.status(),
+        503,
+        "Preview must fail closed while commerce runtime is disabled",
+      );
       assert.equal(
         await page.getByTestId("pix-payment").count(),
         0,
         "Disabled commerce must never expose a payable PIX",
       );
+      await page.screenshot({
+        path: path.join(evidence, `${name}-checkout-pix-disabled.png`),
+        fullPage: true,
+      });
       checks.push(
-        `${name} S2 checkout P01: branded PIX surface + fail-closed when commerce runtime is disabled (${checkoutAlert})`,
+        `${name} S2 checkout P01: branded PIX surface + API 503 fail-closed + no payable PIX`,
       );
 
       await page.goto(`${origin}/diario-de-amor-proprio`);
