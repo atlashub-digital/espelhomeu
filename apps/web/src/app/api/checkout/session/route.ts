@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "invalid_request" }, { status: 400 });
   }
   try {
-    const upstream = await fetch(apiBase() + "/commerce/checkout/session", {
+    const upstream = await fetch(apiBase() + "/commerce/checkout/pix", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(body),
