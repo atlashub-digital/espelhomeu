@@ -9,27 +9,17 @@ function apiBase() {
 
 export async function POST(request: NextRequest) {
   const claim = request.cookies.get("espelho_checkout_claim")?.value;
-  const claimSecret = claim?.split(".").slice(1).join(".");
-  if (!claimSecret)
+  const dot = claim?.indexOf(".") ?? -1;
+  const orderId = dot > 0 ? claim!.slice(0, dot) : "";
+  const claimSecret = dot > 0 ? claim!.slice(dot + 1) : "";
+  if (!orderId || !claimSecret)
     return NextResponse.json({ ok: false, error: "claim_missing" }, { status: 401 });
 
-  let body: { sessionId?: string };
   try {
-    body = (await request.json()) as { sessionId?: string };
-  } catch {
-    return NextResponse.json({ ok: false, error: "invalid_request" }, { status: 400 });
-  }
-  if (!body.sessionId)
-    return NextResponse.json({ ok: false, error: "session_missing" }, { status: 400 });
-
-  try {
-    const upstream = await fetch(apiBase() + "/commerce/access/claim", {
+    const upstream = await fetch(apiBase() + "/commerce/access/claim-order", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        sessionId: body.sessionId,
-        claimSecret,
-      }),
+      body: JSON.stringify({ orderId, claimSecret }),
       cache: "no-store",
     });
     const payload = (await upstream.json().catch(() => ({}))) as Record<
