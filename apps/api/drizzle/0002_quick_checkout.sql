@@ -4,6 +4,8 @@ CREATE TABLE "orders" (
   "id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
   "provider" text DEFAULT 'stripe' NOT NULL,
   "provider_session_id" text,
+  "provider_payment_id" text,
+  "payment_method" text,
   "base_offer_id" text NOT NULL,
   "amount_minor" integer NOT NULL,
   "currency" text DEFAULT 'BRL' NOT NULL,
@@ -15,6 +17,8 @@ CREATE TABLE "orders" (
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX "orders_provider_session_unique" ON "orders" USING btree ("provider_session_id");
+--> statement-breakpoint
+CREATE UNIQUE INDEX "orders_provider_payment_unique" ON "orders" USING btree ("provider","provider_payment_id");
 --> statement-breakpoint
 CREATE TABLE "order_items" (
   "id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
