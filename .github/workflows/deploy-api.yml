@@ -81,6 +81,7 @@ jobs:
 
             export APP_VERSION=${{ github.sha }}
             IMAGE="ghcr.io/${{ github.repository }}-api:${{ github.sha }}"
+            export API_IMAGE="$IMAGE"
 
             docker compose up -d db
             docker pull "$IMAGE"
