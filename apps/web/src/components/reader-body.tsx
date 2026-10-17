@@ -37,7 +37,7 @@ export function ReaderMedia({ media }: { media: MediaAsset }) {
   if (media.kind === "image" && local)
     return (
       <figure className="reader-media">
-        <Image unoptimized={/\/cartao_reflexao_\d+\.png$/i.test(local)} src={local} width={typeof media.metadata?.width === "number" ? media.metadata.width : 300} height={typeof media.metadata?.height === "number" ? media.metadata.height : 300} sizes="(max-width: 800px) 88vw, 700px" alt={media.alt ?? ""} />
+        <Image unoptimized={/\/(?:conteudo|marca)\//.test(local)} src={local} width={typeof media.metadata?.width === "number" ? media.metadata.width : 300} height={typeof media.metadata?.height === "number" ? media.metadata.height : 300} sizes="(max-width: 800px) 88vw, 700px" alt={media.alt ?? ""} />
         <figcaption>
           {media.caption}
           {media.attributionRequired && media.attribution}

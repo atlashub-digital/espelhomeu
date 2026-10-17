@@ -91,5 +91,10 @@ it("protects downloads and cards including encoded paths, while keeping covers p
   expect(protectedAsset("/conteudo/produto-01/capa.jpg")).toBe(false);
   expect(protectedAsset("/conteudo/produto-03/CAPA_APROVADA_VOLUME_03_v1.0.png")).toBe(false);
   expect(protectedAsset("/conteudo/produto-01/dia-01.jpg")).toBe(true);
-  expect(protectedAsset("/conteudo/produto-04/MEDIA_EDITORIAL_P04_01_v1.2.jpg")).toBe(true);
+  // Imagens editoriais de marketing (usadas nas páginas de vendas) são públicas;
+  // capítulos, cartões e PDFs continuam reservados.
+  expect(protectedAsset("/conteudo/produto-04/MEDIA_EDITORIAL_P04_01_v1.2.jpg")).toBe(false);
+  expect(protectedAsset("/conteudo/produto-01/dia-01.jpg")).toBe(true);
+  expect(protectedAsset("/conteudo/produto-01/workbook.pdf")).toBe(true);
+  expect(protectedAsset("/conteudo/produto-01/capa.jpg")).toBe(false);
 });

@@ -178,7 +178,11 @@ export function protectedAsset(pathname: string) {
         /\/cartao_reflexao_\d+\.png$/i.test(path)
       );
     }
-    // Dentro de /conteudo/ só a capa é pública (marketing); o resto é pago.
-    return !/^capa[._-]/i.test(file);
+    // Dentro de /conteudo/: capa e imagens editoriais de marketing são públicas;
+    // o conteúdo pago (capítulos, cartões, PDFs) permanece reservado.
+    return (
+      !/^capa[._-]/i.test(file) &&
+      !/^MEDIA_EDITORIAL_[A-Za-z0-9._-]+\.(jpg|jpeg|png|webp)$/i.test(file)
+    );
   } catch { return true; }
 }
