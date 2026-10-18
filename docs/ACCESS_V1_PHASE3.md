@@ -1,16 +1,29 @@
 # Atlas Access V1 — fase 3
 
 Implementação no mesmo branch do PR [#33](https://github.com/atlashub-digital/espelhomeu/pull/33).
-**ACCESS V1 LIVE: NO.** Sem merge, pagamentos, entrega externa ou alteração do Master.
+**ACCESS V1 LIVE: NO.** Esta correção não faz merge, pagamentos, envios reais ou alterações do Master.
 
 ## Entrega e identidade
 
-SMTP transacional: remetente fixo `contact@atlashub.si`, TLS obrigatório, timeout de 8s,
-sem debug/log de payload. Host e credencial Hostinger exclusivamente por env.
-`ACCESS_V1_EMAIL_TRANSPORT=live` habilita o adaptador; em não-production cada
-endereço tem de constar em `ACCESS_V1_EMAIL_ALLOWLIST`. Em production também exige
-`ACCESS_V1_LIVE_ENABLED=true`. Defaults OFF; nenhuma variável de deploy foi alterada.
-Aceitação SMTP não equivale a leitura ou entrega final ao destinatário.
+E-mail transacional: `ACCESS_V1_EMAIL_PROVIDER=resend|smtp`, default `smtp`
+para preservar compatibilidade. Staging deve selecionar `resend` quando autorizado,
+sem mudar configurações de deploy nesta tarefa. Resend usa
+[POST HTTPS /emails](https://resend.com/docs/api-reference/emails/send-email),
+Bearer `RESEND_API_KEY`, `RESEND_FROM` (default `contact@atlashub.si`), destinatário,
+assunto e texto idênticos ao SMTP, tag `category=atlas-access`.
+Timeout 8s, redirects proibidos; sem key falha `delivery_disabled`; erro HTTP,
+rede ou resposta sem ID falha `delivery_failed`. Sem retries automáticos no
+adaptador; idempotência local e cooldown de 60s continuam no serviço.
+Aceitação pela API não prova entrega final.
+
+SMTP mantém TLS obrigatório e timeout de 8s, sem debug/log de payload. A credencial
+SMTP de `contact@atlashub.si` não está disponível: o token de gestão da Email API
+Hostinger não é uma credencial de envio SMTP. Nenhum segredo foi consultado ou
+alterado nesta tarefa.
+
+Ambos exigem `ACCESS_V1_EMAIL_TRANSPORT=live`; em não-production cada endereço
+tem de constar em `ACCESS_V1_EMAIL_ALLOWLIST`. Em production exige também
+`ACCESS_V1_LIVE_ENABLED=true`. Defaults OFF; nenhuma variável de deploy alterada.
 
 WhatsApp: mesma política com `ACCESS_V1_WA_TRANSPORT`, `ACCESS_V1_WA_ALLOWLIST` e gate
 LIVE. URL interna e instância fixas: `http://atendimento-evolution:8080`, `atlashub-wa`.
@@ -66,7 +79,7 @@ Contrato consumidor proposto (a acordar com o emissor antes de configurar):
 
 ## Verificação e rollback
 
-`phase3.test.ts`: SMTP fake local, mock HTTP Evolution, gates, cooldown/reenvio,
+`phase3.test.ts`: SMTP fake local, mocks HTTP Resend/Evolution, gates, cooldown/reenvio,
 auditoria, breaker, WA OTP/Magic Link, opt-out, rate limit por número, troca HTTP ARO,
 estados negativos, TTL, vínculos, replay e concorrência. PostgreSQL isolado testa
 persistência, consumo entre workers, concorrência acima do pool e rollback aninhado.
@@ -90,4 +103,29 @@ de config global/SMTP/TTL/allowlist do Master foi necessária. O rollback por fl
 - `pnpm validate:content`: PASS. `pnpm verify:browser`: PASS (95 verificações).
 - Reforços da revisão: binding exige a mesma oferta; falha no reenvio elimina o
   payload cifrado de entrega; testes negativos de gates e expiração WhatsApp.
-- Entrega externa e validação móvel manual: não realizadas. ACCESS V1 LIVE: NO.
+- Nesta implementação, entrega externa e validação móvel manual não foram executadas.
+  A homologação externa anterior é registada separadamente abaixo. ACCESS V1 LIVE: NO.
+
+### Correção e homologação — 2026-10-18
+
+- JSONB: o E2E conjunto ARO PR #25 encontrou challenge persistido como string,
+  impedindo `previewSecret`/sessão. A correção usa fronteira text explícita e um
+  cast JSONB, compatível com os serializadores modificados pelo Drizzle e com
+  postgres-js puro. Testes verificam objeto JSONB, segredo e sessão entre instâncias.
+- Resend: testes mockados de OTP/Magic Link idênticos ao SMTP, tag transacional,
+  sucesso, 5xx/rede/resposta inválida, ausência de key, gates OFF/allowlist/LIVE,
+  concorrência e cooldown com o mesmo challenge/segredo. Nenhum envio externo.
+- Evidência de homologação anterior fornecida no brief: WA OTP entregue e
+  confirmado pelo PDG em 18/10/2026; e-mail Resend para
+  `atlashub.digital@gmail.com`, ID `01a15142-27d3-78eb-b38e-8db2a92d9df2`,
+  `last_event=delivered`. Domínio `atlashub.si` verificado e sending enabled
+  segundo essa homologação. Não foi repetida nem consultada com credenciais aqui.
+- Estas evidências não ativam Access em produção nem substituem os gates comerciais.
+
+Validação da correção: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`,
+`pnpm verify:access` e `pnpm validate:content` PASS; 84 testes, zero skips, incluindo
+três percursos PostgreSQL. O fixture ARO do navegador usa um único instante para
+issuedAt/expiresAt, evitando TTL acidental de 120001 ms. E2E conjunto reproduz
+challenge/previewSecret/sessão, claim/Reader backend, replay, refund/chargeback,
+revogação, cross-tenant, TTL real de 120s e indisponibilidade; sem pagamentos,
+provider externo ou envio de mensagens. Evidência detalhada e CI no corpo do PR.

@@ -1,5 +1,9 @@
 # Atlas Access V1 — fase 2 (preview controlado)
 
+Este documento descreve a entrega original da fase 2. Transportes e claim deixaram
+de ser stubs na [fase 3](ACCESS_V1_PHASE3.md), que contém o estado atual e os gates.
+As limitações e evidências abaixo referem-se à fase 2.
+
 **ACCESS V1 LIVE: NO.** Flag `ACCESS_V1_ENABLED=false` por defeito na API e web.
 Sem deploy, SMTP, envio real, mudanças no Master ou checkout E7.
 Contrato: [ADR Atlas Access V1](https://github.com/atlashub-digital/atlas-ops/pull/19),
@@ -112,3 +116,22 @@ ativação, credencial, configuração de infraestrutura ou deploy integra esta 
 - Master/SMTP/envio real não chamados; provider testado pelo SDK contra stub HTTP.
 - SHA, URL do PR draft e resultado CI ficam no PR/relatório final para apontar
   exatamente para o commit testado. Não houve teste manual de entrega de e-mail.
+
+## Correção pós-homologação — 2026-10-18
+
+O E2E conjunto ARO PR #25 (commit `e463195`) identificou dupla serialização:
+o challenge era uma string JSON dentro do JSONB, `previewSecret` devolvia null e
+a sessão não era criada. O patch recebido resolvia o cliente postgres-js puro,
+mas falhava com o cliente da aplicação: Drizzle substitui os serializadores JSON.
+O store agora envia JSON serializado como parâmetro explicitamente text (OID 25),
+faz um único cast PostgreSQL para JSONB e lê via text/JSON.parse. Não altera dados
+existentes nem migrações. Challenges antigos mal serializados exigem novo pedido.
+
+A regressão cobre ambos os clientes (Drizzle e postgres-js puro), exige
+`jsonb_typeof(value) = 'object'`, recupera o segredo e cria uma única sessão
+concorrente, persistente após reinício e revogável. O E2E conjunto é repetido com
+PostgreSQL descartável e módulos reais de ambos os repositórios, sem entregas.
+
+A fase 3 acrescenta Resend por HTTPS com os gates existentes; SMTP continua o
+default de compatibilidade. As evidências externas anteriores (WA confirmado
+pelo PDG e e-mail Resend delivered em 18/10) estão registadas na fase 3.

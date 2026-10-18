@@ -28,7 +28,8 @@ let consumed = false;
 aro.post<{ Body: { proof: string; principalId: string } }>("/claim", async (req, reply) => {
   if (consumed || req.body.proof !== "synthetic-hosted-claim-proof-at-least-32" || status !== "APPROVED" || req.headers.authorization !== "Bearer synthetic-scoped-server-key") return reply.code(409).send({});
   consumed = true;
-  return { project: "espelhomeu", principalId: req.body.principalId, orderId, checkoutSessionId, aroCustomerId: "synthetic-customer", offerId: "p01", issuedAt: Date.now(), expiresAt: Date.now() + 120000, orderStatus: status, entitlementStatus: "ACTIVE" };
+  const issuedAt = Date.now();
+  return { project: "espelhomeu", principalId: req.body.principalId, orderId, checkoutSessionId, aroCustomerId: "synthetic-customer", offerId: "p01", issuedAt, expiresAt: issuedAt + 120000, orderStatus: status, entitlementStatus: "ACTIVE" };
 });
 aro.get("/v1/orders/:id", async () => ({ project: "espelhomeu", id: orderId, customer_id: "synthetic-customer", status }));
 aro.post("/v1/entitlements/resolve", async () => ({ project: "espelhomeu", customer_id: "synthetic-customer", entitlements: [{ key: "espelhomeu:p01", status: status === "APPROVED" ? "ACTIVE" : "REVOKED", source_order_id: orderId, starts_at: new Date(0).toISOString() }] }));

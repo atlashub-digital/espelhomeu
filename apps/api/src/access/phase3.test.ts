@@ -167,3 +167,67 @@ it.each(["otp", "magic_link"] as const)("WA %s expirado ou forjado nunca cria se
   expect(await f.service.verify(c.challenge_id, f.messages[0]!.secret, "espelhomeu")).toBeNull();
   expect([...f.store.records.keys()].some(k => k.startsWith("session:"))).toBe(false);
 });
+
+describe("Resend HTTPS com gates e política de reenvio", () => {
+  const resend = { ...config, ACCESS_V1_EMAIL_PROVIDER: "resend", RESEND_API_KEY: "synthetic-only" };
+  it.each(["otp", "magic_link"] as const)("envia %s com mensagem idêntica ao SMTP e tag transacional", async method => {
+    const fetcher = vi.fn(async () => new Response(JSON.stringify({ id: "synthetic-email" })));
+    vi.stubGlobal("fetch", fetcher);
+    const sendMail = vi.fn(async () => ({ accepted: [message.identifier], rejected: [] }));
+    const delivery = { ...message, method };
+    await transport(loadEnv(config), { sendMail } as never).send(delivery);
+    await transport(loadEnv(resend)).send(delivery);
+    expect(fetcher).toHaveBeenCalledWith("https://api.resend.com/emails", expect.objectContaining({
+      method: "POST", redirect: "error", signal: expect.any(AbortSignal),
+      headers: { authorization: "Bearer synthetic-only", "content-type": "application/json" },
+    }));
+    const body = JSON.parse((fetcher.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
+    expect(body).toEqual({
+      from: "contact@atlashub.si", to: [message.identifier],
+      subject: "Confirmar entrada — Atlas Access",
+      text: (sendMail.mock.calls[0] as unknown as [{ text: string }])[0].text,
+      tags: [{ name: "category", value: "atlas-access" }],
+    });
+  });
+  it("nega sem key, OFF, fora da allowlist ou production sem LIVE antes do HTTP", async () => {
+    const fetcher = vi.fn();
+    vi.stubGlobal("fetch", fetcher);
+    for (const env of [
+      { ...resend, RESEND_API_KEY: "" },
+      { ...resend, ACCESS_V1_EMAIL_TRANSPORT: "off" },
+      { ...resend, ACCESS_V1_EMAIL_ALLOWLIST: "" },
+      { ...resend, NODE_ENV: "production" },
+    ]) await expect(transport(loadEnv(env)).send(message)).rejects.toThrow("delivery_disabled");
+    expect(fetcher).not.toHaveBeenCalled();
+  });
+  it("5xx, resposta inválida e falha de rede tornam-se delivery_failed", async () => {
+    const fetcher = vi.fn(async () => new Response("", { status: 503 }));
+    vi.stubGlobal("fetch", fetcher);
+    const sender = transport(loadEnv(resend));
+    await expect(sender.send(message)).rejects.toThrow("delivery_failed");
+    fetcher.mockResolvedValue(new Response("{}"));
+    await expect(sender.send(message)).rejects.toThrow("delivery_failed");
+    fetcher.mockRejectedValue(new Error("network"));
+    await expect(sender.send(message)).rejects.toThrow("delivery_failed");
+  });
+  it("production com LIVE permite; concorrência/cooldown mantêm um só envio e o mesmo segredo", async () => {
+    const stub = await startSupabaseStub(); cleanup.push(stub.close);
+    const fetcher = vi.fn(async (_input: Parameters<typeof fetch>[0], _init?: RequestInit) => new Response(JSON.stringify({ id: "synthetic-email" })));
+    vi.stubGlobal("fetch", fetcher);
+    let now = Date.now();
+    const sender = transport(loadEnv({ ...resend, NODE_ENV: "production", ACCESS_V1_LIVE_ENABLED: "true" }));
+    const service = new AccessService(memoryStore(), supabaseProvider(stub.url, "test"), Buffer.alloc(32, 7), true, () => now, sender);
+    // Email identity generation uses the local GoTrue HTTP stub.
+    vi.unstubAllGlobals();
+    const nativeFetch = globalThis.fetch;
+    vi.stubGlobal("fetch", vi.fn((input: Parameters<typeof fetch>[0], init?: RequestInit) =>
+      input === "https://api.resend.com/emails" ? fetcher(input, init) : nativeFetch(input, init)));
+    const results = await Promise.all(Array.from({ length: 5 }, () => service.challenge(message.identifier, "otp", "ip")));
+    expect(new Set(results.map(r => r.challenge_id)).size).toBe(1);
+    expect(fetcher).toHaveBeenCalledOnce();
+    now += 60000;
+    expect((await service.challenge(message.identifier, "otp", "ip")).challenge_id).toBe(results[0]!.challenge_id);
+    expect(fetcher).toHaveBeenCalledTimes(2);
+    expect(fetcher.mock.calls[1]![1]!.body).toBe(fetcher.mock.calls[0]![1]!.body);
+  });
+});

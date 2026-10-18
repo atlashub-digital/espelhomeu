@@ -4,18 +4,22 @@ import { postgresAccessStore } from "./store";
 import { AccessService } from "./service";
 import { supabaseProvider } from "./provider";
 import { startSupabaseStub } from "./testing/fixtures";
+import postgres from "postgres";
 import { randomBytes } from "node:crypto";
 // Optional isolated PostgreSQL integration; never points to DATABASE_URL or Master.
-it.skipIf(!process.env.ACCESS_TEST_DATABASE_URL)("PostgreSQL: consumo atómico entre instâncias, persistência após reinício e revogação", async () => {
-  const db = createDb(process.env.ACCESS_TEST_DATABASE_URL!);
+it.skipIf(!process.env.ACCESS_TEST_DATABASE_URL).each(["drizzle", "plain"] as const)("PostgreSQL %s: JSONB objeto, consumo atómico, persistência e revogação", async client => {
+  const db = client === "drizzle" ? createDb(process.env.ACCESS_TEST_DATABASE_URL!) : { sql: postgres(process.env.ACCESS_TEST_DATABASE_URL!) } as ReturnType<typeof createDb>;
   const stub = await startSupabaseStub();
   const key = randomBytes(32);
   const provider = supabaseProvider(stub.url, "synthetic-service-role");
   const make = () => new AccessService(postgresAccessStore(db), provider, key, true);
   try {
     const first = make(); const second = make();
-    const c = await first.challenge("durable@example.invalid", "otp", "local");
+    const c = await first.challenge(`durable-${client}@example.invalid`, "otp", "local");
+    const rows = await db.sql`select jsonb_typeof(value) as kind from access_v1_records where key = ${"challenge:" + c.challenge_id}`;
+    expect(rows[0]?.kind).toBe("object");
     const secret = (await second.previewSecret(c.challenge_id))!;
+    expect(secret).toMatch(/^\d{6}$/);
     const tokens = await Promise.all([first.verify(c.challenge_id, secret, "espelhomeu"), second.verify(c.challenge_id, secret, "espelhomeu")]);
     expect(tokens.filter(Boolean)).toHaveLength(1);
     const token = tokens.find(Boolean)!;

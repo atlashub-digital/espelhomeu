@@ -12,6 +12,21 @@ export function transport(env: Env, smtpOverride?: Pick<Transporter, "sendMail">
     const content = m.method === "otp" ? `O seu código Atlas Access é ${m.secret}. Válido por 5 minutos.` : `Confirme a entrada Atlas Access: ${env.ACCESS_V1_PUBLIC_ORIGIN}/biblioteca#access_challenge=${m.challengeId}&access_token=${m.secret} . Válido por 10 minutos.`;
     const text = content + " Não partilhe. Se não pediu, ignore. Para deixar de receber, não solicite novos códigos.";
     if (m.channel === "email") {
+      if (env.ACCESS_V1_EMAIL_PROVIDER === "resend") {
+        if (!env.RESEND_API_KEY) throw new Error("delivery_disabled");
+        try {
+          const response = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: { authorization: `Bearer ${env.RESEND_API_KEY}`, "content-type": "application/json" },
+            body: JSON.stringify({ from: env.RESEND_FROM, to: [m.identifier], subject: "Confirmar entrada — Atlas Access", text, tags: [{ name: "category", value: "atlas-access" }] }),
+            redirect: "error", signal: AbortSignal.timeout(8000),
+          });
+          if (!response.ok) throw new Error("delivery_failed");
+          const result = await response.json() as { id?: string };
+          if (typeof result.id !== "string" || !result.id) throw new Error("delivery_failed");
+        } catch { throw new Error("delivery_failed"); }
+        return;
+      }
       if (!env.ACCESS_V1_SMTP_HOST || !env.HOSTINGER_EMAIL_TOKEN) throw new Error("delivery_disabled");
       const result = await smtp.sendMail({ from: "Atlas Access <contact@atlashub.si>", to: m.identifier, subject: "Confirmar entrada — Atlas Access", text });
       if (!result.accepted?.length || (result.rejected?.length ?? 0) > 0) throw new Error("delivery_failed");

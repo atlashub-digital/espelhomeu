@@ -15,9 +15,11 @@ export function postgresAccessStore(db: Db): AccessStore {
     async update<T>(key: string, fn: (value: RecordValue | null) => Promise<{ value: RecordValue; result: T }>): Promise<T> {
       const run = async (sql: TransactionSql) => {
         await sql`select pg_advisory_xact_lock(hashtextextended(${key}, 0))`;
-        const rows = await sql`select value from access_v1_records where key = ${key}`;
-        const { value, result } = await fn(rows[0]?.value ?? null);
-        await sql`insert into access_v1_records (key, value, updated_at) values (${key}, ${JSON.stringify(value)}::jsonb, now()) on conflict (key) do update set value = excluded.value, updated_at = now()`;
+        // Explicit text boundary: Drizzle overrides postgres-js JSON serializers.
+        // Let PostgreSQL cast once; this also works with a plain postgres-js client.
+        const rows = await sql`select value::text as value from access_v1_records where key = ${key}`;
+        const { value, result } = await fn(rows[0] ? JSON.parse(rows[0].value as string) as RecordValue : null);
+        await sql`insert into access_v1_records (key, value, updated_at) values (${key}, ${sql.typed(JSON.stringify(value), 25)}::jsonb, now()) on conflict (key) do update set value = excluded.value, updated_at = now()`;
         return { result };
       };
       const active = context.getStore();
