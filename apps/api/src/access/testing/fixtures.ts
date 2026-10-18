@@ -3,11 +3,11 @@ import { randomUUID } from "node:crypto";
 import type { AccessStore, RecordValue } from "../store";
 export function memoryStore(): AccessStore & { records: Map<string, RecordValue> } {
   const records = new Map<string, RecordValue>();
-  let queue = Promise.resolve();
+  const queues = new Map<string, Promise<void>>();
   return { records, async update(key, fn) {
-    const previous = queue;
+    const previous = queues.get(key) ?? Promise.resolve();
     let release!: () => void;
-    queue = new Promise<void>(resolve => { release = resolve; });
+    queues.set(key, new Promise<void>(resolve => { release = resolve; }));
     await previous;
     try {
       const { value, result } = await fn(structuredClone(records.get(key) ?? null));

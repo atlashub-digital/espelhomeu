@@ -67,9 +67,25 @@ try {
   await page.getByRole("button", { name: "Confirmar entrada pelo link" }).click();
   await page.getByRole("button", { name: "Sair deste dispositivo" }).waitFor();
   assert.equal((await context.request.post(origin + "/api/access/challenges/verify", { headers: { origin }, data: { project: "espelhomeu", challenge_id: magic.challenge_id, secret: magicSecret.secret } })).status(), 401);
-  assert.equal((await context.request.post(origin + "/api/access/aro/claim", { headers: { origin }, data: { entitlement: "ACTIVE" } })).status(), 409);
+  // Hosted proof is supplied only in POST; the mock issuer implements atomic single use.
+  const proof = { project: "espelhomeu", orderId: "22222222-2222-4222-8222-222222222222", checkoutSessionId: "33333333-3333-4333-8333-333333333333", offerId: "p01", proof: "synthetic-hosted-claim-proof-at-least-32" };
+  assert.equal((await context.request.post(origin + "/api/access/aro/claim", { headers: { origin }, data: { ...proof, proof: "forged".repeat(8) } })).status(), 409);
+  assert.equal((await context.request.post(origin + "/api/access/aro/claim", { headers: { origin }, data: proof })).status(), 200);
+  await page.goto(origin + "/ler/7-dias-para-me-escolher");
+  assert.doesNotMatch(await page.locator("h1").innerText(), /acesso reservado/i);
+  assert.equal((await context.request.post(origin + "/api/access/aro/claim", { headers: { origin }, data: proof })).status(), 409);
+  await fetch("http://127.0.0.1:4100/testing/revoke", { method: "POST", headers: { "x-access-test-token": "synthetic-browser-test-token-32-chars" } });
+  await page.reload();
+  assert.match(await page.locator("h1").innerText(), /acesso reservado/i);
+  await context.request.post(origin + "/api/access/logout", { headers: { origin }, data: {} });
+  const waRes = await context.request.post(origin + "/api/access/challenges", { headers: { origin }, data: { project: "espelhomeu", channel: "whatsapp", method: "otp", identifier: "+351910000000", transactionalConsent: true } });
+  const wa = await waRes.json();
+  const waSecret = await (await fetch("http://127.0.0.1:4100/access/testing/challenges/" + wa.challenge_id, { headers: { "x-access-test-token": "synthetic-browser-test-token-32-chars" } })).json();
+  assert.equal((await context.request.post(origin + "/api/access/challenges/verify", { headers: { origin }, data: { project: "espelhomeu", challenge_id: wa.challenge_id, secret: waSecret.secret } })).status(), 200);
+  assert.deepEqual((await (await context.request.get(origin + "/api/access/session")).json()).verified_contacts, ["whatsapp"]);
+  assert.equal((await context.cookies()).find(c => c.name === "espelho_aro_checkout")?.value, "e7-preserved");
   assert.equal((await context.request.post(origin + "/api/access/logout", { headers: { origin: "https://evil.invalid" }, data: {} })).status(), 403);
-  console.log("Access browser E2E PASS: OTP, reload, 7-day secure cookie, logout/revoked replay, magic GET/POST/replay, CSRF, Reader/download fail-closed, E7 preserved. Local Supabase wire stub; no delivery.");
+  console.log("Access browser E2E PASS: OTP, reload, 7-day secure cookie, logout/revoked replay, magic GET/POST/replay, CSRF, Reader/download fail-closed, E7 preserved. Local SMTP, Evolution HTTP mock, ARO claim/Reader positive + refund, WA OTP; no external delivery.");
 } catch (error) {
   console.error("Access E2E server log:\n" + logs);
   throw error;

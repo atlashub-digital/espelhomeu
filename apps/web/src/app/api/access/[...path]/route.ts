@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { sameOrigin } from "@/lib/aro/core";
 export const dynamic = "force-dynamic";
 const cookieName = "__Host-espelho_access";
-const allowed = new Set(["challenges", "challenges/verify", "session", "logout", "recover", "aro/claim"]);
+const allowed = new Set(["challenges", "challenges/verify", "session", "logout", "recover", "aro/claim", "opt-out"]);
 async function forward(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
   const path = (await context.params).path.join("/");
   const headers = { "Cache-Control": "no-store" };

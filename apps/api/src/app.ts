@@ -1,3 +1,5 @@
+import { remoteAroClaim } from "./access/claim";
+import { transport } from "./access/transport";
 import { accessRoutes } from "./routes/access";
 import { AccessService } from "./access/service";
 import { postgresAccessStore } from "./access/store";
@@ -33,11 +35,11 @@ export async function buildApp(env: Env) {
   await app.register(aroReceiptRoutes, { db, secret: env.ARO_WEBHOOK_SECRET });
 
   const preview = env.NODE_ENV !== "production" && env.ACCESS_V1_TEST_MODE && !!env.ACCESS_V1_TEST_TOKEN;
-  // No transport is authorized: authentication is available only in controlled preview.
-  const access = env.ACCESS_V1_ENABLED && preview && db && env.ACCESS_V1_ENCRYPTION_KEY && env.SUPABASE_URL_MASTER && env.SUPABASE_SERVICE_ROLE_KEY_MASTER
-    ? new AccessService(postgresAccessStore(db), supabaseProvider(env.SUPABASE_URL_MASTER, env.SUPABASE_SERVICE_ROLE_KEY_MASTER), Buffer.from(env.ACCESS_V1_ENCRYPTION_KEY, "hex"), preview)
+  // Transport gates are enforced per recipient; no Master settings are changed.
+  const access = env.ACCESS_V1_ENABLED && db && env.ACCESS_V1_ENCRYPTION_KEY && env.SUPABASE_URL_MASTER && env.SUPABASE_SERVICE_ROLE_KEY_MASTER
+    ? new AccessService(postgresAccessStore(db), supabaseProvider(env.SUPABASE_URL_MASTER, env.SUPABASE_SERVICE_ROLE_KEY_MASTER), Buffer.from(env.ACCESS_V1_ENCRYPTION_KEY, "hex"), preview, Date.now, transport(env))
     : undefined;
-  await app.register(accessRoutes, { enabled: env.ACCESS_V1_ENABLED, service: access, origins: env.WEB_ORIGINS, testToken: preview ? env.ACCESS_V1_TEST_TOKEN : undefined });
+  await app.register(accessRoutes, { enabled: env.ACCESS_V1_ENABLED, service: access, origins: env.WEB_ORIGINS, aroClaim: env.ACCESS_V1_ARO_CLAIM_URL && env.ACCESS_V1_ARO_SERVER_KEY ? remoteAroClaim(env.ACCESS_V1_ARO_CLAIM_URL, env.ACCESS_V1_ARO_SERVER_KEY) : undefined, testToken: preview ? env.ACCESS_V1_TEST_TOKEN : undefined });
 
   return app;
 }

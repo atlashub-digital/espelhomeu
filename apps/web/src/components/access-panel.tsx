@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 type Challenge = { id: string; method: "otp" | "magic_link" };
 export function AccessPanel() {
   const router = useRouter();
+  const [channel, setChannel] = useState("email");
   const [authenticated, setAuthenticated] = useState(false);
   const [challenge, setChallenge] = useState<Challenge | null>(null);
   const [link, setLink] = useState<{ id: string; token: string } | null>(null);
@@ -42,7 +43,7 @@ export function AccessPanel() {
     setBusy(true); setMessage("");
     try {
       const method = data.get("method") === "magic_link" ? "magic_link" : "otp";
-      const response = await post("challenges", { project: "espelhomeu", channel: "email", method, identifier: data.get("email") });
+      const response = await post("challenges", { project: "espelhomeu", channel, method, identifier: data.get("email"), ...(channel === "whatsapp" ? { transactionalConsent: data.get("consent") === "on" } : {}) });
       if (!response.ok) throw new Error();
       const result = await response.json();
       setChallenge({ id: result.challenge_id, method });
@@ -73,12 +74,14 @@ export function AccessPanel() {
   }
   return <section className="page-intro" aria-label="Acesso à Biblioteca">
     <h2>{authenticated ? "A sua sessão" : "Entrar na Biblioteca"}</h2>
-    {authenticated ? <><p>Sessão por até 7 dias. Entrar confirma o seu e-mail; cada leitura mantém a verificação de acesso à compra.</p><button className="button" disabled={busy} onClick={logout}>Sair deste dispositivo</button></> : <>
-      <p>Use o seu e-mail para entrar ou recuperar a sessão, sem palavra-passe.</p>
+    {authenticated ? <><p>Sessão por até 7 dias. Entrar confirma o seu contacto; cada leitura mantém a verificação de acesso à compra.</p><button className="button" disabled={busy} onClick={async () => { const r = await post("opt-out", {}); setMessage(r.ok ? "Pedidos por WhatsApp desativados. Pode usar e-mail." : "Esta opção requer uma sessão verificada por WhatsApp."); }}>Desativar pedidos por WhatsApp</button><button className="button" disabled={busy} onClick={logout}>Sair deste dispositivo</button></> : <>
+      <p>Use e-mail ou WhatsApp para entrar ou recuperar a sessão, sem palavra-passe.</p>
       {link ? <button className="button" disabled={busy} onClick={() => verify(link.id, link.token)}>Confirmar entrada pelo link</button> : <>
         <form className="catalog-filter" onSubmit={requestChallenge}>
-          <label>E-mail<input name="email" type="email" autoComplete="email" maxLength={254} required /></label>
-          <label>Como prefere entrar?<select name="method"><option value="otp">Código de 6 dígitos</option><option value="magic_link">Link por e-mail</option></select></label>
+          <label>Canal<select value={channel} onChange={e => setChannel(e.target.value)}><option value="email">E-mail</option><option value="whatsapp">WhatsApp</option></select></label>
+          <label>{channel === "email" ? "E-mail" : "WhatsApp (com + e indicativo do país)"}<input name="email" type={channel === "email" ? "email" : "tel"} autoComplete={channel === "email" ? "email" : "tel"} maxLength={254} required /></label>
+          {channel === "whatsapp" && <label><input name="consent" type="checkbox" required />Quero receber este código ou link transacional pelo WhatsApp. Posso desativar os pedidos nesta sessão.</label>}
+          <label>Como prefere entrar?<select name="method"><option value="otp">Código de 6 dígitos</option><option value="magic_link">Link de entrada</option></select></label>
           <button className="button" disabled={busy} type="submit">{challenge ? "Pedir novo código ou link" : "Continuar"}</button>
         </form>
         {challenge?.method === "otp" && <form className="catalog-filter" onSubmit={event => { event.preventDefault(); void verify(challenge.id, String(new FormData(event.currentTarget).get("code"))); }}>
