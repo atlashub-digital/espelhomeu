@@ -1,0 +1,12 @@
+import Fastify from "fastify";
+import { AccessService } from "../src/access/service";
+import { supabaseProvider } from "../src/access/provider";
+import { memoryStore, startSupabaseStub } from "../src/access/testing/fixtures";
+import { accessRoutes } from "../src/routes/access";
+if (process.env.NODE_ENV !== "test") throw new Error("test_only");
+const stub = await startSupabaseStub();
+const app = Fastify({ logger: false });
+const service = new AccessService(memoryStore(), supabaseProvider(stub.url, "synthetic-service-role"), Buffer.alloc(32, 3), true);
+await app.register(accessRoutes, { enabled: true, service, origins: ["http://localhost:3100"], testToken: "synthetic-browser-test-token-32-chars" });
+await app.listen({ host: "127.0.0.1", port: 4100 });
+for (const signal of ["SIGTERM", "SIGINT"] as const) process.on(signal, async () => { await app.close(); await stub.close(); process.exit(0); });
