@@ -16,7 +16,19 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
+    services:
+      access-postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: access_test
+          POSTGRES_PASSWORD: synthetic-ci-only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d access_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
     env:
+      ACCESS_TEST_DATABASE_URL: postgres://postgres:synthetic-ci-only@127.0.0.1:5432/access_test
       # instalação dos artifacts privados @atlashub-digital no GitHub Packages
       NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -31,10 +43,12 @@ jobs:
       - run: pnpm validate:content
       - run: pnpm lint
       - run: pnpm typecheck
+      - run: psql "$ACCESS_TEST_DATABASE_URL" -v ON_ERROR_STOP=1 -f apps/api/drizzle/0004_access_v1.sql
       - run: pnpm test
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm verify:browser
+      - run: pnpm verify:access
       - name: Browser smoke no Preview do PR
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         env:

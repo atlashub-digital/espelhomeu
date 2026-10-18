@@ -16,7 +16,8 @@
     "validate:content": "node packages/project-content/scripts/sync-editorial.mjs --check && node packages/project-content/scripts/check-imports.mjs && pnpm --filter @espelhomeu/project-content exec vitest run src/validation.test.ts",
     "smoke:web": "node automation/smoke-web.mjs",
     "verify:browser": "node automation/verify-browser.mjs",
-    "content:sync": "node packages/project-content/scripts/sync-editorial.mjs"
+    "content:sync": "node packages/project-content/scripts/sync-editorial.mjs",
+    "verify:access": "node automation/verify-access.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

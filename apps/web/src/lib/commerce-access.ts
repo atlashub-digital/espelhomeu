@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import "server-only";
 import { currentCapability, resolveCheckoutAccess } from "./aro/client";
 export interface CommerceAccess {
@@ -8,9 +9,21 @@ export interface CommerceAccess {
 export async function getCommerceAccess(): Promise<CommerceAccess> {
   try {
     const capability = await currentCapability();
-    const productRefs = capability
-      ? await resolveCheckoutAccess(capability)
-      : [];
+    let productRefs = capability ? await resolveCheckoutAccess(capability) : [];
+    if (process.env.ACCESS_V1_ENABLED === "true") {
+      const token = (await cookies()).get("__Host-espelho_access")?.value;
+      if (token) {
+        try {
+          const url = new URL(process.env.ACCESS_V1_API_URL || "http://127.0.0.1:4000");
+          if (url.protocol !== "https:" && !(process.env.NODE_ENV !== "production" && ["localhost", "127.0.0.1"].includes(url.hostname))) throw new Error("access_configuration");
+          const response = await fetch(new URL("/access/entitlements", url), { headers: { cookie: "__Host-espelho_access=" + token }, cache: "no-store", redirect: "error", signal: AbortSignal.timeout(10000) });
+          if (response.ok) {
+            const result = await response.json();
+            if (Array.isArray(result.productRefs)) productRefs = [...new Set([...productRefs, ...result.productRefs.filter((p: unknown) => typeof p === "string" && /^p0[1-5]$/.test(p))])];
+          }
+        } catch { /* E7 continues independently when Access is unavailable. */ }
+      }
+    }
     return {
       authenticated: productRefs.length > 0,
       productRefs,

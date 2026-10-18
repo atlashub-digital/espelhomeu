@@ -1,3 +1,5 @@
+import { AccessPanel } from "@/components/access-panel";
+export const dynamic = "force-dynamic";
 import { Intro } from "@/components/product-shell";
 import { PublicationCards } from "@/components/publication-cards";
 import { enabled } from "@espelhomeu/project-config";
@@ -22,6 +24,7 @@ export default async function Page({
           liberdade e sem pressa.
         </p>
       </Intro>
+      {process.env.ACCESS_V1_ENABLED === "true" && <AccessPanel />}
       <form className="catalog-filter">
         <label>
           Buscar uma leitura
