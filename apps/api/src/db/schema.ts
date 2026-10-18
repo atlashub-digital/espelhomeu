@@ -1,4 +1,4 @@
-import { boolean, integer, pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { boolean, integer, jsonb, pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 export const market = pgEnum("market", ["PT", "BR"]);
 export const consentPurpose = pgEnum("consent_purpose", [
@@ -47,3 +47,10 @@ export const aroWebhookReceipts = pgTable("aro_webhook_receipts", {
   payloadHash: text("payload_hash").notNull(),
   receivedAt: timestamp("received_at", { withTimezone: true }).notNull().defaultNow(),
 });
+
+/** Server-only Access V1 state. Encrypted provider proofs/tokens; no purchase grants. */
+export const accessV1Records = pgTable("access_v1_records", {
+  key: text("key").primaryKey(),
+  value: jsonb("value").notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+}).enableRLS();
