@@ -32,7 +32,7 @@ export function transport(env: Env, smtpOverride?: Pick<Transporter, "sendMail">
       if (!result.accepted?.length || (result.rejected?.length ?? 0) > 0) throw new Error("delivery_failed");
     } else {
       if (!env.ATENDIMENTO_EVOLUTION_KEY) throw new Error("delivery_disabled");
-      const response = await fetch("http://atendimento-evolution:8080/message/sendText/atlashub-wa", { method: "POST", headers: { apikey: env.ATENDIMENTO_EVOLUTION_KEY, "content-type": "application/json" }, body: JSON.stringify({ number: m.identifier.slice(1), text, delay: 100 }), redirect: "error", signal: AbortSignal.timeout(8000) });
+      const response = await fetch(`${env.ATENDIMENTO_EVOLUTION_URL.replace(/\/+$/, "")}/message/sendText/atlashub-wa`, { method: "POST", headers: { apikey: env.ATENDIMENTO_EVOLUTION_KEY, "content-type": "application/json" }, body: JSON.stringify({ number: m.identifier.slice(1), text, delay: 100 }), redirect: "error", signal: AbortSignal.timeout(8000) });
       if (!response.ok) throw new Error("delivery_failed");
       const result = await response.json() as { status?: string };
       if (result.status && !["PENDING", "SERVER_ACK", "DELIVERY_ACK", "READ"].includes(result.status)) throw new Error("delivery_failed");

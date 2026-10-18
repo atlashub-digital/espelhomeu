@@ -26,7 +26,9 @@ tem de constar em `ACCESS_V1_EMAIL_ALLOWLIST`. Em production exige também
 `ACCESS_V1_LIVE_ENABLED=true`. Defaults OFF; nenhuma variável de deploy alterada.
 
 WhatsApp: mesma política com `ACCESS_V1_WA_TRANSPORT`, `ACCESS_V1_WA_ALLOWLIST` e gate
-LIVE. URL interna e instância fixas: `http://atendimento-evolution:8080`, `atlashub-wa`.
+LIVE. URL base configurável por `ATENDIMENTO_EVOLUTION_URL`, com default
+`http://atendimento-evolution:8080`; em staging ou entre VPS deve ser acessível pela API.
+Aceita URL com ou sem barra final. Instância fixa: `atlashub-wa`.
 Key apenas em `ATENDIMENTO_EVOLUTION_KEY`. Envio direto, sem Chatwoot/inbox 7 ou Clara.
 Formato [Evolution 2.3.7](https://github.com/EvolutionAPI/evolution-api/blob/2.3.7/src/api/dto/sendMessage.dto.ts):
 `number` sem +, `text`, `delay: 100`. HTTP 2xx e status reconhecido quando presente

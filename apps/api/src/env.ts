@@ -28,6 +28,7 @@ const Env = z.object({
   ACCESS_V1_SMTP_PORT: z.coerce.number().int().default(465),
   HOSTINGER_EMAIL_TOKEN: z.string().optional(),
   ATENDIMENTO_EVOLUTION_KEY: z.string().optional(),
+  ATENDIMENTO_EVOLUTION_URL: z.url().default("http://atendimento-evolution:8080"),
   ACCESS_V1_PUBLIC_ORIGIN: z.url().default("https://espelho.lia.doctor"),
   ACCESS_V1_ARO_CLAIM_URL: z.url().optional(),
   ACCESS_V1_ARO_SERVER_KEY: z.string().min(32).optional(),

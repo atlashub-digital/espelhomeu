@@ -38,6 +38,15 @@ describe("transportes transacionais com gates", () => {
     await transport(loadEnv({ ...config, NODE_ENV: "production", ACCESS_V1_LIVE_ENABLED: "true" }), { sendMail } as never).send(message);
     expect(sendMail).toHaveBeenCalledOnce();
   });
+  it.each(["https://evolution.example.invalid", "https://evolution.example.invalid/"])("Evolution usa URL configurada %s e mantém o pedido", async url => {
+    const fetcher = vi.fn(async () => new Response(JSON.stringify({ status: "PENDING" })));
+    vi.stubGlobal("fetch", fetcher);
+    await transport(loadEnv({ ...config, ATENDIMENTO_EVOLUTION_URL: url })).send({ ...message, channel: "whatsapp", identifier: "+351910000000" });
+    expect(fetcher).toHaveBeenCalledWith("https://evolution.example.invalid/message/sendText/atlashub-wa", expect.objectContaining({
+      method: "POST", headers: { apikey: "test-only", "content-type": "application/json" },
+      body: expect.stringContaining('"number":"351910000000"'), redirect: "error", signal: expect.any(AbortSignal),
+    }));
+  });
   it("Evolution 2.3.7 usa apenas atlashub-wa, E.164 sem + e feedback fail-closed", async () => {
     const fetcher = vi.fn(async () => new Response(JSON.stringify({ status: "PENDING" })));
     vi.stubGlobal("fetch", fetcher);
