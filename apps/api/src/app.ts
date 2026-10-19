@@ -39,7 +39,8 @@ export async function buildApp(env: Env) {
   const access = env.ACCESS_V1_ENABLED && db && env.ACCESS_V1_ENCRYPTION_KEY && env.SUPABASE_URL_MASTER && env.SUPABASE_SERVICE_ROLE_KEY_MASTER
     ? new AccessService(postgresAccessStore(db), supabaseProvider(env.SUPABASE_URL_MASTER, env.SUPABASE_SERVICE_ROLE_KEY_MASTER), Buffer.from(env.ACCESS_V1_ENCRYPTION_KEY, "hex"), preview, Date.now, transport(env))
     : undefined;
-  await app.register(accessRoutes, { enabled: env.ACCESS_V1_ENABLED, service: access, origins: env.WEB_ORIGINS, aroClaim: env.ACCESS_V1_ARO_CLAIM_URL && env.ACCESS_V1_ARO_SERVER_KEY ? remoteAroClaim(env.ACCESS_V1_ARO_CLAIM_URL, env.ACCESS_V1_ARO_SERVER_KEY) : undefined, testToken: preview ? env.ACCESS_V1_TEST_TOKEN : undefined });
+  const aroKey = env.ACCESS_V1_ARO_SERVER_KEY ?? env.ARO_SERVER_KEY;
+  await app.register(accessRoutes, { enabled: env.ACCESS_V1_ENABLED, service: access, origins: env.WEB_ORIGINS, aroClaim: aroKey ? remoteAroClaim(env.ACCESS_V1_ARO_CLAIM_URL ?? new URL("/claim", env.ARO_API_URL).href, aroKey) : undefined, testToken: preview ? env.ACCESS_V1_TEST_TOKEN : undefined });
 
   return app;
 }

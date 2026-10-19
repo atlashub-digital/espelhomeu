@@ -17,17 +17,19 @@ export function memoryStore(): AccessStore & { records: Map<string, RecordValue>
   } };
 }
 /** Local wire-level GoTrue stub. No request can reach Master or an SMTP service. */
-export async function startSupabaseStub() {
+export async function startSupabaseStub(distinctPrincipals = false) {
   const app = Fastify({ logger: false });
   const proofs = new Map<string, string>();
   const refreshes = new Map<string, string>();
   const access = new Map<string, string>();
   const calls: string[] = [];
   const id = "11111111-1111-4111-8111-111111111111";
-  const user = (email: string) => ({ id, aud: "authenticated", role: "authenticated", email, email_confirmed_at: new Date().toISOString(), app_metadata: {}, user_metadata: {}, created_at: new Date().toISOString() });
+  const principals = new Map<string, string>();
+  const principal = (email: string) => { if (!principals.has(email)) principals.set(email, randomUUID()); return distinctPrincipals ? principals.get(email)! : id; };
+  const user = (email: string) => ({ id: principal(email), aud: "authenticated", role: "authenticated", email, email_confirmed_at: new Date().toISOString(), app_metadata: {}, user_metadata: {}, created_at: new Date().toISOString() });
   function session(email: string) {
     const refresh_token = randomUUID();
-    const jwt = [Buffer.from('{"alg":"HS256","typ":"JWT"}').toString("base64url"), Buffer.from(JSON.stringify({ sub: id, exp: Math.floor(Date.now() / 1000) + 3600, session_id: randomUUID() })).toString("base64url"), "synthetic"].join(".");
+    const jwt = [Buffer.from('{"alg":"HS256","typ":"JWT"}').toString("base64url"), Buffer.from(JSON.stringify({ sub: principal(email), exp: Math.floor(Date.now() / 1000) + 3600, session_id: randomUUID() })).toString("base64url"), "synthetic"].join(".");
     access.set(jwt, email); refreshes.set(refresh_token, email);
     return { access_token: jwt, refresh_token, expires_in: 3600, token_type: "bearer", user: user(email) };
   }

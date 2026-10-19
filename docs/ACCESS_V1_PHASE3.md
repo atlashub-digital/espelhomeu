@@ -131,3 +131,14 @@ issuedAt/expiresAt, evitando TTL acidental de 120001 ms. E2E conjunto reproduz
 challenge/previewSecret/sessão, claim/Reader backend, replay, refund/chargeback,
 revogação, cross-tenant, TTL real de 120s e indisponibilidade; sem pagamentos,
 provider externo ou envio de mensagens. Evidência detalhada e CI no corpo do PR.
+
+### Fecho PR #35 — 2026-10-19
+
+- Binding cifrado mantém uma compra por oferta, deduplica orderId e aceita o formato
+  anterior. Bind e claim preservam ofertas distintas; cada leitura revalida cada compra no ARO.
+- `ACCESS_TEST_REAL_RESEND=true node automation/verify-bind-recovery.mjs`, com
+  `RESEND_API_KEY` no ambiente: PASS no browser, NODE_ENV=test, allowlist institucional,
+  dois envios reais, login → bind → contexto limpo → OTP → Reader.
+- Read-back `GET /emails/{id}` confirmou `last_event=delivered` para
+  `01a1527e-0917-72f6-8238-ed8bedaa40d6` e `01a1527e-1c4c-76f5-a4a6-18d41c7f2d96`.
+  Códigos não registados. Identidade, ARO e pagamento sintéticos; nenhum envio WA novo.

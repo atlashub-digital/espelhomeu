@@ -103,6 +103,7 @@ export async function startMockAro() {
               key: "espelhomeu:" + p,
               status: e.revoked ? "REVOKED" : "ACTIVE",
               source_order_id: e.session.order_id,
+              ...(e.expired ? { expires_at: "2020-01-02T00:00:00Z" } : {}),
               starts_at: "2020-01-01T00:00:00Z",
             }))
           : [],
@@ -119,6 +120,10 @@ export async function startMockAro() {
         (e) => e.session.order_id === orderId,
       );
       if (e) e.session.state = state;
+    },
+    expire(orderId, expired = true) {
+      const e = [...sessions.values()].find(e => e.session.order_id === orderId);
+      if (e) e.expired = expired;
     },
     revoke(orderId) {
       const e = [...sessions.values()].find(

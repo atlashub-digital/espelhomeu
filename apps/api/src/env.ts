@@ -30,6 +30,8 @@ const Env = z.object({
   ATENDIMENTO_EVOLUTION_KEY: z.string().optional(),
   ATENDIMENTO_EVOLUTION_URL: z.url().default("http://atendimento-evolution:8080"),
   ACCESS_V1_PUBLIC_ORIGIN: z.url().default("https://espelho.lia.doctor"),
+  ARO_API_URL: z.url().default("https://aro.atlashub.si"),
+  ARO_SERVER_KEY: z.string().min(32).optional(),
   ACCESS_V1_ARO_CLAIM_URL: z.url().optional(),
   ACCESS_V1_ARO_SERVER_KEY: z.string().min(32).optional(),
   APP_VERSION: z.string().default("dev"),

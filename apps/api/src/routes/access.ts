@@ -46,6 +46,16 @@ export async function accessRoutes(app: FastifyInstance, opts: { enabled: boolea
       return session ?? reply.code(401).send({ error: "unauthenticated" });
     } catch { return reply.code(503).send({ error: "access_unavailable" }); }
   });
+  app.post("/access/bind", routeOptions, async (req, reply) => {
+    const input = z.object({ id: z.uuid(), orderId: z.uuid(), checkoutSecret: z.string().min(16).max(2048) }).strict().safeParse(req.body);
+    if (!input.success) return reply.code(400).send({ error: "invalid_request" });
+    try {
+      const token = sessionToken(req.headers.cookie);
+      if (!await opts.service!.session(token)) return reply.code(401).send({ error: "unauthenticated" });
+      const bound = await opts.service!.bind(token, { id: input.data.id, orderId: input.data.orderId, secret: input.data.checkoutSecret }, opts.aroClaim);
+      return bound ? { ok: true } : reply.code(409).send({ error: "binding_denied" });
+    } catch { return reply.code(503).send({ error: "access_unavailable" }); }
+  });
   app.get("/access/entitlements", routeOptions, async (req) => ({ productRefs: await opts.service!.products(sessionToken(req.headers.cookie), opts.aroClaim) }));
   app.post("/access/opt-out", routeOptions, async (req, reply) => await opts.service!.optOut(sessionToken(req.headers.cookie)) ? { ok: true } : reply.code(401).send({ error: "unauthenticated" }));
   app.post("/access/logout", routeOptions, async (req, reply) => {
