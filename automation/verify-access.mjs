@@ -30,6 +30,7 @@ try {
   page.setDefaultTimeout(20000);
   page.on("pageerror", error => console.error("browser error:", error.message));
   await page.goto(origin + "/biblioteca");
+  if (await page.getByRole("button", { name: "Já comprei? Recuperar acesso" }).getAttribute("aria-expanded") === "false") await page.getByRole("button", { name: "Já comprei? Recuperar acesso" }).click();
   await page.getByRole("heading", { name: "Entrar na Biblioteca" }).waitFor();
   await page.getByLabel("E-mail", { exact: true }).fill("browser@example.invalid");
   const requested = page.waitForResponse(r => r.url().endsWith("/api/access/challenges") && r.request().method() === "POST");
@@ -45,11 +46,13 @@ try {
   assert.ok(access?.httpOnly && access.secure && access.sameSite === "Lax");
   assert.equal(cookies.find(c => c.name === "espelho_aro_checkout")?.value, "e7-preserved");
   await page.reload();
+  if (await page.getByRole("button", { name: "Já comprei? Recuperar acesso" }).getAttribute("aria-expanded") === "false") await page.getByRole("button", { name: "Já comprei? Recuperar acesso" }).click();
   await page.getByRole("button", { name: "Sair deste dispositivo" }).waitFor();
   await page.goto(origin + "/ler/7-dias-para-me-escolher");
   assert.match(await page.locator("h1").innerText(), /acesso reservado/);
   assert.equal((await context.request.get(origin + "/conteudo/produto-01/workbook.pdf")).status(), 403);
   await page.goto(origin + "/biblioteca");
+  if (await page.getByRole("button", { name: "Já comprei? Recuperar acesso" }).getAttribute("aria-expanded") === "false") await page.getByRole("button", { name: "Já comprei? Recuperar acesso" }).click();
   await page.getByRole("button", { name: "Sair deste dispositivo" }).click();
   await page.getByRole("heading", { name: "Entrar na Biblioteca" }).waitFor();
   const replay = await context.request.get(origin + "/api/access/session", { headers: { cookie: access.name + "=" + access.value } });
@@ -61,6 +64,7 @@ try {
   const magicSecret = await (await fetch("http://127.0.0.1:4100/access/testing/challenges/" + magic.challenge_id, { headers: { "x-access-test-token": "synthetic-browser-test-token-32-chars" } })).json();
   const url = origin + "/biblioteca#access_challenge=" + magic.challenge_id + "&access_token=" + magicSecret.secret;
   await page.goto(url);
+  if (await page.getByRole("button", { name: "Já comprei? Recuperar acesso" }).getAttribute("aria-expanded") === "false") await page.getByRole("button", { name: "Já comprei? Recuperar acesso" }).click();
   await page.getByRole("button", { name: "Confirmar entrada pelo link" }).waitFor();
   assert.equal((await context.request.get(origin + "/api/access/session")).status(), 401);
   assert.equal(new URL(page.url()).hash, "");

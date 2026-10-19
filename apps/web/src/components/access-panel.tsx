@@ -4,13 +4,21 @@ import { useRouter } from "next/navigation";
 type Challenge = { id: string; method: "otp" | "magic_link" };
 export function AccessPanel({ canBind = false }: { canBind?: boolean }) {
   const router = useRouter();
-  const [channel, setChannel] = useState("email");
+  const channel = "email";
+  const [remaining, setRemaining] = useState(0);
   const [authenticated, setAuthenticated] = useState(false);
   const [challenge, setChallenge] = useState<Challenge | null>(null);
   const [link, setLink] = useState<{ id: string; token: string } | null>(null);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const [resendAt, setResendAt] = useState(0);
+  useEffect(() => {
+    if (!resendAt) return;
+    const tick = () => setRemaining(Math.max(0, Math.ceil((resendAt - Date.now()) / 1000)));
+    tick();
+    const timer = window.setInterval(tick, 1000);
+    return () => window.clearInterval(timer);
+  }, [resendAt]);
   useEffect(() => {
     let mounted = true;
     function readLink() {
@@ -42,13 +50,13 @@ export function AccessPanel({ canBind = false }: { canBind?: boolean }) {
     const data = new FormData(event.currentTarget);
     setBusy(true); setMessage("");
     try {
-      const method = data.get("method") === "magic_link" ? "magic_link" : "otp";
-      const response = await post("challenges", { project: "espelhomeu", channel, method, identifier: data.get("email"), ...(channel === "whatsapp" ? { transactionalConsent: data.get("consent") === "on" } : {}) });
+      const method = "otp" as const;
+      const response = await post("challenges", { project: "espelhomeu", channel, method, identifier: data.get("email") });
       if (!response.ok) throw new Error();
       const result = await response.json();
       setChallenge({ id: result.challenge_id, method });
-      setResendAt(Date.now() + result.resend_after * 1000);
-      setMessage(method === "otp" ? "Se for possível continuar, receberá um código válido por 5 minutos." : "Se for possível continuar, receberá um link válido por 10 minutos. Abra-o e confirme para entrar.");
+      setResendAt(Date.now() + Math.max(60, Number(result.resend_after) || 60) * 1000);
+      setMessage("Se for possível continuar, receberá um código válido por 5 minutos.");
     } catch { setMessage("Não foi possível continuar. Tente novamente mais tarde."); }
     finally { setBusy(false); }
   }
@@ -60,7 +68,7 @@ export function AccessPanel({ canBind = false }: { canBind?: boolean }) {
       setAuthenticated(true); setLink(null); setChallenge(null);
       setMessage("Identidade confirmada. As suas leituras dependem do acesso à compra.");
       router.refresh();
-    } catch { setMessage("Código ou link inválido, expirado ou já utilizado. Peça um novo para continuar."); }
+    } catch { setMessage("Código inválido ou expirado. Solicite um novo."); }
     finally { setBusy(false); }
   }
   async function activate() {
@@ -82,24 +90,30 @@ export function AccessPanel({ canBind = false }: { canBind?: boolean }) {
     } catch { setMessage("Não foi possível terminar a sessão. Tente novamente."); }
     finally { setBusy(false); }
   }
-  return <section className="page-intro" aria-label="Acesso à Biblioteca">
+  return <section className="page-intro" aria-label="Acesso à Biblioteca" aria-busy={busy}>
     <h2>{canBind ? "Ativar recuperação" : authenticated ? "A sua sessão" : "Entrar na Biblioteca"}</h2>
     {authenticated ? <>{canBind && <button className="button" disabled={busy} onClick={activate}>Ativar recuperação com este contacto</button>}<p>Sessão por até 7 dias. Entrar confirma o seu contacto; cada leitura mantém a verificação de acesso à compra.</p><button className="button" disabled={busy} onClick={async () => { const r = await post("opt-out", {}); setMessage(r.ok ? "Pedidos por WhatsApp desativados. Pode usar e-mail." : "Esta opção requer uma sessão verificada por WhatsApp."); }}>Desativar pedidos por WhatsApp</button><button className="button" disabled={busy} onClick={logout}>Sair deste dispositivo</button></> : <>
-      <p>{canBind ? "Confirme o seu e-mail ou WhatsApp e ative a recuperação para abrir esta compra noutro dispositivo." : "Use e-mail ou WhatsApp para entrar ou recuperar a sessão, sem palavra-passe."}</p>
+      <p>{canBind ? "Confirme o seu e-mail e ative a recuperação para abrir esta compra noutro dispositivo." : "Use o e-mail associado à sua compra para recuperar o acesso, sem palavra-passe."}</p>
       {link ? <button className="button" disabled={busy} onClick={() => verify(link.id, link.token)}>Confirmar entrada pelo link</button> : <>
         <form className="catalog-filter" onSubmit={requestChallenge}>
-          <label>Canal<select value={channel} onChange={e => setChannel(e.target.value)}><option value="email">E-mail</option><option value="whatsapp">WhatsApp</option></select></label>
-          <label>{channel === "email" ? "E-mail" : "WhatsApp (com + e indicativo do país)"}<input name="email" type={channel === "email" ? "email" : "tel"} autoComplete={channel === "email" ? "email" : "tel"} maxLength={254} required /></label>
-          {channel === "whatsapp" && <label><input name="consent" type="checkbox" required />Quero receber este código ou link transacional pelo WhatsApp. Posso desativar os pedidos nesta sessão.</label>}
-          <label>Como prefere entrar?<select name="method"><option value="otp">Código de 6 dígitos</option><option value="magic_link">Link de entrada</option></select></label>
-          <button className="button" disabled={busy} type="submit">{challenge ? "Pedir novo código ou link" : "Continuar"}</button>
+          <label>Canal<select defaultValue="email"><option value="email">E-mail</option><option value="whatsapp" disabled>WhatsApp — em breve</option></select></label>
+          <label>E-mail<input name="email" type="email" autoComplete="email" autoFocus maxLength={254} required readOnly={busy} /></label>
+          <button className="button" disabled={busy || remaining > 0} type="submit">{busy ? "A enviar…" : remaining > 0 ? `Reenviar em ${remaining}s` : challenge ? "Solicitar novo código" : "Continuar"}</button>
         </form>
         {challenge?.method === "otp" && <form className="catalog-filter" onSubmit={event => { event.preventDefault(); void verify(challenge.id, String(new FormData(event.currentTarget).get("code"))); }}>
-          <label>Código de 6 dígitos<input name="code" inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" minLength={6} maxLength={6} required /></label>
-          <button className="button" disabled={busy} type="submit">Confirmar código</button>
+          <label>Código de 6 dígitos<input key={challenge.id} autoFocus name="code" inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" minLength={6} maxLength={6} required /></label>
+          <button className="button" disabled={busy} type="submit">{busy ? "A confirmar…" : "Confirmar código"}</button>
         </form>}
       </>}
     </>}
     <p role="status" aria-live="polite">{message}</p>
   </section>;
+}
+
+export function RecoveryPanel() {
+  const [open, setOpen] = useState(false);
+  return <div>
+    <button className="button" type="button" aria-expanded={open} onClick={() => setOpen(value => !value)}>Já comprei? Recuperar acesso</button>
+    {open && <AccessPanel />}
+  </div>;
 }
