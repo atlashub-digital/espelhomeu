@@ -152,18 +152,30 @@ export class AccessService {
       }
     });
   }
+  private bindings(value: RecordValue | null): AuthorizedPurchaseBinding[] {
+    if (!value?.sealed) return [];
+    const stored = this.open<AuthorizedPurchaseBinding | AuthorizedPurchaseBinding[]>(String(value.sealed));
+    return Array.isArray(stored) ? stored : [stored];
+  }
+  private async saveBinding(binding: AuthorizedPurchaseBinding) {
+    await this.store.update("binding:" + this.hash(PROJECT + ":" + binding.principalId), async old => {
+      const bindings = this.bindings(old).filter(b => b.offerId !== binding.offerId && b.orderId !== binding.orderId);
+      return { value: { sealed: this.seal([...bindings, binding]) }, result: null };
+    });
+  }
   async products(token: string, adapter?: AroClaimAdapter) {
     const session = await this.session(token);
     if (!session || !adapter?.resolve) return [];
-    const binding = await this.store.update("binding:" + this.hash(PROJECT + ":" + session.principal_id), async old => ({ value: old ?? {}, result: old?.sealed ? this.open<AuthorizedPurchaseBinding>(String(old.sealed)) : null }));
-    return binding && binding.principalId === session.principal_id && binding.project === PROJECT ? adapter.resolve(binding) : [];
+    const bindings = await this.store.update("binding:" + this.hash(PROJECT + ":" + session.principal_id), async old => ({ value: old ?? {}, result: this.bindings(old) }));
+    const products = await Promise.all(bindings.filter(b => b.principalId === session.principal_id && b.project === PROJECT).map(b => adapter.resolve!(b)));
+    return [...new Set(products.flat())];
   }
   async bind(token: string, capability: { id: string; orderId: string; secret: string }, adapter?: AroClaimAdapter) {
     const session = await this.session(token);
     if (!session || !adapter?.bind) return false;
     const binding = await adapter.bind(capability, session.principal_id);
     if (!binding || binding.project !== PROJECT || binding.principalId !== session.principal_id || binding.orderId !== capability.orderId || binding.checkoutSessionId !== capability.id) return false;
-    await this.store.update("binding:" + this.hash(PROJECT + ":" + session.principal_id), async () => ({ value: { sealed: this.seal(binding) }, result: null }));
+    await this.saveBinding(binding);
     return true;
   }
   async optOut(token: string) {
@@ -185,7 +197,7 @@ export class AccessService {
       if (old) return { value: old, result: false };
       const binding = await adapter.claim(proof, session.principal_id);
       if (binding && binding.project === PROJECT && binding.principalId === session.principal_id && binding.orderId === proof.orderId && binding.checkoutSessionId === proof.checkoutSessionId && binding.offerId === proof.offerId && typeof binding.expiresAt === "number" && binding.expiresAt > this.now()) {
-        await this.store.update("binding:" + this.hash(PROJECT + ":" + session.principal_id), async () => ({ value: { sealed: this.seal(binding) }, result: null }));
+        await this.saveBinding(binding);
         return { value: { consumed: true }, result: true };
       }
       return { value: { consumed: true }, result: false };

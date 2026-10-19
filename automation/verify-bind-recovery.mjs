@@ -3,6 +3,7 @@ import { spawn } from "node:child_process";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
+const liveResend = process.env.ACCESS_TEST_REAL_RESEND === "true";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const webRequire = createRequire(root + "apps/web/package.json");
 const apiRequire = createRequire(root + "apps/api/package.json");
@@ -30,15 +31,29 @@ try {
   page.setDefaultTimeout(30000);
   const reader = origin + "/ler/7-dias-para-me-escolher";
   const bind = ctx => ctx.request.post(origin + "/api/access/bind", { headers: { origin }, data: {} });
-  async function login(ctx, email = "browser@example.invalid") {
+  async function login(ctx, email = liveResend ? "atlashub.digital@gmail.com" : "browser@example.invalid") {
     const p = await ctx.newPage();
     await p.goto(origin + "/biblioteca");
     await p.getByLabel("E-mail", { exact: true }).fill(email);
     const requested = p.waitForResponse(r => r.url().endsWith("/api/access/challenges") && r.request().method() === "POST");
     await p.getByRole("button", { name: "Continuar", exact: true }).click();
     const challenge = await (await requested).json();
-    const res = await fetch("http://127.0.0.1:4100/testing/email-code/" + encodeURIComponent(email), { headers: { "x-access-test-token": "synthetic-browser-test-token-32-chars" } });
-    const { secret } = await res.json();
+    let secret;
+    for (let attempt = 0; attempt < 90; attempt++) {
+      const res = await fetch("http://127.0.0.1:4100/testing/email-code/" + encodeURIComponent(email), { headers: { "x-access-test-token": "synthetic-browser-test-token-32-chars" } });
+      if (res.status === 200) {
+        const delivery = await res.json();
+        secret = delivery.secret;
+        if (liveResend) {
+          assert.equal(delivery.last_event, "delivered");
+          console.log("Resend delivered id=" + delivery.email_id);
+        }
+        break;
+      }
+      assert.ok(res.status === 202, "Email read-back failed");
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    }
+    assert.ok(secret, "Email delivery timed out");
     await p.getByLabel("Código de 6 dígitos", { exact: true }).fill(secret);
     await p.getByRole("button", { name: "Confirmar código" }).click();
     await p.getByRole("button", { name: "Sair deste dispositivo" }).waitFor();
@@ -84,11 +99,13 @@ try {
   assert.doesNotMatch(await recovered.locator("h1").innerText(), /acesso reservado/i);
   assert.equal((await bind(fresh)).status(), 403);
   console.log("PASS 4 dispositivo limpo sem E7 → OTP do mesmo contacto → sessão 7d → mesmo Reader");
-  const stranger = await browser.newContext();
-  const blocked = await login(stranger, "link@example.invalid");
-  await blocked.goto(reader);
-  assert.match(await blocked.locator("h1").innerText(), /acesso reservado/i);
-  console.log("PASS 5 outro contacto com OTP mas sem binding → Reader bloqueado");
+  if (!liveResend) {
+    const stranger = await browser.newContext();
+    const blocked = await login(stranger, "link@example.invalid");
+    await blocked.goto(reader);
+    assert.match(await blocked.locator("h1").innerText(), /acesso reservado/i);
+    console.log("PASS 5 outro contacto com OTP mas sem binding → Reader bloqueado");
+  }
   const orderPath = aro.requests.find(r => r.path.startsWith("/v1/orders/"))?.path;
   assert.ok(orderPath);
   const purchasedOrder = orderPath.split("/").pop();
@@ -105,9 +122,10 @@ try {
   await recovered.reload();
   assert.match(await recovered.locator("h1").innerText(), /acesso reservado/i);
   console.log("PASS 7 entitlement revogado / ordem REFUNDED → Reader bloqueado com sessão válida");
-  console.log("Binding browser E2E: Resend adapter + allowlist with local HTTP capture, Supabase/ARO HTTP doubles; external Resend delivery NOT tested.");
+  if (liveResend) console.log("Real Resend PASS: 2 delivered emails; login → bind → fresh context → OTP → Reader; synthetic identity/ARO/payment.");
+  else console.log("Binding browser E2E: Resend adapter + allowlist with local HTTP capture, Supabase/ARO HTTP doubles; external Resend delivery NOT tested.");
 } catch (error) {
-  console.error("Access E2E server log:\n" + logs);
+  if (!liveResend) console.error("Access E2E server log:\n" + logs);
   throw error;
 } finally {
   await browser?.close();

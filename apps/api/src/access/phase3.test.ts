@@ -276,3 +276,32 @@ it("bind E7 exige sessão OTP, prova de checkout e ARO atual; falhas não gravam
   expect(JSON.stringify([...f.store.records])).not.toContain(capability.checkoutSecret);
   for (const revoked of ["EXPIRED", "REFUNDED", "REVOKED"]) { status = revoked; expect(await f.service.products(token, adapter)).toEqual([]); }
 });
+
+it("preserva compras distintas, revalida cada uma e substitui recompra da mesma oferta", async () => {
+  const f = await fixture();
+  const c = await f.service.challenge(message.identifier, "otp", "ip");
+  const token = (await f.service.verify(c.challenge_id, f.messages[0]!.secret, "espelhomeu"))!;
+  const resolved: string[] = [];
+  const refunded = new Set<string>();
+  const adapter: import("./claim").AroClaimAdapter = {
+    async claim(proof, principalId) { return { ...proof, principalId, aroCustomerId: "customer", expiresAt: Date.now() + 120000 }; },
+    async bind(cap, principalId) { return { project: "espelhomeu", principalId, orderId: cap.orderId, checkoutSessionId: cap.id, aroCustomerId: "customer", offerId: cap.orderId.startsWith("p01") ? "p01" : "p02" }; },
+    async resolve(b) { resolved.push(b.orderId); return refunded.has(b.orderId) ? [] : [b.offerId]; },
+  };
+  const bind = (orderId: string) => f.service.bind(token, { id: orderId, orderId, secret: "possession" }, adapter);
+  // Concurrent writes must retain both purchases under the store lock.
+  expect(await Promise.all([bind("p01-old"), bind("p02-old")])).toEqual([true, true]);
+  expect((await f.service.products(token, adapter)).sort()).toEqual(["p01", "p02"]);
+  refunded.add("p01-old");
+  expect(await f.service.products(token, adapter)).toEqual(["p02"]);
+  expect(await bind("p01-new")).toBe(true);
+  expect(await bind("p01-new")).toBe(true);
+  resolved.length = 0;
+  expect((await f.service.products(token, adapter)).sort()).toEqual(["p01", "p02"]);
+  expect(resolved.sort()).toEqual(["p01-new", "p02-old"]);
+  // Hosted claims use the same replacement policy as E7 binding.
+  expect(await f.service.claim(token, { project: "espelhomeu", orderId: "p02-new", checkoutSessionId: "new-session", offerId: "p02", proof: "new-proof" }, adapter)).toBe(true);
+  resolved.length = 0;
+  expect((await f.service.products(token, adapter)).sort()).toEqual(["p01", "p02"]);
+  expect(resolved.sort()).toEqual(["p01-new", "p02-new"]);
+});
