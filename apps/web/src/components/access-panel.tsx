@@ -2,7 +2,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 type Challenge = { id: string; method: "otp" | "magic_link" };
-export function AccessPanel() {
+export function AccessPanel({ canBind = false }: { canBind?: boolean }) {
   const router = useRouter();
   const [channel, setChannel] = useState("email");
   const [authenticated, setAuthenticated] = useState(false);
@@ -63,6 +63,16 @@ export function AccessPanel() {
     } catch { setMessage("Código ou link inválido, expirado ou já utilizado. Peça um novo para continuar."); }
     finally { setBusy(false); }
   }
+  async function activate() {
+    setBusy(true); setMessage("");
+    try {
+      const response = await post("bind", {});
+      if (!response.ok) throw new Error();
+      setMessage("Recuperação ativada. Noutro dispositivo, entre com este mesmo contacto para abrir as suas leituras.");
+      router.refresh();
+    } catch { setMessage("Não foi possível ativar a recuperação. Confirme que a compra continua disponível neste dispositivo e tente novamente."); }
+    finally { setBusy(false); }
+  }
   async function logout() {
     setBusy(true);
     try {
@@ -73,9 +83,9 @@ export function AccessPanel() {
     finally { setBusy(false); }
   }
   return <section className="page-intro" aria-label="Acesso à Biblioteca">
-    <h2>{authenticated ? "A sua sessão" : "Entrar na Biblioteca"}</h2>
-    {authenticated ? <><p>Sessão por até 7 dias. Entrar confirma o seu contacto; cada leitura mantém a verificação de acesso à compra.</p><button className="button" disabled={busy} onClick={async () => { const r = await post("opt-out", {}); setMessage(r.ok ? "Pedidos por WhatsApp desativados. Pode usar e-mail." : "Esta opção requer uma sessão verificada por WhatsApp."); }}>Desativar pedidos por WhatsApp</button><button className="button" disabled={busy} onClick={logout}>Sair deste dispositivo</button></> : <>
-      <p>Use e-mail ou WhatsApp para entrar ou recuperar a sessão, sem palavra-passe.</p>
+    <h2>{canBind ? "Ativar recuperação" : authenticated ? "A sua sessão" : "Entrar na Biblioteca"}</h2>
+    {authenticated ? <>{canBind && <button className="button" disabled={busy} onClick={activate}>Ativar recuperação com este contacto</button>}<p>Sessão por até 7 dias. Entrar confirma o seu contacto; cada leitura mantém a verificação de acesso à compra.</p><button className="button" disabled={busy} onClick={async () => { const r = await post("opt-out", {}); setMessage(r.ok ? "Pedidos por WhatsApp desativados. Pode usar e-mail." : "Esta opção requer uma sessão verificada por WhatsApp."); }}>Desativar pedidos por WhatsApp</button><button className="button" disabled={busy} onClick={logout}>Sair deste dispositivo</button></> : <>
+      <p>{canBind ? "Confirme o seu e-mail ou WhatsApp e ative a recuperação para abrir esta compra noutro dispositivo." : "Use e-mail ou WhatsApp para entrar ou recuperar a sessão, sem palavra-passe."}</p>
       {link ? <button className="button" disabled={busy} onClick={() => verify(link.id, link.token)}>Confirmar entrada pelo link</button> : <>
         <form className="catalog-filter" onSubmit={requestChallenge}>
           <label>Canal<select value={channel} onChange={e => setChannel(e.target.value)}><option value="email">E-mail</option><option value="whatsapp">WhatsApp</option></select></label>

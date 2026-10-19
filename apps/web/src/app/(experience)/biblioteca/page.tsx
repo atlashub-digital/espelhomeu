@@ -1,3 +1,4 @@
+import { currentCapability, resolveCheckoutAccess } from "@/lib/aro/client";
 import { AccessPanel } from "@/components/access-panel";
 export const dynamic = "force-dynamic";
 import { Intro } from "@/components/product-shell";
@@ -10,6 +11,13 @@ export default async function Page({
   searchParams: Promise<{ q?: string; tipo?: string }>;
 }) {
   if (!enabled("library")) notFound();
+  let canBind = false;
+  if (process.env.ACCESS_V1_ENABLED === "true") {
+    try {
+      const capability = await currentCapability();
+      canBind = !!capability && (await resolveCheckoutAccess(capability)).length > 0;
+    } catch { /* Recovery activation requires a currently valid purchase. */ }
+  }
   const params = await searchParams;
   const query = typeof params.q === "string" ? params.q : "";
   const type = typeof params.tipo === "string" ? params.tipo : "";
@@ -24,7 +32,7 @@ export default async function Page({
           liberdade e sem pressa.
         </p>
       </Intro>
-      {process.env.ACCESS_V1_ENABLED === "true" && <AccessPanel />}
+      {process.env.ACCESS_V1_ENABLED === "true" && <AccessPanel canBind={canBind} />}
       <form className="catalog-filter">
         <label>
           Buscar uma leitura

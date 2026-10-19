@@ -1,13 +1,12 @@
+import { resolveAroCheckout } from "@espelhomeu/shared";
 import "server-only";
 import { cookies } from "next/headers";
 import {
   openSession,
   sessionCookie,
   validSession,
-  activeProductRefs,
   type CheckoutCapability,
   type CheckoutSession,
-  UUID,
 } from "./core";
 export function aroConfig() {
   const apiUrl = process.env.ARO_API_URL || "https://aro.atlashub.si";
@@ -59,30 +58,12 @@ export async function getAroCheckout(
 }
 /** Checkout capability proves only possession of this order, never identity by submitted email. */
 export async function resolveCheckoutAccess(c: CheckoutCapability) {
-  const session = await getAroCheckout(c);
-  if (session.state !== "APPROVED") return [];
   const key = aroConfig().serverKey;
   if (!key) return [];
-  const order = await aroFetch("/v1/orders/" + encodeURIComponent(c.orderId), {
-    headers: { authorization: "Bearer " + key },
-  });
-  if (
-    order.id !== c.orderId ||
-    order.project !== "espelhomeu" ||
-    order.status !== "APPROVED" ||
-    !UUID.test(order.customer_id)
-  )
-    return [];
-  const payload = await aroFetch("/v1/entitlements/resolve", {
-    method: "POST",
-    headers: {
-      authorization: "Bearer " + key,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      project: "espelhomeu",
-      customer_id: order.customer_id,
-    }),
-  });
-  return activeProductRefs(payload, c.orderId, order.customer_id);
+  const result = await resolveAroCheckout((path, body, secret) => aroFetch(path, {
+    method: body ? "POST" : "GET",
+    headers: secret ? { "X-ARO-Checkout-Secret": secret } : { authorization: "Bearer " + key, "content-type": "application/json" },
+    ...(body ? { body: JSON.stringify(body) } : {}),
+  }), c);
+  return result?.productRefs ?? [];
 }

@@ -158,6 +158,14 @@ export class AccessService {
     const binding = await this.store.update("binding:" + this.hash(PROJECT + ":" + session.principal_id), async old => ({ value: old ?? {}, result: old?.sealed ? this.open<AuthorizedPurchaseBinding>(String(old.sealed)) : null }));
     return binding && binding.principalId === session.principal_id && binding.project === PROJECT ? adapter.resolve(binding) : [];
   }
+  async bind(token: string, capability: { id: string; orderId: string; secret: string }, adapter?: AroClaimAdapter) {
+    const session = await this.session(token);
+    if (!session || !adapter?.bind) return false;
+    const binding = await adapter.bind(capability, session.principal_id);
+    if (!binding || binding.project !== PROJECT || binding.principalId !== session.principal_id || binding.orderId !== capability.orderId || binding.checkoutSessionId !== capability.id) return false;
+    await this.store.update("binding:" + this.hash(PROJECT + ":" + session.principal_id), async () => ({ value: { sealed: this.seal(binding) }, result: null }));
+    return true;
+  }
   async optOut(token: string) {
     const session = await this.session(token);
     if (!session) return false;
@@ -176,7 +184,7 @@ export class AccessService {
     return this.store.update("claim:" + this.hash(proof.proof), async old => {
       if (old) return { value: old, result: false };
       const binding = await adapter.claim(proof, session.principal_id);
-      if (binding && binding.project === PROJECT && binding.principalId === session.principal_id && binding.orderId === proof.orderId && binding.checkoutSessionId === proof.checkoutSessionId && binding.offerId === proof.offerId && binding.expiresAt > this.now()) {
+      if (binding && binding.project === PROJECT && binding.principalId === session.principal_id && binding.orderId === proof.orderId && binding.checkoutSessionId === proof.checkoutSessionId && binding.offerId === proof.offerId && typeof binding.expiresAt === "number" && binding.expiresAt > this.now()) {
         await this.store.update("binding:" + this.hash(PROJECT + ":" + session.principal_id), async () => ({ value: { sealed: this.seal(binding) }, result: null }));
         return { value: { consumed: true }, result: true };
       }

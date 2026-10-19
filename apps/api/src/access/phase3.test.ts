@@ -110,10 +110,10 @@ describe("consumidor HTTP hosted ARO → sessão verificada → Reader", () => {
     const orderId = "22222222-2222-4222-8222-222222222222", checkoutSessionId = "33333333-3333-4333-8333-333333333333";
     aro.post<{ Body: { proof: string; principalId: string; project: string } }>("/claim", async (req, reply) => {
       if (req.headers.authorization !== "Bearer scoped-test-key" || req.body.proof !== "valid".repeat(8) || status !== "APPROVED" || entitlement !== "ACTIVE") return reply.code(409).send({});
-      return { project: req.body.project, principalId: req.body.principalId, orderId, checkoutSessionId, aroCustomerId: "customer", offerId: "p01", issuedAt: Date.now(), expiresAt: Date.now() + 120000, orderStatus: status, entitlementStatus: entitlement };
+      return { project: req.body.project, principalId: req.body.principalId, orderId, checkoutSessionId, aroCustomerId: "44444444-4444-4444-8444-444444444444", offerId: "p01", issuedAt: Date.now(), expiresAt: Date.now() + 120000, orderStatus: status, entitlementStatus: entitlement };
     });
-    aro.get("/v1/orders/:id", async () => ({ project: "espelhomeu", id: orderId, customer_id: "customer", status }));
-    aro.post("/v1/entitlements/resolve", async () => ({ project: "espelhomeu", customer_id: "customer", entitlements: [{ key: "espelhomeu:p01", status: entitlement, source_order_id: orderId, starts_at: new Date(0).toISOString() }] }));
+    aro.get("/v1/orders/:id", async () => ({ project: "espelhomeu", id: orderId, customer_id: "44444444-4444-4444-8444-444444444444", status }));
+    aro.post("/v1/entitlements/resolve", async () => ({ project: "espelhomeu", customer_id: "44444444-4444-4444-8444-444444444444", entitlements: [{ key: "espelhomeu:p01", status: entitlement, source_order_id: orderId, starts_at: new Date(0).toISOString() }] }));
     const url = await aro.listen({ host: "127.0.0.1", port: 0 });
     const adapter = remoteAroClaim(url + "/claim", "scoped-test-key");
     const app = Fastify(); cleanup.push(() => app.close());
@@ -239,4 +239,40 @@ describe("Resend HTTPS com gates e política de reenvio", () => {
     expect(fetcher).toHaveBeenCalledTimes(2);
     expect(fetcher.mock.calls[1]![1]!.body).toBe(fetcher.mock.calls[0]![1]!.body);
   });
+});
+
+it("bind E7 exige sessão OTP, prova de checkout e ARO atual; falhas não gravam binding", async () => {
+  const f = await fixture();
+  const orderId = "22222222-2222-4222-8222-222222222222", id = "33333333-3333-4333-8333-333333333333", customer = "44444444-4444-4444-8444-444444444444";
+  const capability = { id, orderId, checkoutSecret: "checkout-possession-secret" };
+  let state = "APPROVED", status = "ACTIVE", project = "espelhomeu", source = orderId;
+  const aro = Fastify({ logger: false }); cleanup.push(() => aro.close());
+  aro.get("/v1/checkout-sessions/:id", async (req, reply) => req.headers["x-aro-checkout-secret"] === capability.checkoutSecret ? { id, order_id: orderId, project, state, offer: "p01-br", amount: { amount_minor: 1190, currency: "BRL" } } : reply.code(401).send({}));
+  aro.get("/v1/orders/:id", async req => {
+    expect(req.headers.authorization).toBe("Bearer scoped-test-key");
+    return { id: orderId, project, status: state, customer_id: customer };
+  });
+  aro.post("/v1/entitlements/resolve", async () => ({ project, customer_id: customer, entitlements: [{ key: "espelhomeu:p01", status, source_order_id: source, starts_at: new Date(0).toISOString() }] }));
+  const url = await aro.listen({ host: "127.0.0.1", port: 0 });
+  const adapter = remoteAroClaim(url + "/claim", "scoped-test-key");
+  const app = Fastify(); cleanup.push(() => app.close());
+  await app.register(accessRoutes, { enabled: true, origins: ["https://test.invalid"], service: f.service, aroClaim: adapter });
+  let cookie = "";
+  const post = (payload = capability) => app.inject({ method: "POST", url: "/access/bind", headers: { origin: "https://test.invalid", cookie }, payload });
+  expect((await post()).statusCode).toBe(401);
+  const c = await f.service.challenge(message.identifier, "otp", "ip");
+  expect((await post()).statusCode).toBe(401); // Typed contact and challenge do not prove possession.
+  const token = (await f.service.verify(c.challenge_id, f.messages[0]!.secret, "espelhomeu"))!;
+  cookie = "__Host-espelho_access=" + token;
+  expect((await post({ ...capability, checkoutSecret: "forged-checkout-secret" })).statusCode).toBe(409);
+  for (const denied of ["PENDING", "REFUNDED", "EXPIRED"]) { state = denied; expect((await post()).statusCode).toBe(409); }
+  state = "APPROVED"; project = "club"; expect((await post()).statusCode).toBe(409);
+  project = "espelhomeu"; source = id; expect((await post()).statusCode).toBe(409);
+  source = orderId; status = "REVOKED"; expect((await post()).statusCode).toBe(409);
+  expect([...f.store.records.keys()].some(k => k.startsWith("binding:"))).toBe(false);
+  status = "ACTIVE";
+  expect((await post()).statusCode).toBe(200);
+  expect(await f.service.products(token, adapter)).toEqual(["p01"]);
+  expect(JSON.stringify([...f.store.records])).not.toContain(capability.checkoutSecret);
+  for (const revoked of ["EXPIRED", "REFUNDED", "REVOKED"]) { status = revoked; expect(await f.service.products(token, adapter)).toEqual([]); }
 });

@@ -14,6 +14,7 @@ const mockAro = await startMockAro();
 const env = {
   ...process.env,
   CI: "true",
+  ACCESS_V1_ENABLED: "false",
   ARO_API_URL: mockAro.url,
   ARO_PUBLIC_KEY: "synthetic-public-key",
   ARO_SERVER_KEY: "synthetic-server-key-for-ci-only",
@@ -60,6 +61,8 @@ async function waitFor(url) {
 try {
   await Promise.all([waitFor(origin), waitFor("http://127.0.0.1:4000/health")]);
   const health = await (await fetch("http://127.0.0.1:4000/health")).json();
+  assert.equal((await fetch(origin + "/api/access/bind", { method: "POST", headers: { origin }, body: "{}" })).status, 404);
+  assert.equal((await fetch("http://127.0.0.1:4000/access/bind", { method: "POST", headers: { origin, "content-type": "application/json" }, body: "{}" })).status, 404);
   assert.equal(health.status, "ok");
   assert.equal(health.db, "not_configured");
   await mkdir(evidence, { recursive: true });

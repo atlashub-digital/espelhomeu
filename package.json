@@ -17,7 +17,7 @@
     "smoke:web": "node automation/smoke-web.mjs",
     "verify:browser": "node automation/verify-browser.mjs",
     "content:sync": "node packages/project-content/scripts/sync-editorial.mjs",
-    "verify:access": "node automation/verify-access.mjs"
+    "verify:access": "node automation/verify-access.mjs && node automation/verify-bind-recovery.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

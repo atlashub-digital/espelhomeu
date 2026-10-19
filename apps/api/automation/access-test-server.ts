@@ -9,16 +9,23 @@ import { transport } from "../src/access/transport";
 import { remoteAroClaim } from "../src/access/claim";
 import { loadEnv } from "../src/env";
 if (process.env.NODE_ENV !== "test") throw new Error("test_only");
-const stub = await startSupabaseStub();
+const stub = await startSupabaseStub(!!process.env.RECOVERY_ARO_URL);
 const smtp = new SMTPServer({ authOptional: true, disabledCommands: ["STARTTLS"], onData(stream, _s, cb) { stream.resume(); stream.on("end", cb); } });
 await new Promise<void>(resolve => smtp.listen(0, "127.0.0.1", resolve));
 const smtpPort = (smtp.server.address() as { port: number }).port;
 const wa = Fastify({ logger: false });
+const deliveredEmails = new Map<string, string>();
+wa.post<{ Body: { to: string[]; text: string } }>("/emails", async (req, reply) => {
+  if (req.headers.authorization !== "Bearer synthetic-resend-key") return reply.code(401).send({});
+  deliveredEmails.set(req.body.to[0]!, req.body.text);
+  return { id: "synthetic-resend-message" };
+});
 wa.post("/message/sendText/atlashub-wa", async () => ({ status: "PENDING" }));
 const waUrl = await wa.listen({ host: "127.0.0.1", port: 0 });
 const realFetch = globalThis.fetch;
 globalThis.fetch = ((input, init) => {
   const url = String(input);
+  if (process.env.RECOVERY_ARO_URL && url === "https://api.resend.com/emails") return realFetch(waUrl + "/emails", init);
   return realFetch(url.startsWith("http://atendimento-evolution:8080/") ? url.replace("http://atendimento-evolution:8080", waUrl) : input, init);
 }) as typeof fetch;
 const aro = Fastify({ logger: false });
@@ -29,16 +36,26 @@ aro.post<{ Body: { proof: string; principalId: string } }>("/claim", async (req,
   if (consumed || req.body.proof !== "synthetic-hosted-claim-proof-at-least-32" || status !== "APPROVED" || req.headers.authorization !== "Bearer synthetic-scoped-server-key") return reply.code(409).send({});
   consumed = true;
   const issuedAt = Date.now();
-  return { project: "espelhomeu", principalId: req.body.principalId, orderId, checkoutSessionId, aroCustomerId: "synthetic-customer", offerId: "p01", issuedAt, expiresAt: issuedAt + 120000, orderStatus: status, entitlementStatus: "ACTIVE" };
+  return { project: "espelhomeu", principalId: req.body.principalId, orderId, checkoutSessionId, aroCustomerId: "44444444-4444-4444-8444-444444444444", offerId: "p01", issuedAt, expiresAt: issuedAt + 120000, orderStatus: status, entitlementStatus: "ACTIVE" };
 });
-aro.get("/v1/orders/:id", async () => ({ project: "espelhomeu", id: orderId, customer_id: "synthetic-customer", status }));
-aro.post("/v1/entitlements/resolve", async () => ({ project: "espelhomeu", customer_id: "synthetic-customer", entitlements: [{ key: "espelhomeu:p01", status: status === "APPROVED" ? "ACTIVE" : "REVOKED", source_order_id: orderId, starts_at: new Date(0).toISOString() }] }));
+aro.get("/v1/orders/:id", async () => ({ project: "espelhomeu", id: orderId, customer_id: "44444444-4444-4444-8444-444444444444", status }));
+aro.post("/v1/entitlements/resolve", async () => ({ project: "espelhomeu", customer_id: "44444444-4444-4444-8444-444444444444", entitlements: [{ key: "espelhomeu:p01", status: status === "APPROVED" ? "ACTIVE" : "REVOKED", source_order_id: orderId, starts_at: new Date(0).toISOString() }] }));
 const aroUrl = await aro.listen({ host: "127.0.0.1", port: 0 });
 const app = Fastify({ logger: false });
 const testToken = "synthetic-browser-test-token-32-chars";
-const sender = transport(loadEnv({ NODE_ENV: "test", ACCESS_V1_EMAIL_TRANSPORT: "live", ACCESS_V1_WA_TRANSPORT: "live", ACCESS_V1_EMAIL_ALLOWLIST: "browser@example.invalid,link@example.invalid", ACCESS_V1_WA_ALLOWLIST: "+351910000000", ACCESS_V1_SMTP_HOST: "127.0.0.1", HOSTINGER_EMAIL_TOKEN: "synthetic", ATENDIMENTO_EVOLUTION_KEY: "synthetic" }), nodemailer.createTransport({ host: "127.0.0.1", port: smtpPort, secure: false, ignoreTLS: true }));
-const service = new AccessService(memoryStore(), supabaseProvider(stub.url, "synthetic-service-role"), Buffer.alloc(32, 3), true, Date.now, sender);
-await app.register(accessRoutes, { enabled: true, service, origins: ["http://localhost:3100"], testToken, aroClaim: remoteAroClaim(aroUrl + "/claim", "synthetic-scoped-server-key") });
+const sender = transport(loadEnv({ NODE_ENV: "test", ACCESS_V1_EMAIL_PROVIDER: process.env.RECOVERY_ARO_URL ? "resend" : "smtp", RESEND_API_KEY: "synthetic-resend-key", ACCESS_V1_EMAIL_TRANSPORT: "live", ACCESS_V1_WA_TRANSPORT: "live", ACCESS_V1_EMAIL_ALLOWLIST: "browser@example.invalid,link@example.invalid", ACCESS_V1_WA_ALLOWLIST: "+351910000000", ACCESS_V1_SMTP_HOST: "127.0.0.1", HOSTINGER_EMAIL_TOKEN: "synthetic", ATENDIMENTO_EVOLUTION_KEY: "synthetic" }), nodemailer.createTransport({ host: "127.0.0.1", port: smtpPort, secure: false, ignoreTLS: true }));
+let clockOffset = 0;
+const service = new AccessService(memoryStore(), supabaseProvider(stub.url, "synthetic-service-role"), Buffer.alloc(32, 3), true, () => Date.now() + clockOffset, sender);
+await app.register(accessRoutes, { enabled: true, service, origins: ["http://localhost:3100"], testToken, aroClaim: remoteAroClaim((process.env.RECOVERY_ARO_URL ?? aroUrl) + "/claim", process.env.RECOVERY_ARO_URL ? "synthetic-server-key-for-ci-only" : "synthetic-scoped-server-key") });
+app.get<{ Params: { identifier: string } }>("/testing/email-code/:identifier", async (req, reply) => {
+  if (!process.env.RECOVERY_ARO_URL || req.headers["x-access-test-token"] !== testToken) return reply.code(404).send();
+  const code = deliveredEmails.get(req.params.identifier)?.match(/código Atlas Access é (\d{6})/)?.[1];
+  return code ? { secret: code } : reply.code(404).send();
+});
+app.post("/testing/advance", async (req, reply) => {
+  if (!process.env.RECOVERY_ARO_URL || req.headers["x-access-test-token"] !== testToken) return reply.code(404).send();
+  clockOffset += 61000; return { ok: true };
+});
 app.post("/testing/revoke", async (req, reply) => {
   if (req.headers["x-access-test-token"] !== testToken) return reply.code(404).send();
   status = "REFUNDED"; return { ok: true };
