@@ -1,3 +1,4 @@
+import { RecoveryPanel } from "@/components/access-panel";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { enabled } from "@espelhomeu/project-config";
@@ -10,7 +11,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string;
   const route = await params;
   const result = await accessibleJourney(route.slug);
   if (!result) notFound();
-  if (!result.allowed) return <Intro eyebrow="Jornadas" title="Esta jornada tem acesso reservado."><Link href="/biblioteca">Explorar leituras abertas</Link></Intro>;
+  if (!result.allowed) return <Intro eyebrow="Jornadas" title="Esta jornada tem acesso reservado."><Link href="/biblioteca">Explorar leituras abertas</Link>{process.env.ACCESS_V1_ENABLED === "true" && <RecoveryPanel />}</Intro>;
   const { model } = result;
   const index = model.units.findIndex(item => item.unit.id === route.unit);
   const current = model.units[index];

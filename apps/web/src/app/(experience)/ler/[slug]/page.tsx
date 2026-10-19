@@ -1,3 +1,4 @@
+import { RecoveryPanel } from "@/components/access-panel";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { accessiblePublication } from "@/lib/content";
@@ -18,9 +19,9 @@ export default async function Page({
         <p className="eyebrow">{result.publication.title}</p>
         <h1>Esta leitura tem acesso reservado.</h1>
         <p>
-          A área de membros está em preparação. Você pode explorar as leituras
-          abertas.
+          Pode explorar as leituras abertas ou recuperar o acesso à sua compra.
         </p>
+        {process.env.ACCESS_V1_ENABLED === "true" && <RecoveryPanel />}
         <Link className="button" href="/biblioteca">
           Voltar à biblioteca
         </Link>

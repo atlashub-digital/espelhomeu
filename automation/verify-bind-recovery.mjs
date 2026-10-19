@@ -31,13 +31,18 @@ try {
   page.setDefaultTimeout(30000);
   const reader = origin + "/ler/7-dias-para-me-escolher";
   const bind = ctx => ctx.request.post(origin + "/api/access/bind", { headers: { origin }, data: {} });
-  async function login(ctx, email = liveResend ? "atlashub.digital@gmail.com" : "browser@example.invalid") {
+  async function login(ctx, email = liveResend ? "atlashub.digital@gmail.com" : "browser@example.invalid", route = "/biblioteca") {
     const p = await ctx.newPage();
-    await p.goto(origin + "/biblioteca");
+    await p.goto(origin + route);
+    const recover = p.getByRole("button", { name: "Já comprei? Recuperar acesso" });
+    if (await recover.count()) await recover.click();
+    assert.notEqual(await p.locator('option[value="whatsapp"]').getAttribute("disabled"), null);
     await p.getByLabel("E-mail", { exact: true }).fill(email);
     const requested = p.waitForResponse(r => r.url().endsWith("/api/access/challenges") && r.request().method() === "POST");
     await p.getByRole("button", { name: "Continuar", exact: true }).click();
     const challenge = await (await requested).json();
+    await p.getByRole("button", { name: /Reenviar em/ }).waitFor();
+    assert.equal(await p.getByRole("button", { name: /Reenviar em/ }).isDisabled(), true);
     let secret;
     for (let attempt = 0; attempt < 90; attempt++) {
       const res = await fetch("http://127.0.0.1:4100/testing/email-code/" + encodeURIComponent(email), { headers: { "x-access-test-token": "synthetic-browser-test-token-32-chars" } });
@@ -54,9 +59,13 @@ try {
       await new Promise(resolve => setTimeout(resolve, 2000));
     }
     assert.ok(secret, "Email delivery timed out");
-    await p.getByLabel("Código de 6 dígitos", { exact: true }).fill(secret);
+    await p.getByLabel("Código de 6 dígitos", { exact: true }).fill(secret === "000000" ? "111111" : "000000");
     await p.getByRole("button", { name: "Confirmar código" }).click();
-    await p.getByRole("button", { name: "Sair deste dispositivo" }).waitFor();
+    await p.getByText("Código inválido ou expirado. Solicite um novo.", { exact: true }).waitFor();
+    await p.getByLabel("Código de 6 dígitos", { exact: true }).fill(secret);
+    const verified = p.waitForResponse(r => r.url().endsWith("/api/access/challenges/verify"));
+    await p.getByRole("button", { name: "Confirmar código" }).click();
+    assert.equal((await verified).status(), 200);
     return p;
   }
   // Real web checkout/BFF/cookie; ARO and payment remain synthetic.
@@ -85,12 +94,23 @@ try {
   console.log("PASS 3 OTP no navegador → binding validado no ARO → confirmação; E7 preservado");
   // Honour the existing 60-second resend cooldown without slowing CI.
   await fetch("http://127.0.0.1:4100/testing/advance", { method: "POST", headers: { "x-access-test-token": "synthetic-browser-test-token-32-chars" } });
-  const fresh = await browser.newContext();
+  const fresh = await browser.newContext({ viewport: { width: 390, height: 844 } });
   assert.equal((await fresh.cookies()).length, 0);
   const beforeRecovery = await fresh.newPage();
   await beforeRecovery.goto(reader);
   assert.match(await beforeRecovery.locator("h1").innerText(), /acesso reservado/i);
-  const recovered = await login(fresh);
+  for (const route of ["/biblioteca", "/programas/7-dias-para-me-escolher", "/programas/7-dias-para-me-escolher/p01-dia-1"]) {
+    await beforeRecovery.goto(origin + route);
+    await beforeRecovery.getByRole("button", { name: "Já comprei? Recuperar acesso" }).waitFor();
+  }
+  const recovered = await login(fresh, undefined, "/ler/7-dias-para-me-escolher");
+  await recovered.locator(".reader-content").waitFor();
+  assert.equal(await recovered.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+  await recovered.goto(origin + "/biblioteca");
+  const readings = recovered.getByRole("region", { name: "As suas leituras" });
+  assert.equal(await readings.locator(".publication-card").count(), 1);
+  assert.equal(await readings.locator('.editorial-cover[href="/ler/7-dias-para-me-escolher"]').count(), 1);
+  assert.equal(await recovered.getByRole("button", { name: "Já comprei? Recuperar acesso" }).count(), 0);
   assert.ok(!(await fresh.cookies()).some(c => c.name === "espelho_aro_checkout"));
   const session = (await fresh.cookies()).find(c => c.name === "__Host-espelho_access");
   assert.ok(session?.secure && session.httpOnly && session.sameSite === "Lax");

@@ -29,13 +29,16 @@ const accessLabels: Record<Publication["access"]["mode"], string> = {
 export async function PublicationCards({
   query = "",
   type = "",
+  ownedOnly = false,
 }: {
   query?: string;
   type?: string;
+  ownedOnly?: boolean;
 }) {
   const access = await getCommerceAccess();
   const publications = (await catalog()).filter(
     (p) =>
+      (!ownedOnly || !!requiredProductForPublication(p.id) && hasProduct(access, requiredProductForPublication(p.id)!)) &&
       (!type || p.type === type) &&
       `${p.title} ${p.tags.join(" ")}`
         .toLocaleLowerCase("pt")
